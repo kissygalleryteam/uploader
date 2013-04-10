@@ -1,0 +1,2 @@
+KISSY.add("gallery/uploader/1.4/plugins/ajbridge/uploader",function(d,f,a){function c(a,b){var b=b||{},e={};d.each(["ds","dsp","btn","hand"],function(a){a in b&&(e[a]=b[a])});b.params=b.params||{};b.params.flashvars=d.merge(b.params.flashvars,e);c.superclass.constructor.call(this,a,b)}d.extend(c,a);a.augment(c,"setFileFilters,filter,setAllowMultipleFiles,multifile,browse,upload,uploadAll,cancel,getFile,removeFile,lock,unlock,setBtnMode,useHand,clear".split(","));c.version="1.0.1";a.Uploader=c;return a.Uploader},
+{requires:["gallery/flash/1.0/index","./ajbridge"]});
