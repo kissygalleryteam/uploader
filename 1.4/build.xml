@@ -1,0 +1,133 @@
+<project name="uploader.build" default="build" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+    <description>Uploader Build File</description>
+    <property name="charset" value="utf-8"/>
+    <property name="version" value="1.4"/>
+    <property name="tool.dir" location="../../../../kissy-tools"/>
+    <property name="jsdoc.dir" location="${tool.dir}/jsdoc-toolkit"/>
+    <property name="compiler" location="${tool.dir}/closure-compiler/compiler.jar"/>
+    <property name="uploader.build.dir" location="../../../gallery-build/uploader/${version}"/>
+    <property name="src.dir" location="."/>
+    <!--合并源码文件，排除模板js-->
+    <target name="concat">
+        <concat destfile="index-pkg.js" encoding="${charset}" outputencoding="${charset}" overwrite="true">
+            <fileset dir="${src.dir}" includes="**/*.js" excludes="theme.js,themes/**/*.js,guide/**/*.js,demo/**/*.js,plugins/**/*.js"/>
+            <filterchain>
+                <deletecharacters chars="&#xFEFF;"/>
+            </filterchain>
+        </concat>
+    </target>
+    <!--移动合并后源文件到build目录下-->
+    <target name="move">
+        <move file="index-pkg.js" tofile="${uploader.build.dir}/index.js"/>
+        <copyfile src="theme.js" dest="${uploader.build.dir}/theme.js"/>
+    </target>
+    <target name="dircheck">
+        <condition property="uploader.build.dir.exists">
+            <available file="${uploader.build.dir}" type="dir"/>
+        </condition>
+    </target>
+    <!--删除build目录下的所有文件-->
+    <target name="clean-build" if="${uploader.build.dir.exists}" depends="dircheck">
+        <delete >
+            <fileset dir="${uploader.build.dir}" includes="**/*.js,**/*.css,**/*.swf,**/*.less"/>
+        </delete>
+    </target>
+    <target name="mkdir">
+        <mkdir dir="${uploader.build.dir}">
+
+        </mkdir>
+    </target>
+    <!--移动uploader.swf-->
+    <target name="move-plugin">
+        <copy todir="${uploader.build.dir}/plugins" overwrite="true">
+            <fileset dir="${src.dir}/plugins"/>
+        </copy>
+    </target>
+    <!--移动模板的源码文件到build目录下-->
+    <target name="move-theme">
+        <copy todir="${uploader.build.dir}/themes" overwrite="true">
+            <fileset dir="${src.dir}/themes"/>
+        </copy>
+        <delete>
+            <fileset dir="${uploader.build.dir}/themes" includes="**/*.htm,**/*.less"/>
+        </delete>
+    </target>
+    <!--压缩模板css文件-->
+    <target name="minify-theme-css">
+        <apply executable="java" verbose="true" dest="${uploader.build.dir}/themes" failonerror="true" parallel="false">
+            <fileset dir="${uploader.build.dir}/themes" includes="**/*.css" excludes="*-min.css"/>
+            <arg line="-jar"/>
+            <arg path="${tool.dir}/yuicompressor/yuicompressor.jar"/>
+            <arg line="--charset gbk"/>
+            <arg value="--type"/>
+            <arg value="css"/>
+            <arg value="-o"/>
+            <targetfile/>
+            <mapper type="glob" from="*.css" to="*-min.css"/>
+        </apply>
+    </target>
+    <!--构建模板，合并模板下的js文件，生成index-pkg.js，删除源文件，将index-pkg.js改成index.js-->
+    <target name="build-theme" depends="move-theme">
+        <ac:for param="file">
+            <path>
+                <fileset dir="${uploader.build.dir}/themes" includes="**/index.js"/>
+            </path>
+            <sequential>
+                <ac:var name="var.dir" unset="true"/>
+                <dirname property="var.dir" file="@{file}"/>
+                <echo>concat ${var.dir}</echo>
+                <concat destfile="${var.dir}/index-pkg.js" encoding="${charset}" outputencoding="${charset}">
+                    <fileset dir="${var.dir}" includes="*.js"/>
+                    <filterchain>
+                        <deletecharacters chars="&#xFEFF;"/>
+                    </filterchain>
+                </concat>
+                <delete>
+                    <fileset dir="${var.dir}/" includes="*.js" excludes="index-pkg.js"/>
+                </delete>
+                <rename src="${var.dir}/index-pkg.js" dest="${var.dir}/index.js"/>
+            </sequential>
+        </ac:for>
+    </target>
+    <!--压缩前去除页面多余空白-->
+    <target name="crlf">
+        <fixcrlf includes="*.js" srcdir="${uploader.build.dir}" encoding="utf8" eol="crlf"></fixcrlf>
+    </target>
+    <!--压缩脚本-->
+    <target name="minify" depends="crlf">
+        <apply executable="java" verbose="true" dest="${uploader.build.dir}" failonerror="true" parallel="false">
+            <fileset dir="${uploader.build.dir}" includes="**/*.js"/>
+            <arg line="-jar"/>
+            <arg path="${tool.dir}/closure-compiler/compiler.jar"/>
+            <arg line="--charset utf8"/>
+            <arg value="--warning_level"/>
+            <arg value="QUIET"/>
+            <arg value="--js"/>
+            <srcfile/>
+            <arg value="--js_output_file"/>
+            <targetfile/>
+            <mapper type="regexp" from="^(.*)\.js$" to="\1-min.js"/>
+        </apply>
+    </target>
+    <!--使用jsdoc输出文档-->
+    <target name="doc">
+        <taskdef name="jsdoctoolkit" classname="uk.co.darrenhurley.ant.tasks.JsDocToolkit"
+                 classpath="${jsdoc.dir}/jsdoc-toolkit-ant-task-1.1.2.jar;${jsdoc.dir}/java/classes/js.jar">
+        </taskdef>
+        <jsdoctoolkit template="kf" jsdochome="${jsdoc.dir}/" outputdir="${src.dir}/../doc" inputdir="${src.dir}" encoding="utf-8">
+
+        </jsdoctoolkit>
+    </target>
+    <!--改变压缩文件的编码-->
+    <target name="native2ascii">
+        <native2ascii encoding="${charset}" src="${uploader.build.dir}" dest="${uploader.build.dir}" includes="**/*-min.js" ext=".ascii.js"/>
+        <delete >
+            <fileset dir="${uploader.build.dir}" includes="**/*-min.js"/>
+        </delete>
+
+        <renameext srcDir="${uploader.build.dir}" includes="**/*.ascii.js"  fromExtension=".ascii.js" toExtension=".js" replace="true"/>
+    </target>
+
+    <target name="build" depends="clean-build,mkdir,concat,move,move-plugin,build-theme,minify-theme-css,minify,native2ascii">
+    </target>
+</project>
