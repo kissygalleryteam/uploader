@@ -326,17 +326,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
              * @private
              */
             function _test(width,height){
-                var fnWidth = fnWidthHeights[0];
-                var fnHeight = fnWidthHeights[1];
-                var isWidthRight = true;
-                var isHeightRight = true;
-                if(S.isFunction(fnWidth)){
-                    isWidthRight = fnWidth.call(self,width);
-                }
-                if(S.isFunction(fnHeight)){
-                    isHeightRight = fnHeight.call(self,height);
-                }
-                var isPass = isWidthRight && isHeightRight;
+                var isPass = fnWidthHeights.call(self,width,height);
 
                 if(!isPass){
                     //触发错误消息

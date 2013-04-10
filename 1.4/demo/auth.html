@@ -61,11 +61,9 @@
                         maxSize:500,
                         required:true,
                         allowExts:'jpg',
-                        widthHeight:[function(width){
-                            return width >= 160;
-                        },function(height){
-                            return height >= 160;
-                        }],
+                        widthHeight:function(width,height){
+                            return width > 160 && height > 160;
+                        },
                         allowRepeat:false
                     }))
                     //可以从html的input标签上合并配置
