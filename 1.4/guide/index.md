@@ -1024,11 +1024,9 @@ KISSY.add(function (S, Node, ImageUploader) {
                  <td>读/写</td>
                  <td>v1.4新增的验证规则，用于限制图片尺寸，非常特殊的验证方式：1.异步验证；2.值为一个函数数组[fnWidth,fnHeight]，比如限制宽度大于60，高度大于160，代码如下：
 
-                        widthHeight:[function(width){
-                            return width >= 160;
-                        },function(height){
-                            return height >= 160;
-                        }]
+                        widthHeight:function(width,height){
+                            return width > 160 && height > 160;
+                        }
                  </td>
              </tr>
              <tr>
