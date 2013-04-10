@@ -1,6 +1,7 @@
 {
     "name": "uploader",
-    "version":"1.3",
+    "version":"1.4",
     "author":"明河",
-    "fileoverview":"异步文件上传组件"
+    "cover":"http://img02.taobaocdn.com/tps/i2/T1C1X_Xs8gXXcd0fwt-322-176.png",
+    "desc":"异步文件上传组件"
 }
