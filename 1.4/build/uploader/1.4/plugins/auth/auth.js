@@ -66,10 +66,12 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 if(status == 'success') self.testMax() && self.testRequired();
             });
             uploader.on('success',function(){
-                var isPass = self.testMax();
-                if(!isPass) self._maxStopUpload();
+                self.testMax();
             });
             uploader.on('error', function (ev) {
+                if(ev.status == -1 && ev.rule == 'max'){
+                    self._maxStopUpload();
+                }
                 //允许继续上传文件
                 uploader.set('isAllowUpload', true);
             });
