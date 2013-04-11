@@ -69,7 +69,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 self.testMax();
             });
             uploader.on('error', function (ev) {
-                if(ev.status == -1 && ev.rule == 'max'){
+                if(ev.status === -1 && ev.rule == 'max'){
                     self._maxStopUpload();
                 }
                 //允许继续上传文件
@@ -409,7 +409,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 uploader.stop();
                 S.each(files,function(file,index){
                     if(index > curFileIndex){
-                        queue.remove(index);
+                        queue.remove(file.id);
                     }
                 })
             uploader.set('curUploadIndex', EMPTY);
