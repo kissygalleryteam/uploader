@@ -65,13 +65,9 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 //删除的是已经成功上传的文件，需要重新检验最大允许上传数
                 if(status == 'success') self.testMax() && self.testRequired();
             });
-            uploader.on('start',function(){
-                if(uploader.get('disabled')){
-                    self._maxStopUpload();
-                }
-            });
             uploader.on('success',function(){
-                self.testMax();
+                var isPass = self.testMax();
+                if(!isPass) self._maxStopUpload();
             });
             uploader.on('error', function (ev) {
                 //允许继续上传文件
@@ -410,7 +406,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 var files = queue.get('files');
                 uploader.stop();
                 S.each(files,function(file,index){
-                    if(index >= curFileIndex){
+                    if(index > curFileIndex){
                         queue.remove(index);
                     }
                 })
