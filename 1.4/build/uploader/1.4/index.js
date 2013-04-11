@@ -107,12 +107,12 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node, IframeType, Ajax
             if (file['status'] === 'error') {
                 return false;
             }
-            //阻止文件上传
-            if (!self.get('isAllowUpload')) return false;
             //设置当前上传的文件id
             self.set('curUploadIndex', index);
             //触发文件上传前事件
             self.fire(UploaderBase.event.START, {index:index, file:file});
+            //阻止文件上传
+            if (!self.get('isAllowUpload')) return false;
             //改变文件上传状态为start
             queue.fileStatus(index, UploaderBase.status.START);
             //开始上传

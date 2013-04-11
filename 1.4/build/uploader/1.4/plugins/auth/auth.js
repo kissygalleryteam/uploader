@@ -414,6 +414,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                         queue.remove(index);
                     }
                 })
+            uploader.set('curUploadIndex', EMPTY);
         },
         /**
          * 获取/设置指定规则的验证消息
