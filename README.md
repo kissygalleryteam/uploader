@@ -4,21 +4,8 @@
 
 - 版本：1.4（基于kissy1.3，兼容kissy1.2）
 - 作者：明河、紫英、飞绿
-- <a href="http://butterfly.36ria.com/1.4/demo.html" target="_blank">Butterfly教程</a>
-
-## 包配置
-
-```javascript
-        KISSY.config({
-            packages:[ {
-                name:"gallery",
-                path:"http://a.tbcdn.cn/s/kissy/",
-                charset:"utf-8"
-            } ]
-        });
-```
-
-（PS:kissy1.3不再需要配置gallery包路径。）
+- <a href="https://github.com/kissygalleryteam/uploader/blob/master/1.4/guide/index.md" target="_blank">uploader入门指南</a>
+- <a href="http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html" target="_blank">一个简单的demo</a>
 
 
 ## 组件变更
