@@ -5,7 +5,7 @@
     <property name="tool.dir" location="../../../kissy-tools"/>
     <property name="jsdoc.dir" location="${tool.dir}/jsdoc-toolkit"/>
     <property name="compiler" location="${tool.dir}/closure-compiler/compiler.jar"/>
-    <property name="uploader.build.dir" location="./build/uploader/${version}"/>
+    <property name="uploader.build.dir" location="./build/"/>
     <property name="src.dir" location="."/>
     <!--合并源码文件，排除模板js-->
     <target name="concat">
@@ -128,6 +128,6 @@
         <renameext srcDir="${uploader.build.dir}" includes="**/*.ascii.js"  fromExtension=".ascii.js" toExtension=".js" replace="true"/>
     </target>
 
-    <target name="build" depends="clean-build,mkdir,concat,move,move-plugin,build-theme,minify-theme-css,minify,native2ascii">
+    <target name="build" depends="clean-build,concat,move,move-plugin,build-theme,minify-theme-css,minify,native2ascii">
     </target>
 </project>
