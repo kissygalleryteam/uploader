@@ -60,7 +60,7 @@ KISSY.add('gallery/uploader/1.4/plugins/proBars/proBars',function(S, Node, Base,
             var val = Math.ceil((loaded/total) * 100);
             var bar = self.get('bars')[id];
             //处理进度
-            bar.set('value',val);
+            if(bar) bar.set('value',val);
         },
         /**
          * 上传成功后让进度达到100%

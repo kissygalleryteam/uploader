@@ -94,6 +94,32 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S, D, E,Base
 
         },
         /**
+         * 显示预览图片，不支持IE
+         * @author 明河
+         * @since 1.3
+         */
+        show:function(file,$img){
+            if(_mode != 'html5' || !$img || !$img.length) return false;
+            var self = this;
+            var reader = new FileReader();
+            reader.onload = function(e){
+                var data = self.data = e.target.result;
+                self.fire(_eventList.getData, {
+                    data: data,
+                    mode: _mode
+                });
+                $img.attr('src',data);
+                self.fire(_eventList.showed, {
+                    img: data
+                });
+            };
+            reader.onerror = function(e){
+                S.log(LOG_PRE + 'File Reader Error. Your browser may not fully support html5 file api', 'warning');
+                self.fire(_eventList.error);
+            };
+            reader.readAsDataURL(file);
+        },
+        /**
          * 预览函数
          * @param {HTMLElement} fileInput 文件上传的input
          * @param {HTMLElement} imgElem 需要显示预览图片的img元素，如果不设置的话，程序则不会执行显示操作，用户可以从该函数的返回值取得预览图片的地址自行写入
