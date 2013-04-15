@@ -170,11 +170,12 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
              */
             function _isAllowUpload(exts,fileName) {
                 var isAllow = false;
+                var lowerCaseFileName = fileName.toLowerCase();
                 var reg;
                 S.each(exts, function (ext) {
                     reg = new RegExp('^.+\.' + ext + '$');
                     //存在该扩展名
-                    if (reg.test(fileName))  return isAllow = true;
+                    if (reg.test(lowerCaseFileName))  return isAllow = true;
                 });
                 return isAllow;
             }
