@@ -44,11 +44,6 @@ KISSY.add(function (S, Node, Theme) {
             $delBtn.data('data-file',file);
             //点击删除按钮
             $delBtn.on('click',self._delHandler,self);
-
-            //显示图片预览
-            var $img = $('.J_Pic_' + id);
-            $img.show();
-            self.preview($img);
         },
         /**
          * 文件处于开始上传状态时触发
@@ -99,19 +94,6 @@ KISSY.add(function (S, Node, Theme) {
              self._setDisplayMsg(true,ev.file);
              //向控制台打印错误消息
              S.log(msg);
-        },
-        /**
-         * 图片预览
-         *
-         */
-        preview:function($img){
-            var self = this;
-            var uploader = self.get('uploader');
-            var oPreview = uploader.getPlugin('preview');
-            var target = uploader.get('fileInput');
-            if(!oPreview) return false;
-            oPreview.preview(target,$img);
-            return self;
         },
         /**
          * 显示“你还可以上传几张图片”
