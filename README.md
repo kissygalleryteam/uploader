@@ -19,7 +19,7 @@
     [!] 默认上传方式改成["ajax","iframe"]
     [!] 服务器返回数据结构简化，不再有data字段
     [!] 可以不指定queue目标（该目标与主题绑定）
-    [!] restore方法移动到urlsInput
+    [!] restore方法移动到urlsInput                         P
     [!] IE下图片预览优化
     [!] 进度条插件重构
     [!] 修正_errorHandler报错的bug（daogouUploader主题）
