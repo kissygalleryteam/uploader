@@ -53,39 +53,6 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 [default](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
 [daogouUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
 
-## 组件内置的主题
-
-<ul class="thumbnails">
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-imageUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>主题：imageUploader</h4>
-            </div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-refundUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>主题：refundUploader</h4>
-            </div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-loveUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>主题：loveUploader</h4>
-            </div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-singleImageUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>singleImageUploader</h4>
-            </div>
-        </a>
-    </li>
-</ul>
-
 ## 组件快速上手
 
 kissy1.2下需要gallery的包配置：
