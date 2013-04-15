@@ -214,7 +214,7 @@ KISSY.add(function (S, Node, Theme) {
                         '<div class="J_ProgressBar_{id}"><s class="loading-icon"></s>上传中...</div>' +
                     '</div>' +
                     '<div class="status error-status">' +
-                        '<p class="J_ErrorMsg_{id}">上传失败，请重试！</p></div>' +
+                        '<p class="J_ErrorMsg_{id}">服务器故障，请稍候再试！</p></div>' +
                 '</div>' +
                 '<a class="J_Del_{id} del-pic" href="#">删除</a>' +
             '</li>'
