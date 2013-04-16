@@ -12,7 +12,7 @@ Uploader是非常强大的异步文件上传组件，支持ajax、iframe、flash
 
 flash上传感谢龙藏的<code>ajbridge</code>组件。
 
-#### ImageUploader的特性
+#### Uploader的特性
 
 * 支持ajax、flash、iframe三种方案，兼容所有浏览器。（iframe不推荐使用）
 * 多主题支持，可以自己定制主题

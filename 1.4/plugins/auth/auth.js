@@ -5,6 +5,7 @@
 KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
+    //支持的规则
     var SUPPORT_RULES = ['max','maxSize','allowRepeat','allowExts','required','widthHeight'];
     var ERROR_EVENT = 'error';
     /**
