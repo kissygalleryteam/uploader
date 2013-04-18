@@ -80,7 +80,7 @@ KISSY.add('gallery/uploader/1.4/themes/default/index', function (S, Node, Theme)
             var file = ev.file;
             if(!file) return false;
             var id = ev.file.id;
-            var msg = ev.msg;
+            var msg = ev.msg || ev.result.msg;
             //打印错误消息
             $('.J_ErrorMsg_' + id).html(msg);
         }
