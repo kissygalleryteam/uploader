@@ -46,6 +46,13 @@ KISSY.add(function (S, Node, Theme) {
             $delBtn.on('click',self._delHandler,self);
         },
         /**
+         * 删除文件后重新计算下上传数
+         * @private
+         */
+        _removeHandler:function(){
+            this._setCount();
+        },
+        /**
          * 文件处于开始上传状态时触发
          */
         _startHandler:function (ev) {
@@ -142,8 +149,6 @@ KISSY.add(function (S, Node, Theme) {
                  uploader.cancel(index);
              }
             queue.remove(index);
-            //统计允许上传文件个数
-            self._setCount();
         },
         /**
          * 获取成功上传的图片张数，不传参的情况获取成功上传的张数

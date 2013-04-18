@@ -193,7 +193,7 @@ KISSY.add('gallery/uploader/1.4/theme', function (S, Node, Base) {
         _hideStatusDiv:function(file){
             if(!S.isObject(file)) return false;
             var $target = file.target;
-            $target.length && $target.all('.status').hide();
+            $target && $target.length && $target.all('.status').hide();
         },
         /**
          * 当队列添加完文件数据后向队列容器插入文件信息DOM结构
