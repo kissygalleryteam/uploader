@@ -4,7 +4,7 @@
 
 - 版本：1.4（基于kissy1.3，兼容kissy1.2）
 - 作者：明河、紫英、飞绿
-- <a href="https://github.com/kissygalleryteam/uploader/blob/master/1.4/guide/index.md" target="_blank">uploader入门指南</a>
+- <a href="http://gallery.kissyui.com/uploader/1.4/guide/index.html" target="_blank">uploader入门指南</a>
 - <a href="http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html" target="_blank">一个简单的demo</a>
 
 

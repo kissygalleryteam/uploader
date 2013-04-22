@@ -1,7 +1,7 @@
 {
     "name": "uploader",
     "version":"1.4",
-    "author":{"name":"明河","email":"minghe36@gmail.com"},
+    "author":{"name":"明河","email":"minghe36@126.com","page":"https://github.com/minghe"},
     "cover":"http://img02.taobaocdn.com/tps/i2/T1C1X_Xs8gXXcd0fwt-322-176.png",
     "desc":"异步文件上传组件"
 }
