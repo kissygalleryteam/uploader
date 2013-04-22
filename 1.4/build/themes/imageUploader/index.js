@@ -44,11 +44,13 @@ KISSY.add(function (S, Node, Theme) {
             $delBtn.data('data-file',file);
             //点击删除按钮
             $delBtn.on('click',self._delHandler,self);
-
-            //显示图片预览
-            var $img = $('.J_Pic_' + id);
-            $img.show();
-            self.preview($img);
+        },
+        /**
+         * 删除文件后重新计算下上传数
+         * @private
+         */
+        _removeHandler:function(){
+            this._setCount();
         },
         /**
          * 文件处于开始上传状态时触发
@@ -90,7 +92,7 @@ KISSY.add(function (S, Node, Theme) {
          */
         _errorHandler:function (ev) {
              var self = this;
-             var msg = ev.msg;
+             var msg = ev.msg || ev.result.msg;
              var file = ev.file;
              if(!file) return false;
              var id = ev.file.id;
@@ -99,19 +101,6 @@ KISSY.add(function (S, Node, Theme) {
              self._setDisplayMsg(true,ev.file);
              //向控制台打印错误消息
              S.log(msg);
-        },
-        /**
-         * 图片预览
-         *
-         */
-        preview:function($img){
-            var self = this;
-            var uploader = self.get('uploader');
-            var oPreview = uploader.getPlugin('preview');
-            var target = uploader.get('fileInput');
-            if(!oPreview) return false;
-            oPreview.preview(target,$img);
-            return self;
         },
         /**
          * 显示“你还可以上传几张图片”
@@ -160,8 +149,6 @@ KISSY.add(function (S, Node, Theme) {
                  uploader.cancel(index);
              }
             queue.remove(index);
-            //统计允许上传文件个数
-            self._setCount();
         },
         /**
          * 获取成功上传的图片张数，不传参的情况获取成功上传的张数
@@ -214,7 +201,7 @@ KISSY.add(function (S, Node, Theme) {
                         '<div class="J_ProgressBar_{id}"><s class="loading-icon"></s>上传中...</div>' +
                     '</div>' +
                     '<div class="status error-status">' +
-                        '<p class="J_ErrorMsg_{id}">上传失败，请重试！</p></div>' +
+                        '<p class="J_ErrorMsg_{id}">服务器故障，请稍候再试！</p></div>' +
                 '</div>' +
                 '<a class="J_Del_{id} del-pic" href="#">删除</a>' +
             '</li>'

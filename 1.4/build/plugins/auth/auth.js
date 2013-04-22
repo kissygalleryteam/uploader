@@ -5,6 +5,7 @@
 KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
+    //支持的规则
     var SUPPORT_RULES = ['max','maxSize','allowRepeat','allowExts','required','widthHeight'];
     var ERROR_EVENT = 'error';
     /**
@@ -69,7 +70,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 self.testMax();
             });
             uploader.on('error', function (ev) {
-                if(ev.status == -1 && ev.rule == 'max'){
+                if(ev.status === -1 && ev.rule == 'max'){
                     self._maxStopUpload();
                 }
                 //允许继续上传文件
@@ -170,11 +171,12 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
              */
             function _isAllowUpload(exts,fileName) {
                 var isAllow = false;
+                var lowerCaseFileName = fileName.toLowerCase();
                 var reg;
                 S.each(exts, function (ext) {
                     reg = new RegExp('^.+\.' + ext + '$');
                     //存在该扩展名
-                    if (reg.test(fileName))  return isAllow = true;
+                    if (reg.test(lowerCaseFileName))  return isAllow = true;
                 });
                 return isAllow;
             }
@@ -409,7 +411,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                 uploader.stop();
                 S.each(files,function(file,index){
                     if(index > curFileIndex){
-                        queue.remove(index);
+                        queue.remove(file.id);
                     }
                 })
             uploader.set('curUploadIndex', EMPTY);

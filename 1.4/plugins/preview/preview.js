@@ -5,7 +5,8 @@
  * @requires KISSY 1.2+
  */
 
-KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S, D, E,Base) {
+KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S,Node, D, E,Base) {
+    var $ = Node.all;
     var doc = document,
         LOG_PRE = '[Plugin: Preview] ',
         _mode = getPreviewMode(),
@@ -90,16 +91,45 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S, D, E,Base
         /**
          * 插件初始化
          */
-        pluginInitializer:function(){
-
+        pluginInitializer:function(uploader){
+            if(!uploader) return false;
+            var self = this;
+            self.set('uploader',uploader);
+            uploader.on('add',self._uploaderAddHandler,self);
+        },
+        /**
+         * 队列添加文件后触发
+         * @private
+         */
+        _uploaderAddHandler:function(ev){
+            var self = this;
+            var uploader = self.get('uploader');
+            var fileInput = uploader.get('fileInput');
+            var file = ev.file;
+            var fileData = file.data;
+            var id = file.id;
+            var preHook = self.get('preHook');
+            var $img = $(preHook+id);
+            if(!$img.length){
+                S.log('钩子为：'+preHook+id+'，找不到图片元素，无法预览图片')
+                return false;
+            }
+            if(uploader.get('multiple') && uploader.get('type') == 'ajax'){
+               self.show(fileData,$img,function(){
+                   $img.show();
+               });
+            }else{
+                self.preview(fileInput,$img);
+                $img.show();
+            }
         },
         /**
          * 显示预览图片，不支持IE
          * @author 明河
          * @since 1.3
          */
-        show:function(file,$img){
-            if(_mode != 'html5' || !$img || !$img.length) return false;
+        show:function(file,$img,callback){
+            if(!$img || !$img.length) return false;
             var self = this;
             var reader = new FileReader();
             reader.onload = function(e){
@@ -109,6 +139,7 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S, D, E,Base
                     mode: _mode
                 });
                 $img.attr('src',data);
+                callback && callback.call(self,data);
                 self.fire(_eventList.showed, {
                     img: data
                 });
@@ -211,17 +242,18 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S, D, E,Base
          */
         pluginId:{
             value:'preview'
-        }
+        },
+        uploader:{ value: '' },
+        /**
+         * 目标图片元素钩子的前缀
+         */
+        preHook:{ value: '.J_Pic_'  }
     }});
 
     return Preview;
 
 }, {
-    requires:[
-        'dom',
-        'event',
-        'base'
-    ]
+    requires:['node', 'dom', 'event', 'base' ]
 });
 /**
  * changes:

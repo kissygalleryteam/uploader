@@ -12,7 +12,7 @@ Uploader是非常强大的异步文件上传组件，支持ajax、iframe、flash
 
 flash上传感谢龙藏的<code>ajbridge</code>组件。
 
-#### ImageUploader的特性
+#### Uploader的特性
 
 * 支持ajax、flash、iframe三种方案，兼容所有浏览器。（iframe不推荐使用）
 * 多主题支持，可以自己定制主题
@@ -25,86 +25,33 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 ## demo汇总
 
-<ul class="thumbnails">
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html" class="demo-item" target="_blank">
-            <div class="thumbnail">简单demo：js配置上传组件</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/tag-config-use.html" class="demo-item" target="_blank">
-            <div class="thumbnail">简单demo：属性配置上传组件</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/auth.html" class="demo-item" target="_blank">
-            <div class="thumbnail">上传验证控制的demo</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/events.html" class="demo-item" target="_blank">
-            <div class="thumbnail">组件全部事件演示</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/default-data-show.html" class="demo-item" target="_blank">
-            <div class="thumbnail">渲染默认队列数据的demo</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/queue.html" class="demo-item" target="_blank">
-            <div class="thumbnail">队列全部方法演示</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/flash-upload-type.html" class="demo-item" target="_blank">
-            <div class="thumbnail">只使用flash上传的demo</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/iframe-upload-type.html" class="demo-item" target="_blank">
-            <div class="thumbnail">只使用iframe上传的demo</div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/method-uploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">常用方法控制</div>
-        </a>
-    </li>
-</ul>
+* [简单demo：js配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)
+* [简单demo：属性配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/tag-config-use.html)
+* [上传验证控制的demo](http://butterfly.36ria.com/uploader/1.4/demo/auth.html)
+* [组件全部事件演示](http://butterfly.36ria.com/uploader/1.4/demo/events.html)
+* [渲染默认队列数据的demo](http://butterfly.36ria.com/uploader/1.4/demo/default-data-show.html)
+* [队列全部方法演示](http://butterfly.36ria.com/uploader/1.4/demo/queue.html)
+* [只使用flash上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/flash-upload-type.html)
+* [只使用iframe上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/iframe-upload-type.html)
+* [常用方法控制](http://butterfly.36ria.com/uploader/1.4/demo/method-uploader.html)
 
 ## 组件内置的主题
 
-<ul class="thumbnails">
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-imageUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>主题：imageUploader</h4>
-            </div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-refundUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>主题：refundUploader</h4>
-            </div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-loveUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>主题：loveUploader</h4>
-            </div>
-        </a>
-    </li>
-    <li class="span3">
-        <a href="http://butterfly.36ria.com/uploader/1.4/demo/theme-singleImageUploader.html" class="demo-item" target="_blank">
-            <div class="thumbnail">
-                <h4>singleImageUploader</h4>
-            </div>
-        </a>
-    </li>
-</ul>
+###图片上传主题
+
+主题 | 作者|源码|截图
+------------ | -------------| -------------| -------------
+[imageUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
+[refundUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
+[loveUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
+[singleImageUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
+
+###文件上传主题
+
+主题 | 作者|源码|截图
+------------ | -------------| -------------| -------------
+[default](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
+[daogouUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
 
 ## 组件快速上手
 
