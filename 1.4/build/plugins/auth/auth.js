@@ -90,8 +90,10 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
             if(!theme) return false;
             var msg = theme.get('authMsg');
             if(msg) self.set('msg',msg);
-            var allowExts = theme.get('allowExts');
-            self.set('allowExts',allowExts);
+            var allowExts = self.get('allowExts');
+            if(!allowExts){
+                self.set('allowExts',theme.get('allowExts'));
+            }
             return self;
         },
         /**
