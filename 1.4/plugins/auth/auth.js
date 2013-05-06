@@ -341,7 +341,6 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
                     //重新开始上传图片
                     uploader.set('isAllowUpload',true);
                     var index = uploader.get('queue').getFileIndex(file.id);
-                    uploader.set('curUploadIndex',index);
                     uploader.upload(index);
                 }
             }
