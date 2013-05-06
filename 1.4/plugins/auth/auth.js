@@ -289,9 +289,6 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
             var uploader = self.get('uploader');
             //禁止图片上传（图片尺寸的验证过程是异步的）
             uploader.set('isAllowUpload',false);
-            //停止上传
-            uploader.stop();
-            uploader.set('curUploadIndex',EMPTY);
             //文件数据，IE9下不存在
             var fileData = file.data;
             if(!S.isEmptyObject(fileData)){
