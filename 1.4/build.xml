@@ -10,7 +10,7 @@
     <!--合并源码文件，排除模板js-->
     <target name="concat">
         <concat destfile="index-pkg.js" encoding="${charset}" outputencoding="${charset}" overwrite="true">
-            <fileset dir="${src.dir}" includes="**/*.js" excludes="theme.js,themes/**/*.js,guide/**/*.js,demo/**/*.js,plugins/**/*.js,build/**/*.js"/>
+            <fileset dir="${src.dir}" includes="**/*.js" excludes="theme.js,themes/**/*.js,guide/**/*.js,demo/**/*.js,plugins/**/*.js,build/**/*.js,meta/**/*.js"/>
             <filterchain>
                 <deletecharacters chars="&#xFEFF;"/>
             </filterchain>
@@ -37,10 +37,15 @@
 
         </mkdir>
     </target>
-    <!--移动uploader.swf-->
+    <!--移动plugin-->
     <target name="move-plugin">
         <copy todir="${uploader.build.dir}/plugins" overwrite="true">
             <fileset dir="${src.dir}/plugins"/>
+        </copy>
+    </target>
+    <target name="move-meta">
+        <copy todir="${uploader.build.dir}/meta" overwrite="true">
+            <fileset dir="${src.dir}/meta"/>
         </copy>
     </target>
     <!--移动模板的源码文件到build目录下-->
@@ -128,6 +133,6 @@
         <renameext srcDir="${uploader.build.dir}" includes="**/*.ascii.js"  fromExtension=".ascii.js" toExtension=".js" replace="true"/>
     </target>
 
-    <target name="build" depends="clean-build,concat,move,move-plugin,build-theme,minify-theme-css,minify,native2ascii">
+    <target name="build" depends="clean-build,concat,move,move-plugin,move-meta,build-theme,minify-theme-css,minify,native2ascii">
     </target>
 </project>
