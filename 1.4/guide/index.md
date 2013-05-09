@@ -45,6 +45,7 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 [refundUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
 [loveUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
 [singleImageUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
+[cropUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
 
 ###文件上传主题
 
