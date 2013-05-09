@@ -844,6 +844,9 @@ KISSY.add('gallery/uploader/1.4/button/swfButton', function (S, Node, Base, SwfU
             swfUploader = self._initSwfUploader();
             //SWF 内容准备就绪
             swfUploader.on('contentReady', function(ev){
+                //防止多次触发
+                if(swfUploader.isContent) return;
+                swfUploader.isContent = true;
                 //多选和文件过滤控制
                 swfUploader.browse(multiple, fileFilters);
                 //监听鼠标事件
@@ -922,7 +925,9 @@ KISSY.add('gallery/uploader/1.4/button/swfButton', function (S, Node, Base, SwfU
          * flash中选择完文件后触发的事件
          */
         _changeHandler:function (ev) {
-            var self = this, files = ev.fileList;
+            var self = this
+            if(self.get('swfUploader').id != ev.id) return;
+            var files = ev.fileList;
             self.fire(SwfButton.event.CHANGE, {files:files});
         },
         /**
