@@ -19,6 +19,8 @@
 <div class="grid">
     <input type="file" class="g-u" id="J_UploaderBtn" value="上传头像" name="Filedata" >
     <input type="hidden" id="J_Urls" name="urls" value="" />
+    <!--图片数据-->
+    <input type="hidden" id="J_Image" name="image" value="" />
 </div>
 <div class="grid">
     <div class="g-u">
@@ -30,8 +32,12 @@
         <div id="J_PrevBox" class="g-u preview"></div>
     </div>
 </div>
+<div>
+    <button id="J_Submit">提交</button>
+</div>
 <script type="text/javascript">
     var S = KISSY;
+    var $ = S.Node.all;
     if(S.Config.debug){
         var srcPath = "../../../../";
         S.config({
@@ -73,19 +79,25 @@
                     .plug(new ProBars())
                 //拖拽上传
                     .plug(new Filedrop())
-                    .plug(new Imgcrop({
-                        initialXY:[10, 10],
-                        initWidth:200,
-                        initHeight:200,
-                        minHeight:100,
-                        minWidth:100,
-                        previewEl:"#J_PrevBox",
-                        viewWidth:100,
-                        viewHeight:100,
-                        touchable:true,
-                        ratio:true
-                    }))
             ;
+            //图片裁剪
+            var imgcrop = new Imgcrop({
+                initialXY:[10, 10],
+                initWidth:200,
+                initHeight:200,
+                minHeight:100,
+                minWidth:100,
+                previewEl:"#J_PrevBox",
+                viewWidth:100,
+                viewHeight:100,
+                touchable:true,
+                ratio:true
+            });
+            uploader.plug(imgcrop);
+            var crop = imgcrop.get('crop');
+            $('#J_Submit').on('click',function(){
+                  S.log(crop.getCropCoords());
+            })
         });
     })
 </script>
