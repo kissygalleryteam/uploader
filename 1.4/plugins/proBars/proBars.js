@@ -90,8 +90,14 @@ KISSY.add('gallery/uploader/1.4/plugins/proBars/proBars',function(S, Node, Base,
             if(!S.isString(fileId)) return false;
             var self = this;
             var $target = $('.'+PRE+fileId);
+            var $count = $('.J_ProgressCount_'+fileId);
             var speed = self.get('speed');
             var progressBar = new ProgressBar($target,{width:self.get('width'),speed:speed});
+            if($count.length){
+                progressBar.on('change',function(ev){
+                    $count.text(ev.value+'%');
+                })
+            }
             progressBar.render();
             var bars = self.get('bars');
             return bars[fileId] = progressBar;
