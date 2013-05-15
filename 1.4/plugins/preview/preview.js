@@ -129,7 +129,7 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S,Node, D, E
          * @since 1.3
          */
         show:function(file,$img,callback){
-            if(!$img || !$img.length) return false;
+            if(!file || !$img || !$img.length) return false;
             var self = this;
             var reader = new FileReader();
             reader.onload = function(e){
