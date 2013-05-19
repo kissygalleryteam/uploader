@@ -120,7 +120,6 @@ KISSY.add('gallery/uploader/1.4/index', function (S, Node, UploaderBase, RichBas
                 S.log('目标元素不存在！');
                 return false;
             }
-
             //生成模拟按钮，并实例化按钮类
             self._replaceBtn();
             self._renderButton();
