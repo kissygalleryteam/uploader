@@ -27,6 +27,7 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 * [简单demo：js配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)
 * [简单demo：属性配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/tag-config-use.html)
+* [combo请求](http://butterfly.36ria.com/uploader/1.4/demo/combo.html)
 * [上传验证控制的demo](http://butterfly.36ria.com/uploader/1.4/demo/auth.html)
 * [组件全部事件演示](http://butterfly.36ria.com/uploader/1.4/demo/events.html)
 * [渲染默认队列数据的demo](http://butterfly.36ria.com/uploader/1.4/demo/default-data-show.html)
@@ -34,6 +35,7 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 * [只使用flash上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/flash-upload-type.html)
 * [只使用iframe上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/iframe-upload-type.html)
 * [常用方法控制](http://butterfly.36ria.com/uploader/1.4/demo/method-uploader.html)
+* [kissy1.2使用uploader1.4](http://butterfly.36ria.com/uploader/1.4/demo/with-kissy1.2.html)
 
 ## 组件内置的主题
 
@@ -46,6 +48,7 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 [loveUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
 [singleImageUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
 [cropUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
+[editorMultipleUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-editorMultipleUploader.html)| 明河、承玉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/editorMultipleUploader)|![editorMultipleUploader](http://s3.36ria.com/201305/4922/35687_o.png)
 
 ###文件上传主题
 
