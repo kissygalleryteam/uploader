@@ -207,10 +207,9 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node, IframeType, Ajax
          *  运行上传核心类（根据不同的上传方式，有所差异）
          * @private
          */
-        _renderUploaderCore:function(){
+        _renderUploaderCore:function(UploadType){
             var self = this;
             var type = self.get('type');
-            var UploadType = self.getUploadType(type);
             if (!UploadType) return false;
 
             var serverConfig = {action:self.get('action'),data:self.get('data'),dataType:'json'};
@@ -1212,11 +1211,14 @@ KISSY.add('gallery/uploader/1.4/index', function (S, Node, UploaderBase, RichBas
                 S.log('目标元素不存在！');
                 return false;
             }
+            //上传方案选择
+            var type = self.get('type');
+            var UploaderType = self.getUploadType(type);
             //生成模拟按钮，并实例化按钮类
             self._replaceBtn();
             self._renderButton();
             self._renderQueue();
-            self._renderUploaderCore();
+            self._renderUploaderCore(UploaderType);
             return self;
         },
         /**

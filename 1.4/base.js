@@ -207,10 +207,9 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node, IframeType, Ajax
          *  运行上传核心类（根据不同的上传方式，有所差异）
          * @private
          */
-        _renderUploaderCore:function(){
+        _renderUploaderCore:function(UploadType){
             var self = this;
             var type = self.get('type');
-            var UploadType = self.getUploadType(type);
             if (!UploadType) return false;
 
             var serverConfig = {action:self.get('action'),data:self.get('data'),dataType:'json'};

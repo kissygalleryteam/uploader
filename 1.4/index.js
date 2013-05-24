@@ -120,11 +120,14 @@ KISSY.add('gallery/uploader/1.4/index', function (S, Node, UploaderBase, RichBas
                 S.log('目标元素不存在！');
                 return false;
             }
+            //上传方案选择
+            var type = self.get('type');
+            var UploaderType = self.getUploadType(type);
             //生成模拟按钮，并实例化按钮类
             self._replaceBtn();
             self._renderButton();
             self._renderQueue();
-            self._renderUploaderCore();
+            self._renderUploaderCore(UploaderType);
             return self;
         },
         /**
