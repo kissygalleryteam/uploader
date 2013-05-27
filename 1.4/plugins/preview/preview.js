@@ -65,7 +65,11 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S,Node, D, E
                 data = data.replace(/[)'"%]/g, function (s) {
                     return escape(escape(s));
                 });
-                imgElem.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = data;
+                try{
+                    imgElem.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = data;
+                }catch (err){
+
+                }
             }
         }
         return true;
@@ -188,6 +192,7 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S,Node, D, E
                     case 'filter':
                         // fileInput.focus();
                         fileInput.select();
+                        fileInput.blur();
                         try {
                             self.data = doc.selection.createRange().text;
                         } catch (e) {
