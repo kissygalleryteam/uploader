@@ -1271,6 +1271,7 @@ KISSY.add('gallery/uploader/1.4/index', function (S, Node, UploaderBase, RichBas
         restore:function(target){
             var self = this;
             var fileResults;
+            self.set('hasRestore',true);
             if(!target){
                 var theme = self.get('theme');
                 if(!theme) return false;
@@ -1289,7 +1290,7 @@ KISSY.add('gallery/uploader/1.4/index', function (S, Node, UploaderBase, RichBas
                 var $script = $queueTarget.all('script');
                 $script.each(function(el){
                     if(el.attr('type') == UPLOADER_FILES){
-                        fileResults = el.text();
+                        fileResults = el.html();
                     }
                 });
             }else{
@@ -1494,7 +1495,13 @@ KISSY.add('gallery/uploader/1.4/index', function (S, Node, UploaderBase, RichBas
          * @type Object
          * @default {}
          */
-        swfSize:{value:{}}
+        swfSize:{value:{}},
+        /**
+         * 是否调用了restore方法
+         * @type Boolean
+         * @default false
+         */
+        hasRestore:{value:false}
     }}, 'Uploader');
     return Uploader;
 }, {requires:['node', './base', 'rich-base','json']});

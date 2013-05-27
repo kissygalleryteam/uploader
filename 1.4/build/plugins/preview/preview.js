@@ -104,6 +104,8 @@ KISSY.add('gallery/uploader/1.4/plugins/preview/preview', function (S,Node, D, E
         _uploaderAddHandler:function(ev){
             var self = this;
             var uploader = self.get('uploader');
+            //默认渲染数据，不需要图片预览
+            if(uploader.get('hasRestore')) return false;
             var fileInput = uploader.get('fileInput');
             var file = ev.file;
             var fileData = file.data;
