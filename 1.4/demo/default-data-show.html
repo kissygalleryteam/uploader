@@ -73,7 +73,8 @@
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview){
             var uploader = new Uploader('#J_UploaderBtn',{
                 //处理上传的服务器端脚本路径
-                action:"upload.php"
+                action:"upload.php",
+                multiple:true
             });
             //上传成功后显示图片描述
             uploader.on('success',function(ev){

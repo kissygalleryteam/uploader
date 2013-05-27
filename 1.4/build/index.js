@@ -2,7 +2,7 @@
  * @fileoverview 异步文件上传组件
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node, IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
+KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader]:';
 
     /**
@@ -306,6 +306,11 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node, IframeType, Ajax
             //运行按钮实例
             button.render();
             self.set('button', button);
+            //since v1.4.1 #25
+            //IE10下，将多选禁用掉
+            if(type == UploaderBase.type.IFRAME && UA.ie<10){
+                self.set('multiple',false);
+            }
             return button;
         },
         /**
@@ -484,7 +489,7 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node, IframeType, Ajax
         swfSize:{value:{}}
     }});
     return UploaderBase;
-}, {requires:['base', 'node', './type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
+}, {requires:['base', 'node', 'ua','./type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
 /**
  * changes:
  * 明河：1.4
