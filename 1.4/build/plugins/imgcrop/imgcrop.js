@@ -27,7 +27,7 @@ KISSY.add('gallery/uploader/1.4/plugins/imgcrop/imgcrop',function(S, Node,Base,I
             if(!uploader) return false;
             var self = this;
             var config = self.get('config');
-            var crop = ImgCrop(config);
+            var crop = new ImgCrop(config);
             self.set('crop',crop);
             uploader.on('success',self._successHandler,self);
             uploader.on('select',self._selectHandler,self);
