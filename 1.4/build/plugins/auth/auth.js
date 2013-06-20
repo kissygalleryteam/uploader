@@ -56,6 +56,9 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
             self._setSwfButtonExt();
             queue.on('add',function(ev){
                 var file = ev.file;
+                //默认渲染的数据，不需要验证
+                if(file.type == 'restore') return true;
+
                 var isPass = self.testAllowExt(file);
                 if(isPass) isPass = self.testMaxSize(file);
                 if(isPass) self.testRepeat(file);
