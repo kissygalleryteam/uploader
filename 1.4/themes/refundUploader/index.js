@@ -57,7 +57,6 @@ KISSY.add(function (S, Node, ImageUploader) {
             //显示图片预览
             var $img = $('.J_Pic_' + id);
             $img.show();
-            self.preview($img);
         },
          /**
          * 文件处于上传错误状态时触发
