@@ -55,8 +55,9 @@ KISSY.add('gallery/uploader/1.4/plugins/urlsInput/urlsInput',function(S, Node, B
          */
         _fileRemoveHandler:function(ev){
             var self = this;
-            //删除该文件路径，sUrl为服务器端返回的文件路径，而url是客服端文件路径
-            if (ev.file.sUrl) self.remove(ev.file.sUrl);
+            var file = ev.file;
+            var result = file.result;
+            if (result && result.url) self.remove(result.url);
         },
         /**
          * 向路径隐藏域添加路径
