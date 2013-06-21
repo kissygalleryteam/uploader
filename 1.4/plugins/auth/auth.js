@@ -410,15 +410,15 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
             var self = this,
                 uploader = self.get('uploader'),
                 queue = uploader.get('queue');
-                var curFileIndex = uploader.get('curUploadIndex');
-                if(curFileIndex == EMPTY) return false;
-                var files = queue.get('files');
-                uploader.stop();
-                S.each(files,function(file,index){
-                    if(index > curFileIndex){
-                        queue.remove(file.id);
-                    }
-                })
+            var curFileIndex = uploader.get('curUploadIndex');
+            if(curFileIndex == EMPTY) return false;
+            var files = queue.get('files');
+            uploader.stop();
+            S.each(files,function(file,index){
+                if(index >= curFileIndex){
+                    queue.remove(file.id);
+                }
+            })
             uploader.set('curUploadIndex', EMPTY);
         },
         /**

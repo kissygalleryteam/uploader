@@ -168,7 +168,7 @@ KISSY.add('gallery/uploader/1.4/theme', function (S, Node, Base) {
          */
         _setStatusVisibility:function (file) {
             var self = this;
-            if(!S.isObject(file)) return self;
+            if(!S.isObject(file) || S.isEmptyObject(file)) return self;
             self._hideStatusDiv(file);
             //处理消息层的显影
             var status = file.status;
