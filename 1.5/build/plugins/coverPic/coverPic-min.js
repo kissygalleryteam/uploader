@@ -1,0 +1,1 @@
+KISSY.add("gallery/uploader/1.5/plugins/coverPic/coverPic",function(b,d,c){function a(){}b.extend(a,c,{pluginInitializer:function(a){if(!a)return!1}},{ATTRS:{pluginId:{value:"coverPic"}}});return a},{requires:["node","base"]});
