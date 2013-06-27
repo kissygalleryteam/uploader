@@ -2,7 +2,7 @@
  * @fileoverview 图片上传主题（带图片预览），第一版由紫英同学完成，苏河同学做了大量优化，明河整理优化
  * @author 苏河、紫英、明河
  **/
-KISSY.add('gallery/uploader/1.5/themes/loveUploader/index', function (S, Node, ImageUploader) {
+KISSY.add(function (S, Node, ImageUploader) {
     var EMPTY = '', $ = Node.all;
 
     /**

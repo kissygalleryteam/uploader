@@ -2,7 +2,7 @@
  * @fileoverview 进度条
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/plugins/proBars/progressBar',function(S, Node, Base) {
+KISSY.add(function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,
         PROGRESS_BAR = 'progressbar',ROLE = 'role',
         ARIA_VALUEMIN = 'aria-valuemin',ARIA_VALUEMAX = 'aria-valuemax',ARIA_VALUENOW = 'aria-valuenow',

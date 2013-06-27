@@ -2,7 +2,7 @@
  * @fileoverview 使用图片裁剪的主题
  * @author 明河
  **/
-KISSY.add('gallery/uploader/1.5/themes/cropUploader/index',function (S, Node, ImageUploader) {
+KISSY.add(function (S, Node, ImageUploader) {
     var EMPTY = '', $ = Node.all;
 
     /**

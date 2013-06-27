@@ -2,7 +2,7 @@
  * @fileoverview 淘宝导购平台的上传文件
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/themes/daogouUploader/index', function (S, Node, DefaultTheme) {
+KISSY.add(function (S, Node, DefaultTheme) {
     var EMPTY = '', $ = Node.all;
 
     /**

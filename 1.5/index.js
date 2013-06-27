@@ -2,7 +2,7 @@
  * @fileoverview 异步文件上传组件
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5/index', function (S, Node, UploaderBase, RichBase,JSON) {
+KISSY.add(function (S, Node, UploaderBase, RichBase,JSON) {
     var EMPTY = '';
     var $ = Node.all;
     var UPLOADER_FILES = 'text/uploader-files';

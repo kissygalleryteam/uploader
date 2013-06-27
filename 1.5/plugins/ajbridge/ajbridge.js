@@ -7,7 +7,7 @@ build time: Sep 11 10:29
  * AJBridge Class
  * @author kingfo oicuicu@gmail.com
  */
-KISSY.add('gallery/uploader/1.5/plugins/ajbridge/ajbridge', function(S,Flash) {
+KISSY.add(function(S,Flash) {
 
     var ID_PRE = '#',
         VERSION = '1.0.15',

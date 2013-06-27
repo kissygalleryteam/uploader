@@ -2,7 +2,7 @@
  * @fileoverview 文件上传验证
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/plugins/auth/auth', function (S, Node,Base) {
+KISSY.add(function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
     //支持的规则

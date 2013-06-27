@@ -1,0 +1,10 @@
+{
+    "name": "uploader",
+    "version": "1.5.0",
+    "devDependencies": {
+        "grunt-contrib-uglify": "~0.2.0",
+        "grunt": "~0.4.1",
+        "grunt-kmc": "~0.1.1",
+        "grunt-contrib-cssmin": "~0.6.0"
+    }
+}

@@ -2,7 +2,7 @@
  * @fileoverview 默认主题
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/themes/default/index', function (S, Node, Theme) {
+KISSY.add(function (S, Node, Theme) {
     var EMPTY = '', $ = Node.all;
 
     /**

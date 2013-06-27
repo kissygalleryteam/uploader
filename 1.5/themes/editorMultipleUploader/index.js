@@ -2,7 +2,7 @@
  * @fileoverview kissy的editor（编辑器）组件的上传
  * @author 明河
  **/
-KISSY.add('gallery/uploader/1.5/themes/editorMultipleUploader/index',function (S, Node, Theme) {
+KISSY.add(function (S, Node, Theme) {
     var EMPTY = '', $ = Node.all;
 
     /**

@@ -3,7 +3,7 @@
  * @author ×ÏÓ¢£¨éÙ×Ó£©<daxingplay@gmail.com>£¬Ã÷ºÓ<jianping.xwh@taobao.com>
 
  */
-KISSY.add('gallery/uploader/1.5/plugins/coverPic/coverPic', function(S, Node,Base){
+KISSY.add(function(S, Node,Base){
 
     var $ = Node.all;
 

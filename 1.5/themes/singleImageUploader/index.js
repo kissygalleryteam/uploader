@@ -2,7 +2,7 @@
  * @fileoverview 单图片上传主题
  * @author 明河、溪夏
  **/
-KISSY.add('gallery/uploader/1.5/themes/singleImageUploader/index',function (S, Node, ImageUploader) {
+KISSY.add(function (S, Node, ImageUploader) {
     var EMPTY = '', $ = Node.all;
 
     /**

@@ -2,7 +2,7 @@
  * @fileoverview 异步文件上传组件
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5/base', function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
+KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader]:';
 
     /**

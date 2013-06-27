@@ -3,7 +3,7 @@
  * @author 剑平（明河）<minghe36@126.com>
  **/
 
-KISSY.add('gallery/uploader/1.5/theme', function (S, Node, Base) {
+KISSY.add(function (S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     //主题样式名前缀

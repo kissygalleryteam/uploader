@@ -2,7 +2,7 @@
  * @fileoverview 进度条集合
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, Base,IMGDD) {
+KISSY.add(function(S, Node, Base,IMGDD) {
     var EMPTY = '';
     var $ = Node.all;
     /**

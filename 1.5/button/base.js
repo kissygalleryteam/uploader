@@ -2,7 +2,7 @@
  * @fileoverview 文件上传按钮base
  * @author: 紫英(橘子)<daxingplay@gmail.com>, 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
+KISSY.add(function(S, Node, Base) {
     var EMPTY = '',
         LOG_PREFIX = '[Uploader-Button] ',
         $ = Node.all;

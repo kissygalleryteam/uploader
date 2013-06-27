@@ -689,8 +689,7 @@ class UploadHandler
                 mkdir($upload_dir, $this->options['mkdir_mode'], true);
             }
             $file_path = $this->get_upload_path($file->name);
-            $append_file = $content_range && is_file($file_path) &&
-                $file->size > $this->get_file_size($file_path);
+            $append_file = count($content_range)!== 0;
             if ($uploaded_file && is_uploaded_file($uploaded_file)) {
                 // multipart/formdata uploads (POST method uploads)
                 if ($append_file) {

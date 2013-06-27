@@ -2,7 +2,7 @@
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5/queue', function (S, Node, Base) {
+KISSY.add(function (S, Node, Base) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader-queue]:';
 
     /**
