@@ -39,9 +39,11 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 return false;
             }
             var self = this;
+            self._chunkedUpload(fileData);
+            /*var self = this;
             self._setFormData();
             self._addFileData(fileData);
-            self.send();
+            self.send();*/
             return self;
         },
         /**
@@ -113,6 +115,14 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             }
         },
         /**
+         * 重置FormData
+         * @private
+         */
+        _resetFormData:function(){
+            var self = this;
+            self.set('formData', new FormData());
+        },
+        /**
          * 处理传递给服务器端的参数
          */
         _processData : function() {
@@ -133,24 +143,33 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 S.log(LOG_PREFIX + '_addFileData()，file参数有误！');
                 return false;
             }
-            var self = this,
-                formData = self.get('formData'),
-                fileDataName = self.get('fileDataName');
-            formData.append(fileDataName, file);
+            var self = this;
+            var formData = self.get('formData');
+            var fileDataName = self.get('fileDataName');
+            var fileName = file.name;
+            formData.append(fileDataName, file,fileName);
             self.set('formData', formData);
+            return formData;
         },
-        _chunked:function(file){
+        _chunkedUpload:function(file){
             if(!S.isObject(file)) return false;
-            var that = this;
+            var self = this;
+            var ajaxConfig = self.get('ajaxConfig');
+            var action = self.get('action');
+            S.mix(ajaxConfig,{
+                url:action
+            });
+
             var size = file.size;
             var uploadedBytes = self.get('uploadedBytes');
-            var maxChunkSize = self.get('maxChunkSize') || size;
+            var maxChunkSize = self.get('blobSize') || size;
             //数据分块API（不同浏览器有不同实现）
             var slice = file.slice || file.webkitSlice || file.mozSlice;
             //已经上传的字节数超过文件大小，直接退出
             if(uploadedBytes > size) return true;
-
+            var i = 0;
             function upload(){
+                var uploadedBytes = self.get('uploadedBytes');
                 //文件切块，每块的大小为maxChunkSize-uploadedBytes
                 //http://dev.w3.org/2006/webapi/FileAPI/
                 var blob = slice.call(
@@ -159,225 +178,98 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                     uploadedBytes + maxChunkSize,
                     file.type
                 );
+                //分块的文件大小
                 var chunkSize = blob.size;
-                //用于指定整个实体中的一部分的插入位置，他也指示了整个实体的长度。在服务器向客户返回一个部分响应，它必须描述响应覆盖的范围和整个实体长度。一般格式： Content-Range: bytes (unitSPfirst byte pos) - [last byte pos]/[entity legth]
-                //比如Content-Range: bytes 123-456/801 //文件是从0起算，所以必须-1
-                //http://blog.chinaunix.net/uid-11959329-id-3088466.html
-                var contentRange = 'bytes ' + uploadedBytes + '-' + (uploadedBytes + chunkSize - 1) + '/' + size;
+
+                //设置请求头
+                self._setContentDisposition(file.name);
+                self._setContentRange(uploadedBytes,chunkSize,size);
+
+                //将用户自定义的data添加到FormData中
+                self._setFormData();
+                //向FormData添加文件数据
+                self._addFileData(blob);
+                S.mix(ajaxConfig,{
+                    data:self.get('formData')
+                })
+                var ajax = io(ajaxConfig);
+                ajax.then(function(data){
+                    i ++;
+                    var result = data[0];
+                    //upload success
+                    //算出已经上传的文件大小
+                    var uploadedBytes = self._getUploadedBytes(ajax) || uploadedBytes + chunkSize;
+                    self.set('uploadedBytes',uploadedBytes);
+                    //派发进度事件
+                    self.fire(AjaxType.event.PROGRESS, { 'loaded': uploadedBytes, 'total': size });
+                    //还有没有上传完的文件，继续上传
+                    if(uploadedBytes< size){
+                        if(i<2) upload();
+                    }else{
+                        //已经上传完成，派发success事件
+                        self.fire(AjaxType.event.SUCCESS, {result : result});
+                    }
+                },function(){
+                    //upload fail
+                })
             }
-        },
-        /**
-         * 分段上传
-         * @param options
-         * @param testOnly
-         * @return {*}
-         * @private
-         */
-        _chunkedUpload: function (options, testOnly) {
-            var that = this,
-                file = options.files[0],
-                fs = file.size,
-                ub = options.uploadedBytes = options.uploadedBytes || 0,
-                mcs = options.maxChunkSize || fs,
-                slice = file.slice || file.webkitSlice || file.mozSlice,
-                dfd = $.Deferred(),
-                promise = dfd.promise(),
-                jqXHR,
-                upload;
-            if (!(this._isXHRUpload(options) && slice && (ub || mcs < fs)) ||
-                options.data) {
-                return false;
-            }
-            if (testOnly) {
-                return true;
-            }
-            if (ub >= fs) {
-                file.error = options.i18n('uploadedBytes');
-                return this._getXHRPromise(
-                    false,
-                    options.context,
-                    [null, 'error', file.error]
-                );
-            }
-            // The chunk upload method:
-            upload = function () {
-                // Clone the options object for each chunk upload:
-                var o = $.extend({}, options),
-                    currentLoaded = o._progress.loaded;
-                o.blob = slice.call(
-                    file,
-                    ub,
-                    ub + mcs,
-                    file.type
-                );
-                // Store the current chunk size, as the blob itself
-                // will be dereferenced after data processing:
-                o.chunkSize = o.blob.size;
-                // Expose the chunk bytes position range:
-                o.contentRange = 'bytes ' + ub + '-' +
-                    (ub + o.chunkSize - 1) + '/' + fs;
-                // Process the upload data (the blob and potential form data):
-                that._initXHRData(o);
-                // Add progress listeners for this chunk upload:
-                that._initProgressListener(o);
-                jqXHR = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
-                    that._getXHRPromise(false, o.context))
-                    .done(function (result, textStatus, jqXHR) {
-                        ub = that._getUploadedBytes(jqXHR) ||
-                            (ub + o.chunkSize);
-                        // Create a progress event if no final progress event
-                        // with loaded equaling total has been triggered
-                        // for this chunk:
-                        if (currentLoaded + o.chunkSize - o._progress.loaded) {
-                            that._onProgress($.Event('progress', {
-                                lengthComputable: true,
-                                loaded: ub - o.uploadedBytes,
-                                total: ub - o.uploadedBytes
-                            }), o);
-                        }
-                        options.uploadedBytes = o.uploadedBytes = ub;
-                        o.result = result;
-                        o.textStatus = textStatus;
-                        o.jqXHR = jqXHR;
-                        that._trigger('chunkdone', null, o);
-                        that._trigger('chunkalways', null, o);
-                        if (ub < fs) {
-                            // File upload not yet complete,
-                            // continue with the next chunk:
-                            upload();
-                        } else {
-                            dfd.resolveWith(
-                                o.context,
-                                [result, textStatus, jqXHR]
-                            );
-                        }
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        o.jqXHR = jqXHR;
-                        o.textStatus = textStatus;
-                        o.errorThrown = errorThrown;
-                        that._trigger('chunkfail', null, o);
-                        that._trigger('chunkalways', null, o);
-                        dfd.rejectWith(
-                            o.context,
-                            [jqXHR, textStatus, errorThrown]
-                        );
-                    });
-            };
-            this._enhancePromise(promise);
-            promise.abort = function () {
-                return jqXHR.abort();
-            };
+
             upload();
-            return promise;
         },
         /**
-         *
-         * @param options ajax发送时带上的数据
+         * 解析ajax请求返回的响应头Range，获取已经上传的文件字节数
+         * @param ajax
+         * @return {String}
          * @private
          */
-        _setXHRData:function(options){
-            var that = this;
-            var file = options.file;
-            //请求头
-            var headers = options.headers;
-
-            if (options.contentRange) {
-                options.headers['Content-Range'] = options.contentRange;
-            }
-
-            var isUsePostMessage = self.get('isUsePostMessage');
-            var formData;
-            if(!isUsePostMessage){
-                if (S.isObject(options.formData)) {
-                    formData = options.formData;
-                } else {
-                    formData = new FormData();
-                    S.each(self._getFormData(options), function (index, field) {
-                        formData.append(field.name, field.value);
-                    });
-                }
-
-                var fileDataName = self.get('fileDataName');
-                //分段上传
-                if (options.blob) {
-                    options.headers['Content-Disposition'] = 'attachment; filename="' + encodeURI(file.name) + '"';
-                    formData.append(fileDataName, options.blob, file.name);
-                } else {
-                    formData.append(fileDataName, file, file.name)
-                }
-            }else{
-                //TODO:待实现
-            }
+        _getUploadedBytes:function(ajax){
+            //获取服务器端返回的响应头（Range）
+            var range = ajax.getResponseHeader('Range');
+            var parts = range && range.split('-');
+            var upperBytesPos = parts && parts.length > 1 && parseInt(parts[1], 10);
+            return upperBytesPos && upperBytesPos + 1;
         },
-        _initXHRData: function (options) {
-            var that = this,
-                formData,
-                file = options.files[0],
-            // Ignore non-multipart setting if not supported:
-                multipart = options.multipart || !$.support.xhrFileUpload,
-                paramName = options.paramName[0];
-            options.headers = options.headers || {};
-            if (options.contentRange) {
-                options.headers['Content-Range'] = options.contentRange;
-            }
-            if (!multipart) {
-                options.headers['Content-Disposition'] = 'attachment; filename="' +
-                    encodeURI(file.name) + '"';
-                options.contentType = file.type;
-                options.data = options.blob || file;
-            } else if ($.support.xhrFormDataFileUpload) {
-                if (options.postMessage) {
-                    // window.postMessage does not allow sending FormData
-                    // objects, so we just add the File/Blob objects to
-                    // the formData array and let the postMessage window
-                    // create the FormData object out of this array:
-                    formData = this._getFormData(options);
-                    if (options.blob) {
-                        formData.push({
-                            name: paramName,
-                            value: options.blob
-                        });
-                    } else {
-                        $.each(options.files, function (index, file) {
-                            formData.push({
-                                name: options.paramName[index] || paramName,
-                                value: file
-                            });
-                        });
-                    }
-                } else {
-                    if (that._isInstanceOf('FormData', options.formData)) {
-                        formData = options.formData;
-                    } else {
-                        formData = new FormData();
-                        $.each(this._getFormData(options), function (index, field) {
-                            formData.append(field.name, field.value);
-                        });
-                    }
-                    if (options.blob) {
-                        options.headers['Content-Disposition'] = 'attachment; filename="' +
-                            encodeURI(file.name) + '"';
-                        formData.append(paramName, options.blob, file.name);
-                    } else {
-                        $.each(options.files, function (index, file) {
-                            // This check allows the tests to run with
-                            // dummy objects:
-                            if (that._isInstanceOf('File', file) ||
-                                that._isInstanceOf('Blob', file)) {
-                                formData.append(
-                                    options.paramName[index] || paramName,
-                                    file,
-                                    file.name
-                                );
-                            }
-                        });
-                    }
-                }
-                options.data = formData;
-            }
-            // Blob reference is not needed anymore, free memory:
-            options.blob = null;
+        /**
+         * 设置传输到服务器的内容范围，即Content-Range
+         * @param uploadedBytes 已经上传的字节数
+         * @param chunkSize 分块的大小
+         * @param size 文件总大小
+         * @return {string}
+         * @private
+         */
+        _setContentRange:function(uploadedBytes,chunkSize,size){
+            //用于指定整个实体中的一部分的插入位置，他也指示了整个实体的长度。在服务器向客户返回一个部分响应，它必须描述响应覆盖的范围和整个实体长度。一般格式： Content-Range: bytes (unitSPfirst byte pos) - [last byte pos]/[entity legth]
+            //比如Content-Range: bytes 123-456/801 //文件是从0起算，所以必须-1
+            //http://blog.chinaunix.net/uid-11959329-id-3088466.html
+            var contentRange = 'bytes ' + uploadedBytes + '-' + (uploadedBytes + chunkSize - 1) + '/' + size;
+            var self = this;
+            var ajaxConfig = self.get('ajaxConfig');
+            var headers = ajaxConfig.headers;
+            headers['Content-Range'] = contentRange;
+            return contentRange;
+        },
+        /**
+         * 设置Content-Disposition（MIME 协议的扩展，MIME 协议指示 MIME 用户代理如何显示附加的文件）
+         * http://hi.baidu.com/water_qq/item/e257762575a1f70b76272cde
+         * @param fileName 文件名
+         * @return {String}
+         * @private
+         */
+        _setContentDisposition:function(fileName){
+            return this._setRequestHeader('Content-Disposition','attachment; filename="' + encodeURI(fileName) + '"');
+        },
+        /**
+         * 设置请求头
+         * @param name 头名
+         * @param value 头的值
+         * @private
+         */
+        _setRequestHeader:function(name,value){
+            var self = this;
+            var ajaxConfig = self.get('ajaxConfig');
+            ajaxConfig.headers[name] = value;
+            self.set('ajaxConfig',ajaxConfig);
+            return value;
         }
     }, {ATTRS : /** @lends AjaxType*/{
         /**
@@ -389,10 +281,12 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
          */
         ajaxConfig : {value : {
             type : 'post',
+            //传输的是FormData，无需序列化表单数据
             processData : false,
             cache : false,
             dataType : 'json',
-            contentType: false
+            contentType: false,
+            headers:{}
         }
         },
         xhr : {value : EMPTY},
@@ -406,9 +300,9 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
          */
         uploadedBytes:{value:0},
         /**
-         * 块文件数据的最大大小
+         * 块文件数据的大小
          */
-        maxChunkSize:{value:EMPTY},
+        blobSize:{value:100000},
         /**
          * 是否使用postMessage来跨域传输文件数据
          */
