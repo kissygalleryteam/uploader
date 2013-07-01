@@ -354,7 +354,7 @@ KISSY.add(function (S, Node, Base) {
             //转换文件大小单位为（kb和mb）
             if (file.size) file.textSize = convertByteSize(file.size);
             //状态
-            file.status = 'waiting';
+            if(!file.status) file.status = 'waiting';
             files.push(file);
             return file;
         }
