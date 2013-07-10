@@ -5,8 +5,6 @@
 KISSY.add(function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
-    //支持的规则
-    var SUPPORT_RULES = ['max','maxSize','allowRepeat','allowExts','required','widthHeight'];
     var ERROR_EVENT = 'error';
     /**
      * 转换文件大小字节数
@@ -407,11 +405,12 @@ KISSY.add(function (S, Node,Base) {
          * @private
          */
         _maxStopUpload:function(){
-            var self = this,
-                uploader = self.get('uploader'),
-                queue = uploader.get('queue');
+            var self = this;
+            var uploader = self.get('uploader');
+            var queue = uploader.get('queue');
+            var max = self.get('max');
             var curFileIndex = uploader.get('curUploadIndex');
-            if(curFileIndex == EMPTY) return false;
+            if(curFileIndex == EMPTY || curFileIndex < max) return false;
             var files = queue.get('files');
             uploader.stop();
             S.each(files,function(file,index){
@@ -423,7 +422,7 @@ KISSY.add(function (S, Node,Base) {
         },
         /**
          * 获取/设置指定规则的验证消息
-          * @param {String} rule 规则名
+         * @param {String} rule 规则名
          * @param {String} msg  消息
          * @return {String}
          */
@@ -443,7 +442,7 @@ KISSY.add(function (S, Node,Base) {
             if(!S.isString(rule)) return self;
             //demo max:[o,''达到最大上传数！]带有消息参数需要设置下消息
             if(S.isArray(config)){
-               self.msg(rule,config[1]);
+                self.msg(rule,config[1]);
             }
             return self;
         }
