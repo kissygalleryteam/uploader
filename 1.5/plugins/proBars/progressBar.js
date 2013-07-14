@@ -133,7 +133,6 @@ KISSY.add(function(S, Node, Base) {
                 if (v < 0) v = 0;
                 //将百分比宽度换算成像素值
                 width = Math.ceil($wrapper.width() * (v / 100));
-                S.log(width);
                 $bar.stop().animate({'width':width + 'px'},speed,'none',function(){
                     $wrapper.attr(ARIA_VALUENOW,v);
                     $bar.attr(DATA_VALUE,v);
@@ -162,3 +161,8 @@ KISSY.add(function(S, Node, Base) {
     }});
     return ProgressBar;
 }, {requires : ['node','base']});
+/**
+ * changes:
+ * 明河：1.5
+ *           - anim前增加stop()，防止动画bug
+ */
