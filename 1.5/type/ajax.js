@@ -137,14 +137,12 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             });
 
             var size = file.size;
-            var uploadedBytes = self.get('uploadedBytes');
+            //已经上传的字节数
+            var uploadedBytes = 0;
             var maxChunkSize = self.get('blobSize') || size;
             //数据分块API（不同浏览器有不同实现）
             var slice = file.slice || file.webkitSlice || file.mozSlice;
-            //已经上传的字节数超过文件大小，直接退出
-            if(uploadedBytes > size) return true;
             function upload(){
-                var uploadedBytes = self.get('uploadedBytes');
                 //文件切块，每块的大小为maxChunkSize-uploadedBytes
                 //http://dev.w3.org/2006/webapi/FileAPI/
                 var blob = slice.call(
@@ -172,8 +170,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                     var result = data[0];
                     //upload success
                     //算出已经上传的文件大小
-                    var uploadedBytes = self._getUploadedBytes(ajax) || uploadedBytes + chunkSize;
-                    self.set('uploadedBytes',uploadedBytes);
+                    uploadedBytes = self._getUploadedBytes(ajax) || uploadedBytes + chunkSize;
                     //派发进度事件
                     self.fire(AjaxType.event.PROGRESS, { 'loaded': uploadedBytes, 'total': size });
                     //还有没有上传完的文件，继续上传
@@ -205,8 +202,6 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             ajax.then(function(data){
                 //upload success
                 var result = data[0];
-                var uploadedBytes = file.size;
-                self.set('uploadedBytes',uploadedBytes);
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
             },function(){
@@ -292,17 +287,11 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
         form : {value : {}},
         fileInput : {value : EMPTY},
         /**
-         * 已经上传的字节数
-         * @type Number
-         * @default 0
-         */
-        uploadedBytes:{value:0},
-        /**
          * 块文件数据的大小
          * @type Number
          * @default 0
          */
-        blobSize:{value:10000},
+        blobSize:{value:0},
         /**
          * 是否使用postMessage来跨域传输文件数据
          */

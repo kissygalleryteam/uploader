@@ -233,6 +233,7 @@ class UploadHandler
         if ($this->options['access_control_allow_credentials']) {
             $file->delete_with_credentials = true;
         }
+        $file->url = $this->get_download_url($file->name);
     }
 
     // Fix for overflowing signed 32 bit integers,
@@ -768,11 +769,10 @@ class UploadHandler
             }
             $this->head();
             if ($this->get_server_var('HTTP_CONTENT_RANGE')) {
-                $files = isset($content[$this->options['param_name']]) ?
-                    $content[$this->options['param_name']] : null;
-                if ($files && is_array($files) && is_object($files[0]) && $files[0]->size) {
+                $size = $content['size'];
+                if($size){
                     $this->header('Range: 0-'.(
-                        $this->fix_integer_overflow(intval($files[0]->size)) - 1
+                        $this->fix_integer_overflow(intval($size)) - 1
                     ));
                 }
             }
@@ -944,8 +944,9 @@ class UploadHandler
                 $content_range
             );
         }
+        $file = $files[0];
         return $this->generate_response(
-            array($this->options['param_name'] => $files),
+            array('status'=>1,'name'=>$file->name,'size'=>$file->size,'url'=>$file->url),
             $print_response
         );
     }
