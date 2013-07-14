@@ -14,8 +14,7 @@
 <ul id="J_UploaderQueue">
 
 </ul>
-<p>
-    <input class="btn" id="J_Add" type="button" value="添加一个文件">
+<p><input class="btn" id="J_Add" type="button" value="添加一个文件">
     <input class="btn" id="J_DelFirst" type="button" value="删除第一个文件">
     <input class="btn" id="J_Clear" type="button" value="删除所有文件">
     <input class="btn" id="J_GetAll" type="button" value="获取所有文件id">
@@ -78,6 +77,7 @@
                 };
                 //向队列添加文件
                 var file = queue.add(testFile);
+                queue.fileStatus(index, 'success');
                 S.log('添加的文件数据为：'+file);
             });
             $('#J_DelFirst').on('click', function (ev) {

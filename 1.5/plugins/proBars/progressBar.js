@@ -132,8 +132,9 @@ KISSY.add(function(S, Node, Base) {
                 if (v > 100) v = 100;
                 if (v < 0) v = 0;
                 //将百分比宽度换算成像素值
-                width = $wrapper.width() * (v / 100);
-                $bar.animate({'width':width + 'px'},speed,'none',function(){
+                width = Math.ceil($wrapper.width() * (v / 100));
+                S.log(width);
+                $bar.stop().animate({'width':width + 'px'},speed,'none',function(){
                     $wrapper.attr(ARIA_VALUENOW,v);
                     $bar.attr(DATA_VALUE,v);
                     self.fire(ProgressBar.event.CHANGE,{value : v,width : width});

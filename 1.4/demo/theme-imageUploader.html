@@ -73,6 +73,9 @@
                     //图片预览
                     .plug(new Preview())
             ;
+            uploader.on('error',function(ev){
+                debugger;
+            })
         });
     })
 

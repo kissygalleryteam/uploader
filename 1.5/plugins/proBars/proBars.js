@@ -34,7 +34,6 @@ KISSY.add(function(S, Node, Base,ProgressBar) {
         pluginInitializer : function(uploader) {
             if(!uploader) return false;
             var self = this;
-            var uploadType = uploader.get('type');
             uploader.on('start',function(ev){
                 self.add(ev.file.id);
             });
