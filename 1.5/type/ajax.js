@@ -39,7 +39,13 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 S.log(LOG_PREFIX + 'upload()，fileData参数有误！');
                 return self;
             }
-            self._chunkedUpload(fileData);
+            var blobSize = self.get('blobSize');
+            if(blobSize > 0){
+                //分段上传
+                self._chunkedUpload(fileData);
+            }else{
+                self._fullUpload(fileData);
+            }
             return self;
         },
         /**
@@ -190,13 +196,13 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
         _fullUpload:function(file){
             var self = this;
             var ajaxConfig = self.get('ajaxConfig');
-            var uploadedBytes = self.get('uploadedBytes');
             //将用户自定义的data添加到FormData中
             self._setFormData();
             //向FormData添加文件数据
             self._addFileData(file);
             S.mix(ajaxConfig,{
-                data:self.get('formData')
+                data:self.get('formData'),
+                url:self.get('action')
             })
             var ajax = io(ajaxConfig);
             ajax.then(function(data){
