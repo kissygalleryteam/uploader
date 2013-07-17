@@ -173,7 +173,7 @@ KISSY.add('gallery/uploader/1.4/plugins/ajbridge/ajbridge', function(S,Flash) {
     window.AJBridge = S.AJBridge = AJBridge;
 
     return AJBridge;
-}, { requires:["flash"] });
+}, { requires:["gallery/flash/1.0/index"] });
 /**
  * NOTES:
  * 20120117 移植成kissy1.2.0的模块（明河修改）
