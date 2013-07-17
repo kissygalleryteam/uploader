@@ -2,7 +2,7 @@
  * @fileoverview iframe方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5/type/iframe',function(S, Node, UploadType) {
+KISSY.add(function(S, Node, UploadType) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-iframeType]:',ID_PREFIX = 'ks-uploader-iframe-';
 
     /**

@@ -2,7 +2,7 @@
  * @fileoverview ajax方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
+KISSY.add(function(S, Node, UploadType,io) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-AjaxType]:';
 
     /**

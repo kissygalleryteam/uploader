@@ -2,7 +2,7 @@
  * @fileoverview flash上传方案，基于龙藏写的ajbridge内的uploader
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/type/flash', function (S, Node, UploadType) {
+KISSY.add(function (S, Node, UploadType) {
     var EMPTY = '', LOG_PREFIX = '[uploader-FlashType]:';
     /**
      * @name FlashType
