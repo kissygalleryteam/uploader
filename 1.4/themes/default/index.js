@@ -26,8 +26,8 @@ KISSY.add('gallery/uploader/1.4/themes/default/index', function (S, Node, Theme)
          */
         _addHandler : function(ev){
             var self = this;
-            var id = ev.file.id;
-            var index = ev.index;
+            var file = ev.file;
+            var id = file.id;
             var uploader = self.get('uploader');
             var queue = uploader.get('queue');
             //删除链接
@@ -40,12 +40,13 @@ KISSY.add('gallery/uploader/1.4/themes/default/index', function (S, Node, Theme)
             //点击取消
             $cancel.on('click', function (ev) {
                 ev.preventDefault();
+                var index = queue.getFileIndex(file.id);
                 uploader.cancel(index);
             });
-
             //点击删除
             $del.on('click', function (ev) {
                 ev.preventDefault();
+                var index = queue.getFileIndex(file.id);
                 //删除队列中的文件
                 queue.remove(index);
             });
@@ -53,6 +54,7 @@ KISSY.add('gallery/uploader/1.4/themes/default/index', function (S, Node, Theme)
             //点击上传
             $upload.on('click', function (ev) {
                 ev.preventDefault();
+                var index = queue.getFileIndex(file.id);
                 uploader.upload(index);
             });
         },
