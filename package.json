@@ -6,6 +6,7 @@
         "grunt": "~0.4.1",
         "grunt-kmc": "~0.1.1",
         "grunt-contrib-less":"~0.6.0",
-        "grunt-contrib-cssmin": "~0.6.0"
+        "grunt-contrib-cssmin": "~0.6.0",
+        "grunt-contrib-copy":"~0.1.1"
     }
 }

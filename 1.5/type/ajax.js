@@ -297,7 +297,7 @@ KISSY.add(function(S, Node, UploadType,io) {
          * @type Number
          * @default 0
          */
-        blobSize:{value:0},
+        blobSize:{value:1000},
         /**
          * 是否使用postMessage来跨域传输文件数据
          */
