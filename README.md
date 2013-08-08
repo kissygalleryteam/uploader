@@ -10,6 +10,10 @@
 
 ## 组件变更
 
+### V1.4.4 change
+
+    [!] 新增grayUploader主题
+
 ### V1.4.3 change
 
     [!] #44 多选上传时，max存在bug，感谢子虎反馈
