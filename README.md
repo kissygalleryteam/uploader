@@ -10,6 +10,10 @@
 
 ## 组件变更
 
+### V1.4.5 change
+
+    [!] 增加plugins模块，用于简化插件引用
+
 ### V1.4.4 change
 
     [!] 新增grayUploader主题
