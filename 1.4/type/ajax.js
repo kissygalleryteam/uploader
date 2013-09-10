@@ -138,7 +138,10 @@ KISSY.add('gallery/uploader/1.4/type/ajax',function(S, Node, UploadType) {
             processData : false,
             cache : false,
             dataType : 'json',
-            contentType: false
+            contentType: false,
+            xhrFields: {
+                withCredentials: true
+            }
         }
         },
         xhr : {value : EMPTY},
