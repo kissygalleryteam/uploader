@@ -19,7 +19,7 @@ KISSY.add('gallery/uploader/1.4/aliUploader', function (S ,Uploader,Plugins) {
      * @return {string}
      */
     function getUploaderApi(){
-        var domain = getDomain(1);
+        var domain = getDomain(-1);
         var isDaily = domain == 'net';
         return isDaily && DAILY_API || LINE_API;
     }
@@ -41,7 +41,7 @@ KISSY.add('gallery/uploader/1.4/aliUploader', function (S ,Uploader,Plugins) {
             var domain = config.domain;
             //不存在域名设置，强制截取域名后二个段
             if(!config.domain){
-                domain = getDomain(2);
+                domain = getDomain(-2);
             }
             document.domain = domain;
             var data = uploader.get('data');
