@@ -28,6 +28,7 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 * [简单demo：js配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)
 * [简单demo：属性配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/tag-config-use.html)
 * [combo请求](http://butterfly.36ria.com/uploader/1.4/demo/combo.html)
+* [简化插件的加载（1.4.5+）](http://butterfly.36ria.com/uploader/1.4/demo/plugins.html)
 * [上传验证控制的demo](http://butterfly.36ria.com/uploader/1.4/demo/auth.html)
 * [组件全部事件演示](http://butterfly.36ria.com/uploader/1.4/demo/events.html)
 * [渲染默认队列数据的demo](http://butterfly.36ria.com/uploader/1.4/demo/default-data-show.html)
