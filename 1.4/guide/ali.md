@@ -6,7 +6,7 @@ demo来自淘宝二手系统，请先使用测试账号登陆下daily，没有�
 
 接口开发：*今朝*
 
-接口的地址:[http://aop.daily.taobao.net/json/uploadImg.htm](http://aop.daily.taobao.net/json/uploadImg.htm)
+接口的地址：[http://aop.daily.taobao.net/json/uploadImg.htm](http://aop.daily.taobao.net/json/uploadImg.htm)
 
 明河写了个AliUploader做了下接口包装，以简化用户的调用。
 
