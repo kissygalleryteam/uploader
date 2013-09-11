@@ -92,7 +92,7 @@ KISSY.add('gallery/uploader/1.4/themes/imageUploader/index',function (S, Node, T
          */
         _errorHandler:function (ev) {
              var self = this;
-             var msg = ev.msg || ev.result.msg;
+             var msg = ev.msg || ev.result.msg || ev.result.message;
              var file = ev.file;
              if(!file) return false;
              var id = ev.file.id;
