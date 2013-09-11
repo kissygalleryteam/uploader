@@ -14,6 +14,7 @@
 
     [+] 增加plugins模块，用于简化插件引用
     [+] 增加xhrFields
+    [+] 新增AliUploader类，阿里应用可以使用默认接口
 
 ### V1.4.4 change
 

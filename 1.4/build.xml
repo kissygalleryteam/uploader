@@ -10,7 +10,7 @@
     <!--合并源码文件，排除模板js-->
     <target name="concat">
         <concat destfile="index-pkg.js" encoding="${charset}" outputencoding="${charset}" overwrite="true">
-            <fileset dir="${src.dir}" includes="**/*.js" excludes="theme.js,themes/**/*.js,guide/**/*.js,demo/**/*.js,plugins/**/*.js,build/**/*.js,meta/**/*.js"/>
+            <fileset dir="${src.dir}" includes="**/*.js" excludes="theme.js,aliUploader.js,themes/**/*.js,guide/**/*.js,demo/**/*.js,plugins/**/*.js,build/**/*.js,meta/**/*.js"/>
             <filterchain>
                 <deletecharacters chars="&#xFEFF;"/>
             </filterchain>
@@ -26,6 +26,7 @@
     <target name="move">
         <move file="index-pkg.js" tofile="${uploader.build.dir}/index.js"/>
         <copyfile src="theme.js" dest="${uploader.build.dir}/theme.js"/>
+        <copyfile src="aliUploader.js" dest="${uploader.build.dir}/aliUploader.js"/>
     </target>
     <target name="dircheck">
         <condition property="uploader.build.dir.exists">
