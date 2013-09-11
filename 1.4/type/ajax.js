@@ -69,6 +69,7 @@ KISSY.add('gallery/uploader/1.4/type/ajax',function(S, Node, UploadType) {
                 action = self.get('action'),
                 data = self.get('formData');
             var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
             //TODO:如果使用onProgress存在第二次上传不触发progress事件的问题
             xhr.upload.addEventListener('progress',function(ev){
                 self.fire(AjaxType.event.PROGRESS, { 'loaded': ev.loaded, 'total': ev.total });
