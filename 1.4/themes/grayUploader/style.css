@@ -90,7 +90,9 @@ button::-moz-focus-inner {
 }
 .grayUploader-button:hover {
   text-decoration: none;
-  background-color: #fefefe;
+  background-color: #FFF8F3;
+  border: 1px solid #FFD5C7;
+  color: #0088CC;
 }
 .grayUploader-button:active {
   outline: none;

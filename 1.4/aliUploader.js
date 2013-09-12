@@ -31,7 +31,7 @@ KISSY.add('gallery/uploader/1.4/aliUploader', function (S ,Uploader,Plugins) {
             config.action = getUploaderApi();
         }
         if(!config.data) config.data = {};
-        config.data[' _input_charset'] = 'utf-8';
+        config.data['_input_charset'] = 'utf-8';
         //实例化uploader
         var uploader = new Uploader(target,config);
         var type = uploader.get('type');
