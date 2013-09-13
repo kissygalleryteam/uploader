@@ -219,6 +219,7 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node,UA , IframeType, 
                 S.mix(serverConfig, {swfUploader:button.get('swfUploader')});
             }
             serverConfig.fileDataName = self.get('name');
+            serverConfig.CORS = self.get('CORS');
             var uploadType = new UploadType(serverConfig);
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
@@ -486,12 +487,18 @@ KISSY.add('gallery/uploader/1.4/base', function (S, Base, Node,UA , IframeType, 
          * @type Object
          * @default {}
          */
-        swfSize:{value:{}}
+        swfSize:{value:{}},
+        /**
+         * 是否跨域
+         */
+        CORS:{value:false}
     }});
     return UploaderBase;
 }, {requires:['base', 'node', 'ua','./type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
 /**
  * changes:
+ * 1.4.5
+ *           - 新增CORS配置
  * 明河：1.4
  *           - Uploader上传组件的核心部分
  *           - 去掉 S.convertByteSize
@@ -1983,7 +1990,14 @@ KISSY.add('gallery/uploader/1.4/type/ajax',function(S, Node, UploadType) {
                 action = self.get('action'),
                 data = self.get('formData');
             var xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            var CORS = self.get('CORS');
+            if(CORS){
+                try{
+                    xhr.withCredentials = true;
+                }catch (e){
+                    S.log('不支持withCredentials的设置！');
+                }
+            }
             //TODO:如果使用onProgress存在第二次上传不触发progress事件的问题
             xhr.upload.addEventListener('progress',function(ev){
                 self.fire(AjaxType.event.PROGRESS, { 'loaded': ev.loaded, 'total': ev.total });
@@ -2062,7 +2076,8 @@ KISSY.add('gallery/uploader/1.4/type/ajax',function(S, Node, UploadType) {
         xhr : {value : EMPTY},
         fileDataName : {value : EMPTY},
         form : {value : {}},
-        fileInput : {value : EMPTY}
+        fileInput : {value : EMPTY} ,
+        CORS:false
     }
     });
     return AjaxType;
@@ -2203,6 +2218,9 @@ KISSY.add('gallery/uploader/1.4/type/base',function(S, Node, Base) {
          */
         filter:{
             value:EMPTY
+        },
+        CORS:{
+            value:false
         }
     }});
 

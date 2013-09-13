@@ -14,7 +14,6 @@ KISSY.add('gallery/uploader/1.4/plugins/ajbridge/ajbridge', function(S,Flash) {
 		PREFIX = 'ks-ajb-',
 		LAYOUT = 100,
         EVENT_HANDLER = 'KISSY.AJBridge.eventHandler'; // Flash 事件抛出接受通道
-
     /**
      * @constructor
      * @param {String} id       注册应用容器 id

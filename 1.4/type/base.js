@@ -135,6 +135,9 @@ KISSY.add('gallery/uploader/1.4/type/base',function(S, Node, Base) {
          */
         filter:{
             value:EMPTY
+        },
+        CORS:{
+            value:false
         }
     }});
 

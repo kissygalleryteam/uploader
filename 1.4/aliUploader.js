@@ -26,6 +26,7 @@ KISSY.add('gallery/uploader/1.4/aliUploader', function (S ,Uploader,Plugins) {
 
     function AliUploader(target,config){
         if(!config) config = {};
+        config.CORS = true;
         //配置默认接口
         if(!config.action){
             config.action = getUploaderApi();
