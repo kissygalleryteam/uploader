@@ -250,15 +250,22 @@ KISSY.add(function (S, Node, Base) {
         },
         /**
          * 获取指定索引值的队列中的文件
-         * @param  {Number} index 文件在队列中的索引
+         * @param  {Number} indexOrId 文件在队列中的索引或id
          * @return {Object}
          */
-        getFile:function (index) {
-            if (!S.isNumber(index)) return false;
-            var self = this, files = self.get('files'),
-                file = files[index];
-            if (!S.isPlainObject(file)){
-                file = {};
+        getFile:function (indexOrId) {
+            var self = this;
+            var file;
+            var files = self.get('files');
+            if(S.isNumber(indexOrId)){
+                file = files[indexOrId];
+            }else{
+                S.each(files, function (f) {
+                    if (f.id == indexOrId) {
+                        file = f;
+                        return true;
+                    }
+                });
             }
             return file;
         },
@@ -390,6 +397,8 @@ KISSY.add(function (S, Node, Base) {
 }, {requires:['node', 'base']});
 /**
  * changes:
+ * 明河：1.5
+ *      - [!] #72 getFile()方法优化
  * 明河：1.4
  *           - 去掉与Theme的耦合
  *           - 去掉restore

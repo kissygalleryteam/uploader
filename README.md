@@ -16,7 +16,12 @@
     [!] #46 使用grunt打包
     [!] #52 重写UploadType类，继承Promise
     [!] 进度条插件动画位移bug修复
+    [!] 重构ajax上传方式
+    [!] #72 Queue getFile()方法优化
     [+] #49 支持分段上传实现
+    [+] #65 AjaxType增加timeout配置
+    [+] #77 基于kissy1.3.1
+    [+] #76 跨域上传支持
 
 ### V1.4.5 change
 

@@ -190,7 +190,7 @@ KISSY.add(function(S, Node, UploadType,io) {
                 self._addFileData(blob);
                 S.mix(ajaxConfig,{
                     data:self.get('formData')
-                })
+                });
                 var ajax = io(ajaxConfig);
                 ajax.then(function(data){
                     var result = data[0];
@@ -325,7 +325,8 @@ KISSY.add(function(S, Node, UploadType,io) {
             cache : false,
             dataType : 'json',
             contentType: false,
-            timeout:1,
+            //默认超时时间10秒
+            timeout:10,
             headers:{}
         }
         },
@@ -354,9 +355,10 @@ KISSY.add(function(S, Node, UploadType,io) {
 /**
  * changes:
  * 明河：1.5
- *           - 重构模块
- *           - 增加分段上传支持
- *           - 增加blobSize配置
- *           - 增加isUsePostMessage配置
- *           - 增加uploadedBytes属性
+ *           - [+]重构模块
+ *           - [+]增加分段上传支持
+ *           - [+]增加blobSize配置
+ *           - [+]增加isUsePostMessage配置
+ *           - [+]增加uploadedBytes属性
+ *           - [+]增加timeout
  */
