@@ -15,6 +15,7 @@ KISSY.add(function(S, Node, UploadType,io) {
         var self = this;
         //调用父类构造函数
         AjaxType.superclass.constructor.call(self, config);
+        self._setWithCredentials();
     }
 
     S.mix(AjaxType, /** @lends AjaxType.prototype*/{
@@ -63,6 +64,12 @@ KISSY.add(function(S, Node, UploadType,io) {
             self.fire(AjaxType.event.STOP);
             return self;
         },
+        /**
+         * 获取传输给服务器端的FormData
+         * @param formData
+         * @return {*}
+         * @private
+         */
         _getFormData: function (formData) {
             if ($.isArray(formData)) {
                 return formData;
@@ -77,6 +84,19 @@ KISSY.add(function(S, Node, UploadType,io) {
                 return formData;
             }
             return formData;
+        },
+        /**
+         * 跨域上传时，需要携带cookies
+         * @private
+         */
+        _setWithCredentials:function(){
+            var self = this;
+            var CORS = self.get('CORS');
+            var ajaxConfig = self.get('ajaxConfig');
+            S.mix(ajaxConfig,{xhrFields: {
+                withCredentials: true
+            }});
+            return ajaxConfig;
         },
         /**
          * 设置FormData数据
@@ -186,13 +206,20 @@ KISSY.add(function(S, Node, UploadType,io) {
                         //已经上传完成，派发success事件
                         self.fire(AjaxType.event.SUCCESS, {result : result});
                     }
-                },function(){
+                },function(result){
                     //upload fail
+                    self.fire(AjaxType.event.ERROR, {result : result});
                 })
             }
 
             upload();
         },
+        /**
+         * 整个文件上传
+         * @param file
+         * @return {*}
+         * @private
+         */
         _fullUpload:function(file){
             var self = this;
             var ajaxConfig = self.get('ajaxConfig');
@@ -203,15 +230,16 @@ KISSY.add(function(S, Node, UploadType,io) {
             S.mix(ajaxConfig,{
                 data:self.get('formData'),
                 url:self.get('action')
-            })
+            });
             var ajax = io(ajaxConfig);
             ajax.then(function(data){
                 //upload success
                 var result = data[0];
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
-            },function(){
+            },function(result){
                 //upload fail
+                self.fire(AjaxType.event.ERROR, {result : result});
             })
             return ajax;
         },
@@ -298,6 +326,10 @@ KISSY.add(function(S, Node, UploadType,io) {
          * @default 0
          */
         blobSize:{value:1000},
+        /**
+         * 是否是跨域上传
+         */
+        CORS:{value:false},
         /**
          * 是否使用postMessage来跨域传输文件数据
          */
