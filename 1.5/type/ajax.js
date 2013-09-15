@@ -206,9 +206,8 @@ KISSY.add(function(S, Node, UploadType,io) {
                         //已经上传完成，派发success事件
                         self.fire(AjaxType.event.SUCCESS, {result : result});
                     }
-                },function(result){
-                    //upload fail
-                    self.fire(AjaxType.event.ERROR, {result : result});
+                },function(data){
+                    self._errorHandler(data,file);
                 })
             }
 
@@ -237,11 +236,24 @@ KISSY.add(function(S, Node, UploadType,io) {
                 var result = data[0];
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
-            },function(result){
-                //upload fail
-                self.fire(AjaxType.event.ERROR, {result : result});
-            })
+            },function(data){
+                self._errorHandler(data,file);
+            });
             return ajax;
+        },
+        /**
+         * ajax请求出错时的处理
+         * @private
+         */
+        _errorHandler:function(data,file){
+            var self = this;
+            var result = {};
+            var status = data[1];
+            if(status == 'timeout'){
+                result.msg = '请求超时！';
+                result.status = 'timeout';
+            }
+            self.fire(AjaxType.event.ERROR, {status:status,result : result,file:file});
         },
         /**
          * 解析ajax请求返回的响应头Range，获取已经上传的文件字节数
@@ -313,6 +325,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             cache : false,
             dataType : 'json',
             contentType: false,
+            timeout:1,
             headers:{}
         }
         },
@@ -325,7 +338,7 @@ KISSY.add(function(S, Node, UploadType,io) {
          * @type Number
          * @default 0
          */
-        blobSize:{value:1000},
+        blobSize:{value:0},
         /**
          * 是否是跨域上传
          */

@@ -92,12 +92,12 @@ KISSY.add(function (S, Node, Theme) {
          */
         _errorHandler:function (ev) {
              var self = this;
-             var msg = ev.msg || ev.result.msg;
+             var msg = ev.msg || ev.result.msg || ev.result.message;
              var file = ev.file;
              if(!file) return false;
              var id = ev.file.id;
-            //打印错误消息
-            $('.J_ErrorMsg_' + id).html(msg);
+             //打印错误消息
+             $('.J_ErrorMsg_' + id).html(msg);
              self._setDisplayMsg(true,ev.file);
              //向控制台打印错误消息
              S.log(msg);

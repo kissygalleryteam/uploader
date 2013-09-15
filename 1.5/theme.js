@@ -144,7 +144,6 @@ KISSY.add(function (S, Node, Base) {
             uploader.on(uploaderEvents[1],function(ev){
                 self._removeFileDom(ev.file);
             });
-
             S.each(uploaderEvents,function(e){
                 uploader.on(e,function(ev){
                     var handlerName = '_'+ev.type+'Handler';
@@ -300,6 +299,8 @@ KISSY.add(function (S, Node, Base) {
 }, {requires:['node', 'base']});
 /**
  * changes:
+ * 明河：1.5
+ *      - 增加ioError事件的监听
  * 明河：1.4
  *           - 去掉状态层概念和log消息
  *           - 增加默认渲染数据操作

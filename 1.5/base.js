@@ -223,16 +223,17 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
             uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHanlder, self);
-            uploadType.on(uploaderTypeEvent.ERROR, function (ev) {
-                self.fire(event.ERROR, {status:ev.status, result:ev.result});
-                self._continueUpload();
-            }, self);
+            uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHanlder, self);
+/*            uploadType.on(uploaderTypeEvent.ERROR, function (ev) {
+                //fire ioError event
+                var file = self.get('curFile');
+                self.fire(UploaderBase.event.IO_ERROR, {status:ev.status, result:ev.result,file:file});
+            }, self);*/
             //监听上传器上传进度事件
             if (uploaderTypeEvent.PROGRESS) uploadType.on(uploaderTypeEvent.PROGRESS, self._uploadProgressHandler, self);
             //监听上传器上传停止事件
             uploadType.on(uploaderTypeEvent.STOP, self._uploadStopHanlder, self);
             self.set('uploadType', uploadType);
-
             return uploadType;
         },
         /**
@@ -388,6 +389,7 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
                 self.fire(event.SUCCESS, {index:index, file:queue.getFile(index), result:result});
             } else {
                 var msg = result.msg || result.message || EMPTY;
+                result.msg = msg;
                 //修改队列中文件的状态为error（上传失败）
                 queue.fileStatus(index, UploaderBase.status.ERROR, {msg:msg, result:result});
                 self.fire(event.ERROR, {status:status, result:result, index:index, file:queue.getFile(index)});
@@ -464,6 +466,24 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
          */
         curUploadIndex:{value:EMPTY},
         /**
+         *  当前上传的文件
+         *  @type Object
+         *  @default ""
+         */
+        curFile:{
+            value:EMPTY,
+            getter:function(){
+                var self = this;
+                var file = EMPTY;
+                var curUploadIndex = self.get('curUploadIndex');
+                if(S.isNumber(curUploadIndex)){
+                    var queue = self.get('queue');
+                    file = queue.getFile(curUploadIndex);
+                }
+                return file;
+            }
+        },
+        /**
          * 上传方式实例
          * @type UploaderBaseType
          * @default {}
@@ -492,6 +512,9 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
 }, {requires:['base', 'node', 'ua','./type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
 /**
  * changes:
+ * 明河：1.5
+ *      - [+]新增curFile属性
+ *      - [+]增加超时处理
  * 明河：1.4
  *           - Uploader上传组件的核心部分
  *           - 去掉 S.convertByteSize
