@@ -32,8 +32,8 @@ KISSY.add('gallery/uploader/1.5/themes/default/index',function (S, Node, Theme) 
          */
         _addHandler : function(ev){
             var self = this;
-            var id = ev.file.id;
-            var index = ev.index;
+            var file = ev.file;
+            var id = file.id;
             var uploader = self.get('uploader');
             var queue = uploader.get('queue');
             //删除链接
@@ -46,12 +46,13 @@ KISSY.add('gallery/uploader/1.5/themes/default/index',function (S, Node, Theme) 
             //点击取消
             $cancel.on('click', function (ev) {
                 ev.preventDefault();
+                var index = queue.getFileIndex(file.id);
                 uploader.cancel(index);
             });
-
             //点击删除
             $del.on('click', function (ev) {
                 ev.preventDefault();
+                var index = queue.getFileIndex(file.id);
                 //删除队列中的文件
                 queue.remove(index);
             });
@@ -59,6 +60,7 @@ KISSY.add('gallery/uploader/1.5/themes/default/index',function (S, Node, Theme) 
             //点击上传
             $upload.on('click', function (ev) {
                 ev.preventDefault();
+                var index = queue.getFileIndex(file.id);
                 uploader.upload(index);
             });
         },
@@ -77,7 +79,7 @@ KISSY.add('gallery/uploader/1.5/themes/default/index',function (S, Node, Theme) 
             var $del = $(".J_Del_" + id);
             var $cancel = $(".J_Cancel_" + id);
             $del.show();
-           $cancel.hide();
+            $cancel.hide();
         },
         /**
          * 文件处于上传错误状态时触发
@@ -107,16 +109,16 @@ KISSY.add('gallery/uploader/1.5/themes/default/index',function (S, Node, Theme) 
                 '<div class="f-l sprite file-icon"></div>' +
                 '<div class="f-l">{name}</div>' +
                 '<div class="f-l status-wrapper">' +
-                    '<div class="status waiting-status">等待上传，<a class="J_Upload_{id}" href="#Upload">点此上传</a> </div>' +
-                    '<div class="status start-status progress-status success-status clearfix">' +
-                        '<div class="J_ProgressBar_{id} f-l uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>' +
-                        ' <a  class="J_Cancel_{id} f-l upload-cancel" href="#uploadCancel">取消</a>' +
-                        '<a href="#fileDel" class=" f-l J_Del_{id}" style="display:none;">删除</a>' +
-                    '</div> ' +
-                    '<div class="status cancel-status">已经取消上传，<a href="#reUpload" id="J_ReUpload_{id}" class="J_Upload_{id}">点此重新上传</a> </div>' +
-                    '<div class="status error-status upload-error"><span class="J_ErrorMsg_{id}"></span><a href="#fileDel" class="J_Del_{id}">删除</a></div>' +
+                '<div class="status waiting-status">等待上传，<a class="J_Upload_{id}" href="#Upload">点此上传</a> </div>' +
+                '<div class="status start-status progress-status success-status clearfix">' +
+                '<div class="J_ProgressBar_{id} f-l uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>' +
+                ' <a  class="J_Cancel_{id} f-l upload-cancel" href="#uploadCancel">取消</a>' +
+                '<a href="#fileDel" class=" f-l J_Del_{id}" style="display:none;">删除</a>' +
+                '</div> ' +
+                '<div class="status cancel-status">已经取消上传，<a href="#reUpload" id="J_ReUpload_{id}" class="J_Upload_{id}">点此重新上传</a> </div>' +
+                '<div class="status error-status upload-error"><span class="J_ErrorMsg_{id}"></span><a href="#fileDel" class="J_Del_{id}">删除</a></div>' +
                 '</div>' +
-            '</li>'
+                '</li>'
         },
         /**
          * 引入的插件

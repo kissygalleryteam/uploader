@@ -40,7 +40,6 @@ KISSY.add('gallery/uploader/1.5/plugins/proBars/proBars',function(S, Node, Base,
         pluginInitializer : function(uploader) {
             if(!uploader) return false;
             var self = this;
-            var uploadType = uploader.get('type');
             uploader.on('start',function(ev){
                 self.add(ev.file.id);
             });

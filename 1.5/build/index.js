@@ -395,6 +395,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
         var self = this;
         //调用父类构造函数
         AjaxType.superclass.constructor.call(self, config);
+        self._setWithCredentials();
     }
 
     S.mix(AjaxType, /** @lends AjaxType.prototype*/{
@@ -413,17 +414,19 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
          * @return {AjaxType}
          */
         upload : function(fileData) {
+            var self = this;
             //不存在文件信息集合直接退出
             if (!fileData) {
                 S.log(LOG_PREFIX + 'upload()，fileData参数有误！');
-                return false;
+                return self;
             }
-            var self = this;
-            self._chunkedUpload(fileData);
-            /*var self = this;
-            self._setFormData();
-            self._addFileData(fileData);
-            self.send();*/
+            var blobSize = self.get('blobSize');
+            if(blobSize > 0){
+                //分段上传
+                self._chunkedUpload(fileData);
+            }else{
+                self._fullUpload(fileData);
+            }
             return self;
         },
         /**
@@ -434,7 +437,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             var self = this,xhr = self.get('xhr');
             if (!S.isObject(xhr)) {
                 S.log(LOG_PREFIX + 'stop()，io值错误！');
-                return false;
+                return self;
             }
             //中止ajax请求，会触发error事件
             xhr.abort();
@@ -442,31 +445,11 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             return self;
         },
         /**
-         * 发送ajax请求
-         * @return {AjaxType}
+         * 获取传输给服务器端的FormData
+         * @param formData
+         * @return {*}
+         * @private
          */
-        send : function() {
-            var self = this,
-            //服务器端处理文件上传的路径
-                action = self.get('action'),
-                data = self.get('formData');
-            var xhr = new XMLHttpRequest();
-            //TODO:如果使用onProgress存在第二次上传不触发progress事件的问题
-            xhr.upload.addEventListener('progress',function(ev){
-                self.fire(AjaxType.event.PROGRESS, { 'loaded': ev.loaded, 'total': ev.total });
-            });
-            xhr.onload = function(ev){
-                var result = self._processResponse(xhr.responseText);
-                self.fire(AjaxType.event.SUCCESS, {result : result});
-            };
-            xhr.open("POST", action, true);
-            data.append("type", "ajax");
-            xhr.send(data);
-            // 重置FormData
-            self._setFormData();
-            self.set('xhr',xhr);
-            return self;
-        },
         _getFormData: function (formData) {
             if ($.isArray(formData)) {
                 return formData;
@@ -481,6 +464,19 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 return formData;
             }
             return formData;
+        },
+        /**
+         * 跨域上传时，需要携带cookies
+         * @private
+         */
+        _setWithCredentials:function(){
+            var self = this;
+            var CORS = self.get('CORS');
+            var ajaxConfig = self.get('ajaxConfig');
+            S.mix(ajaxConfig,{xhrFields: {
+                withCredentials: true
+            }});
+            return ajaxConfig;
         },
         /**
          * 设置FormData数据
@@ -531,6 +527,12 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             self.set('formData', formData);
             return formData;
         },
+        /**
+         * 分段上传
+         * @param file
+         * @return {boolean}
+         * @private
+         */
         _chunkedUpload:function(file){
             if(!S.isObject(file)) return false;
             var self = this;
@@ -541,15 +543,12 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             });
 
             var size = file.size;
-            var uploadedBytes = self.get('uploadedBytes');
+            //已经上传的字节数
+            var uploadedBytes = 0;
             var maxChunkSize = self.get('blobSize') || size;
             //数据分块API（不同浏览器有不同实现）
             var slice = file.slice || file.webkitSlice || file.mozSlice;
-            //已经上传的字节数超过文件大小，直接退出
-            if(uploadedBytes > size) return true;
-            var i = 0;
             function upload(){
-                var uploadedBytes = self.get('uploadedBytes');
                 //文件切块，每块的大小为maxChunkSize-uploadedBytes
                 //http://dev.w3.org/2006/webapi/FileAPI/
                 var blob = slice.call(
@@ -574,27 +573,55 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 })
                 var ajax = io(ajaxConfig);
                 ajax.then(function(data){
-                    i ++;
                     var result = data[0];
                     //upload success
                     //算出已经上传的文件大小
-                    var uploadedBytes = self._getUploadedBytes(ajax) || uploadedBytes + chunkSize;
-                    self.set('uploadedBytes',uploadedBytes);
+                    uploadedBytes = self._getUploadedBytes(ajax) || uploadedBytes + chunkSize;
                     //派发进度事件
                     self.fire(AjaxType.event.PROGRESS, { 'loaded': uploadedBytes, 'total': size });
                     //还有没有上传完的文件，继续上传
                     if(uploadedBytes< size){
-                        if(i<2) upload();
+                        upload();
                     }else{
                         //已经上传完成，派发success事件
                         self.fire(AjaxType.event.SUCCESS, {result : result});
                     }
-                },function(){
+                },function(result){
                     //upload fail
+                    self.fire(AjaxType.event.ERROR, {result : result});
                 })
             }
 
             upload();
+        },
+        /**
+         * 整个文件上传
+         * @param file
+         * @return {*}
+         * @private
+         */
+        _fullUpload:function(file){
+            var self = this;
+            var ajaxConfig = self.get('ajaxConfig');
+            //将用户自定义的data添加到FormData中
+            self._setFormData();
+            //向FormData添加文件数据
+            self._addFileData(file);
+            S.mix(ajaxConfig,{
+                data:self.get('formData'),
+                url:self.get('action')
+            });
+            var ajax = io(ajaxConfig);
+            ajax.then(function(data){
+                //upload success
+                var result = data[0];
+                //上传完成，派发success事件
+                self.fire(AjaxType.event.SUCCESS, {result : result});
+            },function(result){
+                //upload fail
+                self.fire(AjaxType.event.ERROR, {result : result});
+            })
+            return ajax;
         },
         /**
          * 解析ajax请求返回的响应头Range，获取已经上传的文件字节数
@@ -624,7 +651,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             var contentRange = 'bytes ' + uploadedBytes + '-' + (uploadedBytes + chunkSize - 1) + '/' + size;
             var self = this;
             var ajaxConfig = self.get('ajaxConfig');
-            var headers = ajaxConfig.headers;
+            var headers= ajaxConfig.headers;
             headers['Content-Range'] = contentRange;
             return contentRange;
         },
@@ -674,15 +701,15 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
         form : {value : {}},
         fileInput : {value : EMPTY},
         /**
-         * 已经上传的字节数
+         * 块文件数据的大小
          * @type Number
          * @default 0
          */
-        uploadedBytes:{value:0},
+        blobSize:{value:1000},
         /**
-         * 块文件数据的大小
+         * 是否是跨域上传
          */
-        blobSize:{value:100000},
+        CORS:{value:false},
         /**
          * 是否使用postMessage来跨域传输文件数据
          */
@@ -692,10 +719,19 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
     return AjaxType;
 }, {requires:['node','./base','ajax']});
 /**
+ * changes:
+ * 明河：1.5
+ *           - 重构模块
+ *           - 增加分段上传支持
+ *           - 增加blobSize配置
+ *           - 增加isUsePostMessage配置
+ *           - 增加uploadedBytes属性
+ */
+/**
  * @fileoverview flash上传方案，基于龙藏写的ajbridge内的uploader
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/type/flash', function (S, Node, UploadType) {
+KISSY.add('gallery/uploader/1.5/type/flash',function (S, Node, UploadType) {
     var EMPTY = '', LOG_PREFIX = '[uploader-FlashType]:';
     /**
      * @name FlashType
@@ -1330,7 +1366,7 @@ KISSY.add('gallery/uploader/1.5/plugins/ajbridge/ajbridge',function(S,Flash) {
     window.AJBridge = S.AJBridge = AJBridge;
 
     return AJBridge;
-}, { requires:["flash"] });
+}, { requires:["gallery/flash/1.0/index"] });
 /**
  * NOTES:
  * 20120117 移植成kissy1.2.0的模块（明河修改）
@@ -2065,7 +2101,7 @@ KISSY.add('gallery/uploader/1.5/queue',function (S, Node, Base) {
             //转换文件大小单位为（kb和mb）
             if (file.size) file.textSize = convertByteSize(file.size);
             //状态
-            file.status = 'waiting';
+            if(!file.status) file.status = 'waiting';
             files.push(file);
             return file;
         }
