@@ -224,11 +224,6 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
             //监听上传器上传完成事件
             uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHanlder, self);
             uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHanlder, self);
-/*            uploadType.on(uploaderTypeEvent.ERROR, function (ev) {
-                //fire ioError event
-                var file = self.get('curFile');
-                self.fire(UploaderBase.event.IO_ERROR, {status:ev.status, result:ev.result,file:file});
-            }, self);*/
             //监听上传器上传进度事件
             if (uploaderTypeEvent.PROGRESS) uploadType.on(uploaderTypeEvent.PROGRESS, self._uploadProgressHandler, self);
             //监听上传器上传停止事件

@@ -570,7 +570,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 self._addFileData(blob);
                 S.mix(ajaxConfig,{
                     data:self.get('formData')
-                })
+                });
                 var ajax = io(ajaxConfig);
                 ajax.then(function(data){
                     var result = data[0];
@@ -586,9 +586,8 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                         //已经上传完成，派发success事件
                         self.fire(AjaxType.event.SUCCESS, {result : result});
                     }
-                },function(result){
-                    //upload fail
-                    self.fire(AjaxType.event.ERROR, {result : result});
+                },function(data){
+                    self._errorHandler(data,file);
                 })
             }
 
@@ -617,11 +616,24 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
                 var result = data[0];
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
-            },function(result){
-                //upload fail
-                self.fire(AjaxType.event.ERROR, {result : result});
-            })
+            },function(data){
+                self._errorHandler(data,file);
+            });
             return ajax;
+        },
+        /**
+         * ajax请求出错时的处理
+         * @private
+         */
+        _errorHandler:function(data,file){
+            var self = this;
+            var result = {};
+            var status = data[1];
+            if(status == 'timeout'){
+                result.msg = '请求超时！';
+                result.status = 'timeout';
+            }
+            self.fire(AjaxType.event.ERROR, {status:status,result : result,file:file});
         },
         /**
          * 解析ajax请求返回的响应头Range，获取已经上传的文件字节数
@@ -693,6 +705,8 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             cache : false,
             dataType : 'json',
             contentType: false,
+            //默认超时时间10秒
+            timeout:10,
             headers:{}
         }
         },
@@ -705,7 +719,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
          * @type Number
          * @default 0
          */
-        blobSize:{value:1000},
+        blobSize:{value:0},
         /**
          * 是否是跨域上传
          */
@@ -721,11 +735,12 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
 /**
  * changes:
  * 明河：1.5
- *           - 重构模块
- *           - 增加分段上传支持
- *           - 增加blobSize配置
- *           - 增加isUsePostMessage配置
- *           - 增加uploadedBytes属性
+ *           - [+]重构模块
+ *           - [+]增加分段上传支持
+ *           - [+]增加blobSize配置
+ *           - [+]增加isUsePostMessage配置
+ *           - [+]增加uploadedBytes属性
+ *           - [+]增加timeout
  */
 /**
  * @fileoverview flash上传方案，基于龙藏写的ajbridge内的uploader
@@ -1997,15 +2012,22 @@ KISSY.add('gallery/uploader/1.5/queue',function (S, Node, Base) {
         },
         /**
          * 获取指定索引值的队列中的文件
-         * @param  {Number} index 文件在队列中的索引
+         * @param  {Number} indexOrId 文件在队列中的索引或id
          * @return {Object}
          */
-        getFile:function (index) {
-            if (!S.isNumber(index)) return false;
-            var self = this, files = self.get('files'),
-                file = files[index];
-            if (!S.isPlainObject(file)){
-                file = {};
+        getFile:function (indexOrId) {
+            var self = this;
+            var file;
+            var files = self.get('files');
+            if(S.isNumber(indexOrId)){
+                file = files[indexOrId];
+            }else{
+                S.each(files, function (f) {
+                    if (f.id == indexOrId) {
+                        file = f;
+                        return true;
+                    }
+                });
             }
             return file;
         },
@@ -2137,6 +2159,8 @@ KISSY.add('gallery/uploader/1.5/queue',function (S, Node, Base) {
 }, {requires:['node', 'base']});
 /**
  * changes:
+ * 明河：1.5
+ *      - [!] #72 getFile()方法优化
  * 明河：1.4
  *           - 去掉与Theme的耦合
  *           - 去掉restore
@@ -2366,16 +2390,12 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
             uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHanlder, self);
-            uploadType.on(uploaderTypeEvent.ERROR, function (ev) {
-                self.fire(event.ERROR, {status:ev.status, result:ev.result});
-                self._continueUpload();
-            }, self);
+            uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHanlder, self);
             //监听上传器上传进度事件
             if (uploaderTypeEvent.PROGRESS) uploadType.on(uploaderTypeEvent.PROGRESS, self._uploadProgressHandler, self);
             //监听上传器上传停止事件
             uploadType.on(uploaderTypeEvent.STOP, self._uploadStopHanlder, self);
             self.set('uploadType', uploadType);
-
             return uploadType;
         },
         /**
@@ -2531,6 +2551,7 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 self.fire(event.SUCCESS, {index:index, file:queue.getFile(index), result:result});
             } else {
                 var msg = result.msg || result.message || EMPTY;
+                result.msg = msg;
                 //修改队列中文件的状态为error（上传失败）
                 queue.fileStatus(index, UploaderBase.status.ERROR, {msg:msg, result:result});
                 self.fire(event.ERROR, {status:status, result:result, index:index, file:queue.getFile(index)});
@@ -2607,6 +2628,24 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
          */
         curUploadIndex:{value:EMPTY},
         /**
+         *  当前上传的文件
+         *  @type Object
+         *  @default ""
+         */
+        curFile:{
+            value:EMPTY,
+            getter:function(){
+                var self = this;
+                var file = EMPTY;
+                var curUploadIndex = self.get('curUploadIndex');
+                if(S.isNumber(curUploadIndex)){
+                    var queue = self.get('queue');
+                    file = queue.getFile(curUploadIndex);
+                }
+                return file;
+            }
+        },
+        /**
          * 上传方式实例
          * @type UploaderBaseType
          * @default {}
@@ -2635,6 +2674,9 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
 }, {requires:['base', 'node', 'ua','./type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
 /**
  * changes:
+ * 明河：1.5
+ *      - [+]新增curFile属性
+ *      - [+]增加超时处理
  * 明河：1.4
  *           - Uploader上传组件的核心部分
  *           - 去掉 S.convertByteSize

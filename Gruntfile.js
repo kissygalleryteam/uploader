@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         // author必须是{name: "xxx", email: "xxx"}格式
         pkg: configs,
         buildBase: '1.5/build',
-        banner: '/*!build time : <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %>\n*/',
+        banner: '/*!build time : <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %>*/\n',
         // kmc打包任务，默认情况，入口文件是index.js，可以自行添加入口文件，在files下面
         // 添加
         kmc: {
