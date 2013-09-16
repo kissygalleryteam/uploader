@@ -22,6 +22,7 @@
     [+] #65 AjaxType增加timeout配置
     [+] #77 基于kissy1.3.1
     [+] #76 跨域上传支持
+    [+] UrlsInput增加useName配置
     [-] #67 不支持kissy1.2
     [-] 去掉旧的二手主题和mutilImageUploader主题
 

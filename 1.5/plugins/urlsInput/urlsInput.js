@@ -31,7 +31,6 @@ KISSY.add(function(S, Node, Base) {
             var self = this;
             if(!uploader) return false;
             self.set('uploader',uploader);
-
             uploader.on('success',self._uploadSuccessHandler,self);
 
             var queue = uploader.get('queue');
@@ -46,6 +45,7 @@ KISSY.add(function(S, Node, Base) {
             var result = ev.result;
             if(!S.isObject(result)) return false;
             var url = result.url;
+            if(self.get('useName')) url = result.name;
             self.add(url);
             return self;
         },
@@ -70,7 +70,7 @@ KISSY.add(function(S, Node, Base) {
                 return false;
             }
             var self = this,urls = self.get('urls'),
-                //判断路径是否已经存在
+            //判断路径是否已经存在
                 isExist = self.isExist(url);
             //TODO:防止第一个路径会出现为空的情况
             if(urls[0] == EMPTY) urls = [];
@@ -110,29 +110,29 @@ KISSY.add(function(S, Node, Base) {
          * @return {Array}
          */
         parse: function(){
-        	var self = this,
-        		input = self.get('target');
-    		if(input){
-    			var urls = $(input).val(),
-    				split = self.get('split'),
-    				files;
+            var self = this,
+                input = self.get('target');
+            if(input){
+                var urls = $(input).val(),
+                    split = self.get('split'),
+                    files;
                 if(urls == EMPTY) return [];
-    			files = urls.split(split);
+                files = urls.split(split);
                 self.set('urls',files);
-    			return files;
-    		}else{
-    			S.log(LOG_PREFIX + 'cannot find urls input.');
-    			return [];
-    		}
+                return files;
+            }else{
+                S.log(LOG_PREFIX + 'cannot find urls input.');
+                return [];
+            }
         },
         /**
          * 设置隐藏域的值
-         * @return {String} 
+         * @return {String}
          */
         _val : function(){
             var self = this,urls = self.get('urls'),
                 $input = self.get('target'),
-                //多个路径间的分隔符
+            //多个路径间的分隔符
                 split = self.get('split'),
                 sUrl = urls.join(split);
             $input.val(sUrl);
@@ -156,10 +156,10 @@ KISSY.add(function(S, Node, Base) {
         }
     }, {ATTRS : /** @lends UrlsInput.prototype*/{
         /**
-        * 插件名称
-        * @type String
-        * @default urlsInput
-        */
+         * 插件名称
+         * @type String
+         * @default urlsInput
+         */
         pluginId:{
             value:'urlsInput'
         },
@@ -196,13 +196,21 @@ KISSY.add(function(S, Node, Base) {
             getter:function(v){
                 return $(v);
             }
-        }
+        },
+        /**
+         * url使用name
+         * @type KISSY.Node
+         * @default ""
+         */
+        useName:{value:false}
     }});
 
     return UrlsInput;
 }, {requires:['node','base']});
 /**
  * changes:
+ * 明河：1.5
+ *          - [+]UrlsInput增加useName配置
  * 明河：1.4
  *           - 重构，去掉create方法，不会自动创建urlsInput
  *           - 移动到plugins目录下，作为插件出现
