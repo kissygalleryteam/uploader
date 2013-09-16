@@ -31,7 +31,6 @@ KISSY.add('gallery/uploader/1.4/plugins/urlsInput/urlsInput',function(S, Node, B
             var self = this;
             if(!uploader) return false;
             self.set('uploader',uploader);
-
             uploader.on('success',self._uploadSuccessHandler,self);
 
             var queue = uploader.get('queue');
@@ -46,6 +45,7 @@ KISSY.add('gallery/uploader/1.4/plugins/urlsInput/urlsInput',function(S, Node, B
             var result = ev.result;
             if(!S.isObject(result)) return false;
             var url = result.url;
+            if(self.get('useName')) url = result.name;
             self.add(url);
             return self;
         },
@@ -196,7 +196,13 @@ KISSY.add('gallery/uploader/1.4/plugins/urlsInput/urlsInput',function(S, Node, B
             getter:function(v){
                 return $(v);
             }
-        }
+        },
+        /**
+         * url使用name
+         * @type KISSY.Node
+         * @default ""
+         */
+        useName:{value:false}
     }});
 
     return UrlsInput;

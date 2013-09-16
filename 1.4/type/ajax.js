@@ -156,7 +156,7 @@ KISSY.add('gallery/uploader/1.4/type/ajax',function(S, Node, UploadType) {
         fileDataName : {value : EMPTY},
         form : {value : {}},
         fileInput : {value : EMPTY} ,
-        CORS:false
+        CORS:{value:false}
     }
     });
     return AjaxType;

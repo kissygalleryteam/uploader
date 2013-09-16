@@ -51,6 +51,18 @@ KISSY.add('gallery/uploader/1.4/aliUploader', function (S ,Uploader,Plugins) {
             data.domain = domain;
             uploader.set('data',data);
         }
+        //url使用文件名而不是完整路径
+        if(config.useName){
+            var isSet = false;
+            uploader.on('add',function(){
+                if(!isSet){
+                    var urlsInput = uploader.getPlugin('urlsInput');
+                    if(urlsInput){
+                        urlsInput.set('useName',true);
+                    }
+                }
+            })
+        }
         return uploader;
     }
     AliUploader.plugins = Plugins;
