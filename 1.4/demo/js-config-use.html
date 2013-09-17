@@ -47,9 +47,10 @@
             //验证插件
             uploader.plug(new Auth({
                         //最多上传个数
-                        max:3,
+                        max:2,
                         //图片最大允许大小
-                        maxSize:100
+                        maxSize:100 ,
+                        allowExts:"jpg,png,gif,jpeg"
                     }))
                      //url保存插件
                     .plug(new UrlsInput({target:'#J_Urls'}))

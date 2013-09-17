@@ -412,7 +412,7 @@ KISSY.add('gallery/uploader/1.4/plugins/auth/auth', function (S, Node,Base) {
             var queue = uploader.get('queue');
             var max = self.get('max');
             var curFileIndex = uploader.get('curUploadIndex');
-            if(curFileIndex == EMPTY || curFileIndex < max) return false;
+            if(curFileIndex == EMPTY || curFileIndex <= max) return false;
             var files = queue.get('files');
             uploader.stop();
             S.each(files,function(file,index){
