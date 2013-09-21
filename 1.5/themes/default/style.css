@@ -71,10 +71,10 @@
     background: -moz-linear-gradient(top, #FAFAFA, #E5E5E5);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FAFAFA', endColorstr = '#E5E5E5');
 }
-.uploader-button-disabled .file-input-wrapper .file-input {
+.uploader-button-disabled .file-input-wrapper input {
     display: none;
 }
-.defaultTheme-button .file-input-wrapper .file-input {
+.defaultTheme-button .file-input-wrapper input {
     background: none repeat scroll 0 0 transparent;
     border: medium none;
     cursor: pointer;

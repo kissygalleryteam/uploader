@@ -13,9 +13,11 @@
     <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="files" >
     <input type="hidden" id="J_Urls" name="urls" value="" />
 </div>
-<ul id="J_UploaderQueue">
-
-</ul>
+<ul id="J_UploaderQueue"></ul>
+<p>V1.5新增：可以使用label元素来触发文件选择</p>
+<div>
+    <label for="J_UploaderBtn">触发文件选择</label>
+</div>
 <script>
     var S = KISSY;
     if (S.Config.debug) {

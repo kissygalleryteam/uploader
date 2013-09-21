@@ -24,6 +24,7 @@
     [+] #77 基于kissy1.3.1
     [+] #76 跨域上传支持
     [+] UrlsInput增加useName配置
+    [+] #62 支持label触发文件选择
     [-] #67 不支持kissy1.2
     [-] 去掉旧的二手主题和mutilImageUploader主题
     [-] 删除_oldInput

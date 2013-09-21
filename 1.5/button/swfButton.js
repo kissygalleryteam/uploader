@@ -70,7 +70,7 @@ KISSY.add(function (S, Node, Base, SwfUploader) {
             }, self);
             var srcFileInput = self.get('srcFileInput');
             if(srcFileInput && srcFileInput.length){
-                srcFileInput.hide();
+                srcFileInput.remove();
             }
             return self;
         },
