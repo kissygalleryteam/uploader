@@ -288,5 +288,6 @@ KISSY.add(function(S, Node, Base) {
 /**
  * changes:
  * 明河：1.5
- *      - [-]去掉fileInput
+ *      - [!]fileInput使用clone
+ *      - [+]新增srcFileInput
  */

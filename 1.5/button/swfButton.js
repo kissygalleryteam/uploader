@@ -68,6 +68,11 @@ KISSY.add(function (S, Node, Base, SwfUploader) {
                 self._setDisabled(self.get('disabled'));
                 self.fire(SwfButton.event.RENDER);
             }, self);
+            var srcFileInput = self.get('srcFileInput');
+            if(srcFileInput && srcFileInput.length){
+                srcFileInput.hide();
+            }
+            return self;
         },
         /**
          * 创建flash容器
@@ -299,7 +304,13 @@ KISSY.add(function (S, Node, Base, SwfUploader) {
          *  @type SwfUploader
          *  @default ""
          */
-        swfUploader:{value:EMPTY}
+        swfUploader:{value:EMPTY},
+        srcFileInput:{value:EMPTY}
     }});
     return SwfButton;
 }, {requires:['node', 'base', '../plugins/ajbridge/uploader']});
+/**
+ * changes:
+ * 明河：1.5
+ *      - [+]新增srcFileInput
+ */

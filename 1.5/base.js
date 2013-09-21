@@ -515,6 +515,7 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
  * 明河：1.5
  *      - [+]新增curFile属性
  *      - [+]增加超时处理
+ *      - [!]克隆input支持
  * 明河：1.4
  *           - Uploader上传组件的核心部分
  *           - 去掉 S.convertByteSize
