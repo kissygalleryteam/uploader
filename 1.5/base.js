@@ -290,7 +290,7 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
                 multiple = self.get('multiple'),
                 disabled = self.get('disabled'),
                 name = self.get('name');
-            var config = {name:name, multiple:multiple, disabled:disabled,fileInput:self.get("fileInput")};
+            var config = {name:name, multiple:multiple, disabled:disabled,srcFileInput:self.get("fileInput")};
             if (type == UploaderBase.type.FLASH) {
                 Button = SwfButton;
                 S.mix(config, {size:self.get('swfSize')});

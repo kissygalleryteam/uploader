@@ -51,21 +51,14 @@ KISSY.add(function(S, Node, Base) {
          * @return {Button} Button的实例
          */
         render : function() {
-            var self = this,
-                target = self.get('target'),
-                render = self.fire(Button.event.beforeRender);
-            if (render === false) {
-                S.log(LOG_PREFIX + 'button render was prevented.');
-                return false;
-            } else {
-                if (target == null) {
-                    S.log(LOG_PREFIX + 'Cannot find target!');
-                    return false;
-                }
-                self._createInput();
-                self.fire(Button.event.afterRender);
+            var self = this;
+            var srcFileInput = self.get('srcFileInput');
+            if(!srcFileInput || !srcFileInput.length){
+                S.log('[Button]file元素不存在！');
                 return self;
             }
+            srcFileInput.hide();
+            self._createInput();
         },
         /**
          * 显示按钮
@@ -92,8 +85,8 @@ KISSY.add(function(S, Node, Base) {
          * @return {Button} Button的实例
          */
         reset : function() {
-            var self = this,
-                inputContainer = self.get('inputContainer');
+            var self = this;
+            var inputContainer = self.get('inputContainer');
             //移除表单上传域容器
             $(inputContainer).remove();
             self.set('inputContainer', EMPTY);
@@ -113,8 +106,12 @@ KISSY.add(function(S, Node, Base) {
             var tpl = self.get('tpl');
             var inputContainer;
             if (!S.isString(tpl)) return false;
+            var srcFileInput = self.get('srcFileInput');
+            if(!srcFileInput.length) return false;
+            //克隆并显示文件上传域
+            var fileInput = srcFileInput.clone().show();
+            self.set('fileInput',fileInput);
 
-            var fileInput = self.get('fileInput');
             var $inputContainer = $(tpl);
             $inputContainer.append(fileInput);
             //向body添加表单文件上传域
@@ -203,12 +200,16 @@ KISSY.add(function(S, Node, Base) {
                 value: null
             },
             /**
-             * 对应的表单上传域
-             * @type KISSY.Node
-             * @default ""
+             * 表单上传域的克隆元素
              */
             fileInput: {
                 value: EMPTY
+            },
+            /**
+             * 表单上传域
+             */
+            srcFileInput:{
+                value:EMPTY
             },
             /**
              * 文件上传域容器
