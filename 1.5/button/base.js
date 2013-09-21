@@ -57,7 +57,9 @@ KISSY.add(function(S, Node, Base) {
                 S.log('[Button]file元素不存在！');
                 return self;
             }
-            srcFileInput.hide();
+            var newSrcFileInput = srcFileInput.clone();
+            srcFileInput.remove();
+            self.set('srcFileInput',newSrcFileInput);
             self._createInput();
         },
         /**
@@ -109,7 +111,7 @@ KISSY.add(function(S, Node, Base) {
             var srcFileInput = self.get('srcFileInput');
             if(!srcFileInput.length) return false;
             //克隆并显示文件上传域
-            var fileInput = srcFileInput.clone().show();
+            var fileInput = srcFileInput.clone();
             self.set('fileInput',fileInput);
 
             var $inputContainer = $(tpl);
