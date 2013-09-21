@@ -107,38 +107,30 @@ KISSY.add(function(S, Node, Base) {
          * @return {HTMLElement} 文件上传域容器
          */
         _createInput : function() {
-            var self = this,
-                target = self.get('target'),
-                name = self.get('name'),
-                tpl = self.get('tpl'),
-                html,
-                inputContainer,
-                fileInput;
-            if (!S.isString(name) || !S.isString(tpl)) {
-                S.log(LOG_PREFIX + 'No name or tpl specified.');
-                return false;
-            }
-            html = S.substitute(tpl, {
-                'name' : name
-            });
-            // TODO: inputContainer = DOM.create(html);
-            inputContainer = $(html);
+            var self = this;
+            var target = self.get('target');
+            var name = self.get('name');
+            var tpl = self.get('tpl');
+            var inputContainer;
+            if (!S.isString(tpl)) return false;
+
+            var fileInput = self.get('fileInput');
+            var $inputContainer = $(tpl);
+            $inputContainer.append(fileInput);
             //向body添加表单文件上传域
-            $(inputContainer).appendTo(target);
-            fileInput = $(inputContainer).children('input');
+            $inputContainer.appendTo(target);
             //TODO:IE6下只有通过脚本和内联样式才能控制按钮大小
             if(S.UA.ie == 6) fileInput.css('fontSize','400px');
             //TODO:firefox的fontSize不占宽度，必须额外设置left
             //if(S.UA.firefox)  fileInput.css('left','-1200px');
             //上传框的值改变后触发
             $(fileInput).on('change', self._changeHandler, self);
-            self.set('fileInput', fileInput);
-            self.set('inputContainer', inputContainer);
+            self.set('inputContainer', $inputContainer);
             //禁用按钮
             self._setDisabled(self.get('disabled'));
             //控制多选
             self._setMultiple(self.get('multiple'));
-            return inputContainer;
+            return $inputContainer;
         },
         /**
          * 文件上传域的值改变时触发
@@ -231,7 +223,7 @@ KISSY.add(function(S, Node, Base) {
              * @type String
              */
             tpl : {
-                value : '<div class="file-input-wrapper" style="overflow: hidden;"><input type="file" name="{name}" hidefocus="true" class="file-input" /></div>'
+                value : '<div class="file-input-wrapper" style="overflow: hidden;"></div>'
             },
             /**
              * 隐藏的表单上传域的name值
@@ -292,3 +284,8 @@ KISSY.add(function(S, Node, Base) {
         'base'
     ]
 });
+/**
+ * changes:
+ * 明河：1.5
+ *      - [-]去掉fileInput
+ */

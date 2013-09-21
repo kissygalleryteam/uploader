@@ -149,7 +149,7 @@ KISSY.add(function (S, Node, UploaderBase, RichBase,JSON) {
             }
             //用于tagConfig插件解析按钮上的组件配置
             self.set('_oldInput',$btn.clone());
-            $btn.remove();
+            self.set('fileInput',$btn);
             self.set('target', $aBtn);
             return $aBtn;
         },
@@ -252,12 +252,7 @@ KISSY.add(function (S, Node, UploaderBase, RichBase,JSON) {
          * @default ""
          */
         fileInput:{
-            value:EMPTY,
-            getter:function(v){
-                var self = this;
-                var $target = self.get('target');
-                return $target.all('.file-input');
-            }
+            value:EMPTY
         },
         /**
          * 主题实例
@@ -416,6 +411,9 @@ KISSY.add(function (S, Node, UploaderBase, RichBase,JSON) {
 }, {requires:['node', './base', 'rich-base','json']});
 /**
  * changes:
+ * 明河：1.5
+ *          - [-] 删除_oldInput
+ *          - [!] 将input append到容器，而不是重新创建一个
  * 明河：1.4
  *           - 重构模块
  *           - 去掉urlsInputName参数

@@ -289,8 +289,8 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
                 buttonTarget = self.get('target'),
                 multiple = self.get('multiple'),
                 disabled = self.get('disabled'),
-                name = self.get('name'),
-                config = {name:name, multiple:multiple, disabled:disabled};
+                name = self.get('name');
+            var config = {name:name, multiple:multiple, disabled:disabled,fileInput:self.get("fileInput")};
             if (type == UploaderBase.type.FLASH) {
                 Button = SwfButton;
                 S.mix(config, {size:self.get('swfSize')});
@@ -486,11 +486,11 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
          */
         uploadType:{value:{}},
         /**
-         * UrlsInput实例
-         * @type UrlsInput
+         * 文件域元素
+         * @type NodeList
          * @default ""
          */
-        urlsInput:{value:EMPTY},
+        fileInput:{value:EMPTY},
         /**
          * 存在批量上传文件时，指定的文件状态
          * @type String

@@ -18,6 +18,7 @@
     [!] 进度条插件动画位移bug修复
     [!] 重构ajax上传方式
     [!] #72 Queue getFile()方法优化
+    [!] 将input append到容器，而不是重新创建一个
     [+] #49 支持分段上传实现
     [+] #65 AjaxType增加timeout配置
     [+] #77 基于kissy1.3.1
@@ -25,6 +26,7 @@
     [+] UrlsInput增加useName配置
     [-] #67 不支持kissy1.2
     [-] 去掉旧的二手主题和mutilImageUploader主题
+    [-] 删除_oldInput
 
 ### V1.4.5 change
 
