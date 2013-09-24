@@ -1,4 +1,4 @@
-1.5beta测试中，欢迎反馈bug，预计在10月10号前正式发布，用来不及的同学可以使用[1.4版](http://gallery.kissyui.com/uploader/1.4/guide/index.html)
+1.5beta测试中，欢迎反馈bug，预计在10月10号前正式发布，用来不及的同学可以使用[1.5版](http://gallery.kissyui.com/uploader/1.5/guide/index.html)
 
 阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](./ali.html)。
 
@@ -31,16 +31,16 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 ## demo汇总
 
-* [简单demo：js配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)
-* [简单demo：属性配置上传组件](http://butterfly.36ria.com/uploader/1.4/demo/tag-config-use.html)
-* [combo请求](http://butterfly.36ria.com/uploader/1.4/demo/combo.html)
-* [上传验证控制的demo](http://butterfly.36ria.com/uploader/1.4/demo/auth.html)
-* [组件全部事件演示](http://butterfly.36ria.com/uploader/1.4/demo/events.html)
-* [渲染默认队列数据的demo](http://butterfly.36ria.com/uploader/1.4/demo/default-data-show.html)
-* [队列全部方法演示](http://butterfly.36ria.com/uploader/1.4/demo/queue.html)
-* [只使用flash上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/flash-upload-type.html)
-* [只使用iframe上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/iframe-upload-type.html)
-* [常用方法控制](http://butterfly.36ria.com/uploader/1.4/demo/method-uploader.html)
+* [简单demo：js配置上传组件](http://butterfly.36ria.com/uploader/1.5/demo/js-config-use.html)
+* [简单demo：属性配置上传组件](http://butterfly.36ria.com/uploader/1.5/demo/tag-config-use.html)
+* [combo请求](http://butterfly.36ria.com/uploader/1.5/demo/combo.html)
+* [上传验证控制的demo](http://butterfly.36ria.com/uploader/1.5/demo/auth.html)
+* [组件全部事件演示](http://butterfly.36ria.com/uploader/1.5/demo/events.html)
+* [渲染默认队列数据的demo](http://butterfly.36ria.com/uploader/1.5/demo/default-data-show.html)
+* [队列全部方法演示](http://butterfly.36ria.com/uploader/1.5/demo/queue.html)
+* [只使用flash上传的demo](http://butterfly.36ria.com/uploader/1.5/demo/flash-upload-type.html)
+* [只使用iframe上传的demo](http://butterfly.36ria.com/uploader/1.5/demo/iframe-upload-type.html)
+* [常用方法控制](http://butterfly.36ria.com/uploader/1.5/demo/method-uploader.html)
 
 ## 组件内置的主题
 
@@ -48,19 +48,19 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
-[imageUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
-[refundUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
-[loveUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
-[singleImageUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
-[cropUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
-[editorMultipleUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-editorMultipleUploader.html)| 明河、承玉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/editorMultipleUploader)|![editorMultipleUploader](http://s3.36ria.com/201305/4922/35687_o.png)
+[imageUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
+[refundUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
+[loveUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
+[singleImageUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
+[cropUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
+[editorMultipleUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-editorMultipleUploader.html)| 明河、承玉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/editorMultipleUploader)|![editorMultipleUploader](http://s3.36ria.com/201305/4922/35687_o.png)
 
 ###文件上传主题
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
-[default](http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
-[daogouUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
+[default](http://butterfly.36ria.com/uploader/1.5/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
+[daogouUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
 
 ## 组件快速上手
 
@@ -853,7 +853,7 @@ KISSY.add(function (S, Node, ImageUploader) {
 
 ####在html页面直接写主题模版
 
-这是1.4新增功能，用于用户可以更直观的控制主题模版。
+这是1.5新增功能，用于用户可以更直观的控制主题模版。
 
 ```javascript
 <ul id="J_JsUploaderQueue">
@@ -962,7 +962,7 @@ KISSY.add(function (S, Node, ImageUploader) {
                  <td>Array</td>
                  <td>''</td>
                  <td>读/写</td>
-                 <td>v1.4新增的验证规则，用于限制图片尺寸，非常特殊的验证方式：1.异步验证；2.值为一个函数数组[fnWidth,fnHeight]，比如限制宽度大于60，高度大于160，代码如下：
+                 <td>v1.5新增的验证规则，用于限制图片尺寸，非常特殊的验证方式：1.异步验证；2.值为一个函数数组[fnWidth,fnHeight]，比如限制宽度大于60，高度大于160，代码如下：
 
                         widthHeight:function(width,height){
                             return width > 160 && height > 160;
@@ -1090,14 +1090,14 @@ uploader.on('error',function(ev){
 
 如果你希望可以在html配置组件属性，需要use("tagConfig")。
 
-demo可以[猛击这里](http://butterfly.36ria.com/uploader/1.4/demo/tag-config-use.html)。
+demo可以[猛击这里](http://butterfly.36ria.com/uploader/1.5/demo/tag-config-use.html)。
 
 ```xml
     <input class="g-u" id="J_UploaderBtn" name="Filedata" type="file" value="上传图片"
            action="upload.php" postData='{"author":"minghe"}' max="3" maxSize="500">
 ```
 
-**提醒**：html中的配置会覆盖js的配置，这跟1.4前的逻辑相反。
+**提醒**：html中的配置会覆盖js的配置，这跟1.5前的逻辑相反。
 
 **提醒**：postData等价于js配置中的data。
 
