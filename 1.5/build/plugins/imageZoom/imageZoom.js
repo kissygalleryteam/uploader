@@ -5,15 +5,15 @@ gallery/uploader/1.5/plugins/imageZoom/imageZoom
 
 */
 /**
- * @fileoverview 进度条集合
+ * @fileoverview 图片放大器
  * @author 剑平（明河）<minghe36@126.com>
  **/
 KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, Base,IMGDD) {
     var EMPTY = '';
     var $ = Node.all;
     /**
-     * @name TagConfig
-     * @class 进度条集合
+     * @name ImageZoom
+     * @class 图片放大器
      * @since 1.4
      * @constructor
      * @extends Base

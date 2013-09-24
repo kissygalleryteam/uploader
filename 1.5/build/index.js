@@ -434,13 +434,14 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
          * @return {AjaxType}
          */
         stop : function() {
-            var self = this,xhr = self.get('xhr');
-            if (!S.isObject(xhr)) {
+            debugger;
+            var self = this,ajax = self.get('ajax');
+            if (!S.isObject(ajax)) {
                 S.log(LOG_PREFIX + 'stop()，io值错误！');
                 return self;
             }
             //中止ajax请求，会触发error事件
-            xhr.abort();
+            ajax.abort();
             self.fire(AjaxType.event.STOP);
             return self;
         },
@@ -619,6 +620,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             },function(data){
                 self._errorHandler(data,file);
             });
+            self.set('ajax',ajax);
             return ajax;
         },
         /**
@@ -710,7 +712,10 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
             headers:{}
         }
         },
-        xhr : {value : EMPTY},
+        /**
+         * IO的实例
+         */
+        ajax : {value : EMPTY},
         fileDataName : {value : EMPTY},
         form : {value : {}},
         fileInput : {value : EMPTY},
@@ -741,6 +746,7 @@ KISSY.add('gallery/uploader/1.5/type/ajax',function(S, Node, UploadType,io) {
  *           - [+]增加isUsePostMessage配置
  *           - [+]增加uploadedBytes属性
  *           - [+]增加timeout
+ *           - [!]xhr配置变成ajax
  */
 /**
  * @fileoverview flash上传方案，基于龙藏写的ajbridge内的uploader
@@ -964,21 +970,16 @@ KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
          * @return {Button} Button的实例
          */
         render : function() {
-            var self = this,
-                target = self.get('target'),
-                render = self.fire(Button.event.beforeRender);
-            if (render === false) {
-                S.log(LOG_PREFIX + 'button render was prevented.');
-                return false;
-            } else {
-                if (target == null) {
-                    S.log(LOG_PREFIX + 'Cannot find target!');
-                    return false;
-                }
-                self._createInput();
-                self.fire(Button.event.afterRender);
+            var self = this;
+            var srcFileInput = self.get('srcFileInput');
+            if(!srcFileInput || !srcFileInput.length){
+                S.log('[Button]file元素不存在！');
                 return self;
             }
+            var newSrcFileInput = srcFileInput.clone();
+            srcFileInput.remove();
+            self.set('srcFileInput',newSrcFileInput);
+            self._createInput();
         },
         /**
          * 显示按钮
@@ -1005,8 +1006,8 @@ KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
          * @return {Button} Button的实例
          */
         reset : function() {
-            var self = this,
-                inputContainer = self.get('inputContainer');
+            var self = this;
+            var inputContainer = self.get('inputContainer');
             //移除表单上传域容器
             $(inputContainer).remove();
             self.set('inputContainer', EMPTY);
@@ -1020,38 +1021,34 @@ KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
          * @return {HTMLElement} 文件上传域容器
          */
         _createInput : function() {
-            var self = this,
-                target = self.get('target'),
-                name = self.get('name'),
-                tpl = self.get('tpl'),
-                html,
-                inputContainer,
-                fileInput;
-            if (!S.isString(name) || !S.isString(tpl)) {
-                S.log(LOG_PREFIX + 'No name or tpl specified.');
-                return false;
-            }
-            html = S.substitute(tpl, {
-                'name' : name
-            });
-            // TODO: inputContainer = DOM.create(html);
-            inputContainer = $(html);
+            var self = this;
+            var target = self.get('target');
+            var name = self.get('name');
+            var tpl = self.get('tpl');
+            var inputContainer;
+            if (!S.isString(tpl)) return false;
+            var srcFileInput = self.get('srcFileInput');
+            if(!srcFileInput.length) return false;
+            //克隆并显示文件上传域
+            var fileInput = srcFileInput.clone();
+            self.set('fileInput',fileInput);
+
+            var $inputContainer = $(tpl);
+            $inputContainer.append(fileInput);
             //向body添加表单文件上传域
-            $(inputContainer).appendTo(target);
-            fileInput = $(inputContainer).children('input');
+            $inputContainer.appendTo(target);
             //TODO:IE6下只有通过脚本和内联样式才能控制按钮大小
             if(S.UA.ie == 6) fileInput.css('fontSize','400px');
             //TODO:firefox的fontSize不占宽度，必须额外设置left
             //if(S.UA.firefox)  fileInput.css('left','-1200px');
             //上传框的值改变后触发
             $(fileInput).on('change', self._changeHandler, self);
-            self.set('fileInput', fileInput);
-            self.set('inputContainer', inputContainer);
+            self.set('inputContainer', $inputContainer);
             //禁用按钮
             self._setDisabled(self.get('disabled'));
             //控制多选
             self._setMultiple(self.get('multiple'));
-            return inputContainer;
+            return $inputContainer;
         },
         /**
          * 文件上传域的值改变时触发
@@ -1124,12 +1121,16 @@ KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
                 value: null
             },
             /**
-             * 对应的表单上传域
-             * @type KISSY.Node
-             * @default ""
+             * 表单上传域的克隆元素
              */
             fileInput: {
                 value: EMPTY
+            },
+            /**
+             * 表单上传域
+             */
+            srcFileInput:{
+                value:EMPTY
             },
             /**
              * 文件上传域容器
@@ -1144,7 +1145,7 @@ KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
              * @type String
              */
             tpl : {
-                value : '<div class="file-input-wrapper" style="overflow: hidden;"><input type="file" name="{name}" hidefocus="true" class="file-input" /></div>'
+                value : '<div class="file-input-wrapper" style="overflow: hidden;"></div>'
             },
             /**
              * 隐藏的表单上传域的name值
@@ -1205,6 +1206,12 @@ KISSY.add('gallery/uploader/1.5/button/base',function(S, Node, Base) {
         'base'
     ]
 });
+/**
+ * changes:
+ * 明河：1.5
+ *      - [!]fileInput使用clone
+ *      - [+]新增srcFileInput
+ */
 
 /*
 Copyright 2011, KISSY UI Library v1.1.5
@@ -1525,6 +1532,11 @@ KISSY.add('gallery/uploader/1.5/button/swfButton',function (S, Node, Base, SwfUp
                 self._setDisabled(self.get('disabled'));
                 self.fire(SwfButton.event.RENDER);
             }, self);
+            var srcFileInput = self.get('srcFileInput');
+            if(srcFileInput && srcFileInput.length){
+                srcFileInput.remove();
+            }
+            return self;
         },
         /**
          * 创建flash容器
@@ -1756,10 +1768,16 @@ KISSY.add('gallery/uploader/1.5/button/swfButton',function (S, Node, Base, SwfUp
          *  @type SwfUploader
          *  @default ""
          */
-        swfUploader:{value:EMPTY}
+        swfUploader:{value:EMPTY},
+        srcFileInput:{value:EMPTY}
     }});
     return SwfButton;
 }, {requires:['node', 'base', '../plugins/ajbridge/uploader']});
+/**
+ * changes:
+ * 明河：1.5
+ *      - [+]新增srcFileInput
+ */
 /**
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
@@ -2258,8 +2276,8 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 queue = self.get('queue'),
                 file = queue.get('files')[index],
                 uploadParam;
-            if (!S.isPlainObject(file)) {
-                S.log(LOG_PREFIX + '队列中不存在id为' + index + '的文件');
+            if (!S.isObject(file)) {
+                S.log(LOG_PREFIX + '队列中索引值为' + index + '的文件');
                 return false;
             }
             //如果有文件正在上传，予以阻止上传
@@ -2268,7 +2286,8 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 return false;
             }
             //文件上传域，如果是flash上传,input为文件数据对象
-            uploadParam = file.input.id || file.input;
+            //uploadParam = file.input.id || file.input;
+            uploadParam = file.input;
             //如果是ajax上传直接传文件数据
             if (type == 'ajax') uploadParam = file.data;
             if (file['status'] === 'error') {
@@ -2386,6 +2405,7 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 S.mix(serverConfig, {swfUploader:button.get('swfUploader')});
             }
             serverConfig.fileDataName = self.get('name');
+            serverConfig.CORS = self.get('CORS');
             var uploadType = new UploadType(serverConfig);
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
@@ -2455,8 +2475,8 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 buttonTarget = self.get('target'),
                 multiple = self.get('multiple'),
                 disabled = self.get('disabled'),
-                name = self.get('name'),
-                config = {name:name, multiple:multiple, disabled:disabled};
+                name = self.get('name');
+            var config = {name:name, multiple:multiple, disabled:disabled,srcFileInput:self.get("fileInput")};
             if (type == UploaderBase.type.FLASH) {
                 Button = SwfButton;
                 S.mix(config, {size:self.get('swfSize')});
@@ -2652,11 +2672,11 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
          */
         uploadType:{value:{}},
         /**
-         * UrlsInput实例
-         * @type UrlsInput
+         * 文件域元素
+         * @type NodeList
          * @default ""
          */
-        urlsInput:{value:EMPTY},
+        fileInput:{value:EMPTY},
         /**
          * 存在批量上传文件时，指定的文件状态
          * @type String
@@ -2668,7 +2688,11 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
          * @type Object
          * @default {}
          */
-        swfSize:{value:{}}
+        swfSize:{value:{}},
+        /**
+         * 是否跨域
+         */
+        CORS:{value:false}
     }});
     return UploaderBase;
 }, {requires:['base', 'node', 'ua','./type/iframe', './type/ajax', './type/flash', './button/base', './button/swfButton', './queue']});
@@ -2677,6 +2701,7 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
  * 明河：1.5
  *      - [+]新增curFile属性
  *      - [+]增加超时处理
+ *      - [!]克隆input支持
  * 明河：1.4
  *           - Uploader上传组件的核心部分
  *           - 去掉 S.convertByteSize
@@ -2833,7 +2858,7 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, UploaderBase, RichBase
             }
             //用于tagConfig插件解析按钮上的组件配置
             self.set('_oldInput',$btn.clone());
-            $btn.remove();
+            self.set('fileInput',$btn);
             self.set('target', $aBtn);
             return $aBtn;
         },
@@ -2936,12 +2961,7 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, UploaderBase, RichBase
          * @default ""
          */
         fileInput:{
-            value:EMPTY,
-            getter:function(v){
-                var self = this;
-                var $target = self.get('target');
-                return $target.all('.file-input');
-            }
+            value:EMPTY
         },
         /**
          * 主题实例
@@ -3100,6 +3120,9 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, UploaderBase, RichBase
 }, {requires:['node', './base', 'rich-base','json']});
 /**
  * changes:
+ * 明河：1.5
+ *          - [-] 删除_oldInput
+ *          - [!] 将input append到容器，而不是重新创建一个
  * 明河：1.4
  *           - 重构模块
  *           - 去掉urlsInputName参数
