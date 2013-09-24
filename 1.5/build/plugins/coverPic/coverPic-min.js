@@ -1,2 +1,2 @@
-/*!build time : 2013-09-24 6:44:50 PM*/
+/*!build time : 2013-09-24 7:25:12 PM*/
 KISSY.add("gallery/uploader/1.5/plugins/coverPic/coverPic",function(a,b,c){function d(){}return b.all,a.extend(d,c,{pluginInitializer:function(a){return a?void 0:!1}},{ATTRS:{pluginId:{value:"coverPic"}}}),d},{requires:["node","base"]});

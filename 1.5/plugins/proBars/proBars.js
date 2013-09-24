@@ -136,7 +136,7 @@ KISSY.add(function(S, Node, Base,ProgressBar) {
         speed : {value : 0.2}
     }});
     return ProBars;
-}, {requires : ['node','base','gallery/uploader/1.5/plugins/proBars/progressBar']});
+}, {requires : ['node','base','./progressBar']});
 /**
  * changes:
  * 明河：1.4

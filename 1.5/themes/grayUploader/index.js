@@ -157,4 +157,4 @@ KISSY.add(function (S, Node, ImageUploader) {
         }
     }});
     return grayUploader;
-}, {requires:['node', 'gallery/uploader/1.4/themes/imageUploader/index']});
+}, {requires:['node', '../imageUploader/']});
