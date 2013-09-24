@@ -2285,9 +2285,10 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 alert('第' + self.get('curUploadIndex') + '文件正在上传，请上传完后再操作！');
                 return false;
             }
-            //文件上传域，如果是flash上传,input为文件数据对象
-            //uploadParam = file.input.id || file.input;
+            //iframe，上传参数使用input元素
             uploadParam = file.input;
+            //如果是flash上传，使用id即可
+            if(type == 'flash') uploadParam = file.input.id;
             //如果是ajax上传直接传文件数据
             if (type == 'ajax') uploadParam = file.data;
             if (file['status'] === 'error') {
