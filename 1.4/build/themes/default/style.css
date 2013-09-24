@@ -82,6 +82,7 @@
     width: 110px;
     top: -50px;
     opacity: 0;
+    filter: alpha(opacity=0);
     position: absolute;
     font-size: 100px;
     left: 0;
