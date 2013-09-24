@@ -1054,13 +1054,6 @@ uploader.on('error',function(ev){
                  <td>容器内的所有路径</td>
              </tr>
              <tr>
-                 <td>autoRestore</td>
-                 <td>Boolean</td>
-                 <td>true</td>
-                 <td>读</td>
-                 <td>是否自动渲染默认数据</td>
-             </tr>
-             <tr>
                  <td>split</td>
                  <td>String</td>
                  <td>","</td>

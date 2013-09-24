@@ -1,4 +1,4 @@
-KISSY.add(function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,UrlsInput) {
+KISSY.add(function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,UrlsInput,Paste) {
     /**
      * 所有的插件集合
      */
@@ -10,6 +10,7 @@ KISSY.add(function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,U
         Preview:Preview,
         ProBars:ProBars,
         TagConfig:TagConfig,
-        UrlsInput:UrlsInput
+        UrlsInput:UrlsInput,
+        Paste:Paste
     }
-},{requires:['./auth/auth','./filedrop/filedrop','./imageZoom/imageZoom','./imgcrop/imgcrop','./preview/preview','./proBars/proBars','./tagConfig/tagConfig','./urlsInput/urlsInput']})
+},{requires:['./auth/auth','./filedrop/filedrop','./imageZoom/imageZoom','./imgcrop/imgcrop','./preview/preview','./proBars/proBars','./tagConfig/tagConfig','./urlsInput/urlsInput','./paste/paste']})
