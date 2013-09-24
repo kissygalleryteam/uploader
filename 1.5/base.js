@@ -91,8 +91,8 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
                 queue = self.get('queue'),
                 file = queue.get('files')[index],
                 uploadParam;
-            if (!S.isPlainObject(file)) {
-                S.log(LOG_PREFIX + '队列中不存在id为' + index + '的文件');
+            if (!S.isObject(file)) {
+                S.log(LOG_PREFIX + '队列中索引值为' + index + '的文件');
                 return false;
             }
             //如果有文件正在上传，予以阻止上传
@@ -101,7 +101,8 @@ KISSY.add(function (S, Base, Node,UA , IframeType, AjaxType, FlashType, HtmlButt
                 return false;
             }
             //文件上传域，如果是flash上传,input为文件数据对象
-            uploadParam = file.input.id || file.input;
+            //uploadParam = file.input.id || file.input;
+            uploadParam = file.input;
             //如果是ajax上传直接传文件数据
             if (type == 'ajax') uploadParam = file.data;
             if (file['status'] === 'error') {
