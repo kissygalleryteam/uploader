@@ -1,5 +1,9 @@
 1.5beta测试中，欢迎反馈bug，预计在10月10号前正式发布，用来不及的同学可以使用[1.4版](http://gallery.kissyui.com/uploader/1.4/guide/index.html)
 
+阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](./ali.html)。
+
+1.5的changelog请看[github](https://github.com/kissygalleryteam/uploader)。
+
 ## 综述
 
 Uploader是非常强大的异步文件上传组件，支持ajax、iframe、flash三套方案，实现浏览器的全兼容，调用非常简单，内置多套主题支持和常用插件，比如验证、图片预览、进度条等。
@@ -9,14 +13,14 @@ Uploader是非常强大的异步文件上传组件，支持ajax、iframe、flash
 拥有非常不错的扩展性，可以自己定制主题和插件。
 
 * 版本：1.5
-* 基于：kissy1.3（兼容kissy1.2，不兼容kissy1.1.6）
+* 基于：kissy1.3.1（不兼容1.3以下版本）
 * 作者：明河（剑平）、紫英、飞绿，感谢苏河、溪夏、正豪等主题和插件作者
 
 flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 #### Uploader的特性
 
-* 支持ajax、flash、iframe三种方案，兼容所有浏览器。（iframe不推荐使用）
+* 支持ajax、flash、iframe三种方案，兼容所有浏览器。
 * 多主题支持，可以自己定制主题
 * 支持多选批量上传
 * 支持上传进度显示
@@ -37,7 +41,6 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 * [只使用flash上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/flash-upload-type.html)
 * [只使用iframe上传的demo](http://butterfly.36ria.com/uploader/1.4/demo/iframe-upload-type.html)
 * [常用方法控制](http://butterfly.36ria.com/uploader/1.4/demo/method-uploader.html)
-* [kissy1.2使用uploader1.4](http://butterfly.36ria.com/uploader/1.4/demo/with-kissy1.2.html)
 
 ## 组件内置的主题
 
@@ -60,22 +63,6 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 [daogouUploader](http://butterfly.36ria.com/uploader/1.4/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.4/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
 
 ## 组件快速上手
-
-kissy1.2下需要gallery的包配置：
-
-```javascript
-KISSY.config({
-    packages:[
-        {
-            name:"gallery",
-            path:"http://a.tbcdn.cn/s/kissy/",
-            charset:"utf-8"
-        }
-    ]
-});
-```
-
-kissy1.3就不需要该配置。
 
 ### 1.组件依赖的html结构
 
