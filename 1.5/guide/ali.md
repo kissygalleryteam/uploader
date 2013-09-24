@@ -25,7 +25,7 @@ demo来自淘宝二手系统，请先使用测试账号登陆下daily，没有�
 
 ### 初始化AliUploader
 
-       KISSY.use('gallery/uploader/1.4/aliUploader,gallery/uploader/1.4/themes/imageUploader/index,gallery/uploader/1.4/themes/imageUploader/style.css', function (S, AliUploader,ImageUploader) {
+       KISSY.use('gallery/uploader/1.5/aliUploader,gallery/uploader/1.5/themes/imageUploader/index,gallery/uploader/1.5/themes/imageUploader/style.css', function (S, AliUploader,ImageUploader) {
             var plugins = AliUploader.plugins;
             var uploader = new AliUploader('#J_UploaderBtn');
             //使用主题
@@ -48,7 +48,7 @@ demo来自淘宝二手系统，请先使用测试账号登陆下daily，没有�
             ;
         })
 
-AliUploader的模块路径为：*gallery/uploader/1.4/aliUploader*
+AliUploader的模块路径为：*gallery/uploader/1.5/aliUploader*
 
 不需要像Uploader那样use多个插件，通过*AliUploader.plugins*可以获取到所有的插件类。
 
