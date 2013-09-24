@@ -5,7 +5,7 @@
  * @requires KISSY 1.2+
  */
 
-KISSY.add(function (S,Node, D, E,Base) {
+KISSY.add(function (S,Node, D, E,Base,ua) {
     var $ = Node.all;
     var doc = document,
         LOG_PRE = '[Plugin: Preview] ',
@@ -16,7 +16,7 @@ KISSY.add(function (S,Node, D, E,Base) {
             showed:'showed',
             error:'error'
         },
-        _transparentImg = S.UA.ie < 8 ? "http://a.tbcdn.cn/p/fp/2011a/assets/space.gif" : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+        _transparentImg = ua.ie < 8 ? "http://a.tbcdn.cn/p/fp/2011a/assets/space.gif" : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
     /**
      * Private 检测当前浏览器适应于哪种预览方式
@@ -181,22 +181,22 @@ KISSY.add(function (S,Node, D, E,Base) {
                 };
 
             self.data = undefined;
-
             if (fileInput) {
-                S.log(LOG_PRE + 'One file selected. Getting data...');
-                // get Image location path or data uri
+                //IE10无法使用FileReader读取文件流数据
+                if(ua.ie == 10){
+                    _mode =  'filter';
+                }
                 switch (_mode) {
                     case 'domfile':
                         self.data = fileInput.files[0].getAsDataURL();
                         break;
                     case 'filter':
-                        // fileInput.focus();
                         fileInput.select();
-                        fileInput.blur();
+                        //fileInput.blur();
                         try {
                             self.data = doc.selection.createRange().text;
                         } catch (e) {
-                            S.log(LOG_PRE + 'Get image data error, the error is: ');
+                            S.log(LOG_PRE + 'IE下因为安全问题会抛出拒绝访问的错误，不妨碍预览: ');
                             S.log(e, 'dir');
                         } finally {
                             doc.selection.empty();
@@ -206,7 +206,6 @@ KISSY.add(function (S,Node, D, E,Base) {
                         }
                         break;
                     case 'html5':
-                        // TODO Mathon3
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             self.data = e.target.result;
@@ -219,8 +218,6 @@ KISSY.add(function (S,Node, D, E,Base) {
                         if (fileInput.files) {
                             reader.readAsDataURL(fileInput.files[0]);
                         }
-                        // alert(reader.readAsDataURL);
-                        // S.log(reader, 'dir');
                         break;
                     case 'simple':
                     default:
@@ -231,7 +228,6 @@ KISSY.add(function (S,Node, D, E,Base) {
                 if (self.data) {
                     onsuccess();
                 } else if (_mode != 'html5') {
-                    S.log(LOG_PRE + 'Retrive Data error.');
                     showPreviewImage(imgElem);
                     self.fire(_eventList.error);
                 }
@@ -260,7 +256,7 @@ KISSY.add(function (S,Node, D, E,Base) {
     return Preview;
 
 }, {
-    requires:['node', 'dom', 'event', 'base' ]
+    requires:['node', 'dom', 'event', 'base','ua' ]
 });
 /**
  * changes:

@@ -32,7 +32,7 @@ button::-moz-focus-inner {
   overflow: hidden;
   opacity: 0;
 }
-.file-input-wrapper .file-input {
+.file-input-wrapper input {
   display: block;
   height: 500px;
   width: 220px;
@@ -164,5 +164,3 @@ button::-moz-focus-inner {
   height: 100%;
   background-color: #FA9515;
 }
-
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
