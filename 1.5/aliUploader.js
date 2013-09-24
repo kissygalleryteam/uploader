@@ -69,5 +69,6 @@ KISSY.add(function (S ,Uploader,Plugins) {
         return uploader;
     }
     AliUploader.plugins = Plugins;
+    AliUploader.Uploader = Uploader;
     return AliUploader;
 },{requires:['./index','./plugins/plugins']});
