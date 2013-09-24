@@ -1211,6 +1211,18 @@ tagConfig的配置覆盖会在主题初始化成功后才执行，如果你的up
 
 利用image-dd组件来实现图片放大。
 
+###paste：粘贴上传插件
+
+v1.5新增插件，读取剪切板的文件数据，触发上传。目前只能用于chrome
+
+请看[demo](http://butterfly.36ria.com/uploader/1.5/demo/paste-demo.html)。
+
+模块路径为：*gallery/uploader/1.5/plugins/paste/paste*
+
+    //粘贴上传
+    uploader.plug(new Paste())
+
+
 ##Q&A
 
 ####如何处理跨域上传？
