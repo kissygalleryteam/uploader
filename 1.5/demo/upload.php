@@ -1,4 +1,5 @@
 <?php
+sleep(3);
 error_reporting(0);
 //得到目录下的文件总数
 function get_file_count($dir_name){

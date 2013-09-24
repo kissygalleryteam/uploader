@@ -10,7 +10,7 @@
 <h2>使用js传参方式上传文件</h2>
 
 <div class="grid">
-    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="files" >
+    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="Filedata" >
     <input type="hidden" id="J_Urls" name="urls" value="" />
 </div>
 <ul id="J_UploaderQueue"></ul>
@@ -41,7 +41,7 @@
         S.use(plugins,function(S,Auth,UrlsInput,ProBars){
             var uploader = new Uploader('#J_UploaderBtn',{
                 //处理上传的服务器端脚本路径
-                action:"server/php/index.php"
+                action:"upload.php"
             });
             //使用主题
             uploader.theme(new DefaultTheme({

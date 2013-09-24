@@ -54,13 +54,14 @@ KISSY.add(function(S, Node, UploadType,io) {
          * @return {AjaxType}
          */
         stop : function() {
-            var self = this,xhr = self.get('xhr');
-            if (!S.isObject(xhr)) {
+            debugger;
+            var self = this,ajax = self.get('ajax');
+            if (!S.isObject(ajax)) {
                 S.log(LOG_PREFIX + 'stop()，io值错误！');
                 return self;
             }
             //中止ajax请求，会触发error事件
-            xhr.abort();
+            ajax.abort();
             self.fire(AjaxType.event.STOP);
             return self;
         },
@@ -239,6 +240,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             },function(data){
                 self._errorHandler(data,file);
             });
+            self.set('ajax',ajax);
             return ajax;
         },
         /**
@@ -330,7 +332,10 @@ KISSY.add(function(S, Node, UploadType,io) {
             headers:{}
         }
         },
-        xhr : {value : EMPTY},
+        /**
+         * IO的实例
+         */
+        ajax : {value : EMPTY},
         fileDataName : {value : EMPTY},
         form : {value : {}},
         fileInput : {value : EMPTY},
@@ -361,4 +366,5 @@ KISSY.add(function(S, Node, UploadType,io) {
  *           - [+]增加isUsePostMessage配置
  *           - [+]增加uploadedBytes属性
  *           - [+]增加timeout
+ *           - [!]xhr配置变成ajax
  */
