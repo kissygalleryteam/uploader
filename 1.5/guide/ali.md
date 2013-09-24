@@ -64,6 +64,10 @@ iframe跨域目前只支持子域跨域，完全跨域，比如etao调用接口�
 
 前台post数据时会把*type*和*domain* post到接口。
 
+### flash上传
+
+flash存在bug，无法携带cookies，目前还在解决中。
+
 ## AliUploader的配置
 
 可以手动修改AliUploader的配置
