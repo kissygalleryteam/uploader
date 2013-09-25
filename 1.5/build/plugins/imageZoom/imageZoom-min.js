@@ -1,2 +1,2 @@
-/*!build time : 2013-09-25 11:18:33 AM*/
+/*!build time : 2013-09-25 11:59:24 AM*/
 KISSY.add("gallery/uploader/1.5/plugins/imageZoom/imageZoom",function(a,b,c,d){function e(a){var b=this;e.superclass.constructor.call(b,a)}var f=b.all;return a.extend(e,c,{pluginInitializer:function(a){if(!a)return!1;var b=this;a.on("success",b._successHandler,b)},_successHandler:function(a){var b=this,c=a.file,d=c.id,e=c.result,g=e.url,h=f(".J_Pic_"+d);h.attr("data-original-url",g),h.addClass("J_ImgDD"),b._renderIMGDD(c.target)},_renderIMGDD:function(a){if(!a||!a.length)return!1;var b=new d;b.add(a,".J_ImgDD")}},{ATTRS:{pluginId:{value:"imageZoom"}}}),e},{requires:["node","base","gallery/image-dd/1.0/index"]});

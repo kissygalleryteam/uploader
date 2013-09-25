@@ -244,4 +244,4 @@ KISSY.add(function (S, Node, Theme) {
         }
     }});
     return ImageUploader;
-}, {requires:['node', 'gallery/uploader/1.5/theme']});
+}, {requires:['node', '../../theme']});
