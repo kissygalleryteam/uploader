@@ -74,9 +74,9 @@ flash存在bug，无法携带cookies，目前还在解决中。
 
 配置名 | 类型|只读|默认值|说明
 ------------ | -------------| -------------| -------------| -------------
+useName | Boolean|Y|false| 保存服务器返回的文件name而不是完整文件url（接口会返回name和url二个字段）
 action | String|Y|""| 强制设置接口地址
 type | Array|Y|*["ajax","iframe"]*| 上传使用方案
-ajaxSetDomain | Boolean|Y|""|ajax上传方案也强制设置domain
 data | Object|Y|{}|post到服务器的数据
 
 

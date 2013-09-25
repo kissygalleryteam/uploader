@@ -5082,45 +5082,89 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,Plugins) {
         return isDaily && DAILY_API || LINE_API;
     }
 
+    /**
+     * 因为flash的缺陷，无法携带cookies，手动将cookies post过去
+     * http://code.google.com/p/swfupload/source/browse/swfupload/trunk/core/plugins/swfupload.cookies.js?r=849
+     * @param uploader
+     * @return {Object}
+     */
+    function flashCookiesHack(uploader){
+        if(!uploader) return false;
+        var type = uploader.get('type');
+        if(type != 'flash') return false;
+        var cookieArray = document.cookie.split(';');
+        var eqIndex, name, value;
+        var cookiesData = {};
+        S.each(cookieArray,function(c){
+            // Left Trim spaces
+            while (c.charAt(0) === " ") {
+                c = c.substring(1, c.length);
+            }
+            eqIndex = c.indexOf("=");
+            if (eqIndex > 0) {
+                name = c.substring(0, eqIndex);
+                value = c.substring(eqIndex + 1);
+                cookiesData[name] = value;
+            }
+        });
+        var data = uploader.get('data');
+        S.mix(data,cookiesData);
+        return cookiesData;
+    }
+
+    /**
+     * iframe强制设置domain
+     * @param uploader
+     */
+    function iframeHack(uploader){
+        var type = uploader.get('type');
+        var setDomain = type == 'iframe';
+        if(!setDomain) return false;
+        var domain = config.domain;
+        //不存在域名设置，强制截取域名后二个段
+        if(!config.domain){
+            domain = getDomain(-2);
+        }
+        document.domain = domain;
+        var data = uploader.get('data');
+        data.domain = domain;
+        S.log('[AliUploader]跨域强制设置domain：'+domain);
+        return data;
+    }
+
+    /**
+     * 保存服务器返回的文件name而不是url
+     * @param uploader
+     */
+    function urlUseName(uploader){
+        var isSet = false;
+        uploader.on('add',function(){
+            if(!isSet){
+                var urlsInput = uploader.getPlugin('urlsInput');
+                if(urlsInput){
+                    urlsInput.set('useName',true);
+                    isSet = true;
+                    S.log('[UrlsInput]useName设置为true：保存服务器端返回的图片名');
+                }
+            }
+        })
+    }
+
     function AliUploader(target,config){
         if(!config) config = {};
         config.CORS = true;
         //配置默认接口
-        if(!config.action){
-            config.action = getUploaderApi();
-        }
+        if(!config.action) config.action = getUploaderApi();
+
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
         //实例化uploader
         var uploader = new Uploader(target,config);
-        var type = uploader.get('type');
-        var setDomain = type == 'iframe';
-        //配置了ajaxSetDomain，ajax上传方式也设置domain
-        if(config.ajaxSetDomain) setDomain = true;
-        //iframe跨域需要强制设置domain
-        if(setDomain){
-            var domain = config.domain;
-            //不存在域名设置，强制截取域名后二个段
-            if(!config.domain){
-                domain = getDomain(-2);
-            }
-            document.domain = domain;
-            var data = uploader.get('data');
-            data.domain = domain;
-            uploader.set('data',data);
-        }
+        flashCookiesHack(uploader);
+        iframeHack(uploader);
         //url使用文件名而不是完整路径
-        if(config.useName){
-            var isSet = false;
-            uploader.on('add',function(){
-                if(!isSet){
-                    var urlsInput = uploader.getPlugin('urlsInput');
-                    if(urlsInput){
-                        urlsInput.set('useName',true);
-                    }
-                }
-            })
-        }
+        if(config.useName) urlUseName(uploader);
+
         return uploader;
     }
     AliUploader.plugins = Plugins;
