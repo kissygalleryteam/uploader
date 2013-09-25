@@ -138,17 +138,20 @@ KISSY.add(function (S, Node, Theme) {
          * 删除图片后触发
          */
         _delHandler:function(ev){
-             var self = this;
+            ev.preventDefault();
+            var self = this;
             var uploader = self.get('uploader');
             var queue = uploader.get('queue');
-            var file = $(ev.target).data('data-file');
-            var index = queue.getFileIndex(file.id);
-            var status = file.status;
-            //如果文件还在上传，取消上传
-             if(status == 'start' || status == 'progress'){
-                 uploader.cancel(index);
-             }
-            queue.remove(index);
+            var file = $(ev.currentTarget).data('data-file');
+            if(file){
+                var index = queue.getFileIndex(file.id);
+                var status = file.status;
+                //如果文件还在上传，取消上传
+                if(status == 'start' || status == 'progress'){
+                    uploader.cancel(index);
+                }
+                queue.remove(index);
+            }
         },
         /**
          * 获取成功上传的图片张数，不传参的情况获取成功上传的张数

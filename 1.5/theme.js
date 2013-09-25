@@ -29,6 +29,8 @@ KISSY.add(function (S, Node, Base) {
          */
         render:function(){
             var self = this;
+            var uploader = self.get("uploader");
+            uploader.set('theme',self);
             self._addThemeCssName();
             self._tplFormHtml();
             self._bind();

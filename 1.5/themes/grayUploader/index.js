@@ -35,6 +35,7 @@ KISSY.add(function (S, Node, ImageUploader) {
          */
         _addHandler:function(ev){
             var self = this;
+            var uploader =self.get('uploader');
             var file = ev.file;
             var id = file.id;
             var $target = file.target;
@@ -49,16 +50,21 @@ KISSY.add(function (S, Node, ImageUploader) {
                     self._setDisplayMsg(false,file);
                 }
             });
-
             var $delBtn = $('.J_Del_'+id) ;
             $delBtn.data('data-file',file);
             //点击删除按钮
             $delBtn.on('click',self._delHandler,self);
 
             var $zoom = $('.J_Zoom_'+id);
-            $zoom.on('click',function(){
-
-            })
+            var zoomPlugin = uploader.getPlugin('imageZoom');
+            if(zoomPlugin){
+                var albums = zoomPlugin.get('albums');
+                $zoom.on('click',function(ev){
+                    ev.preventDefault();
+                    var id = $(ev.currentTarget).attr("data-id");
+                    albums.show($('.J_Pic_'+id));
+                });
+            }
 
             //显示图片预览
             var $img = $('.J_Pic_' + id);
@@ -149,9 +155,9 @@ KISSY.add(function (S, Node, ImageUploader) {
                             '<p class="J_ErrorMsg_{id}">上传失败，请重试！</p></div>' +
                     '</div>' +
                 '</div>'+
-                '<div class="action-bar J_ActionBar_{id} grid">'+
-                    '<a class="g-u J_Del_{id}" href="#nowhere" title="删除"><span class="icon del-icon">删除</span></a>'+
-                    '<a class="g-u J_Zoom_{id}" data-id="{id}" href="#nowhere" title="放大"><span class="icon zoom-icon">放大</span></a>' +
+                '<div class="actions-bar J_ActionBar_{id} grid">'+
+                    '<a class="g-u J_Del_{id} pic-del icons" href="" title="删除"><span class="icon del"></span></a>'+
+                    '<a class="g-u J_Zoom_{id} big-pic icons" data-id="{id}" href="" title="放大"><span class="icon big"></span></a>' +
                 '</div>' +
             '</li>'
         }

@@ -8,7 +8,7 @@ gallery/uploader/1.5/plugins/imageZoom/imageZoom
  * @fileoverview 图片放大器
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, Base,IMGDD) {
+KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -31,6 +31,19 @@ KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, B
         pluginInitializer : function(uploader) {
             if(!uploader) return false;
             var self = this;
+            var theme = uploader.get('theme');
+            if(!theme) return false;
+            var imageHook = self.get('imageHook');
+            var albums = new Albums({
+                baseEl: theme.get('queueTarget'),
+                img: imageHook
+            });
+
+            albums.get('baseEl').delegate('click', imageHook, function(e){
+                var target = e.target;
+                albums.show($(target));
+            });
+            self.set("albums",albums);
             uploader.on('success',self._successHandler,self);
         },
         /**
@@ -39,7 +52,6 @@ KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, B
          * @private
          */
         _successHandler:function(ev){
-            var self = this;
             var file = ev.file;
             var id = file.id;
             //服务器端返回的数据
@@ -47,17 +59,6 @@ KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, B
             var sUrl =  result.url;
             var $img = $('.J_Pic_'+id);
             $img.attr('data-original-url',sUrl);
-            $img.addClass('J_ImgDD');
-            self._renderIMGDD(file.target);
-        },
-        /**
-         * 运行图片放大器
-         * @private
-         */
-        _renderIMGDD:function($target){
-            if(!$target || !$target.length) return false;
-            var imageDD = new IMGDD();
-            imageDD.add($target,'.J_ImgDD');
         }
     }, {ATTRS : /** @lends ImageZoom*/{
         /**
@@ -67,10 +68,22 @@ KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, B
          */
         pluginId:{
             value:'imageZoom'
+        },
+        /**
+         * 图片放大器实例
+         */
+        albums:{
+            value:EMPTY
+        },
+        /**
+         * 图片元素的hook
+         */
+        imageHook:{
+            value:'.preview-img'
         }
     }});
     return ImageZoom;
-}, {requires : ['node','base','gallery/image-dd/1.0/index']});
+}, {requires : ['node','base','gallery/albums/1.0/']});
 /**
  * changes:
  * 明河：1.4

@@ -37,6 +37,8 @@ KISSY.add('gallery/uploader/1.5/theme',function (S, Node, Base) {
          */
         render:function(){
             var self = this;
+            var uploader = self.get("uploader");
+            uploader.set('theme',self);
             self._addThemeCssName();
             self._tplFormHtml();
             self._bind();
@@ -461,17 +463,20 @@ KISSY.add('gallery/uploader/1.5/themes/imageUploader/index',function (S, Node, T
          * 删除图片后触发
          */
         _delHandler:function(ev){
-             var self = this;
+            ev.preventDefault();
+            var self = this;
             var uploader = self.get('uploader');
             var queue = uploader.get('queue');
-            var file = $(ev.target).data('data-file');
-            var index = queue.getFileIndex(file.id);
-            var status = file.status;
-            //如果文件还在上传，取消上传
-             if(status == 'start' || status == 'progress'){
-                 uploader.cancel(index);
-             }
-            queue.remove(index);
+            var file = $(ev.currentTarget).data('data-file');
+            if(file){
+                var index = queue.getFileIndex(file.id);
+                var status = file.status;
+                //如果文件还在上传，取消上传
+                if(status == 'start' || status == 'progress'){
+                    uploader.cancel(index);
+                }
+                queue.remove(index);
+            }
         },
         /**
          * 获取成功上传的图片张数，不传参的情况获取成功上传的张数
@@ -605,6 +610,7 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
          */
         _addHandler:function(ev){
             var self = this;
+            var uploader =self.get('uploader');
             var file = ev.file;
             var id = file.id;
             var $target = file.target;
@@ -619,16 +625,21 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
                     self._setDisplayMsg(false,file);
                 }
             });
-
             var $delBtn = $('.J_Del_'+id) ;
             $delBtn.data('data-file',file);
             //点击删除按钮
             $delBtn.on('click',self._delHandler,self);
 
             var $zoom = $('.J_Zoom_'+id);
-            $zoom.on('click',function(){
-
-            })
+            var zoomPlugin = uploader.getPlugin('imageZoom');
+            if(zoomPlugin){
+                var albums = zoomPlugin.get('albums');
+                $zoom.on('click',function(ev){
+                    ev.preventDefault();
+                    var id = $(ev.currentTarget).attr("data-id");
+                    albums.show($('.J_Pic_'+id));
+                });
+            }
 
             //显示图片预览
             var $img = $('.J_Pic_' + id);
@@ -719,9 +730,9 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
                             '<p class="J_ErrorMsg_{id}">上传失败，请重试！</p></div>' +
                     '</div>' +
                 '</div>'+
-                '<div class="action-bar J_ActionBar_{id} grid">'+
-                    '<a class="g-u J_Del_{id}" href="#nowhere" title="删除"><span class="icon del-icon">删除</span></a>'+
-                    '<a class="g-u J_Zoom_{id}" data-id="{id}" href="#nowhere" title="放大"><span class="icon zoom-icon">放大</span></a>' +
+                '<div class="actions-bar J_ActionBar_{id} grid">'+
+                    '<a class="g-u J_Del_{id} pic-del icons" href="" title="删除"><span class="icon del"></span></a>'+
+                    '<a class="g-u J_Zoom_{id} big-pic icons" data-id="{id}" href="" title="放大"><span class="icon big"></span></a>' +
                 '</div>' +
             '</li>'
         }

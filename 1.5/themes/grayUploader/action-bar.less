@@ -1,37 +1,45 @@
 .grayUploader-queue{
-  .action-bar{
+  .actions-bar{
     line-height: 26px;
     height: 26px;
     position: absolute;
-    top: -1px;
     left: 0;
+    top: 0;
     border-bottom: 1px solid #E3E4E4;
     background-color: #fff;
     width: @liWidth + 4;
     z-index: 10000;
     display: none;
-    a{
-      text-decoration: none;
-      border-top: 1px solid #E6E6E6;
-      width: 32px;
+    .icons{
+      width: 47px;
+      height: 26px;
       text-align: center;
-      color: #BCBCBC;
-      width:48px;
-    }
-    a:hover{
-      background-color: #FB9A79;
       .icon{
-        border: none;
-        color: #fff;
+        margin-top:5px;
+        background: url("http://gtms02.alicdn.com/tps/i2/T17US7Fd4bXXbTj4Tf-42-38.png") 0 0 no-repeat;
+        width: 16px;
+        height: 16px;
+        text-indent: -3000px;
+        display: inline-block;
+        *zoom: 1;
+        *display: inline;
+      }
+
+      .big{
+        background-position: 0 -21px;
       }
     }
-    .icon{
-      width: 48px;
-      margin:5px 0;
+    .icons:hover{
+      background-color: #FB9A79;
+      .del{
+        background-position: -22px 0;
+      }
+      .big{
+        background-position: -22px -21px;
+      }
     }
-    .del-icon{
+    .pic-del{
       border-right:1px solid #E1E1E1;
-      padding:0px 10px;
     }
     .zoom-icon{
 

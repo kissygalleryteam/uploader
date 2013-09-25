@@ -58,6 +58,7 @@ KISSY.add(function(S, Node, Base) {
                 return self;
             }
             var newSrcFileInput = srcFileInput.clone();
+            newSrcFileInput.addClass('file-input');
             srcFileInput.remove();
             self.set('srcFileInput',newSrcFileInput);
             self._createInput();
