@@ -1606,11 +1606,6 @@ KISSY.add('gallery/uploader/1.5/button/swfButton',function (S, Node, Base, SwfUp
                 size = self.get('size');
             if(!S.isEmptyObject(size)){
                 S.mix(flash.attrs, size);
-            }else{
-                S.mix(flash.attrs, {
-                    width:target.innerWidth(),
-                    height:target.innerHeight()
-                });
             }
             self.set('flash', flash);
         },
@@ -1768,7 +1763,10 @@ KISSY.add('gallery/uploader/1.5/button/swfButton',function (S, Node, Base, SwfUp
                     wmode:"transparent"
                 },
                 //属性
-                attrs:{ },
+                attrs:{
+                    width:400,
+                    height:400
+                },
                 //手型
                 hand:true,
                 //启用按钮模式,激发鼠标事件
