@@ -48,6 +48,7 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
+[grayUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-grayUploader.html)（V1.5新增）| 明河/翰文|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/grayUploader)|![grayUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
 [imageUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
 [refundUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
 [loveUploader](http://butterfly.36ria.com/uploader/1.5/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/1.5/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)

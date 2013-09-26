@@ -20,6 +20,7 @@
     [!] #72 Queue getFile()方法优化
     [!] 将input append到容器，而不是重新创建一个
     [!] #95 修复IE图片预览的bug
+    [!] 图片放大器插件重构
     [+] #49 支持分段上传实现
     [+] #65 AjaxType增加timeout配置
     [+] #77 基于kissy1.3.1
@@ -27,6 +28,7 @@
     [+] UrlsInput增加useName配置
     [+] #62 支持label触发文件选择
     [+] #93 支持粘贴上传
+    [+] 新增grayUploader主题
     [-] #67 不支持kissy1.2
     [-] 去掉旧的二手主题和mutilImageUploader主题
     [-] 删除_oldInput
