@@ -2574,7 +2574,7 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
                 result.msg = msg;
                 //修改队列中文件的状态为error（上传失败）
                 queue.fileStatus(index, UploaderBase.status.ERROR, {msg:msg, result:result});
-                self.fire(event.ERROR, {status:status, result:result, index:index, file:queue.getFile(index)});
+                self.fire(event.ERROR, {msg:msg,status:status, result:result, index:index, file:queue.getFile(index)});
             }
             //置空当前上传的文件在队列中的索引值
             self.set('curUploadIndex', EMPTY);

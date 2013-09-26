@@ -600,7 +600,7 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
          * 在上传组件运行完毕后执行的方法（对上传组件所有的控制都应该在这个函数内）
          * @param {Uploader} uploader
          */
-        render:function () {
+        render: function () {
             var self = this;
             grayUploader.superclass.render.call(self);
         },
@@ -608,36 +608,36 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
          * 在完成文件dom插入后执行的方法
          * @param {Object} ev 类似{index:0,file:{},target:$target}
          */
-        _addHandler:function(ev){
+        _addHandler: function (ev) {
             var self = this;
-            var uploader =self.get('uploader');
+            var uploader = self.get('uploader');
             var file = ev.file;
             var id = file.id;
             var $target = file.target;
-            var $actionBar =  $('.J_ActionBar_'+id);
+            var $actionBar = $('.J_ActionBar_' + id);
             //显示/隐藏删除按钮
-            $target.on('mouseenter mouseleave',function(ev){
-                if(ev.type == 'mouseenter'){
+            $target.on('mouseenter mouseleave', function (ev) {
+                if (ev.type == 'mouseenter') {
                     $actionBar.slideDown(0.3);
-                    self._setDisplayMsg(true,file);
-                }else{
+                    self._setDisplayMsg(true, file);
+                } else {
                     $actionBar.slideUp(0.3);
-                    self._setDisplayMsg(false,file);
+                    self._setDisplayMsg(false, file);
                 }
             });
-            var $delBtn = $('.J_Del_'+id) ;
-            $delBtn.data('data-file',file);
+            var $delBtn = $('.J_Del_' + id);
+            $delBtn.data('data-file', file);
             //点击删除按钮
-            $delBtn.on('click',self._delHandler,self);
+            $delBtn.on('click', self._delHandler, self);
 
-            var $zoom = $('.J_Zoom_'+id);
+            var $zoom = $('.J_Zoom_' + id);
             var zoomPlugin = uploader.getPlugin('imageZoom');
-            if(zoomPlugin){
+            if (zoomPlugin) {
                 var albums = zoomPlugin.get('albums');
-                $zoom.on('click',function(ev){
+                $zoom.on('click', function (ev) {
                     ev.preventDefault();
                     var id = $(ev.currentTarget).attr("data-id");
-                    albums.show($('.J_Pic_'+id));
+                    albums.show($('.J_Pic_' + id));
                 });
             }
 
@@ -645,30 +645,24 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
             var $img = $('.J_Pic_' + id);
             $img.show();
         },
-         /**
+        /**
          * 文件处于上传错误状态时触发
          */
-        _errorHandler:function (ev) {
+        _errorHandler: function (ev) {
             var self = this;
-             var msg = ev.msg;
-             var file = ev.file;
-             //向控制台打印错误消息
-             S.log(msg);
-             if(!file) return false;
-             var id = file.id;
+            var msg = ev.msg;
+            var file = ev.file;
+            //向控制台打印错误消息
+            S.log(msg);
+            if (!file) return false;
+            var id = file.id;
             //打印错误消息
-            $('.J_ErrorMsg_' + id).html('上传失败');
-
-             S.later(function(){
-                 var uploader = self.get('uploader');
-                 var queue = uploader.get('queue');
-                 queue.remove(id);
-             },1000);
+            $('.J_ErrorMsg_' + id).html(msg);
         },
         /**
          * 文件处于上传成功状态时触发
          */
-        _successHandler:function (ev) {
+        _successHandler: function (ev) {
             var self = this;
             var file = ev.file;
             var id = file.id;
@@ -676,16 +670,16 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
             var result = file.result;
             self._setCount();
             //获取服务器返回的图片路径写入到src上
-            if(result) self._changeImageSrc(ev);
-            $('.J_Mask_'+id).hide();
+            if (result) self._changeImageSrc(ev);
+            $('.J_Mask_' + id).hide();
 
             //如果不存在进度条插件，隐藏进度条容器
             var uploader = self.get('uploader');
             var proBars = uploader.getPlugin('proBars');
-            if(!proBars){
+            if (!proBars) {
                 var target = file.target;
-                if(!target) return false;
-                target.all('.J_ProgressBar_'+id).hide();
+                if (!target) return false;
+                target.all('.J_ProgressBar_' + id).hide();
             }
         },
         /**
@@ -695,47 +689,46 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
          * @return {Boolean}
          * @private
          */
-        _setDisplayMsg:function(isShow,data){
-            if(!data) return false;
+        _setDisplayMsg: function (isShow, data) {
+            if (!data) return false;
             var $mask = $('.J_Mask_' + data.id);
             //出错的情况不允许隐藏遮罩层
-            if($mask.parent('li') && $mask.parent('li').hasClass('error')) return false;
+            if ($mask.parent('li') && $mask.parent('li').hasClass('error')) return false;
             $mask[isShow && 'fadeIn' || 'fadeOut'](0.3);
         }
-    }, {ATTRS:/** @lends grayUploader.prototype*/{
+    }, {ATTRS: /** @lends grayUploader.prototype*/{
         /**
          *  主题名（文件名），此名称跟样式息息相关
          * @type String
          * @default "grayUploader"
          */
-        name:{value:'grayUploader'},
+        name: {value: 'grayUploader'},
         /**
          * 队列使用的模板
          * @type String
          * @default ""
          */
-        fileTpl:{value:
-            '<li id="queue-file-{id}" class="g-u" data-name="{name}">' +
-                '<div class="pic-wrapper">' +
-                    '<div class="pic">' +
-                        '<span><img class="J_Pic_{id} preview-img" src="" /></span>' +
-                    '</div>' +
-                    '<div class=" J_Mask_{id} pic-mask"></div>' +
-                    '<div class="status-wrapper J_FileStatus">' +
-                        '<div class="status waiting-status"><p>等待上传</p></div>' +
-                        '<div class="status start-status progress-status success-status">' +
-                            '<div class="J_ProgressBar_{id}">上传中...</div>' +
-                        '</div>' +
-                        '<div class="status error-status">' +
-                            '<p class="J_ErrorMsg_{id}">上传失败，请重试！</p></div>' +
-                    '</div>' +
-                '</div>'+
-                '<div class="actions-bar J_ActionBar_{id} grid">'+
-                    '<a class="g-u J_Del_{id} pic-del icons" href="" title="删除"><span class="icon del"></span></a>'+
-                    '<a class="g-u J_Zoom_{id} big-pic icons" data-id="{id}" href="" title="放大"><span class="icon big"></span></a>' +
-                '</div>' +
+        fileTpl: {value: '<li id="queue-file-{id}" class="g-u" data-name="{name}">' +
+            '<div class="pic-wrapper">' +
+            '<div class="pic">' +
+            '<span><img class="J_Pic_{id} preview-img" src="" /></span>' +
+            '</div>' +
+            '<div class=" J_Mask_{id} pic-mask"></div>' +
+            '<div class="status-wrapper J_FileStatus">' +
+            '<div class="status waiting-status"><p>等待上传</p></div>' +
+            '<div class="status start-status progress-status success-status">' +
+            '<div class="J_ProgressBar_{id}">上传中...</div>' +
+            '</div>' +
+            '<div class="status error-status">' +
+            '<p class="J_ErrorMsg_{id}">上传失败，请重试！</p></div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="actions-bar J_ActionBar_{id} grid">' +
+            '<a class="g-u J_Del_{id} pic-del icons" href="" title="删除"><span class="icon del"></span></a>' +
+            '<a class="g-u J_Zoom_{id} big-pic icons" data-id="{id}" href="" title="放大"><span class="icon big"></span></a>' +
+            '</div>' +
             '</li>'
         }
     }});
     return grayUploader;
-}, {requires:['node', '../imageUploader/']});
+}, {requires: ['node', '../imageUploader/']});
