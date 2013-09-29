@@ -4818,7 +4818,10 @@ KISSY.add('gallery/uploader/1.5/plugins/urlsInput/urlsInput',function(S, Node, B
             var self = this;
             var file = ev.file;
             var result = file.result;
-            if (result && result.url) self.remove(result.url);
+            if(!result) return true;
+            var url = result.url;
+            if(self.get('useName')) url = result.name;
+            self.remove(url);
         },
         /**
          * 向路径隐藏域添加路径

@@ -649,7 +649,6 @@ KISSY.add('gallery/uploader/1.5/themes/grayUploader/index',function (S, Node, Im
          * 文件处于上传错误状态时触发
          */
         _errorHandler: function (ev) {
-            var self = this;
             var msg = ev.msg;
             var file = ev.file;
             //向控制台打印错误消息
