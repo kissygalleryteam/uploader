@@ -2,8 +2,8 @@
  * 阿里上传通用接口
  */
 KISSY.add(function (S ,Uploader,Plugins) {
-    var DAILY_API = 'http://aop.daily.taobao.net/json/uploadImg.htm';
-    var LINE_API = 'http://aop.taobao.com/json/uploadImg.htm';
+    var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
+    var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
     /**
      * 获取domain
      * @return {String}
