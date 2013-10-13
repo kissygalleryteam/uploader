@@ -61,13 +61,12 @@ KISSY.add(function (S ,Uploader,Plugins) {
      * iframe强制设置domain
      * @param uploader
      */
-    function iframeHack(uploader){
+    function iframeHack(uploader,domain){
         var type = uploader.get('type');
         var setDomain = type == 'iframe';
         if(!setDomain) return false;
-        var domain = config.domain;
         //不存在域名设置，强制截取域名后二个段
-        if(!config.domain){
+        if(!domain){
             domain = getDomain(-2);
         }
         document.domain = domain;
@@ -106,7 +105,7 @@ KISSY.add(function (S ,Uploader,Plugins) {
         //实例化uploader
         var uploader = new Uploader(target,config);
         flashCookiesHack(uploader);
-        iframeHack(uploader);
+        iframeHack(uploader,config.domain);
         //url使用文件名而不是完整路径
         if(config.useName) urlUseName(uploader);
 
