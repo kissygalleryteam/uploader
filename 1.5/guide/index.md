@@ -68,10 +68,12 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 ### 1.组件依赖的html结构
 
 ```xml
-    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="Filedata" >
+    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="Filedata" accept="image/*"  >
 ```
 
 组件的核心只依赖原生的文件上传域，<code>value</code>属性值为上传按钮的文案，<code>name</code>属性非常重要：服务器端获取文件数据的字段。
+
+uploader1.5新增<code>accept="image/*"</code>支持，这个属性可以在选择文件时过滤掉不支持上传的文件，非常实用，chrome/IE10/firefox都支持。
 
 ### 2.加载Uploader模块
 
