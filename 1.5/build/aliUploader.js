@@ -5071,9 +5071,11 @@ KISSY.add('gallery/uploader/1.5/plugins/plugins',function(S,Auth,Filedrop,ImageZ
 /**
  * 阿里上传通用接口
  */
-KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,Plugins) {
+KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,io,Uploader,Plugins) {
     var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
     var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
+    var DAILY_TOKEN_API = 'http://sell.ershou.daily.taobao.net/publish/json/getReqParam.htm';
+    var LINE_TOKEN_API = 'http://sell.ershou.taobao.com/publish/json/getReqParam.htm';
     /**
      * 获取domain
      * @return {String}
@@ -5088,13 +5090,35 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,Plugins) {
     }
 
     /**
+     * 是否是daily环境
+     * @return {boolean}
+     */
+    function isDaily(){
+        var domain = getDomain(-1);
+        return domain == 'net';
+    }
+
+    /**
      * 获取API
      * @return {string}
      */
     function getUploaderApi(){
-        var domain = getDomain(-1);
-        var isDaily = domain == 'net';
-        return isDaily && DAILY_API || LINE_API;
+        return isDaily() && DAILY_API || LINE_API;
+    }
+
+    /**
+     * 获取token，来通过安全签名
+     */
+    function setToken(uploader){
+        if(!uploader) return false;
+        var url = isDaily() && DAILY_TOKEN_API || LINE_TOKEN_API;
+        io.jsonp(url,function(data){
+            var token = data.value;
+            if(token){
+                var data = uploader.get('data');
+                data['_tb_token_'] = token;
+            }
+        })
     }
 
     /**
@@ -5176,6 +5200,7 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,Plugins) {
         var uploader = new Uploader(target,config);
         flashCookiesHack(uploader);
         iframeHack(uploader,config.domain);
+        setToken(uploader);
         //url使用文件名而不是完整路径
         if(config.useName) urlUseName(uploader);
 
@@ -5184,4 +5209,4 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,Plugins) {
     AliUploader.plugins = Plugins;
     AliUploader.Uploader = Uploader;
     return AliUploader;
-},{requires:['./index','./plugins/plugins']});
+},{requires:['ajax','./index','./plugins/plugins']});
