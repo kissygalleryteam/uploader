@@ -5,7 +5,7 @@ KISSY.add(function (S ,io,Uploader,Plugins) {
     var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
     var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
-    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/publish/json/getReqParam.htm';
+    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
     /**
      * 获取domain
      * @return {String}
