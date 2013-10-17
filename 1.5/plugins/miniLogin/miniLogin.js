@@ -2,7 +2,7 @@
  * @fileoverview mini登陆框（用于通用接口）
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add(function(S, Node, Base,ML) {
+KISSY.add(function(S, Node, Base,token,ML) {
     var EMPTY = '';
     var $ = Node.all;
 
@@ -28,7 +28,9 @@ KISSY.add(function(S, Node, Base,ML) {
                         isSetUpload = true;
                     }
                     ML.show({}, function() {
-                        uploader.uploadFiles();
+                        token(uploader,function(){
+                            uploader.uploadFiles();
+                        });
                         if(isSetUpload) uploader.set('autoUpload',true)
                     });
                 }
@@ -45,7 +47,7 @@ KISSY.add(function(S, Node, Base,ML) {
         }
     }});
     return MiniLogin;
-}, {requires : ['node','base','tbc/mini-login/1.4.0/']});
+}, {requires : ['node','base','../../token','tbc/mini-login/1.4.0/']});
 /**
  * changes:
  * 明河：1.4

@@ -1,14 +1,61 @@
 /*
 combined files : 
 
+gallery/uploader/1.5/token
 gallery/uploader/1.5/plugins/miniLogin/miniLogin
 
 */
 /**
+ * �첽��ȡtokenֵ
+ */
+KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
+    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
+    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
+    /**
+     * ��ȡdomain
+     * @return {String}
+     */
+    function getDomain(){
+        var host = arguments[1] || location.hostname;
+        var da = host.split('.'), len = da.length;
+        var deep = arguments[0]|| (len<3?0:1);
+        if (deep>=len || len-deep<2)
+            deep = len-2;
+        return da.slice(deep).join('.');
+    }
+
+    /**
+     * �Ƿ���daily����
+     * @return {boolean}
+     */
+    function isDaily(){
+        var domain = getDomain(-1);
+        return domain == 'net';
+    }
+
+    /**
+     * ��ȡtoken����ͨ����ȫǩ��
+     */
+    function setToken(uploader,callback){
+        if(!uploader) return false;
+        var url = isDaily() && DAILY_TOKEN_API || LINE_TOKEN_API;
+        io.jsonp(url,function(data){
+            var token = data.value;
+            if(token){
+                var data = uploader.get('data');
+                data['_tb_token_'] = token;
+            }
+            callback && callback(data);
+        })
+    }
+
+    return setToken;
+},{requires:['ajax']});
+/**
  * @fileoverview mini登陆框（用于通用接口）
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('gallery/uploader/1.5/plugins/miniLogin/miniLogin',function(S, Node, Base,ML) {
+KISSY.add('gallery/uploader/1.5/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
     var EMPTY = '';
     var $ = Node.all;
 
@@ -34,7 +81,9 @@ KISSY.add('gallery/uploader/1.5/plugins/miniLogin/miniLogin',function(S, Node, B
                         isSetUpload = true;
                     }
                     ML.show({}, function() {
-                        uploader.uploadFiles();
+                        token(uploader,function(){
+                            uploader.uploadFiles();
+                        });
                         if(isSetUpload) uploader.set('autoUpload',true)
                     });
                 }
@@ -51,7 +100,7 @@ KISSY.add('gallery/uploader/1.5/plugins/miniLogin/miniLogin',function(S, Node, B
         }
     }});
     return MiniLogin;
-}, {requires : ['node','base','tbc/mini-login/1.4.0/']});
+}, {requires : ['node','base','../../token','tbc/mini-login/1.4.0/']});
 /**
  * changes:
  * 明河：1.4

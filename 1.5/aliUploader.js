@@ -1,11 +1,9 @@
 /**
  * 阿里上传通用接口
  */
-KISSY.add(function (S ,io,Uploader,Plugins) {
+KISSY.add(function (S ,Uploader,token) {
     var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
     var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
-    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
-    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
     /**
      * 获取domain
      * @return {String}
@@ -34,21 +32,6 @@ KISSY.add(function (S ,io,Uploader,Plugins) {
      */
     function getUploaderApi(){
         return isDaily() && DAILY_API || LINE_API;
-    }
-
-    /**
-     * 获取token，来通过安全签名
-     */
-    function setToken(uploader){
-        if(!uploader) return false;
-        var url = isDaily() && DAILY_TOKEN_API || LINE_TOKEN_API;
-        io.jsonp(url,function(data){
-            var token = data.value;
-            if(token){
-                var data = uploader.get('data');
-                data['_tb_token_'] = token;
-            }
-        })
     }
 
     /**
@@ -130,13 +113,12 @@ KISSY.add(function (S ,io,Uploader,Plugins) {
         var uploader = new Uploader(target,config);
         flashCookiesHack(uploader);
         iframeHack(uploader,config.domain);
-        setToken(uploader);
+        token(uploader);
         //url使用文件名而不是完整路径
         if(config.useName) urlUseName(uploader);
 
         return uploader;
     }
-    AliUploader.plugins = Plugins;
     AliUploader.Uploader = Uploader;
     return AliUploader;
-},{requires:['ajax','./index']});
+},{requires:['./index','./token']});

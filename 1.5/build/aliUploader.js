@@ -12,6 +12,7 @@ gallery/uploader/1.5/button/swfButton
 gallery/uploader/1.5/queue
 gallery/uploader/1.5/base
 gallery/uploader/1.5/index
+gallery/uploader/1.5/token
 gallery/uploader/1.5/aliUploader
 
 */
@@ -3131,13 +3132,57 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, UploaderBase, RichBase
  *           - 去掉主题的自动异步加载
  */
 /**
- * 阿里上传通用接口
+ * �첽��ȡtokenֵ
  */
-KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,io,Uploader,Plugins) {
-    var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
-    var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
+KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
     var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
+    /**
+     * ��ȡdomain
+     * @return {String}
+     */
+    function getDomain(){
+        var host = arguments[1] || location.hostname;
+        var da = host.split('.'), len = da.length;
+        var deep = arguments[0]|| (len<3?0:1);
+        if (deep>=len || len-deep<2)
+            deep = len-2;
+        return da.slice(deep).join('.');
+    }
+
+    /**
+     * �Ƿ���daily����
+     * @return {boolean}
+     */
+    function isDaily(){
+        var domain = getDomain(-1);
+        return domain == 'net';
+    }
+
+    /**
+     * ��ȡtoken����ͨ����ȫǩ��
+     */
+    function setToken(uploader,callback){
+        if(!uploader) return false;
+        var url = isDaily() && DAILY_TOKEN_API || LINE_TOKEN_API;
+        io.jsonp(url,function(data){
+            var token = data.value;
+            if(token){
+                var data = uploader.get('data');
+                data['_tb_token_'] = token;
+            }
+            callback && callback(data);
+        })
+    }
+
+    return setToken;
+},{requires:['ajax']});
+/**
+ * 阿里上传通用接口
+ */
+KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,token) {
+    var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
+    var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
     /**
      * 获取domain
      * @return {String}
@@ -3166,21 +3211,6 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,io,Uploader,Plugins) {
      */
     function getUploaderApi(){
         return isDaily() && DAILY_API || LINE_API;
-    }
-
-    /**
-     * 获取token，来通过安全签名
-     */
-    function setToken(uploader){
-        if(!uploader) return false;
-        var url = isDaily() && DAILY_TOKEN_API || LINE_TOKEN_API;
-        io.jsonp(url,function(data){
-            var token = data.value;
-            if(token){
-                var data = uploader.get('data');
-                data['_tb_token_'] = token;
-            }
-        })
     }
 
     /**
@@ -3262,13 +3292,12 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,io,Uploader,Plugins) {
         var uploader = new Uploader(target,config);
         flashCookiesHack(uploader);
         iframeHack(uploader,config.domain);
-        setToken(uploader);
+        token(uploader);
         //url使用文件名而不是完整路径
         if(config.useName) urlUseName(uploader);
 
         return uploader;
     }
-    AliUploader.plugins = Plugins;
     AliUploader.Uploader = Uploader;
     return AliUploader;
-},{requires:['ajax','./index']});
+},{requires:['./index','./token']});
