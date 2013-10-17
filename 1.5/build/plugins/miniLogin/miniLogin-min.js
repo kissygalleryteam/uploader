@@ -1,2 +1,2 @@
-/*!build time : 2013-10-17 5:01:09 PM*/
+/*!build time : 2013-10-17 5:30:16 PM*/
 KISSY.add("gallery/uploader/1.5/plugins/miniLogin/miniLogin",function(a,b,c,d){function e(a){var b=this;e.superclass.constructor.call(b,a)}return b.all,a.extend(e,c,{pluginInitializer:function(a){return a?(a.on("select",function(){var b=d.check();if(!b){var c=a.get("autoUpload"),e=!1;c&&(a.set("autoUpload",!1),e=!0),d.show({},function(){a.uploadFiles(),e&&a.set("autoUpload",!0)})}}),void 0):!1}},{ATTRS:{pluginId:{value:"miniLogin"}}}),e},{requires:["node","base","tbc/mini-login/1.4.0/"]});

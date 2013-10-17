@@ -221,7 +221,7 @@ KISSY.add('gallery/uploader/1.5/plugins/preview/preview',function (S,Node, D, E,
                             S.log(LOG_PRE + 'File Reader Error. Your browser may not fully support html5 file api', 'warning');
                             self.fire(_eventList.error);
                         };
-                        if (fileInput.files) {
+                        if (fileInput.files && fileInput.files.length) {
                             reader.readAsDataURL(fileInput.files[0]);
                         }
                         break;

@@ -215,7 +215,7 @@ KISSY.add(function (S,Node, D, E,Base,ua) {
                             S.log(LOG_PRE + 'File Reader Error. Your browser may not fully support html5 file api', 'warning');
                             self.fire(_eventList.error);
                         };
-                        if (fileInput.files) {
+                        if (fileInput.files && fileInput.files.length) {
                             reader.readAsDataURL(fileInput.files[0]);
                         }
                         break;
