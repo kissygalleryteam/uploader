@@ -16,7 +16,7 @@ demo来自淘宝二手系统，请先使用测试账号登陆下daily，没有�
 
     <div class="uploader-wrapper">
         <div class="grid">
-            <input type="file" class="g-u" id="J_UploaderBtn" value="上传图片" name="imgFile" >
+            <input type="file" class="g-u" id="J_UploaderBtn" value="上传图片" name="imgFile"  accept="image/*" >
             <input type="hidden" id="J_Urls" name="urls" value="" />
             <div class="g-u">还可以上传<span id="J_UploadCount">3</span>张图片</div>
         </div>
@@ -25,32 +25,33 @@ demo来自淘宝二手系统，请先使用测试账号登陆下daily，没有�
 
 ### 初始化AliUploader
 
-       KISSY.use('gallery/uploader/1.5/aliUploader,gallery/uploader/1.5/themes/imageUploader/index,gallery/uploader/1.5/themes/imageUploader/style.css', function (S, AliUploader,ImageUploader) {
-            var plugins = AliUploader.plugins;
-            var uploader = new AliUploader('#J_UploaderBtn');
-            //使用主题
-            uploader.theme(new ImageUploader({ queueTarget: '#J_UploaderQueue' }));
-            //验证插件
-            uploader.plug(new plugins.Auth({
-                        //最多上传个数
-                        max:3,
-                        //图片最大允许大小
-                        maxSize:2000
-                    }))
-                    //url保存插件
-                    .plug(new plugins.UrlsInput({target:'#J_Urls'}))
-                    //进度条集合
-                    .plug(new plugins.ProBars())
-                    //拖拽上传
-                    .plug(new plugins.Filedrop())
-                     //图片预览
-                    .plug(new plugins.Preview())
-            ;
-        })
+    KISSY.use('gallery/uploader/1.5/aliUploader,gallery/uploader/1.5/plugins/plugins,gallery/uploader/1.5/themes/imageUploader/index,gallery/uploader/1.5/themes/imageUploader/style.css', function (S, AliUploader,plugins,ImageUploader) {
+        var uploader = new AliUploader('#J_UploaderBtn');
+        //使用主题
+        uploader.theme(new ImageUploader({ queueTarget: '#J_UploaderQueue' }));
+        //验证插件
+        uploader.plug(new plugins.Auth({
+                    //最多上传个数
+                    max:3,
+                    //图片最大允许大小
+                    maxSize:2000
+                }))
+                //url保存插件
+                .plug(new plugins.UrlsInput({target:'#J_Urls'}))
+                //进度条集合
+                .plug(new plugins.ProBars())
+                //拖拽上传
+                .plug(new plugins.Filedrop())
+                 //图片预览
+                .plug(new plugins.Preview())
+                //超时登录时是否开启迷你登陆框
+                .plug(new plugins.MiniLogin())
+        ;
+    })
 
 AliUploader的模块路径为：*gallery/uploader/1.5/aliUploader*
 
-不需要像Uploader那样use多个插件，通过*AliUploader.plugins*可以获取到所有的插件类。
+*gallery/uploader/1.5/plugins/plugins* 模块包含所有的uploader插件
 
 将代码copy到你的应用vm模版中，就可以直接使用了！！无需配置任何东西！！！
 
