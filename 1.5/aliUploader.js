@@ -139,4 +139,4 @@ KISSY.add(function (S ,io,Uploader,Plugins) {
     AliUploader.plugins = Plugins;
     AliUploader.Uploader = Uploader;
     return AliUploader;
-},{requires:['ajax','./index','./plugins/plugins']});
+},{requires:['ajax','./index']});
