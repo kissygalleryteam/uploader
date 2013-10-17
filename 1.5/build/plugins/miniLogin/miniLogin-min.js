@@ -1,0 +1,2 @@
+/*!build time : 2013-10-17 4:35:43 PM*/
+KISSY.add("gallery/uploader/1.5/plugins/miniLogin/miniLogin",function(a,b,c){function d(a){var b=this;d.superclass.constructor.call(b,a)}return b.all,a.extend(d,c,{pluginInitializer:function(a){return a?void 0:!1}},{ATTRS:{pluginId:{value:"miniLogin"}}}),d},{requires:["node","base","tbc/mini-login/1.4.0/"]});
