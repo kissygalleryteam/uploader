@@ -2519,7 +2519,7 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
          * @param {Object} ev 事件对象
          */
         _select:function (ev) {
-            var self = this, autoUpload = self.get('autoUpload'),
+            var self = this,
                 queue = self.get('queue'),
                 curId = self.get('curUploadIndex'),
                 files = ev.files;
@@ -2537,7 +2537,7 @@ KISSY.add('gallery/uploader/1.5/base',function (S, Base, Node,UA , IframeType, A
             if (!self.get('isAllowUpload')) return false;
             queue.add(files, function () {
                 //如果不存在正在上传的文件，且允许自动上传，上传该文件
-                if (curId == EMPTY && autoUpload) {
+                if (curId == EMPTY && self.get('autoUpload')) {
                     self.uploadFiles();
                 }
             });

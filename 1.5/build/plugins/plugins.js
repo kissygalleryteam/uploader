@@ -1946,7 +1946,21 @@ KISSY.add('gallery/uploader/1.5/plugins/miniLogin/miniLogin',function(S, Node, B
          */
         pluginInitializer : function(uploader) {
             if(!uploader) return false;
-            var self = this;
+            uploader.on('select',function(){
+                var isLogin = ML.check();
+                if(!isLogin){
+                    var autoUpload = uploader.get('autoUpload');
+                    var isSetUpload = false;
+                    if(autoUpload){
+                        uploader.set('autoUpload',false);
+                        isSetUpload = true;
+                    }
+                    ML.show({}, function() {
+                        uploader.uploadFiles();
+                        if(isSetUpload) uploader.set('autoUpload',true)
+                    });
+                }
+            })
         }
     }, {ATTRS : /** @lends MiniLogin*/{
         /**
