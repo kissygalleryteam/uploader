@@ -1,4 +1,4 @@
-1.5beta测试中，欢迎反馈bug，预计在10月10号前正式发布，用来不及的同学可以使用[1.5版](http://gallery.kissyui.com/uploader/1.5/guide/index.html)
+1.5已经发布欢迎试用
 
 阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](./ali.html)，处于daily测试中，欢迎反馈bug，会与1.5一起发布。
 
