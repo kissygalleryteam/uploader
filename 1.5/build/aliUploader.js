@@ -3289,9 +3289,9 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,UA,Uploader,token) {
         config.CORS = true;
         //配置默认接口
         if(!config.action) config.action = getUploaderApi();
-        if(UA.ie <= 8){
+/*        if(UA.ie <= 8){
             config.type='flash';
-        }
+        }*/
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
         //实例化uploader
