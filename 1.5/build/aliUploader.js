@@ -283,20 +283,24 @@ KISSY.add('gallery/uploader/1.5/type/iframe',function(S, Node, UploadType) {
          * iframe加载完成后触发（文件上传结束后）
          */
         _iframeLoadHandler : function(ev) {
-            var self = this,iframe = ev.target,
-                errorEvent = IframeType.event.ERROR,
-                doc = iframe.contentDocument || window.frames[iframe.id].document,
-                result;
-            if (!doc || !doc.body) {
-                self.fire(errorEvent, {msg : '服务器端返回数据有问题！'});
-                return false;
+            var self = this,iframe = ev.target;
+            var errorEvent = IframeType.event.ERROR;
+            var result;
+            try{
+                var doc = iframe.contentDocument || window.frames[iframe.id].document;
+                if (!doc || !doc.body) {
+                    self.fire(errorEvent, {msg : '服务器端返回数据有问题！'});
+                    return false;
+                }
+                var response = doc.body.innerHTML;
+                //输出为直接退出
+                if(response == EMPTY) return false;
+                result = self._processResponse(response);
+                self.fire(IframeType.event.SUCCESS, {result : result});
+                self._remove();
+            }catch (e){
+                S.log(e);
             }
-            var response = doc.body.innerHTML;
-            //输出为直接退出
-            if(response == EMPTY) return false;
-            result = self._processResponse(response);
-            self.fire(IframeType.event.SUCCESS, {result : result});
-            self._remove();
         },
         /**
          * 创建文件上传表单
@@ -3180,7 +3184,7 @@ KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
 /**
  * 阿里上传通用接口
  */
-KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,token) {
+KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,UA,Uploader,token) {
     var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
     var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
     /**
@@ -3285,7 +3289,9 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,token) {
         config.CORS = true;
         //配置默认接口
         if(!config.action) config.action = getUploaderApi();
-
+        if(UA.ie <= 8){
+            config.type='flash';
+        }
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
         //实例化uploader
@@ -3300,4 +3306,4 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,Uploader,token) {
     }
     AliUploader.Uploader = Uploader;
     return AliUploader;
-},{requires:['./index','./token']});
+},{requires:['ua','./index','./token']});

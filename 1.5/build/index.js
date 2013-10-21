@@ -281,20 +281,24 @@ KISSY.add('gallery/uploader/1.5/type/iframe',function(S, Node, UploadType) {
          * iframe加载完成后触发（文件上传结束后）
          */
         _iframeLoadHandler : function(ev) {
-            var self = this,iframe = ev.target,
-                errorEvent = IframeType.event.ERROR,
-                doc = iframe.contentDocument || window.frames[iframe.id].document,
-                result;
-            if (!doc || !doc.body) {
-                self.fire(errorEvent, {msg : '服务器端返回数据有问题！'});
-                return false;
+            var self = this,iframe = ev.target;
+            var errorEvent = IframeType.event.ERROR;
+            var result;
+            try{
+                var doc = iframe.contentDocument || window.frames[iframe.id].document;
+                if (!doc || !doc.body) {
+                    self.fire(errorEvent, {msg : '服务器端返回数据有问题！'});
+                    return false;
+                }
+                var response = doc.body.innerHTML;
+                //输出为直接退出
+                if(response == EMPTY) return false;
+                result = self._processResponse(response);
+                self.fire(IframeType.event.SUCCESS, {result : result});
+                self._remove();
+            }catch (e){
+                S.log(e);
             }
-            var response = doc.body.innerHTML;
-            //输出为直接退出
-            if(response == EMPTY) return false;
-            result = self._processResponse(response);
-            self.fire(IframeType.event.SUCCESS, {result : result});
-            self._remove();
         },
         /**
          * 创建文件上传表单

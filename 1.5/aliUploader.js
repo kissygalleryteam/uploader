@@ -1,7 +1,7 @@
 /**
  * 阿里上传通用接口
  */
-KISSY.add(function (S ,Uploader,token) {
+KISSY.add(function (S ,UA,Uploader,token) {
     var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
     var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
     /**
@@ -106,7 +106,9 @@ KISSY.add(function (S ,Uploader,token) {
         config.CORS = true;
         //配置默认接口
         if(!config.action) config.action = getUploaderApi();
-
+        if(UA.ie <= 8){
+            config.type='flash';
+        }
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
         //实例化uploader
@@ -121,4 +123,4 @@ KISSY.add(function (S ,Uploader,token) {
     }
     AliUploader.Uploader = Uploader;
     return AliUploader;
-},{requires:['./index','./token']});
+},{requires:['ua','./index','./token']});
