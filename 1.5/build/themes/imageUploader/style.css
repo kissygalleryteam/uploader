@@ -214,6 +214,8 @@ button::-moz-focus-inner {
   vertical-align: middle;
   max-width: 116px;
   max-height: 116px;
+  _width: 116px;
+  _height: 116px;
   margin: 0;
   padding: 0;
 }

@@ -112,12 +112,21 @@ KISSY.add(function(S, Node, UploadType) {
             //创建处理上传的iframe
             iframe = S.substitute(tpl.IFRAME, { 'id' : id });
             $iframe = $(iframe);
-            //监听iframe的load事件
-            $iframe.on('load', self._iframeLoadHandler, self);
+            if(!self.get('domain')){
+                //监听iframe的load事件
+                $iframe.on('load', self._iframeLoadHandler, self);
+            }
             $('body').append($iframe);
             self.set('id',id);
             self.set('iframe', $iframe);
+            $('body').data('UPLOAD_TYPE',self);
             return $iframe;
+        },
+        handleResult:function(result){
+            var self = this;
+            result = self._processResponse(result);
+            self.fire(IframeType.event.SUCCESS, {result : result});
+            self._remove();
         },
         /**
          * iframe加载完成后触发（文件上传结束后）
@@ -125,7 +134,6 @@ KISSY.add(function(S, Node, UploadType) {
         _iframeLoadHandler : function(ev) {
             var self = this,iframe = ev.target;
             var errorEvent = IframeType.event.ERROR;
-            var result;
             try{
                 var doc = iframe.contentDocument || window.frames[iframe.id].document;
                 if (!doc || !doc.body) {
@@ -135,9 +143,7 @@ KISSY.add(function(S, Node, UploadType) {
                 var response = doc.body.innerHTML;
                 //输出为直接退出
                 if(response == EMPTY) return false;
-                result = self._processResponse(response);
-                self.fire(IframeType.event.SUCCESS, {result : result});
-                self._remove();
+                self.handleResult(response);
             }catch (e){
                 S.log(e);
             }
@@ -214,6 +220,7 @@ KISSY.add(function(S, Node, UploadType) {
          * @default  'ks-uploader-iframe-' +随机id
          */
         id : {value : ID_PREFIX + S.guid()},
+        domain:{value:EMPTY},
         /**
          * iframe
          */

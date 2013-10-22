@@ -79,6 +79,8 @@ KISSY.add(function (S ,UA,Uploader,token) {
         document.domain = domain;
         var data = uploader.get('data');
         data.domain = domain;
+        var uploadType = uploader.get('uploadType');
+        uploadType.set('domain',domain);
         S.log('[AliUploader]跨域强制设置domain：'+domain);
         return data;
     }
@@ -106,9 +108,6 @@ KISSY.add(function (S ,UA,Uploader,token) {
         config.CORS = true;
         //配置默认接口
         if(!config.action) config.action = getUploaderApi();
-        if(UA.ie <= 8){
-            config.type='flash';
-        }
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
         //实例化uploader
