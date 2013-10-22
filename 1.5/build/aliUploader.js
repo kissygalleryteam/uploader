@@ -3300,6 +3300,9 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,UA,Uploader,token) {
         if(!config.action) config.action = getUploaderApi();
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
+        if(UA.ie <= 8){
+            config.type='flash';
+        }
         //实例化uploader
         var uploader = new Uploader(target,config);
         flashCookiesHack(uploader);
