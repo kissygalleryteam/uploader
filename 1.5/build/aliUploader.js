@@ -3146,8 +3146,8 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, UploaderBase, RichBase
  * �첽��ȡtokenֵ
  */
 KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
-    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
-    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
+    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
+    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
      * ��ȡdomain
      * @return {String}
@@ -3192,8 +3192,8 @@ KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
  * 阿里上传通用接口
  */
 KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,UA,Uploader,token) {
-    var DAILY_API = 'http://aop.widgets.daily.taobao.net/json/uploadImg.htm';
-    var LINE_API = 'http://aop.widgets.taobao.com/json/uploadImg.htm';
+    var DAILY_API = 'http://aop.widgets.daily.taobao.net/block/uploadImg.htm';
+    var LINE_API = 'http://aop.widgets.taobao.com/block/uploadImg.htm';
     /**
      * 获取domain
      * @return {String}
@@ -3300,9 +3300,6 @@ KISSY.add('gallery/uploader/1.5/aliUploader',function (S ,UA,Uploader,token) {
         if(!config.action) config.action = getUploaderApi();
         if(!config.data) config.data = {};
         config.data['_input_charset'] = 'utf-8';
-        if(UA.ie <= 8){
-            config.type='flash';
-        }
         //实例化uploader
         var uploader = new Uploader(target,config);
         flashCookiesHack(uploader);

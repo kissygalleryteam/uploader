@@ -1931,8 +1931,8 @@ KISSY.add('gallery/uploader/1.5/plugins/paste/paste',function(S, Node, Base) {
  * �첽��ȡtokenֵ
  */
 KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
-    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
-    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
+    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
+    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
      * ��ȡdomain
      * @return {String}

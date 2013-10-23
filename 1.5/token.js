@@ -2,8 +2,8 @@
  * 异步获取token值
  */
 KISSY.add(function (S ,io) {
-    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/json/getReqParam.htm';
-    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/json/getReqParam.htm';
+    var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
+    var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
      * 获取domain
      * @return {String}
