@@ -21,8 +21,7 @@ KISSY.add('gallery/uploader/1.5/plugins/preview/preview',function (S,Node, D, E,
             success:'success',
             showed:'showed',
             error:'error'
-        },
-        _transparentImg = ua.ie < 8 ? "http://a.tbcdn.cn/p/fp/2011a/assets/space.gif" : "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+        };
 
     /**
      * Private 检测当前浏览器适应于哪种预览方式
@@ -65,7 +64,7 @@ KISSY.add('gallery/uploader/1.5/plugins/preview/preview',function (S,Node, D, E,
             return false;
         }
         if (_mode != 'filter') {
-            imgElem.src = data || _transparentImg;
+            imgElem.src = data || "";
         } else {
             if (data) {
                 data = data.replace(/[)'"%]/g, function (s) {
