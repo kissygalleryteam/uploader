@@ -68,20 +68,28 @@ KISSY.add(function (S ,UA,Uploader,token) {
      * iframe强制设置domain
      * @param uploader
      */
-    function iframeHack(uploader,domain){
+    function iframeHack(uploader,domain,redirect){
         var type = uploader.get('type');
         var setDomain = type == 'iframe';
         if(!setDomain) return false;
-        //不存在域名设置，强制截取域名后二个段
-        if(!domain){
-            domain = getDomain(-2);
-        }
-        document.domain = domain;
         var data = uploader.get('data');
-        data.domain = domain;
+        if(redirect){
+
+        }else{
+            //不存在域名设置，强制截取域名后二个段
+            if(!domain){
+                domain = getDomain(-2);
+            }
+            document.domain = domain;
+            data.domain = domain;
+            S.log('[AliUploader]跨域强制设置domain：'+domain);
+        }
+        if(data.type){
+            delete data.type;
+            S.log('type是关键字，请勿设置成post参数');
+        }
         var uploadType = uploader.get('uploadType');
         uploadType.set('domain',domain);
-        S.log('[AliUploader]跨域强制设置domain：'+domain);
         return data;
     }
 
