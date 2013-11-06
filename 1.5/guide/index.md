@@ -1,10 +1,12 @@
 1.5已经发布欢迎试用
 
-阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](./ali.html)，处于daily测试中，欢迎反馈bug，会与1.5一起发布。
+阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](http://www.atatech.org/article/detail/11632/348)（为了接口安全，使用内网地址）。使用通用接口的同学请将应用名发给剑平。
 
 1.5的changelog请看[github](https://github.com/kissygalleryteam/uploader)。
 
 ## 综述
+
+Uploader是Butterfly子组件，有问题可以加旺旺群：*733230474*。
 
 Uploader是非常强大的异步文件上传组件，支持ajax、iframe、flash三套方案，实现浏览器的全兼容，调用非常简单，内置多套主题支持和常用插件，比如验证、图片预览、进度条等。
 
