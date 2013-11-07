@@ -2914,7 +2914,7 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, RichBase,JSON,UA,Ifram
             setter:function (v) {
                 if (S.isObject(v)) {
                     var self = this, uploadType = self.get('uploadType');
-                    if(uploadType) uploadType.set('data', v);
+                    if(uploadType && !S.isEmptyObject(uploadType)) uploadType.set('data', v);
                 }
                 return v;
             }
@@ -2941,7 +2941,7 @@ KISSY.add('gallery/uploader/1.5/index',function (S, Node, RichBase,JSON,UA,Ifram
             setter:function (v) {
                 var self = this;
                 var uploadType = self.get('uploadType');
-                if (uploadType)uploadType.set('filter', v);
+                if (uploadType && !S.isEmptyObject(uploadType))uploadType.set('filter', v);
                 return v;
             }
         },
