@@ -6,13 +6,13 @@ gallery/uploader/1.5/plugins/miniLogin/miniLogin
 
 */
 /**
- * �첽��ȡtokenֵ
+ * _获取tokenֵ
  */
 KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
     var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
-     * ��ȡdomain
+     * $获取domain
      * @return {String}
      */
     function getDomain(){
@@ -25,7 +25,7 @@ KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
     }
 
     /**
-     * �Ƿ���daily����
+     * $是否是daily
      * @return {boolean}
      */
     function isDaily(){
@@ -34,7 +34,7 @@ KISSY.add('gallery/uploader/1.5/token',function (S ,io) {
     }
 
     /**
-     * ��ȡtoken����ͨ����ȫǩ��
+     * $设置token
      */
     function setToken(uploader,callback){
         if(!uploader) return false;

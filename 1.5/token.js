@@ -1,11 +1,11 @@
 /**
- * 异步获取token值
+ * _鑾峰彇token值
  */
 KISSY.add(function (S ,io) {
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
     var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
-     * 获取domain
+     * $鑾峰彇domain
      * @return {String}
      */
     function getDomain(){
@@ -18,7 +18,7 @@ KISSY.add(function (S ,io) {
     }
 
     /**
-     * 是否是daily环境
+     * $鏄惁鏄痙aily
      * @return {boolean}
      */
     function isDaily(){
@@ -27,7 +27,7 @@ KISSY.add(function (S ,io) {
     }
 
     /**
-     * 获取token，来通过安全签名
+     * $璁剧疆token
      */
     function setToken(uploader,callback){
         if(!uploader) return false;
