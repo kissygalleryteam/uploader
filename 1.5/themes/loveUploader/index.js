@@ -59,4 +59,4 @@ KISSY.add(function (S, Node, ImageUploader) {
         elCount:{value:'#J_UploadCount'}
     }});
     return LoveUploader;
-}, {requires:['node', 'gallery/uploader/1.5/themes/imageUploader/index']});
+}, {requires:['node', '../imageUploader/']});

@@ -154,4 +154,4 @@ KISSY.add(function (S, Node, ImageUploader) {
         maxText:{value:'您已上传满{max}张图片'}
     }});
     return RefundUploader;
-}, {requires:['node', 'gallery/uploader/1.5/themes/imageUploader/index']});
+}, {requires:['node', '../imageUploader/']});
