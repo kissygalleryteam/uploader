@@ -37,11 +37,11 @@ KISSY.add(function (S, Node, ImageUploader) {
             var mobileUploaderBtnTop = $mobileUploaderBtn.css('top');
             $btnWrapper.on('mouseenter mouseleave',function(ev){
                 if (ev.type == 'mouseenter') {
-                    $uploaderBtn.animate({top:0},0.3,'easeInStrong');
-                    $mobileUploaderBtn.animate({top:$mobileUploaderBtn.height()},0.3,'easeInStrong');
+                    $uploaderBtn.animate({top:0},0.2);
+                    $mobileUploaderBtn.animate({top:$mobileUploaderBtn.height()},0.2);
                 } else {
-                    $uploaderBtn.animate({top:uploaderBtnTop},0.3);
-                    $mobileUploaderBtn.animate({top:mobileUploaderBtnTop},0.3);
+                    $uploaderBtn.animate({top:uploaderBtnTop},0.2);
+                    $mobileUploaderBtn.animate({top:mobileUploaderBtnTop},0.2);
                 }
             })
         },
@@ -108,7 +108,6 @@ KISSY.add(function (S, Node, ImageUploader) {
             var id = file.id;
             //服务器端返回的数据
             var result = file.result;
-            self._setCount();
             //获取服务器返回的图片路径写入到src上
             if (result) self._changeImageSrc(ev);
             $('.J_Mask_' + id).hide();
