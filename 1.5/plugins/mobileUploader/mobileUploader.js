@@ -84,8 +84,13 @@ KISSY.add(function(S, Node, Base,QR) {
                 };
                 config = S.merge(authConfig,userConfig);
             }
+            var daily = isDaily();
+            self.set('daily',daily);
+            //图片地址路径
+            var imageUrl = daily && DAILY_API || LINE_API;
+            self.set('imageUrl',imageUrl);
             S.mix(config,{
-                daily : isDaily(),
+                daily : daily,
                 xmppcallback:function(ev){
                     self._xmppcallback(ev.data);
                 }
@@ -97,19 +102,23 @@ KISSY.add(function(S, Node, Base,QR) {
             var self = this;
             if(!S.isArray(data)) return false;
             S.log('mpp返回的文件数据是：');
-            S.log(ev.data);
+            S.log(data);
             var qr = self.get('qr');
             if(!qr) return false;
             qr.hide();
             var uploader = self.get('uploader');
             var queue = uploader.get('queue');
-            var isDaily = isDaily();
-            var imgurl = isDaily && DAILY_API || LINE_API;
+            var imageUrl = self.get('imageUrl');
             S.each(data,function(file){
-                queue.add({
+                var result = {
                     name:file.name,
-                    url:imgurl + file.name
-                });
+                    url:imageUrl + file.name
+                };
+                var file = queue.add(result);
+                file.result = result;
+                var index = queue.getFileIndex(file.id);
+                queue.fileStatus(index,'success');
+                uploader.fire('success',{index:index, file:file, result:result});
             });
         }
     }, {ATTRS : /** @lends MobileUploader*/{
@@ -133,6 +142,8 @@ KISSY.add(function(S, Node, Base,QR) {
         uploader:{value:EMPTY},
         //用户的配置
         userConfig:{value:{}},
+        //图片的路径
+        imageUrl:{value:EMPTY},
         //二维码实例
         qr:{value:EMPTY}
     }})
