@@ -109,40 +109,28 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/xmppUtil',function(S){
     return XmppUtil;
 
 });
-KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, XmppUtil){
-    //UA.ie = 6; //JUST TRY
-    var $=S.all,
-        doc = $(document);
+KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S,Node, UA, XmppUtil){
+
+    var $=Node.all;
 
     var QRURL = "http://m.service.taobao.com/getQrCode.htm";
     var CheckAppUrl = "http://m.service.taobao.com/checkApp.htm";
     var QRApiUrl = "http://m.service.taobao.com/qrCodeApi.htm";
-    var CSS = '.tb-qrcode-sb-mask-4-ie6{ border:none; position: absolute; left:0; top:0; width:1px; height:1px; background:red; filter: alpha(opacity=0); } .qrcode{font-family:simsun; position: absolute;}.qrcode .loading{width: 120px; height: 120px; background: url(http://img01.taobaocdn.com/tps/i1/T1cKm3XkRpXXXXXXXX-48-48.gif) center center no-repeat;border: 1px solid #eee;} .qrcode .qrcode-qr{background-color:#F7F7F7;border:1px solid #DDD; padding:10px;} .qrcode .qrcode-app{background-color: #f7f7f7;border: 1px solid #eee;padding: 25px 35px 21px 80px;width: 245px;background-image: url(http://gtms03.alicdn.com/tps/i3/T1LiuRFaFaXXcDFR2c-28-49.png);background-repeat: no-repeat;background-position: 25px 30px;}\
-	.qrcode .app-title{color: #333;} .qrcode .app-body{color: #aaa;margin-top: 10px;} .qrcode .app-ft{text-align: right;margin-top: 15px;} .qrcode .app-ft a:hover{color: #ff6600;}\
-	.qrcode .count-down, .qrcode .retry{display: inline-block; *display: inline;*zoom;width: 52px;margin-left: 12px;padding: 0 8px; line-height: 20px; cursor: pointer;text-align:center;background:#FCFCFC url(http://gtms04.alicdn.com/tps/i4/T1TgKSFiFbXXaJA2Ya-6-38.png) left top repeat-x; border: 1px solid #D0D0D0;} .retry:active{background-position:left bottom} .qrcode .count-down{padding: 0;border: 1px solid #d7d7d7;}\
-	.qrcode .hd{padding:2px 0 10px;} .qrcode a{color:#36c;cursor:pointer;}.qrcode .bd,.qrcode .bd img{width:200px;height:200px;background:#fff;text-align:center;}.qrcode .ft{position:absolute;top:12px;right:11px;}.qrcode .ft a{display:inline-block;width:20px;height:21px;overflow:hidden;background-image:url(http://gtms02.alicdn.com/tps/i2/T12RORFmpXXXaeXpYa-20-42.png);}.qrcode .ft a:hover{background-position:0 -21px;}.qrcode .ft a span{visibility:hidden;}';
-
-    var note1 = "%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%E6%B7%98%E5%AE%9DAPP%E6%89%AB%E6%8F%8F";
-    var btname1 = "%E5%88%B7%E6%96%B0%E4%BA%8C%E7%BB%B4%E7%A0%81";
     var btname2 = "%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E4%BA%8C%E7%BB%B4%E7%A0%81..";
-
-    var previewname = "%E5%A6%82%E6%9E%9C%E6%89%8B%E6%9C%BA%E7%AB%AF%E5%B7%B2%E6%8F%90%E7%A4%BA%E4%B8%8A%E4%BC%A0%E6%88%90%E5%8A%9F%EF%BC%8C%3C%2Fbr%3E%E8%AF%B7";
-    var previewname2 = "%E7%82%B9%E6%AD%A4%E9%A2%84%E8%A7%88";
-
 
     var TPL='';
     TPL += '	<div class="qrcode">';
     TPL += '<div class="loading"></div>';
     TPL += '	</div>';
 
-    var TPL_Qr_Code = '<div class="qrcode-qr"><div class="hd">\u63a8\u8350<a href="http://app.taobao.com/download/taoApps.htm?spm=a210u.1000832.297503.39.REFn4e&pageIndex=5" target="_blank">\u6dd8\u5b9d\u5ba2\u6237\u7aef</a>\u626b\u63cf<\/div>';
+    var TPL_Qr_Code = '<div class="qrcode-qr"><div class="hd">推荐使用<a href="http://app.taobao.com/download/taoApps.htm?spm=a210u.1000832.297503.39.REFn4e&pageIndex=5" target="_blank">淘宝客户端</a>扫描下面的二维码：<\/div>';
     TPL_Qr_Code += '<div class="bd">';
     TPL_Qr_Code += '<div><span class="J_qrimg">'+decodeURIComponent(btname2)+'</span></div>';
     TPL_Qr_Code += '</div>';
     TPL_Qr_Code += '<div class="ft">';
-    TPL_Qr_Code += '<a href="#" class="J_close"><span>\u5173\u95ED</span></a>';
+    TPL_Qr_Code += '<a href="#" class="J_close"><span>关闭</span></a>';
     TPL_Qr_Code += '</div>';
-    TPL_Qr_Code += '<div style="margin-top:6px; text-align:center">'+decodeURIComponent(previewname)+'<a class="J_preview">'+decodeURIComponent(previewname2)+'</a></div>';
+    TPL_Qr_Code += '<div class="preview-tip">如果手机端提示上传成功，页面没有添加图片，<br/>请点击<a class="J_preview">手动插入</a></div>';
     TPL_Qr_Code += '</div></div>';
 
     var aname1 = "%E5%B7%B2%E7%BB%8F%E5%90%91%E4%BD%A0%E7%9A%84%E6%89%8B%E6%9C%BA%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%EF%BC%8C%E6%89%93%E5%BC%80%E6%B6%88%E6%81%AF%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%EF%BC%81";
@@ -196,7 +184,7 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
     S.augment(QRCode,S.EventTarget,{
 
 
-        checkApp : function(){
+        checkApp : function(callback){
             var self = this;
             if(self.param.daily ){
                 CheckAppUrl = "http://m.service.daily.taobao.net/checkApp.htm";
@@ -228,11 +216,14 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
                         return ;
                     }else{
                         self.container.html(TPL_Qr_Code);
-                        self.getQR();
+                        self.getQR(function(){
+                            self.container.children().slideDown(0.3);
+                        });
                         if(self.$mask4ie6){
                             self.$mask4ie6.css({"width":222,"height":294});
                         }
                     }
+                    callback && callback.call(self);
                 }
             });
 
@@ -260,7 +251,7 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
         },
 
         //鑾峰彇浜岀淮鐮佺殑鍦板潃
-        getQR: function(){
+        getQR: function(callback){
             var self = this;
 
             //return QRURL+"?"+S.param(this.param);
@@ -282,6 +273,7 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
                     var img = document.createElement("img");
                     img.onload = function(){
                         imgpanel.html("").append(img);
+                        callback && callback();
                     }
                     img.src=datajson.picurl;
                 }
@@ -290,11 +282,8 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
         render: function(){
             var self = this,
                 container = $(TPL);
-
-            S.DOM.addStyleSheet(CSS);
             $(document.body).append(container);
             self.container = container;
-            //self.checkApp();
             self.isRender = true;
             self.bindEvent();
             self.xmpp();
@@ -377,12 +366,6 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
                     self.$mask4ie6.css({"left":-9999,"top":-9999}).hide();
                 }
             });
-            /**
-             self.container.delegate('click', '.J_refresh-img', function(ev){
-				ev.halt();
-				self.getQR();
-			});
-             **/
             self.container.delegate('click', '.J_preview', function(ev){
                 ev.halt();
                 self.previewUploadResult(self.param);
@@ -392,13 +375,10 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
 
         show: function(){
             var self = this;
-            if(!self.isRender){
-                self.render();
-            }
-
-            self.container.html(TPL);
-            self.checkApp();
-            self.container.show();
+            if(!self.isRender) self.render();
+            self.container.fadeIn(0.3,function(){
+                self.checkApp();
+            });
             if(self.$mask4ie6){
                 setTimeout(function(){
                     self.$mask4ie6.css({
@@ -407,9 +387,6 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
                     }).show();
                 });
             }
-
-
-
         },
         hide: function(_self){
             var self = _self || this;
@@ -472,7 +449,7 @@ KISSY.add('gallery/uploader/1.5/plugins/mobileUploader/qrcode',function(S, UA, X
     return QRCode;
 
 },{
-    requires: ['ua','./xmppUtil']
+    requires: ['node','ua','./xmppUtil']
 });
 
 

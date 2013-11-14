@@ -37,13 +37,21 @@ KISSY.add(function (S, Node, ImageUploader) {
             var mobileUploaderBtnTop = $mobileUploaderBtn.css('top');
             $btnWrapper.on('mouseenter mouseleave',function(ev){
                 if (ev.type == 'mouseenter') {
-                    $uploaderBtn.animate({top:0},0.2);
-                    $mobileUploaderBtn.animate({top:$mobileUploaderBtn.height()},0.2);
+                    $uploaderBtn.stop().animate({top:0},0.2);
+                    $mobileUploaderBtn.stop().animate({top:$mobileUploaderBtn.height()},0.2);
                 } else {
-                    $uploaderBtn.animate({top:uploaderBtnTop},0.2);
-                    $mobileUploaderBtn.animate({top:mobileUploaderBtnTop},0.2);
+                    $uploaderBtn.stop().animate({top:uploaderBtnTop},0.2);
+                    $mobileUploaderBtn.stop().animate({top:mobileUploaderBtnTop},0.2);
                 }
             })
+        },
+        _selectHandler:function(ev){
+            var self = this;
+            var uploader = self.get('uploader');
+            var mobile = uploader.getPlugin('mobileUploader');
+            if(!mobile) return true;
+            var qr = mobile.get('qr');
+            if(qr) qr.hide();
         },
         /**
          * 在完成文件dom插入后执行的方法

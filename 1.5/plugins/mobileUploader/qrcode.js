@@ -1,7 +1,6 @@
-KISSY.add(function(S, UA, XmppUtil){
-    //UA.ie = 6; //JUST TRY
-    var $=S.all,
-        doc = $(document);
+KISSY.add(function(S,Node, UA, XmppUtil){
+
+    var $=Node.all;
 
     var QRURL = "http://m.service.taobao.com/getQrCode.htm";
     var CheckAppUrl = "http://m.service.taobao.com/checkApp.htm";
@@ -13,12 +12,12 @@ KISSY.add(function(S, UA, XmppUtil){
     TPL += '<div class="loading"></div>';
     TPL += '	</div>';
 
-    var TPL_Qr_Code = '<div class="qrcode-qr"><div class="hd">\u63a8\u8350<a href="http://app.taobao.com/download/taoApps.htm?spm=a210u.1000832.297503.39.REFn4e&pageIndex=5" target="_blank">\u6dd8\u5b9d\u5ba2\u6237\u7aef</a>\u626b\u63cf<\/div>';
+    var TPL_Qr_Code = '<div class="qrcode-qr"><div class="hd">推荐使用<a href="http://app.taobao.com/download/taoApps.htm?spm=a210u.1000832.297503.39.REFn4e&pageIndex=5" target="_blank">淘宝客户端</a>扫描下面的二维码：<\/div>';
     TPL_Qr_Code += '<div class="bd">';
     TPL_Qr_Code += '<div><span class="J_qrimg">'+decodeURIComponent(btname2)+'</span></div>';
     TPL_Qr_Code += '</div>';
     TPL_Qr_Code += '<div class="ft">';
-    TPL_Qr_Code += '<a href="#" class="J_close"><span>\u5173\u95ED</span></a>';
+    TPL_Qr_Code += '<a href="#" class="J_close"><span>关闭</span></a>';
     TPL_Qr_Code += '</div>';
     TPL_Qr_Code += '<div class="preview-tip">如果手机端提示上传成功，页面没有添加图片，<br/>请点击<a class="J_preview">手动插入</a></div>';
     TPL_Qr_Code += '</div></div>';
@@ -74,7 +73,7 @@ KISSY.add(function(S, UA, XmppUtil){
     S.augment(QRCode,S.EventTarget,{
 
 
-        checkApp : function(){
+        checkApp : function(callback){
             var self = this;
             if(self.param.daily ){
                 CheckAppUrl = "http://m.service.daily.taobao.net/checkApp.htm";
@@ -106,11 +105,14 @@ KISSY.add(function(S, UA, XmppUtil){
                         return ;
                     }else{
                         self.container.html(TPL_Qr_Code);
-                        self.getQR();
+                        self.getQR(function(){
+                            self.container.children().slideDown(0.3);
+                        });
                         if(self.$mask4ie6){
                             self.$mask4ie6.css({"width":222,"height":294});
                         }
                     }
+                    callback && callback.call(self);
                 }
             });
 
@@ -138,7 +140,7 @@ KISSY.add(function(S, UA, XmppUtil){
         },
 
         //鑾峰彇浜岀淮鐮佺殑鍦板潃
-        getQR: function(){
+        getQR: function(callback){
             var self = this;
 
             //return QRURL+"?"+S.param(this.param);
@@ -160,6 +162,7 @@ KISSY.add(function(S, UA, XmppUtil){
                     var img = document.createElement("img");
                     img.onload = function(){
                         imgpanel.html("").append(img);
+                        callback && callback();
                     }
                     img.src=datajson.picurl;
                 }
@@ -252,12 +255,6 @@ KISSY.add(function(S, UA, XmppUtil){
                     self.$mask4ie6.css({"left":-9999,"top":-9999}).hide();
                 }
             });
-            /**
-             self.container.delegate('click', '.J_refresh-img', function(ev){
-				ev.halt();
-				self.getQR();
-			});
-             **/
             self.container.delegate('click', '.J_preview', function(ev){
                 ev.halt();
                 self.previewUploadResult(self.param);
@@ -267,13 +264,10 @@ KISSY.add(function(S, UA, XmppUtil){
 
         show: function(){
             var self = this;
-            if(!self.isRender){
-                self.render();
-            }
-
-            self.container.html(TPL);
-            self.checkApp();
-            self.container.show();
+            if(!self.isRender) self.render();
+            self.container.fadeIn(0.3,function(){
+                self.checkApp();
+            });
             if(self.$mask4ie6){
                 setTimeout(function(){
                     self.$mask4ie6.css({
@@ -282,9 +276,6 @@ KISSY.add(function(S, UA, XmppUtil){
                     }).show();
                 });
             }
-
-
-
         },
         hide: function(_self){
             var self = _self || this;
@@ -347,7 +338,7 @@ KISSY.add(function(S, UA, XmppUtil){
     return QRCode;
 
 },{
-    requires: ['ua','./xmppUtil']
+    requires: ['node','ua','./xmppUtil']
 });
 
 
