@@ -1,6 +1,8 @@
-1.5已经发布欢迎试用
+1.5已经正式发布，欢迎使用。
 
 阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](http://www.atatech.org/article/detail/11632/348)（为了接口安全，使用内网地址）。使用通用接口的同学请将应用名发给剑平。
+
+1.5新增跨终端上传的支持，详细请看[《再谈跨终端上传实现》](http://www.atatech.org/article/detail/11802/786)，用到淘宝服务，资料放在内网。
 
 1.5的changelog请看[github](https://github.com/kissygalleryteam/uploader)。
 

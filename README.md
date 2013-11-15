@@ -4,12 +4,16 @@
 
 - 版本：1.5（基于kissy1.3，兼容kissy1.2）
 - 作者：明河、紫英、飞绿
-- <a href="http://gallery.kissyui.com/uploader/1.4/guide/index.html" target="_blank">uploader入门指南</a>
-- <a href="http://butterfly.36ria.com/uploader/1.4/demo/js-config-use.html" target="_blank">一个简单的demo</a>
-
-1.5测试中，请勿使用~
+- <a href="http://gallery.kissyui.com/uploader/1.5/guide/index.html" target="_blank">uploader入门指南</a>
+- <a href="http://butterfly.36ria.com/uploader/1.5/demo/js-config-use.html" target="_blank">一个简单的demo</a>
 
 ## 组件变更
+
+### V1.5.2 change
+
+    [+] #117 跨终端上传插件和主题实现
+    [!] #114 修正与kissy1.4无法兼容的bug
+    [!] #116 修正data.set()抛异常的bug
 
 ### V1.5 change
 
