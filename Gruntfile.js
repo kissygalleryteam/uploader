@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     var BUILD = 'build/';
     var versionPath = '1.5/';
     var kmcSrcs = ['index.js','theme.js','aliUploader.js'
-        ,'plugins/plugins.js','plugins/auth/auth.js','plugins/ajbridge/uploader.js','plugins/coverPic/coverPic.js','plugins/filedrop/filedrop.js','plugins/imageZoom/imageZoom.js','plugins/imgcrop/imgcrop.js','plugins/preview/preview.js','plugins/proBars/proBars.js','plugins/tagConfig/tagConfig.js','plugins/urlsInput/urlsInput.js','plugins/miniLogin/miniLogin.js','plugins/mobileUploader/mobileUploader.js',
+        ,'plugins/plugins.js','plugins/auth/auth.js','plugins/ajbridge/uploader.js','plugins/coverPic/coverPic.js','plugins/filedrop/filedrop.js','plugins/imageZoom/imageZoom.js','plugins/imgcrop/imgcrop.js','plugins/preview/preview.js','plugins/proBars/proBars.js','plugins/tagConfig/tagConfig.js','plugins/urlsInput/urlsInput.js','plugins/miniLogin/miniLogin.js','plugins/mobileUploader/mobileUploader.js','plugins/paste/paste.js',
         ,'themes/cropUploader/index.js','themes/daogouUploader/index.js','themes/default/index.js','themes/editorMultipleUploader/index.js','themes/cropUploader/index.js','themes/ershouUploader/index.js','themes/imageUploader/index.js','themes/loveUploader/index.js','themes/mutilImageUploader/index.js','themes/refundUploader/index.js','themes/singleImageUploader/index.js','themes/wankeUploader/index.js','themes/grayUploader/index.js','themes/crossUploader/index.js'
     ];
     var kmcMain = [];
