@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         });
     }
 
-    var themes = ['cropUploader','editorMultipleUploader','imageUploader','refundUploader','singleImageUploader','grayUploader','crossUploader'];
+    var themes = ['cropUploader','editorMultipleUploader','imageUploader','refundUploader','singleImageUploader','grayUploader','crossUploader','default'];
     var lessMain = {};
     for(var i = 0;i<themes.length;i++){
         var lessPath = versionPath + 'themes/' + themes[i] + '/style.less';
