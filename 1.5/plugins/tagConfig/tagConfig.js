@@ -58,6 +58,9 @@ KISSY.add(function(S, Node, Base) {
                         case 'postData' :
                             option = 'data';
                             value = S.JSON.parse(value);
+                            if(!S.isEmptyObject(value)){
+                                value = S.merge(uploader.get('data'),value);
+                            }
                             break;
                         case 'uploadType':
                             option = 'type';

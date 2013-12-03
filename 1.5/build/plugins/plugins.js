@@ -1561,6 +1561,9 @@ KISSY.add('gallery/uploader/1.5/plugins/tagConfig/tagConfig',function(S, Node, B
                         case 'postData' :
                             option = 'data';
                             value = S.JSON.parse(value);
+                            if(!S.isEmptyObject(value)){
+                                value = S.merge(uploader.get('data'),value);
+                            }
                             break;
                         case 'uploadType':
                             option = 'type';
