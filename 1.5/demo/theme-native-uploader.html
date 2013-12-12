@@ -31,17 +31,7 @@
         nativeUploader.theme(new nativeTheme({
             queueTarget:'#J_UploaderQueue'
         }));
-        nativeUploader.plug(new UrlsInput({target:'#J_Urls'}))
-        nativeUploader._addFile('1.jpg');
-        S.later(function(){
-            nativeUploader._progress(50,'1.jpg')
-        },1000);
-        S.later(function(){
-            nativeUploader._success("http://img04.taobaocdn.com/bao/uploaded/i4/T1ReZnFhpeXXXXXXXX_!!0-item_pic.jpg",'1.jpg');
-        },2000)
-        S.later(function(){
-            nativeUploader._error("上传失败",'1.jpg');
-        },3000)
+        nativeUploader.plug(new UrlsInput({target:'#J_Urls'}));
     });
 </script>
 </body>

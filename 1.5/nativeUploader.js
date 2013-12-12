@@ -3,7 +3,7 @@
  * @author jianping.xwh<jianping.xwh@taobao.com>
  * @module native-uploader
  **/
-KISSY.add(function (S, Node,Base,Queue) {
+KISSY.add(function (S, Node,JSON,Base,Queue) {
     var EMPTY = '';
     var $ = Node.all;
     var status = {
@@ -191,7 +191,6 @@ KISSY.add(function (S, Node,Base,Queue) {
             var tparm = {};
             tparm['path'] = paths;
             var cparam = paths ? tparm : '';
-
             WindVane.call('MultiPhotoPicker','status_query',cparam,function(result){
                 var $path;
                 //demo :  {"path1":{"status":"1","remote":{"key":"value"},"percentage":"23"},"path2":{xxxx}}
@@ -199,21 +198,17 @@ KISSY.add(function (S, Node,Base,Queue) {
                  remote：上传成功后mtop接口返回的data字段
                  percentage:上传百分比
                  */
-                var queryjson = result;
-                S.each(paths,function(p,i){
-                    if(queryjson[p].status == 2){
-                        $path.append('<img src="'+queryjson[p].remote.resourceUri+'_60x60.jpg" />');
-                        //存储tfs名称
-                        successPaths.push(queryjson[p].remote.tfsKey);
-                        self._success(queryjson[p].remote.resourceUri,p);
+                S.each(result,function(p,k){
+                    if(p.status == 2){
+                        self._success(p.remote.resourceUri,k);
                         clearInterval(queryInterval);
+                        queryInterval = null;
                     }
-                    else if(queryjson[p].status == 1){
-                        queryjson[p].percentage > 1 && path.all('b').html(queryjson[p].percentage+'%');
-                        self._progress(queryjson[p].percentage,p);
+                    else if(p.status == 1){
+                        self._progress(p.percentage,k);
                     }
-                    else if(queryjson[p].status == -1){
-                        self._error('上传失败',p);
+                    else if(p.status == -1){
+                        self._error('上传失败',k);
                         clearInterval(queryInterval);
                     }
                 })
@@ -239,5 +234,5 @@ KISSY.add(function (S, Node,Base,Queue) {
             queue:{value:EMPTY}
         }
     });
-}, {requires:['node', 'base','./queue']});
+}, {requires:['node','json','base','./queue']});
 
