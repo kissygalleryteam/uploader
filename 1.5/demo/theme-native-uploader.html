@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NativeUploader的demo</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="apple-touch-icon-precomposed" href="http://a.tbcdn.cn/mw/s/hi/tbtouch/images/touch-icon.png" />
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.0/seed-min.js"></script>
+    <script src="http://g.tbcdn.cn/mtb/lib-windvane/1.2.1/??api.js,bridge.js"></script>
+</head>
+<body>
+<h2>NativeUploader的demo</h2>
+<p>上传图片</p>
+<ul id="J_UploaderQueue" class="native-uploader grid">
+    <li class="J_NativeUploader g-u uploader-up">
+        <label class="uploader-label">
+            <p>上传凭证</p>
+            <small>（最多3张）</small>
+        </label>
+    </li>
+</ul>
+
+<script>
+    KISSY.use('gallery/uploader/1.5/nativeUploader,gallery/uploader/1.5/themes/nativeUploader/,gallery/uploader/1.5/plugins/urlsInput/urlsInput,gallery/uploader/1.5/themes/nativeUploader/style.css',function(S,NativeUploader,nativeTheme,UrlsInput){
+        var nativeUploader = new NativeUploader({
+            target:'.J_NativeUploader'
+        });
+        nativeUploader.theme(new nativeTheme({
+            queueTarget:'#J_UploaderQueue'
+        }));
+        nativeUploader.plug(new UrlsInput({target:'#J_Urls'}))
+        nativeUploader._addFile('1.jpg');
+        S.later(function(){
+            nativeUploader._progress(50,'1.jpg')
+        },1000);
+        S.later(function(){
+            nativeUploader._success("http://img04.taobaocdn.com/bao/uploaded/i4/T1ReZnFhpeXXXXXXXX_!!0-item_pic.jpg",'1.jpg');
+        },2000)
+        S.later(function(){
+            nativeUploader._error("上传失败",'1.jpg');
+        },3000)
+    });
+</script>
+</body>
+</html>
