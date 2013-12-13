@@ -152,7 +152,7 @@ KISSY.add(function (S, Node, Theme) {
                 '</div>' +
                 '<div class=" J_Mask_{id} pic-mask"></div>' +
                 '<div class="status-wrapper">' +
-                    '<div class="status waiting-status"></div>' +
+                    '<div class="status waiting-status">0%</div>' +
                     '<div class="status progress-status success-status J_Progress_{id}"></div > ' +
                     '<div class="status error-status">' +
                         '<p class="J_ErrorMsg_{id}">上传失败</p></div>' +
