@@ -22,9 +22,10 @@
         </label>
     </li>
 </ul>
+<input id="J_Urls" value="attachments" type="hidden">
 
 <script>
-    KISSY.use('gallery/uploader/1.5/nativeUploader,gallery/uploader/1.5/themes/nativeUploader/,gallery/uploader/1.5/plugins/urlsInput/urlsInput,gallery/uploader/1.5/themes/nativeUploader/style.css',function(S,NativeUploader,nativeTheme,UrlsInput){
+    KISSY.use('gallery/uploader/1.5/nativeUploader,gallery/uploader/1.5/themes/nativeUploader/,gallery/uploader/1.5/plugins/urlsInput/urlsInput,gallery/uploader/1.5/plugins/auth/auth,gallery/uploader/1.5/themes/nativeUploader/style.css',function(S,NativeUploader,nativeTheme,UrlsInput,Auth){
         var nativeUploader = new NativeUploader({
             target:'.J_NativeUploader'
         });
@@ -32,6 +33,9 @@
             queueTarget:'#J_UploaderQueue'
         }));
         nativeUploader.plug(new UrlsInput({target:'#J_Urls'}));
+        nativeUploader.plug(new Auth({
+            max:3
+        }));
     });
 </script>
 </body>

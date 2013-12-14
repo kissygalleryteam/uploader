@@ -387,6 +387,7 @@ KISSY.add('gallery/uploader/1.5/themes/nativeUploader/index',function (S, Node, 
             //获取服务器返回的图片路径写入到src上
             if(result) self._changeImageSrc(ev);
             self._setDisplayMsg(false,file);
+            self.hideBtn();
         },
          /**
          * 文件处于上传错误状态时触发
@@ -398,7 +399,7 @@ KISSY.add('gallery/uploader/1.5/themes/nativeUploader/index',function (S, Node, 
              var id = ev.file.id;
              //打印错误消息
              $('.J_ErrorMsg_' + id).html(msg);
-             self._setDisplayMsg(true,ev.file);
+             self._setDisplayMsg(true,file);
              //向控制台打印错误消息
              S.log(msg);
         },
@@ -425,13 +426,26 @@ KISSY.add('gallery/uploader/1.5/themes/nativeUploader/index',function (S, Node, 
             var file = $(ev.currentTarget).data('data-file');
             if(file){
                 var index = queue.getFileIndex(file.id);
-                var status = file.status;
-                //如果文件还在上传，取消上传
-                if(status == 'start' || status == 'progress'){
-                    uploader.cancel(index);
-                }
                 queue.remove(index);
+                var $btn = uploader.get('target');
+                $btn.fadeIn(0.3);
             }
+        },
+        //隐藏按钮
+        hideBtn:function(){
+            var self = this;
+            var uploader = self.get('uploader');
+            var $btn = uploader.get('target');
+            if(!$btn.length) return false;
+            var auth = uploader.getPlugin('auth') ;
+            if(!auth) return false;
+            var max = auth.get('max');
+            if(!max) return false;
+            var queue = self.get('queue');
+            //成功上传的文件数
+            var successFiles = queue.getFiles('success');
+            var len = successFiles.length;
+            if(len >= 3) $btn.fadeOut(0.3);
         },
         /**
          * 获取成功上传的图片张数，不传参的情况获取成功上传的张数
