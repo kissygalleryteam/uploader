@@ -120,11 +120,14 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             var queue = self.get('queue');
             var file = self._getFile(name);
             var index = queue.getFileIndex(file.id);
-            var ev = {file:file,index:index,result:{url:url,name:file.name}};
+            var uris = url.split('/');
+            var name = uris[uris.length - 1];
+            var ev = {file:file,index:index,result:{url:url,name:name}};
             queue.fileStatus(index, status.SUCCESS, ev);
             self.fire(event.SUCCESS, ev);
             return self;
         },
+        //上传失败后
         _error:function(msg,name){
             var self = this;
             var queue = self.get('queue');
@@ -176,7 +179,7 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                 //查询上传状态
                 !queryInterval && (queryInterval = setInterval(function(){
                     self.updateStatus(paths,queryInterval);
-                },2000));
+                },300));
             },function(result){
 
             });
