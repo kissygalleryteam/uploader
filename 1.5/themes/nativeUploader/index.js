@@ -64,6 +64,7 @@ KISSY.add(function (S, Node, Theme) {
             if(result) self._changeImageSrc(ev);
             self._setDisplayMsg(false,file);
             self.hideBtn();
+            $('.J_StatusWrapper_'+file.id).hide();
         },
          /**
          * 文件处于上传错误状态时触发
@@ -165,7 +166,7 @@ KISSY.add(function (S, Node, Theme) {
                     '<img class="J_Pic_{id} preview-img" src="" />' +
                 '</div>' +
                 '<div class=" J_Mask_{id} pic-mask"></div>' +
-                '<div class="status-wrapper">' +
+                '<div class="status-wrapper J_StatusWrapper_{id}">' +
                     '<div class="status waiting-status">0%</div>' +
                     '<div class="status progress-status success-status J_Progress_{id}"></div > ' +
                     '<div class="status error-status">' +
