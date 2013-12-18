@@ -25,12 +25,11 @@ KISSY.add(function (S, Node, Theme) {
             //点击删除按钮
             $delBtn.on('click',self._delHandler,self);
         },
-        /**
-         * 删除文件后重新计算下上传数
-         * @private
-         */
         _removeHandler:function(){
-            this._setCount();
+            var self = this;
+            var uploader = self.get('uploader');
+            var $btn = uploader.get('target');
+            $btn.fadeIn(0.3);
         },
         /**
          * 文件处于开始上传状态时触发
