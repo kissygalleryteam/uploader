@@ -161,6 +161,6 @@ button::-moz-focus-inner {
 .native-uploader-queue .pic img {
   display: none;
   border: none;
-  width: 74px;
-  height: 74px;
+  width: 70px;
+  height: 70px;
 }
