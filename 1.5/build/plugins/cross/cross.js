@@ -542,9 +542,10 @@ KISSY.add('gallery/uploader/1.5/plugins/cross/cross',function(S, Node, Base,QR) 
             return config;
         },
         //mpp消息推送出图片数据后执行的回调
+        //data:{picUrls: Array[1], tfsUrls: Array[1], userId: 69738207}
         _xmppcallback:function(data){
             var self = this;
-            if(!S.isArray(data)) return false;
+            if(!S.isObject(data)) return false;
             S.log('mpp返回的文件数据是：');
             S.log(data);
             var qr = self.get('qr');
@@ -553,10 +554,10 @@ KISSY.add('gallery/uploader/1.5/plugins/cross/cross',function(S, Node, Base,QR) 
             var uploader = self.get('uploader');
             var queue = uploader.get('queue');
             var imageUrl = self.get('imageUrl');
-            S.each(data,function(file){
+            S.each(data.picUrls,function(url,i){
                 var result = {
-                    name:file.name,
-                    url:imageUrl + file.name
+                    name:data.tfsUrls[i],
+                    url:url
                 };
                 var file = queue.add(result);
                 file.result = result;

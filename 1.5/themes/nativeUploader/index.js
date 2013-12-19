@@ -24,6 +24,7 @@ KISSY.add(function (S, Node, Theme) {
             $delBtn.data('data-file',file);
             //点击删除按钮
             $delBtn.on('click',self._delHandler,self);
+            self.hideBtn();
         },
         _removeHandler:function(){
             var self = this;
@@ -62,7 +63,6 @@ KISSY.add(function (S, Node, Theme) {
             //获取服务器返回的图片路径写入到src上
             if(result) self._changeImageSrc(ev);
             self._setDisplayMsg(false,file);
-            self.hideBtn();
             $('.J_StatusWrapper_'+file.id).hide();
         },
          /**
@@ -119,7 +119,7 @@ KISSY.add(function (S, Node, Theme) {
             if(!max) return false;
             var queue = self.get('queue');
             //成功上传的文件数
-            var successFiles = queue.getFiles('success');
+            var successFiles = queue.get('files');
             var len = successFiles.length;
             if(len >= 3) $btn.fadeOut(0.3);
         },
