@@ -3,7 +3,7 @@
  * @author jianping.xwh<jianping.xwh@taobao.com>
  * @module native-uploader
  **/
-KISSY.add(function (S, Node,JSON,Base,Queue) {
+KISSY.add(function (S, Node,JSON,Base,Queue,JSON) {
     var EMPTY = '';
     var $ = Node.all;
     var status = {
@@ -41,6 +41,9 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
         initializer:function(){
             var self = this;
             var $srcNode = self.get('target');
+            if(WindVane && WindVane.api){
+                self.set('camera',WindVane.api.camera);
+            }
             if(!$srcNode.length){
                 S.log('srcNode节点不存在');
                 return false;
@@ -89,12 +92,14 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             return self;
         },
         //向队列添加文件
-        _addFile:function(path){
+        //path为图片在手机的本地路径
+        //url为在主客路径，用于图片预览
+        _addFile:function(path,url){
             var self = this;
             var queue = self.get('queue');
             var file = {
-                'name':path,
-                'file':{'name':path, 'type':'image/jpeg'}
+                "name":path,
+                "file":{"name":path,"url":"url", "type":"image/jpeg"}
             };
             queue.add(file);
             return self;
@@ -151,74 +156,27 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
         //选择照片
         select:function(){
             var self = this;
+            var camera = self.get('camera');
             var queryInterval;
-            var prevPaths = self.get('prevPaths');
-            var tparm = {
-                "path": prevPaths
-            };
-            var cparam = prevPaths ? tparm : '';
-            var $srcNode = self.get('target');
-
-            WindVane.call('MultiPhotoPicker','pick',cparam,function(result){
-                //result demo : {"path":["path1","path2"]}
-                var paths = result.path;
-                S.log(paths);
-                //将路径编码
-                paths = S.filter(paths,function(item){
-                    return decodeURIComponent(item);
-                });
-                var $path;
-                var pathtext;
-                S.each(paths,function(p,i){
-                    if(prevPaths && prevPaths.indexOf(p) > -1){
-                        return true;
-                    }
-                    self._addFile(p);
-                })
-                self.set('prevPaths',paths);
-                //查询上传状态
-                !queryInterval && (queryInterval = setInterval(function(){
-                    self.updateStatus(paths,queryInterval);
-                },300));
-            },function(result){
-
-            });
-        },
-        //更新照片状态
-        //paths demo: {"path":["path1","path2"]}
-        //queryInterval 查询定时器
-        updateStatus:function(paths,queryInterval){
-            var self = this;
-            if(!S.isArray(paths) || !paths.length) return false;
-            //将路径参数传递给native
-            var tparm = {};
-            tparm['path'] = paths;
-            var cparam = paths ? tparm : '';
-            WindVane.call('MultiPhotoPicker','status_query',cparam,function(result){
-                var $path;
-                //demo :  {"path1":{"status":"1","remote":{"key":"value"},"percentage":"23"},"path2":{xxxx}}
-                /*status= -1:失败 1:上传中   2:成功
-                 remote：上传成功后mtop接口返回的data字段
-                 percentage:上传百分比
-                 */
-                S.each(result,function(p,k){
-                    if(p.status == 2){
-                        self._success(p.remote.resourceUri,k);
-                        clearInterval(queryInterval);
-                        queryInterval = null;
-                    }
-                    else if(p.status == 1){
-                        self._progress(p.percentage,k);
-                    }
-                    else if(p.status == -1){
-                        self._error('上传失败',k);
-                        clearInterval(queryInterval);
-                    }
-                })
-
-            },function(result){
-
-            });
+            //处理是否自动上传
+            var autoUpload = self.get('autoUpload');
+            var type = autoUpload && 1 || 0;
+            var localPath;
+            camera.takePhoto(function(e){
+                //demo:{url:"",localPath:"",resourceURL:""}
+                //url: 访问URL，页面将此URL填写给img的src属性，用于进行页面的预览，该URL非真实的CDN URL，浏览器无法访问
+                var url = e.url;
+                //localPath: 本地文件路径，该路径可以用于后续的上传过程
+                localPath = e.localPath;
+                //resourceURL: 上传到TFS后的回传CDN地址，该地址可以在浏览器里真实访问
+                var resourceURL = e.resourceURL;
+                //添加文件
+                self._addFile(localPath,url);
+                self._success(resourceURL,localPath);
+            },function(e){
+                S.log(JSON.stringify(e));
+                self._error('上传失败',localPath);
+            },{type:type});
         }
     },{
         ATTRS:{
@@ -234,8 +192,12 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             //主题实例
             theme:{ value:EMPTY },
             //队列实例
-            queue:{value:EMPTY}
+            queue:{value:EMPTY},
+            //lib-windvane api的对象
+            camera:{value:EMPTY},
+            //自动上传
+            autoUpload:{value:true}
         }
     });
-}, {requires:['node','json','base','./queue']});
+}, {requires:['node','json','base','./queue','json']});
 
