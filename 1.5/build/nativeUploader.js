@@ -535,6 +535,7 @@ KISSY.add('gallery/uploader/1.5/nativeUploader',function (S, Node,JSON,Base,Queu
             var uris = url.split('/');
             var name = uris[uris.length - 1];
             var ev = {file:file,index:index,result:{url:url,name:name}};
+            file.result = ev.result;
             queue.fileStatus(index, status.SUCCESS, ev);
             self.fire(event.SUCCESS, ev);
             return self;
