@@ -2,6 +2,8 @@
  * @fileoverview 在主客户端使用，调用native的上传组件实现图片上传功能
  * @author jianping.xwh<jianping.xwh@taobao.com>
  * @module native-uploader
+ * @参考： http://confluence.taobao.ali.com/pages/viewpage.action?pageId=200209347
+ * 感谢玉门同学帮忙修正了几处严重bug
  **/
 KISSY.add(function (S, Node,JSON,Base,Queue) {
     var EMPTY = '';
@@ -37,6 +39,23 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
         REMOVE:'remove'
     };
 
+    var queryInterval = null;// 保证一次交互只开一个轮询，1：保证性能；2：保证并发逻辑；  跟罗睺沟通过的结果
+    //打印日志
+    function Log(content, clear){
+        var log = $('#Log');
+        if( clear === true ){
+            log.html('');
+        }
+        if( log.length == 0 ){
+            return ;
+        }
+        if( typeof content != 'string' ){
+            content = JSON.stringify(content);
+        }
+
+        log.html( log.html() + '<br>' + content)
+    }
+
     return Base.extend({
         initializer:function(){
             var self = this;
@@ -63,11 +82,23 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             });
             //监听队列的删除事件
             queue.on('remove', function (ev) {
+                var prevPaths = self.get('prevPaths');
+
+                var deleteFileSrc = [prevPaths[ev.index]];
+                self._deleteOneFile(deleteFileSrc);
+
+                prevPaths.splice(ev.index, 1);
+                self.set('prevPaths', prevPaths);
                 self.fire(event.REMOVE,ev);
             });
             self.set('queue', queue);
             return queue;
         },
+
+        _deleteOneFile: function(src){
+            WindVane.call('MultiPhotoPicker', 'delete', src, function(){}, function(){});
+        },
+
         /**
          * 使用指定主题
          * @param {Theme} oTheme 主题类
@@ -163,6 +194,10 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                 //result demo : {"path":["path1","path2"]}
                 var paths = result.path;
                 S.log(paths);
+                if( !S.isArray(paths) ){
+                    paths = [paths];
+                }
+                // Log(paths);
                 //将路径编码
                 paths = S.filter(paths,function(item){
                     return decodeURIComponent(item);
@@ -175,17 +210,28 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                 })
                 self.set('prevPaths',paths);
                 //查询上传状态
-                !queryInterval && (queryInterval = setInterval(function(){
-                    self.updateStatus(paths,queryInterval);
-                },300));
-            },function(result){
+                queryInterval && clearInterval(queryInterval);
+                queryInterval = setInterval(function(){
+                    self.updateStatus(paths, function(){
+                        queryInterval && clearInterval(queryInterval);
+                        queryInterval = null;
+                    });
+                },300);
 
-            });
+                // 兜底
+                setTimeout(function(){
+                    if( queryInterval ){
+                        // alert(queryInterval)
+                        queryInterval && clearInterval(queryInterval);
+                        queryInterval = null;
+                    }
+                }, 10000);
+            },function(){});var isPass = len <= max;
         },
         //更新照片状态
         //paths demo: {"path":["path1","path2"]}
         //queryInterval 查询定时器
-        updateStatus:function(paths,queryInterval){
+        updateStatus:function(paths,queryIntervalHandler){
             var self = this;
             if(!S.isArray(paths) || !paths.length) return false;
             //将路径参数传递给native
@@ -193,29 +239,51 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
             tparm['path'] = paths;
             var cparam = paths ? tparm : '';
             WindVane.call('MultiPhotoPicker','status_query',cparam,function(result){
+                // Log(' ', true);
+                // Log('===');
+                // Log(result);
+                // Log('===');
                 var $path;
                 //demo :  {"path1":{"status":"1","remote":{"key":"value"},"percentage":"23"},"path2":{xxxx}}
                 /*status= -1:失败 1:上传中   2:成功
                  remote：上传成功后mtop接口返回的data字段
                  percentage:上传百分比
                  */
+                // $('#J_Urls2').html('').css('background', '#' + parseInt(Math.random() * 1000000));
+                //是否空队列
+                var queue_len = 0;
                 S.each(result,function(p,k){
+                    ++queue_len;
                     if(p.status == 2){
+                        // Log('uploader success:');
+                        // Log(p);
                         self._success(p.remote.resourceUri,k);
-                        clearInterval(queryInterval);
-                        queryInterval = null;
+                        // $('#J_Urls2').html( $('#J_Urls2').html() + '<img src="'+ p.remote.resourceUri + '" width="100" height="100" data-path="' + k + '">');
+                        --queue_len;
                     }
                     else if(p.status == 1){
                         self._progress(p.percentage,k);
                     }
                     else if(p.status == -1){
-                        self._error('上传失败',k);
-                        clearInterval(queryInterval);
+                        self._error('上传失败了,请删除下重试吧',k);
+                        --queue_len;
+                        self._deleteOneFile(k); //
                     }
-                })
+                    else{
+                        // 服务器问题
+                        self._error('上传失败了,请删除下重试吧',k);
+                        --queue_len;
+                        self._deleteOneFile(k); //
+                    }
+                });
+
+                //空队列
+                if( queue_len == 0 ){
+                    queryIntervalHandler && queryIntervalHandler();
+                }
 
             },function(result){
-
+                queryIntervalHandler && queryIntervalHandler();
             });
         }
     },{
