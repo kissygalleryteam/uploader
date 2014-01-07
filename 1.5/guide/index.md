@@ -4,6 +4,8 @@
 
 1.5新增跨终端上传的支持，详细请看[《再谈跨终端上传实现》](http://www.atatech.org/article/detail/11802/786)，用到淘宝服务，资料放在内网。
 
+1.5新增淘宝主客户端上传组件：[NativeUploader](http://www.atatech.org/article/detail/12316/786)（内网资料，外部无法使用，基于WindVane环境）
+
 1.5的changelog请看[github](https://github.com/kissygalleryteam/uploader)。
 
 ## 综述
