@@ -220,7 +220,7 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                         queryInterval && clearInterval(queryInterval);
                         queryInterval = null;
                     });
-                },300);
+                },500);
 
                 // 兜底
                 setTimeout(function(){
@@ -230,7 +230,7 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                         queryInterval = null;
                     }
                 }, 10000);
-            },function(){});var isPass = len <= max;
+            },function(){});
         },
         //更新照片状态
         //paths demo: {"path":["path1","path2"]}
