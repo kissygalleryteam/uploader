@@ -478,7 +478,11 @@ KISSY.add('gallery/uploader/1.5/nativeUploader',function (S, Node,JSON,Base,Queu
             }
             self._renderQueue();
             $srcNode.on('click',function(){
-                self.select();
+                if (window.navigator.userAgent.match(/WindVane/i)) {
+                    self.select();
+                }else{
+                    alert('非常抱歉，上传功能只能在淘宝客户端中使用T_T');
+                }
             })
         },
         /**
@@ -666,10 +670,10 @@ KISSY.add('gallery/uploader/1.5/nativeUploader',function (S, Node,JSON,Base,Queu
                 var queue_len = 0;
                 S.each(result,function(p,k){
                     ++queue_len;
-                    if(p.status == 2){
+                    if(p.status == 2 || p.status == 0){
                         // Log('uploader success:');
                         // Log(p);
-                        self._success(p.remote.resourceUri,k);
+                        p.remote.resourceUri && self._success(p.remote.resourceUri,k);
                         // $('#J_Urls2').html( $('#J_Urls2').html() + '<img src="'+ p.remote.resourceUri + '" width="100" height="100" data-path="' + k + '">');
                         --queue_len;
                     }
