@@ -32,10 +32,15 @@
         nativeUploader.theme(new nativeTheme({
             queueTarget:'#J_UploaderQueue'
         }));
-        nativeUploader.plug(new UrlsInput({target:'#J_Urls',useName:"true"}));
+        nativeUploader.plug(new UrlsInput({target:'#J_Urls',useName:true}));
         nativeUploader.plug(new Auth({
-            max:3
+            max:5
         }));
+        nativeUploader._addFile('1.jpg');
+        nativeUploader._addFile('2.jpg');
+        nativeUploader._addFile('3.jpg');
+        nativeUploader._addFile('4.jpg');
+        nativeUploader._addFile('5.jpg');
 /*        nativeUploader._addFile('1.jpg');
         S.later(function(){
             nativeUploader._progress(50,'1.jpg')

@@ -1,15 +1,7 @@
 {
     "name": "uploader",
-    "comName":"Uploader",
-    "version": "1.0",
-    "desc": "",
-    "tag":"",
-    "githubName":"",
-    "author": {
-        "name": "明河",
-        "email": "minghe36@126.com",
-        "page": ""
-    },
-    "type": "kissy-gallery",
-    "type-url": "http://gallery.kissyui.com/guide"
+    "version":"1.5",
+    "author":{"name":"明河","email":"minghe36@126.com","page":"https://github.com/minghe"},
+    "cover":"http://img02.taobaocdn.com/tps/i2/T1C1X_Xs8gXXcd0fwt-322-176.png",
+    "desc":"异步文件上传组件"
 }
