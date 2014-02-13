@@ -445,7 +445,7 @@ KISSY.add('gallery/uploader/1.5/themes/nativeUploader/index',function (S, Node, 
             //成功上传的文件数
             var successFiles = queue.get('files');
             var len = successFiles.length;
-            if(len >= 3) $btn.fadeOut(0.3);
+            if(len >= max) $btn.fadeOut(0.3);
         },
         /**
          * 获取成功上传的图片张数，不传参的情况获取成功上传的张数
