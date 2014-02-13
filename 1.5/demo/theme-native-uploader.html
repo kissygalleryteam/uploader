@@ -18,7 +18,7 @@
     <li class="J_NativeUploader g-u uploader-up">
         <label class="uploader-label">
             <p>上传凭证</p>
-            <small>（最多3张）</small>
+            <small>（最多5张）</small>
         </label>
     </li>
 </ul>
@@ -36,11 +36,6 @@
         nativeUploader.plug(new Auth({
             max:5
         }));
-        nativeUploader._addFile('1.jpg');
-        nativeUploader._addFile('2.jpg');
-        nativeUploader._addFile('3.jpg');
-        nativeUploader._addFile('4.jpg');
-        nativeUploader._addFile('5.jpg');
 /*        nativeUploader._addFile('1.jpg');
         S.later(function(){
             nativeUploader._progress(50,'1.jpg')
