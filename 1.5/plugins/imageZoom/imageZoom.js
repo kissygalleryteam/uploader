@@ -77,7 +77,7 @@ KISSY.add(function(S, Node, Base,Albums) {
         }
     }});
     return ImageZoom;
-}, {requires : ['node','base','gallery/albums/1.0/']});
+}, {requires : ['node','base','gallery/albums/1.1/']});
 /**
  * changes:
  * 明河：1.4

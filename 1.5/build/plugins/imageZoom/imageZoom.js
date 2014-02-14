@@ -83,7 +83,7 @@ KISSY.add('gallery/uploader/1.5/plugins/imageZoom/imageZoom',function(S, Node, B
         }
     }});
     return ImageZoom;
-}, {requires : ['node','base','gallery/albums/1.0/']});
+}, {requires : ['node','base','gallery/albums/1.1/']});
 /**
  * changes:
  * 明河：1.4
