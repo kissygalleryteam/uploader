@@ -140,7 +140,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             var $btn = self.get('target');
             if (!$btn.length) return false;
             //渲染模拟按钮
-            var text = $btn[0].defaultValue || '上传文件';
+            var text = $btn[0].defaultValue || self.get('text');
             var btnHtml = S.substitute(self.get('btnTpl'), {text:text});
             var $aBtn = $(btnHtml).insertAfter($btn);
             //将按钮上name配置到属性上（Button实例必须用到）
@@ -595,7 +595,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 var index = queue.getFileIndex(id);
                 //改变文件状态为成功
                 queue.fileStatus(index, 'success', {index:index, id:id, file:queueFile});
-                //触发uploader的监听器，给
+                //触发uploader的监听器
                 self.fire('success',{file:queueFile,result:queueFile.result});
             });
         }
@@ -612,6 +612,12 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 return $(v);
             }
         },
+        /**
+         * 上传按钮上的文案，会优先选取元素的value
+         * @since 1.5
+         * @default ""
+         */
+        text:{value:'上传文件'},
         /**
          * 文件域
          * @type NodeList
