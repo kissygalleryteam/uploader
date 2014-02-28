@@ -412,9 +412,12 @@ KISSY.add(function (S, Node,Base) {
             var curFileIndex = uploader.get('curUploadIndex');
             if(curFileIndex == EMPTY || curFileIndex < max) return false;
             var files = queue.get('files');
-            uploader.stop();
+            //多选上传的情况下，超过max停止后面文件的上传
+            var successFiles = queue.getFiles('success');
+            if(successFiles.length > max) uploader.stop();
+
             S.each(files,function(file,index){
-                if(index >= curFileIndex){
+                if(index > curFileIndex){
                     queue.remove(file.id);
                 }
             })

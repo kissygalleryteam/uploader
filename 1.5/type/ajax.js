@@ -54,7 +54,6 @@ KISSY.add(function(S, Node, UploadType,io) {
          * @return {AjaxType}
          */
         stop : function() {
-            debugger;
             var self = this,ajax = self.get('ajax');
             if (!S.isObject(ajax)) {
                 S.log(LOG_PREFIX + 'stop()，io值错误！');
