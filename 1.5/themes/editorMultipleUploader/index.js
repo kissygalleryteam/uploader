@@ -150,4 +150,4 @@ KISSY.add(function (S, Node, Theme) {
         }
     }});
     return EditorMultipleUploader;
-}, {requires:['node', 'gallery/uploader/1.5/theme']});
+}, {requires:['node', '../../theme']});
