@@ -69,7 +69,7 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                 if (window.navigator.userAgent.match(/WindVane/i)) {
                     self.select();
                 }else{
-                    alert('非常抱歉，上传功能只能在淘宝客户端中使用T_T');
+                    self.fire('no-windVane');
                 }
             })
         },
