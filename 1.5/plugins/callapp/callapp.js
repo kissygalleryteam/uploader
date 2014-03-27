@@ -22,26 +22,17 @@ KISSY.add(function(S, Node, Base) {
          */
         pluginInitializer : function(uploader) {
             var self = this;
-            if(!lib || !lib.smartbanner){
-                alert(self.get('noSupport'));
-                return false;
-            }
             if(!uploader) return false;
             uploader.on('no-windVane',function(){
+                if(!lib || !lib.callapp){
+                    alert(self.get('noSupport'));
+                    return false;
+                }
                 var msg = self.get('msg');
-                var sb = lib.smartbanner;
+                var cp = lib.callapp;
                 if(confirm(msg)){
-                    var href = self.get('url');
-                    var config = { "href": href };
-                    var downloadUrl = self.get('downloadUrl');
-                    if(downloadUrl){
-                        S.mix(config,{
-                            url:downloadUrl
-                        })
-                    }
-                    sb(config);
-                    sb.redirect();
-                    self.set('sb',sb);
+                    var url = self.get('url');
+                    cp.gotoPage(url);
                 }
             })
         }
@@ -59,14 +50,8 @@ KISSY.add(function(S, Node, Base) {
         url:{
             value:'',
             getter:function(v){
-                return this.get('webview')+v;
+                return this.get('webview')+encodeURIComponent(v);
             }
-        },
-        /**
-         * 下载页面地址
-         */
-        downloadUrl:{
-            value:''
         },
         msg:{value:'上传功能只能在淘宝客户端中使用，是否跳转到客户端？'},
         noSupport:{value:'非常抱歉，上传功能只能在淘宝客户端中使用T_T'},

@@ -9,7 +9,8 @@
     <meta name="format-detection" content="telephone=no" />
     <link rel="apple-touch-icon-precomposed" href="http://a.tbcdn.cn/mw/s/hi/tbtouch/images/touch-icon.png" />
     <script src="http://g.tbcdn.cn/kissy/k/1.4.0/seed-min.js"></script>
-    <script src="http://g.tbcdn.cn/mtb/??lib-windvane/1.2.3/api.js,lib-windvane/1.2.3/bridge.js,lib-smartbanner/0.2.11/smartbanner.js"></script>
+    <script src="http://g.tbcdn.cn/mtb/??lib-windvane/1.2.3/api.js,lib-windvane/1.2.3/bridge.js"></script>
+    <script src="http://g.tbcdn.cn/mtb/??lib-env/1.1.10/env.debug.js,lib-httpurl/1.1.4/httpurl.debug.js,lib-callapp/1.0.18/callapp.debug.js"></script>
 </head>
 <body>
 <h2>NativeUploader的demo</h2>
@@ -52,7 +53,7 @@
             max:5
         }));
         nativeUploader.plug(new Callapp({
-            url:'http://m.taobao.com'
+            url:'http://m.taobao.com/apply.html'
         }));
 /*        nativeUploader._addFile('1.jpg');
         S.later(function(){
