@@ -46,7 +46,7 @@ KISSY.add('gallery/uploader/1.5/plugins/callapp/callapp',function(S, Node, Base)
                         })
                     }
                     sb(config);
-                    sb.redirect();
+                    sb.install();
                     self.set('sb',sb);
                 }
             })
