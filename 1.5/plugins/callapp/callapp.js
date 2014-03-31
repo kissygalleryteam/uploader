@@ -44,15 +44,10 @@ KISSY.add(function(S, Node, Base) {
         pluginId:{
             value:'callapp'
         },
-        webview:{
-            value:'taobaowebview://m.taobao.com/?weburl='
-        },
-        url:{
-            value:'',
-            getter:function(v){
-                return this.get('webview')+encodeURIComponent(v);
-            }
-        },
+        /**
+         * 要跳转的url
+         */
+        url:{ value: '' },
         msg:{value:'上传功能只能在淘宝客户端中使用，是否跳转到客户端？'},
         noSupport:{value:'非常抱歉，上传功能只能在淘宝客户端中使用T_T'},
         /**
