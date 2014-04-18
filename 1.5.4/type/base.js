@@ -2,7 +2,7 @@
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add(function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -57,7 +57,7 @@ KISSY.add(function(S, Node, Base) {
      * @desc  上传失败后触发
      * @event
      */
-    //继承于Base，属性getter和setter委托于Base处理
+        //继承于Base，属性getter和setter委托于Base处理
     S.extend(UploadType, Base, /** @lends UploadType.prototype*/{
         /**
          * 上传文件
@@ -65,36 +65,37 @@ KISSY.add(function(S, Node, Base) {
         upload : function() {
 
         },
-        /** 
+        /**
          * 停止上传
          */
         stop : function(){
-            
+
         },
         /**
          * 处理服务器端返回的结果集
          * @private
          */
-                    _processResponse:function(responseText){
-                        var self = this;
-                        var result = {};
-                        if(filter != EMPTY) responseText = filter.call(self,responseText);
-                        //格式化成json数据
-                        if(S.isString(responseText)){
-                            try{
-                                result = S.JSON.parse(responseText);
-                                result = self._fromUnicode(result);
-                            }catch(e){
-                                var msg = responseText + '，返回结果集responseText格式不合法！';
-                                S.log(msg);
-                    self.fire('error',{status:-1, result:{msg:msg}});
+        _processResponse:function(responseText){
+            var self = this;
             var filter = self.get('filter');
+            var result = {};
+            //格式化成json数据
+            if(S.isString(responseText)){
+                try{
+                    result = S.JSON.parse(responseText);
+                    if(filter != EMPTY) result = filter.call(self,responseText);
+                    result = self._fromUnicode(result);
+                }catch(e){
+                    var msg = responseText + '，返回结果集responseText格式不合法！';
+                    S.log(msg);
+                    self.fire('error',{status:-1, result:{msg:msg}});
+                }
+            }else if(S.isObject(responseText)){
+                if(filter != EMPTY) result = filter.call(self,responseText);
+                result = self._fromUnicode(responseText);
             }
-        }else if(S.isObject(responseText)){
-            result = self._fromUnicode(responseText);
-            }
-            return result;
             S.log('服务器端输出：' + S.JSON.stringify(result));
+            return result;
         },
         /**
          * 将unicode的中文转换成正常显示的文字，（为了修复flash的中文乱码问题）

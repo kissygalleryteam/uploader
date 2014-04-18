@@ -2,12 +2,17 @@
 
  异步文件上传组件，支持ajax、iframe、flash三种上传方案，自带多套主题，并允许用户自定义主题和插件，拥有相当不错的扩展性。
 
-- 版本：1.5（基于kissy1.3，兼容kissy1.2）
+- 版本：1.5.4（基于kissy1.4.2）
 - 作者：明河、紫英、飞绿
-- <a href="http://gallery.kissyui.com/uploader/1.5/guide/index.html" target="_blank">uploader入门指南</a>
-- <a href="http://butterfly.36ria.com/uploader/1.5/demo/js-config-use.html" target="_blank">一个简单的demo</a>
+- <a href="http://gallery.kissyui.com/uploader/1.5.4/guide/index.html" target="_blank">uploader入门指南</a>
+- <a href="http://butterfly.36ria.com/uploader/1.5.4/demo/js-config-use.html" target="_blank">一个简单的demo</a>
 
 ## 组件变更
+
+### V1.5.4 change
+    [!] #130 修正filter无效的bug
+    [!] #130 filter接受的数据改成json对象
+    [!] #130 增加timeout配置
 
 ### V1.5.3 change
 

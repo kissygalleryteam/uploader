@@ -234,6 +234,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             ajax.then(function(data){
                 //upload success
                 var result = data[0];
+                self._processResponse(result);
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
             },function(data){
