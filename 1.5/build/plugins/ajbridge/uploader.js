@@ -14,7 +14,7 @@ build time: Sep 11 10:29
  * AJBridge Class
  * @author kingfo oicuicu@gmail.com
  */
-KISSY.add('gallery/uploader/1.5/plugins/ajbridge/ajbridge',function(S,Flash) {
+KISSY.add('gallery/uploader/1.5/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
 
     var ID_PRE = '#',
         VERSION = '1.0.15',
@@ -124,7 +124,7 @@ KISSY.add('gallery/uploader/1.5/plugins/ajbridge/ajbridge',function(S,Flash) {
         }
     });
 
-    S.augment(AJBridge, S.EventTarget, {
+    S.augment(AJBridge, Event.Target, {
 
         init: function() {
 			if(!this.__args)return;
@@ -180,7 +180,7 @@ KISSY.add('gallery/uploader/1.5/plugins/ajbridge/ajbridge',function(S,Flash) {
     window.AJBridge = S.AJBridge = AJBridge;
 
     return AJBridge;
-}, { requires:["gallery/flash/1.0/index"] });
+}, { requires:["gallery/flash/1.0/index",'event'] });
 /**
  * NOTES:
  * 20120117 移植成kissy1.2.0的模块（明河修改）

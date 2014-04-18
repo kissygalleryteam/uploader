@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>只使用flash上传的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h2>只使用flash上传的demo</h2>
+
+<div class="grid">
+    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="Filedata" >
+    <input type="hidden" id="J_Urls" name="urls" value="" />
+</div>
+<ul id="J_UploaderQueue" class="grid">
+
+</ul>
+<div class="btn-wrapper">
+    <input value="1" type="checkbox" class="J_Field" id="J_AutoUpload" checked> <label>自动上传</label>
+    <input value="1" type="checkbox" class="J_Field" id="J_Multiple" checked> <label>多选上传</label>
+    <input value="1" type="checkbox" class="J_Field" id="J_UploadDisabled"> <label>禁用上传按钮</label>
+    <input value="1" type="checkbox" class="J_Field" id="J_FileFilters"> <label>只允许上传png图片</label>
+</div>
+<p>flash上传必须在服务器根目录上带有<a href="">crossdomain.xml</a>在chrome和firefox下可能存在session丢失的问题，建议在基于webkit的浏览器下使用ajax上传</p>
+<script>
+    var S = KISSY;
+    if (S.Config.debug) {
+        var srcPath = "../../../../";
+        S.config({
+            packages:[
+                {
+                    name:"gallery",
+                    path:srcPath,
+                    charset:"utf-8"
+                }
+            ]
+        });
+    }
+
+    S.use('gallery/uploader/1.5.4/index,gallery/uploader/1.5.4/themes/default/index,gallery/uploader/1.5.4/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+        //上传组件插件
+        var plugins = 'gallery/uploader/1.5.4/plugins/auth/auth,' +
+                'gallery/uploader/1.5.4/plugins/urlsInput/urlsInput,' +
+                'gallery/uploader/1.5.4/plugins/proBars/proBars';
+
+        S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview){
+            var flashUploader = new Uploader('#J_UploaderBtn', {
+                // 上传方式切成flash
+                type:"flash",
+                //手动控制flash的尺寸
+                swfSize:{"width":200, "height":25},
+                action:"upload.php"
+            });
+            //使用主题
+            flashUploader.theme(new DefaultTheme({
+                queueTarget:'#J_UploaderQueue'
+            }))
+            //验证插件
+            flashUploader.plug(new Auth({
+                        //最多上传个数
+                        max:3,
+                        //图片最大允许大小
+                        maxSize:100
+                    }))
+                    //url保存插件
+                    .plug(new UrlsInput({target:'#J_Urls'}))
+                    //进度条集合
+                    .plug(new ProBars({width:100}))
+            ;
+
+            var $ = S.Node.all;
+            var Event = S.Event;
+
+            S.later(function(){
+                //触发多选框的change事件，改变组件配置
+                Event.fire('.J_Field', 'change');
+            },100);
+
+            $('#J_AutoUpload').on('change', function (ev) {
+                var checked = $(ev.target).prop('checked');
+                flashUploader.set('autoUpload', checked);
+            });
+            $('#J_UploadDisabled').on('change', function (ev) {
+                var checked = $(ev.target).prop('checked');
+                flashUploader.set('disabled', checked);
+            });
+            $('#J_Multiple').on('change', function (ev) {
+                var checked = $(ev.target).prop('checked');
+                flashUploader.set('multiple', checked);
+            });
+            $('#J_FileFilters').on('change', function (ev) {
+                var checked = $(ev.target).prop('checked');
+                var auth = flashUploader.getPlugin('auth');
+                if (checked) {
+                    auth.set('allowExts', 'png');
+                } else {
+                    auth.set('allowExts', 'jpg,jpeg,png,gif,bmp');
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>
