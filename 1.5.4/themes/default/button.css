@@ -1,0 +1,44 @@
+.defaultTheme-button {
+  border: 1px solid #C4DAED;
+  font-size: 12px;
+  text-align: center;
+  line-height: 24px;
+  display: block;
+  position: relative;
+  width: 110px;
+  z-index: 500;
+  margin-right: 10px;
+  text-decoration: none;
+  /*渐变*/
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdfefe), to(#dfe7ef));
+  background: -moz-linear-gradient(top, #fdfefe, #dfe7ef);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FDFEFE', endColorstr = '#DFE7EF');
+}
+.defaultTheme-button .file-input-wrapper {
+  height: 26px;
+  width: 110px;
+}
+.defaultTheme-button:link,
+.defaultTheme-button:visited {
+  color: #404040;
+}
+.defaultTheme-button-hover,
+.defaultTheme-button:hover {
+  text-decoration: none;
+  color: black;
+  background: -webkit-gradient(linear, left top, left bottom, from(#dfe7ef), to(#fdfefe));
+  background: -moz-linear-gradient(top, #dfe7ef, #fdfefe);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#DFE7EF', endColorstr = '#FDFEFE');;
+}
+.defaultTheme-button:active {
+  background: #DFE7EF;
+  filter: none;
+}
+.uploader-button-disabled,
+.uploader-button-disabled:hover {
+  border: 1px solid #BFBFBF;
+  color: #404040;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e5e5e5));
+  background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FAFAFA', endColorstr = '#E5E5E5');;
+}
