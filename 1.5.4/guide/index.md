@@ -1,4 +1,4 @@
-1.5已经正式发布，欢迎使用。
+1.5.4测试中，请勿使用，可以使用[v1.5](http://gallery.kissyui.com/uploader/1.5/guide/index.html)
 
 阿里的应用，直接使用通用接口即可，直接复制代码可用，详细请看[AliUploader](http://www.atatech.org/article/detail/11632/348)（为了接口安全，使用内网地址）。使用通用接口的同学请将应用名发给剑平。
 
