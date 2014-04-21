@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-gallery/uploader/1.5.4/type/base
+gallery/uploader/1.5/type/base
 gallery/uploader/1.5.4/type/iframe
 gallery/uploader/1.5.4/type/ajax
 gallery/uploader/1.5.4/type/flash
@@ -17,7 +17,7 @@ gallery/uploader/1.5.4/index
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -72,7 +72,7 @@ KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
      * @desc  上传失败后触发
      * @event
      */
-    //继承于Base，属性getter和setter委托于Base处理
+        //继承于Base，属性getter和setter委托于Base处理
     S.extend(UploadType, Base, /** @lends UploadType.prototype*/{
         /**
          * 上传文件
@@ -80,11 +80,11 @@ KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
         upload : function() {
 
         },
-        /** 
+        /**
          * 停止上传
          */
         stop : function(){
-            
+
         },
         /**
          * 处理服务器端返回的结果集
@@ -94,11 +94,11 @@ KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
             var self = this;
             var filter = self.get('filter');
             var result = {};
-            if(filter != EMPTY) responseText = filter.call(self,responseText);
             //格式化成json数据
             if(S.isString(responseText)){
                 try{
                     result = S.JSON.parse(responseText);
+                    if(filter != EMPTY) result = filter.call(self,responseText);
                     result = self._fromUnicode(result);
                 }catch(e){
                     var msg = responseText + '，返回结果集responseText格式不合法！';
@@ -106,6 +106,7 @@ KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
                     self.fire('error',{status:-1, result:{msg:msg}});
                 }
             }else if(S.isObject(responseText)){
+                if(filter != EMPTY) result = filter.call(self,responseText);
                 result = self._fromUnicode(responseText);
             }
             S.log('服务器端输出：' + S.JSON.stringify(result));
@@ -624,6 +625,7 @@ KISSY.add('gallery/uploader/1.5.4/type/ajax',function(S, Node, UploadType,io) {
             ajax.then(function(data){
                 //upload success
                 var result = data[0];
+                self._processResponse(result);
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
             },function(data){
@@ -3035,7 +3037,20 @@ KISSY.add('gallery/uploader/1.5.4/index',function (S, Node, RichBase,JSON,UA,Ifr
         /**
          * 是否跨域
          */
-        CORS:{value:false}
+        CORS:{value:false},
+        /**
+         * 超时时间，默认10分钟
+         * @since V1.5.4
+         */
+        timeout:{
+            value:600,
+            setter:function(v){
+                var self = this;
+                var uploadType = self.get('uploadType');
+                if (uploadType && !S.isEmptyObject(uploadType))uploadType.set('timeout', v);
+                return v;
+            }
+        }
     }}, 'Uploader');
     S.mix(Uploader, /** @lends Uploader*/{
         /**
