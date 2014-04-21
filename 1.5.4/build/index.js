@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-gallery/uploader/1.5/type/base
+gallery/uploader/1.5.4/type/base
 gallery/uploader/1.5.4/type/iframe
 gallery/uploader/1.5.4/type/ajax
 gallery/uploader/1.5.4/type/flash
@@ -17,7 +17,7 @@ gallery/uploader/1.5.4/index
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('gallery/uploader/1.5/type/base',function(S, Node, Base) {
+KISSY.add('gallery/uploader/1.5.4/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
