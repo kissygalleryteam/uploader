@@ -625,7 +625,7 @@ KISSY.add('gallery/uploader/1.5.4/type/ajax',function(S, Node, UploadType,io) {
             ajax.then(function(data){
                 //upload success
                 var result = data[0];
-                self._processResponse(result);
+                result = self._processResponse(result);
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
             },function(data){
@@ -2496,8 +2496,8 @@ KISSY.add('gallery/uploader/1.5.4/index',function (S, Node, RichBase,JSON,UA,Ifr
             var uploadType = new UploadType(serverConfig);
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
-            uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHanlder, self);
-            uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHanlder, self);
+            uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHandler, self);
+            uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHandler, self);
             //监听上传器上传进度事件
             if (uploaderTypeEvent.PROGRESS) uploadType.on(uploaderTypeEvent.PROGRESS, self._uploadProgressHandler, self);
             //监听上传器上传停止事件
@@ -2642,7 +2642,7 @@ KISSY.add('gallery/uploader/1.5.4/index',function (S, Node, RichBase,JSON,UA,Ifr
         /**
          * 当上传完毕后返回结果集的处理
          */
-        _uploadCompleteHanlder:function (ev) {
+        _uploadCompleteHandler:function (ev) {
             var self = this, result = ev.result, status, event = Uploader.event,
                 queue = self.get('queue'), index = self.get('curUploadIndex');
             if (!S.isObject(result)) return false;

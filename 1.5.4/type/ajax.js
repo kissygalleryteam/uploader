@@ -234,7 +234,7 @@ KISSY.add(function(S, Node, UploadType,io) {
             ajax.then(function(data){
                 //upload success
                 var result = data[0];
-                self._processResponse(result);
+                result = self._processResponse(result);
                 //上传完成，派发success事件
                 self.fire(AjaxType.event.SUCCESS, {result : result});
             },function(data){
@@ -359,6 +359,8 @@ KISSY.add(function(S, Node, UploadType,io) {
 }, {requires:['node','./base','ajax']});
 /**
  * changes:
+ * 明河：1.5.4
+ *           - [!]修正filter无效的问题
  * 明河：1.5
  *           - [+]重构模块
  *           - [+]增加分段上传支持

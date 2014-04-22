@@ -301,8 +301,8 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             var uploadType = new UploadType(serverConfig);
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
-            uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHanlder, self);
-            uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHanlder, self);
+            uploadType.on(uploaderTypeEvent.SUCCESS, self._uploadCompleteHandler, self);
+            uploadType.on(uploaderTypeEvent.ERROR, self._uploadCompleteHandler, self);
             //监听上传器上传进度事件
             if (uploaderTypeEvent.PROGRESS) uploadType.on(uploaderTypeEvent.PROGRESS, self._uploadProgressHandler, self);
             //监听上传器上传停止事件
@@ -447,7 +447,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
         /**
          * 当上传完毕后返回结果集的处理
          */
-        _uploadCompleteHanlder:function (ev) {
+        _uploadCompleteHandler:function (ev) {
             var self = this, result = ev.result, status, event = Uploader.event,
                 queue = self.get('queue'), index = self.get('curUploadIndex');
             if (!S.isObject(result)) return false;
