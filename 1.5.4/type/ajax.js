@@ -203,6 +203,7 @@ KISSY.add(function(S, Node, UploadType,io) {
                     if(uploadedBytes< size){
                         upload();
                     }else{
+                        result = self._processResponse(result);
                         //已经上传完成，派发success事件
                         self.fire(AjaxType.event.SUCCESS, {result : result});
                     }
