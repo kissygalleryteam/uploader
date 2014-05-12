@@ -211,8 +211,8 @@ KISSY.add(function (S, Node,JSON,Base,Queue) {
                         return true;
                     }
                     self._addFile(p);
+                    prevPaths.push(p);
                 })
-                self.set('prevPaths',paths);
                 //查询上传状态
                 queryInterval && clearInterval(queryInterval);
                 queryInterval = setInterval(function(){
