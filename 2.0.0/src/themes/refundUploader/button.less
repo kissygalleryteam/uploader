@@ -1,0 +1,49 @@
+.spirit(@left:0,@top:0){
+     background: @spiritUrl no-repeat scroll @left @top transparent;
+}
+.refundUploader-button{
+    width: @btnWidth;
+    height: @btnHeight;
+    line-height: @btnHeight;
+    overflow: hidden;
+    position: relative;
+
+    border: 1px solid @borderColor;
+    margin-right: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    color:@fontColor;
+    text-align: center;
+    .gradient(@gradientShallow,@gradientDeep);
+    .file-input-wrapper{
+        width: @btnWidth;
+        height: @btnHeight;
+    }
+}
+
+.refundUploader-button:hover {
+    color: #404040;
+    text-decoration: none;
+    .gradient(@gradientDeep,@gradientShallow);
+}
+.refundUploader-button:active{
+    .gradient(#E2F1FC,#E2F1FC);
+    outline: 0 none;
+}
+.uploader-button-disabled{
+    border: 1px solid #BFBFBF;
+    color: #404040;
+    .gradient(#FAFAFA,#E5E5E5);
+}
+.uploader-button-disabled:hover{
+    .gradient(#FAFAFA,#E5E5E5);
+}
+.upload-count-wrapper{
+    margin-top:4px;
+    color:#ccc;
+    em{
+        color:#999999;
+        font-style: normal;
+    }
+}
