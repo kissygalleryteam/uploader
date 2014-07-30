@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: SRC,
-                        src: [ './**/*.js' ],
+                        src: [ './*.js' ],
                         dest: 'build/'
                     }
                 ]
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 							'!build/**/*.less',   
 							'!demo/**/*.less'],
                         dest: './build/',
-                        ext: '.css'
+                        ext: '.less.css'
                     }
                 ]
             }
@@ -97,8 +97,7 @@ module.exports = function(grunt) {
 						src: [
 							'**/*.css',
 							'!build/**/*.css',
-							'!demo/**/*.css',
-                            '**/*.swf'
+							'!demo/**/*.css'
 						], 
 						dest: './build/', 
 						filter: 'isFile'
@@ -164,7 +163,7 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask('build', '默认构建任务', function() {
-		task.run(['clean:build', 'kmc','uglify', 'copy','cssmin']);
+		task.run(['clean:build', 'kmc','uglify', 'copy','less','cssmin']);
 	});
 
     return grunt.registerTask('default', '',function(type){
