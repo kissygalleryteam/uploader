@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/plugins/filedrop/filedrop
+kg/uploader/2.0.1/plugins/filedrop/filedrop
 
 */
 /**
  * @fileoverview  文件拖拽上传插件
  *  @author 飞绿
  */
-KISSY.add('kg/uploader/2.0.0/plugins/filedrop/filedrop',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/plugins/filedrop/filedrop',function (S, Node, Base) {
     var EMPTY = '',
         $ = Node.all,
         UA = S.UA;

@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/plugins/auth/auth
+kg/uploader/2.0.1/plugins/auth/auth
 
 */
 /**
  * @fileoverview 文件上传验证
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/plugins/auth/auth',function (S, Node,Base) {
+KISSY.add('kg/uploader/2.0.1/plugins/auth/auth',function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
     var ERROR_EVENT = 'error';

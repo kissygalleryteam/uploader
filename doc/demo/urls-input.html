@@ -88,7 +88,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.0",
+                    name:"kg/uploader/2.0.1",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -97,7 +97,7 @@
         });
     }
     //加载上传组件入口文件
-    KISSY.use('kg/uploader/2.0.0/index', function (S, RenderUploader) {
+    KISSY.use('kg/uploader/2.0.1/index', function (S, RenderUploader) {
         //第一个参数：按钮元素钩子，第二个参数：队列元素钩子
         var ru = new RenderUploader('#J_UploaderBtn', '#J_UploaderQueue');
         //对组件的后续操作务必放在init事件内，因为组件时可能需要异步加载模板

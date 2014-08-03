@@ -1,10 +1,10 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/plugins/mobileUploader/xmppUtil
+kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil
 
 */
-KISSY.add('kg/uploader/2.0.0/plugins/mobileUploader/xmppUtil',function(S){
+KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil',function(S){
 
     var XmppUtil = {
 

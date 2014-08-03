@@ -1,12 +1,12 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/plugins/mobileUploader/xmppUtil
-kg/uploader/2.0.0/plugins/mobileUploader/qrcode
-kg/uploader/2.0.0/plugins/mobileUploader/mobileUploader
+kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil
+kg/uploader/2.0.1/plugins/mobileUploader/qrcode
+kg/uploader/2.0.1/plugins/mobileUploader/mobileUploader
 
 */
-KISSY.add('kg/uploader/2.0.0/plugins/mobileUploader/xmppUtil',function(S){
+KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil',function(S){
 
     var XmppUtil = {
 
@@ -109,7 +109,7 @@ KISSY.add('kg/uploader/2.0.0/plugins/mobileUploader/xmppUtil',function(S){
     return XmppUtil;
 
 });
-KISSY.add('kg/uploader/2.0.0/plugins/mobileUploader/qrcode',function(S,Node, UA, XmppUtil){
+KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/qrcode',function(S,Node, UA, XmppUtil){
 
     var $=Node.all;
 
@@ -458,7 +458,7 @@ KISSY.add('kg/uploader/2.0.0/plugins/mobileUploader/qrcode',function(S,Node, UA,
  * @fileoverview 手机上传
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/plugins/mobileUploader/mobileUploader',function(S, Node, Base,QR) {
+KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/mobileUploader',function(S, Node, Base,QR) {
     var EMPTY = '';
     var $ = Node.all;
     var DAILY_API = 'http://img01.daily.taobaocdn.net/consult/';

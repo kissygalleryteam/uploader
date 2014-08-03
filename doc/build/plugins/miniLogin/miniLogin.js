@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/token
-kg/uploader/2.0.0/plugins/miniLogin/miniLogin
+kg/uploader/2.0.1/token
+kg/uploader/2.0.1/plugins/miniLogin/miniLogin
 
 */
 /**
  * _获取tokenֵ
  */
-KISSY.add('kg/uploader/2.0.0/token',function (S ,io) {
+KISSY.add('kg/uploader/2.0.1/token',function (S ,io) {
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
     var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
@@ -55,7 +55,7 @@ KISSY.add('kg/uploader/2.0.0/token',function (S ,io) {
  * @fileoverview mini登陆框（用于通用接口）
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
+KISSY.add('kg/uploader/2.0.1/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
     var EMPTY = '';
     var $ = Node.all;
 

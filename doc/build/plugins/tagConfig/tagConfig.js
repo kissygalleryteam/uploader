@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/plugins/tagConfig/tagConfig
+kg/uploader/2.0.1/plugins/tagConfig/tagConfig
 
 */
 /**
  * @fileoverview 从input上拉取配置覆盖组件配置
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/plugins/tagConfig/tagConfig',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/plugins/tagConfig/tagConfig',function(S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     var UPLOADER_OPTIONS = ['autoUpload','postData','action','multiple','multipleLen','uploadType','disabled'];
