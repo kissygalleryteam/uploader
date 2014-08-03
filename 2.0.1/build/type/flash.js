@@ -1,15 +1,15 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/type/base
-kg/uploader/2.0.1/type/flash
+kg/uploader/2.0.0/type/base
+kg/uploader/2.0.0/type/flash
 
 */
 /**
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -152,7 +152,7 @@ KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
  * @fileoverview flash上传方案，基于龙藏写的ajbridge内的uploader
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/type/flash',function (S, Node, UploadType) {
+KISSY.add('kg/uploader/2.0.0/type/flash',function (S, Node, UploadType) {
     var EMPTY = '', LOG_PREFIX = '[uploader-FlashType]:';
     /**
      * @name FlashType

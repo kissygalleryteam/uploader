@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>自动combo请求的demo</title>
     <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
-    <script src="http://a.tbcdn.cn/s/kissy/kg/uploader/2.0.1/meta/modules-min.js"></script>
+    <script src="http://a.tbcdn.cn/s/kissy/kg/uploader/2.0.0/meta/modules-min.js"></script>
 </head>
 <body>
 <h2>自动combo请求的demo</h2>
@@ -35,11 +35,11 @@
         S.config("combine",true);
     }
 
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+    S.use('kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/default/index,kg/uploader/2.0.0/themes/default/style.css', function (S, Uploader,DefaultTheme) {
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars';
+        var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
+                'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.0/plugins/proBars/proBars';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars){
             var uploader = new Uploader('#J_UploaderBtn',{

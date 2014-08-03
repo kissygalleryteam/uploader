@@ -1,3 +1,3 @@
 KISSY.config('modules', {
- 'kg/uploader/2.0.1/plugins/tagConfig/tagConfig': { requires: ['node', 'base']} 
+ 'kg/uploader/2.0.0/plugins/tagConfig/tagConfig': { requires: ['node', 'base']} 
 });

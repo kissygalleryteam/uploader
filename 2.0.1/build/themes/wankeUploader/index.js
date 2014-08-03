@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/themes/wankeUploader/index
+kg/uploader/2.0.0/themes/wankeUploader/index
 
 */
 /**
  * @fileoverview 图片上传主题
  * @author 灵吾
  **/
-KISSY.add('kg/uploader/2.0.1/themes/wankeUploader/index',function (S, Node, Theme) {
+KISSY.add('kg/uploader/2.0.0/themes/wankeUploader/index',function (S, Node, Theme) {
     var EMPTY = '', $ = Node.all;
 
     /**
@@ -180,4 +180,4 @@ KISSY.add('kg/uploader/2.0.1/themes/wankeUploader/index',function (S, Node, Them
         }
     }});
     return WankeUploader;
-}, {requires:['node', 'kg/kg/uploader/2.0.1/2.0.1/theme']});
+}, {requires:['node', 'kg/uploader/2.0.0/theme']});

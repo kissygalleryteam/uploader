@@ -3,22 +3,22 @@
 <html>
 <head>
     <meta charset="gbk" />
-    <title>uploader锟侥硷拷锟斤拷demo</title>
+    <title>uploader的简单demo</title>
     <script src="http://g.tbcdn.cn/??kissy/k/1.4.2/seed-min.js,tb/global/3.0.4/global-min.js" charset="utf-8"></script>
 </head>
 <body id="err-page">
 <div id="page">
     <div id="content" class="grid-c">
-        <h2>uploader锟斤拷锟斤拷通锟矫接匡拷</h2>
+        <h2>uploader调用通用接口</h2>
 
-        <p>默锟斤拷使锟斤拷ajax锟较达拷锟斤拷锟斤拷支锟斤拷ajax锟斤拷锟斤拷锟斤拷锟斤拷使锟斤拷iframe锟较达拷锟斤拷</p>
-        <p>iframe锟较达拷锟斤拷强锟斤拷锟斤拷锟斤拷domain锟斤拷锟斤拷锟斤拷锟斤拷希锟斤拷锟斤拷锟矫ｏ拷锟斤拷使锟斤拷flash锟较达拷锟斤拷锟斤拷锟斤拷typ:["ajax","flash"]锟斤拷</p>
+        <p>默认使用ajax上传，不支持ajax的情况下使用iframe上传。</p>
+        <p>iframe上传会强制设置domain，如果不希望设置，请使用flash上传，设置typ:["ajax","flash"]。</p>
 
         <div class="uploader-wrapper">
             <div class="grid">
-                <input type="file" class="g-u" id="J_UploaderBtn" value="锟较达拷图片" name="imgFile"  accept="image/*" >
+                <input type="file" class="g-u" id="J_UploaderBtn" value="上传图片" name="imgFile"  accept="image/*" >
                 <input type="hidden" id="J_Urls" name="urls" value="http://img03.taobaocdn.com/bao/uploaded/i3/750975210/T20xOMXAJaXXXXXXXX_!!750975210.jpg_728x728.jpg,http://img03.taobaocdn.com/bao/uploaded/i3/750975210/T20xOMXAJaXXXXXXXX_!!750975210.jpg_728x728.jpg" />
-                <div class="g-u">锟斤拷锟斤拷锟斤拷锟较达拷<span id="J_UploadCount">3</span>锟斤拷图片</div>
+                <div class="g-u">还可以上传<span id="J_UploadCount">3</span>张图片</div>
             </div>
             <ul id="J_UploaderQueue" class="grid"></ul>
         </div>
@@ -40,7 +40,7 @@
                 S.config({
                     packages:[
                         {
-                            name:"kg/uploader/2.0.1",
+                            name:"kg/uploader/2.0.0",
                             path:srcPath,
                             charset:"utf-8",
                             ignorePackageNameInUri:true
@@ -49,7 +49,7 @@
                 });
             }
 
-            KISSY.use('kg/uploader/2.0.1/aliUploader,kg/uploader/2.0.1/plugins/plugins,kg/uploader/2.0.1/themes/imageUploader/index,kg/uploader/2.0.1/themes/imageUploader/style.css', function (S, AliUploader,plugins,ImageUploader) {
+            KISSY.use('kg/uploader/2.0.0/aliUploader,kg/uploader/2.0.0/plugins/plugins,kg/uploader/2.0.0/themes/imageUploader/index,kg/uploader/2.0.0/themes/imageUploader/style.css', function (S, AliUploader,plugins,ImageUploader) {
                 var uploader = new AliUploader('#J_UploaderBtn',{
                     filter:function(data){
                         debugger;
@@ -59,22 +59,22 @@
                     data.success = 1;
                     return data;
                 })
-                //使锟斤拷锟斤拷锟斤拷
+                //使用主题
                 uploader.theme(new ImageUploader({ queueTarget: '#J_UploaderQueue' }));
-                //锟斤拷证锟斤拷锟斤拷
+                //验证插件
                 uploader.plug(new plugins.Auth({
-                            //锟斤拷锟斤拷锟较达拷锟斤拷锟斤拷
+                            //最多上传个数
                             max:3,
-                            //图片锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷小
+                            //图片最大允许大小
                             maxSize:5120
                         }))
-                    //url锟斤拷锟斤拷锟斤拷锟斤拷
+                    //url保存插件
                         .plug(new plugins.UrlsInput({target:'#J_Urls'}))
-                    //锟斤拷锟斤拷锟今集猴拷
+                    //进度条集合
                         .plug(new plugins.ProBars())
-                    //锟斤拷拽锟较达拷
+                    //拖拽上传
                         .plug(new plugins.Filedrop())
-                    //图片预锟斤拷
+                    //图片预览
                         .plug(new plugins.Preview())
                         .plug(new plugins.MiniLogin())
                 ;

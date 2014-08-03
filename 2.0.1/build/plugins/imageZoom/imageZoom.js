@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/imageZoom/imageZoom
+kg/uploader/2.0.0/plugins/imageZoom/imageZoom
 
 */
 /**
  * @fileoverview 图片放大器
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
+KISSY.add('kg/uploader/2.0.0/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
     var EMPTY = '';
     var $ = Node.all;
     /**

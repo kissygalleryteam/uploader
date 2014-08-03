@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/themes/daogouUploader/index
+kg/uploader/2.0.0/themes/daogouUploader/index
 
 */
 /**
  * @fileoverview 淘宝导购平台的上传文件
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/themes/daogouUploader/index',function (S, Node, DefaultTheme) {
+KISSY.add('kg/uploader/2.0.0/themes/daogouUploader/index',function (S, Node, DefaultTheme) {
     var EMPTY = '', $ = Node.all;
 
     /**
@@ -97,7 +97,7 @@ KISSY.add('kg/uploader/2.0.1/themes/daogouUploader/index',function (S, Node, Def
         }
     }});
     return Daogou;
-}, {requires:['node', 'kg/kg/uploader/2.0.1/2.0.1/themes/default/index']});
+}, {requires:['node', 'kg/uploader/2.0.0/themes/default/index']});
 /**
  * changes:
  * 明河：1.4

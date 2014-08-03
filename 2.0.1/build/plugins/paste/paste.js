@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/paste/paste
+kg/uploader/2.0.0/plugins/paste/paste
 
 */
 /**
  * @fileoverview 粘贴上传
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/paste/paste',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/paste/paste',function(S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     /**

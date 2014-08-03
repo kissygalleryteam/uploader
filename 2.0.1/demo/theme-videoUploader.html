@@ -34,7 +34,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.0",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -42,11 +42,11 @@
             ]
         });
     }
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+    S.use('kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/default/index,kg/uploader/2.0.0/themes/default/style.css', function (S, Uploader,DefaultTheme) {
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars';
+        var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
+                'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.0/plugins/proBars/proBars';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars){
             var uploader = new Uploader('#J_UploaderBtn',{

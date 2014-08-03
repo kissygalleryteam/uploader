@@ -1,26 +1,26 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/auth/auth
-kg/uploader/2.0.1/plugins/filedrop/filedrop
-kg/uploader/2.0.1/plugins/imageZoom/imageZoom
-kg/uploader/2.0.1/plugins/imgcrop/imgcrop
-kg/uploader/2.0.1/plugins/preview/preview
-kg/uploader/2.0.1/plugins/proBars/progressBar
-kg/uploader/2.0.1/plugins/proBars/proBars
-kg/uploader/2.0.1/plugins/tagConfig/tagConfig
-kg/uploader/2.0.1/plugins/urlsInput/urlsInput
-kg/uploader/2.0.1/plugins/paste/paste
-kg/uploader/2.0.1/token
-kg/uploader/2.0.1/plugins/miniLogin/miniLogin
-kg/uploader/2.0.1/plugins/plugins
+kg/uploader/2.0.0/plugins/auth/auth
+kg/uploader/2.0.0/plugins/filedrop/filedrop
+kg/uploader/2.0.0/plugins/imageZoom/imageZoom
+kg/uploader/2.0.0/plugins/imgcrop/imgcrop
+kg/uploader/2.0.0/plugins/preview/preview
+kg/uploader/2.0.0/plugins/proBars/progressBar
+kg/uploader/2.0.0/plugins/proBars/proBars
+kg/uploader/2.0.0/plugins/tagConfig/tagConfig
+kg/uploader/2.0.0/plugins/urlsInput/urlsInput
+kg/uploader/2.0.0/plugins/paste/paste
+kg/uploader/2.0.0/token
+kg/uploader/2.0.0/plugins/miniLogin/miniLogin
+kg/uploader/2.0.0/plugins/plugins
 
 */
 /**
  * @fileoverview 文件上传验证
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/auth/auth',function (S, Node,Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/auth/auth',function (S, Node,Base) {
     var EMPTY = '';
     var $ = Node.all;
     var ERROR_EVENT = 'error';
@@ -548,7 +548,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/auth/auth',function (S, Node,Base) {
  * @fileoverview  文件拖拽上传插件
  *  @author 飞绿
  */
-KISSY.add('kg/uploader/2.0.1/plugins/filedrop/filedrop',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/filedrop/filedrop',function (S, Node, Base) {
     var EMPTY = '',
         $ = Node.all,
         UA = S.UA;
@@ -762,7 +762,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/filedrop/filedrop',function (S, Node, Base)
  * @fileoverview 图片放大器
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
+KISSY.add('kg/uploader/2.0.0/plugins/imageZoom/imageZoom',function(S, Node, Base,Albums) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -847,7 +847,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/imageZoom/imageZoom',function(S, Node, Base
  * @fileoverview 图片裁剪
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
+KISSY.add('kg/uploader/2.0.0/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -934,7 +934,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgC
  * @requires KISSY 1.2+
  */
 
-KISSY.add('kg/uploader/2.0.1/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
+KISSY.add('kg/uploader/2.0.0/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
     var $ = Node.all;
     var doc = document,
         LOG_PRE = '[Plugin: Preview] ',
@@ -1195,7 +1195,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/preview/preview',function (S,Node, D, E,Bas
  * @fileoverview 进度条
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/proBars/progressBar',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/proBars/progressBar',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,
         PROGRESS_BAR = 'progressbar',ROLE = 'role',
         ARIA_VALUEMIN = 'aria-valuemin',ARIA_VALUEMAX = 'aria-valuemax',ARIA_VALUENOW = 'aria-valuenow',
@@ -1363,7 +1363,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/proBars/progressBar',function(S, Node, Base
  * @fileoverview 进度条集合
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
+KISSY.add('kg/uploader/2.0.0/plugins/proBars/proBars',function(S, Node, Base,ProgressBar) {
     var EMPTY = '';
     var $ = Node.all;
     var PRE = 'J_ProgressBar_';
@@ -1508,7 +1508,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/proBars/proBars',function(S, Node, Base,Pro
  * @fileoverview 从input上拉取配置覆盖组件配置
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/tagConfig/tagConfig',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/tagConfig/tagConfig',function(S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     var UPLOADER_OPTIONS = ['autoUpload','postData','action','multiple','multipleLen','uploadType','disabled'];
@@ -1643,7 +1643,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/tagConfig/tagConfig',function(S, Node, Base
  * @fileoverview 存储文件路径信息的隐藏域
  * @author: 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/urlsInput/urlsInput',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/urlsInput/urlsInput',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-urlsInput]:';
     /**
      * @name UrlsInput
@@ -1866,7 +1866,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/urlsInput/urlsInput',function(S, Node, Base
  * @fileoverview 粘贴上传
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/paste/paste',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/plugins/paste/paste',function(S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     /**
@@ -1935,7 +1935,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/paste/paste',function(S, Node, Base) {
 /**
  * _获取tokenֵ
  */
-KISSY.add('kg/uploader/2.0.1/token',function (S ,io) {
+KISSY.add('kg/uploader/2.0.0/token',function (S ,io) {
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
     var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
@@ -1982,7 +1982,7 @@ KISSY.add('kg/uploader/2.0.1/token',function (S ,io) {
  * @fileoverview mini登陆框（用于通用接口）
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
+KISSY.add('kg/uploader/2.0.0/plugins/miniLogin/miniLogin',function(S, Node, Base,token,ML) {
     var EMPTY = '';
     var $ = Node.all;
 
@@ -2033,7 +2033,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/miniLogin/miniLogin',function(S, Node, Base
  * 明河：1.4
  *           - 新增插件
  */
-KISSY.add('kg/uploader/2.0.1/plugins/plugins',function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,UrlsInput,Paste,MiniLogin) {
+KISSY.add('kg/uploader/2.0.0/plugins/plugins',function(S,Auth,Filedrop,ImageZoom,Imgcrop,Preview,ProBars,TagConfig,UrlsInput,Paste,MiniLogin) {
     /**
      * 所有的插件集合
      */

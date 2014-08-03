@@ -36,7 +36,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.0",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -45,14 +45,14 @@
         });
     }
 
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/imageUploader/index,kg/uploader/2.0.1/themes/imageUploader/style.css', function (S, Uploader,ImageUploader) {
+    S.use('kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/imageUploader/index,kg/uploader/2.0.0/themes/imageUploader/style.css', function (S, Uploader,ImageUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars,' +
-                'kg/uploader/2.0.1/plugins/filedrop/filedrop,' +
-                'kg/uploader/2.0.1/plugins/preview/preview,'+
-                'kg/uploader/2.0.1/plugins/paste/paste';
+        var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
+                'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.0/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.0/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.0/plugins/preview/preview,'+
+                'kg/uploader/2.0.0/plugins/paste/paste';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,Paste){
             var uploader = new Uploader('#J_UploaderBtn',{

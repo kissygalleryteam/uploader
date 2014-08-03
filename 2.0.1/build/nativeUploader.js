@@ -1,15 +1,15 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/queue
-kg/uploader/2.0.1/nativeUploader
+kg/uploader/2.0.0/queue
+kg/uploader/2.0.0/nativeUploader
 
 */
 /**
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/queue',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.0/queue',function (S, Node, Base) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader-queue]:';
 
     /**
@@ -34,7 +34,7 @@ KISSY.add('kg/uploader/2.0.1/queue',function (S, Node, Base) {
      * @param {Object} config Queue没有必写的配置
      * @param {Uploader} config.uploader Uploader的实例
      * @example
-     * S.use('kg/uploader/2.0.1/queue/base,kg/uploader/2.0.1/themes/default/style.css', function (S, Queue) {
+     * S.use('kg/uploader/2.0.0/queue/base,kg/uploader/2.0.0/themes/default/style.css', function (S, Queue) {
      *    var queue = new Queue();
      *    queue.render();
      * })
@@ -417,7 +417,7 @@ KISSY.add('kg/uploader/2.0.1/queue',function (S, Node, Base) {
  * @参考： http://confluence.taobao.ali.com/pages/viewpage.action?pageId=200209347
  * 感谢玉门同学帮忙修正了几处严重bug
  **/
-KISSY.add('kg/uploader/2.0.1/nativeUploader',function (S, Node,JSON,Base,Queue) {
+KISSY.add('kg/uploader/2.0.0/nativeUploader',function (S, Node,JSON,Base,Queue) {
     var EMPTY = '';
     var $ = Node.all;
     var status = {

@@ -81,7 +81,7 @@ uploader1.5新增<code>accept="image/*"</code>支持，这个属性可以在选�
 ### 2.加载Uploader模块
 
 ```javascript
-    KISSY.use('kg/uploader/2.0.1/index', function (S, Uploader) {
+    KISSY.use('kg/uploader/2.0.0/index', function (S, Uploader) {
 
     })
 ```
@@ -90,7 +90,7 @@ uploader1.5新增<code>accept="image/*"</code>支持，这个属性可以在选�
 ### 3.初始化Uploader
 
 ```javascript
-    KISSY.use('kg/uploader/2.0.1/index', function (S, Uploader) {
+    KISSY.use('kg/uploader/2.0.0/index', function (S, Uploader) {
         var uploader = new Uploader('#J_UploaderBtn',{
           //处理上传的服务器端脚本路径
           action:"upload.php"
@@ -121,7 +121,7 @@ Uploader类接受二个参数：
 ### 4. 主题的使用
 
 ```javascript
-S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+S.use('kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/default/index,kg/uploader/2.0.0/themes/default/style.css', function (S, Uploader,DefaultTheme) {
         var uploader = new Uploader('#J_UploaderBtn',{
                         //处理上传的服务器端脚本路径
                         action:"upload.php"
@@ -132,7 +132,7 @@ S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploade
     })
 ```
 
-第一步先要<code>use()</code>主题js和css，模块路径为<code>kg/uploader/2.0.1/themes/default/index</code>和<code>kg/uploader/2.0.1/themes/default/index</code>。
+第一步先要<code>use()</code>主题js和css，模块路径为<code>kg/uploader/2.0.0/themes/default/index</code>和<code>kg/uploader/2.0.0/themes/default/index</code>。
 
 第二步实例化主题：
 
@@ -204,7 +204,7 @@ html结构上也发生了变化，模拟按钮上增加了<code>defaultTheme-but
 第一步加载插件js：
 
 ```javascript
-    S.use('kg/uploader/2.0.1/plugins/auth/auth',function(S,Auth){
+    S.use('kg/uploader/2.0.0/plugins/auth/auth',function(S,Auth){
 
     })
 ```
@@ -235,7 +235,7 @@ auth插件的配置，请看文章的插件部分。
 插件的使用跟auth是一样的：
 
 ```javascript
-    S.use('kg/uploader/2.0.1/plugins/urlsInput/urlsInput',function(S,UrlsInput){
+    S.use('kg/uploader/2.0.0/plugins/urlsInput/urlsInput',function(S,UrlsInput){
         var urlsInput = new UrlsInput({target:'#J_Urls'});
         uploader.plug(urlsInput);
     })
@@ -252,11 +252,11 @@ auth插件的配置，请看文章的插件部分。
 uploader的plug方法和theme方法是支持链式调用的。
 
 ```javascript
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+    S.use('kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/default/index,kg/uploader/2.0.0/themes/default/style.css', function (S, Uploader,DefaultTheme) {
             //上传组件插件
-            var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                    'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                    'kg/uploader/2.0.1/plugins/proBars/proBars';
+            var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
+                    'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
+                    'kg/uploader/2.0.0/plugins/proBars/proBars';
 
             S.use(plugins,function(S,Auth,UrlsInput,ProBars){
                 var uploader = new Uploader('#J_UploaderBtn',{
@@ -643,7 +643,7 @@ uploader.plug(new Auth({
 uploader.getPlugin('auth');
 ```
 
-插件名称可以对照插件的模块路径上的名称<code>kg/uploader/2.0.1/plugins/auth/auth</code>。
+插件名称可以对照插件的模块路径上的名称<code>kg/uploader/2.0.0/plugins/auth/auth</code>。
 
 
 
@@ -781,7 +781,7 @@ KISSY.add(function (S, Node, ImageUploader) {
         name:{value:'refundUploader'}
     }});
     return RefundUploader;
-}, {requires:['node', 'kg/uploader/2.0.1/themes/imageUploader/index']});
+}, {requires:['node', 'kg/uploader/2.0.0/themes/imageUploader/index']});
 ```
 
 主题中的<code>_errorHandler</code>，在上传失败时会自动触发，当然像"_addHandler"或"_successHandler"也是一样的道理。
@@ -1215,7 +1215,7 @@ v1.5新增插件，读取剪切板的文件数据，触发上传。目前只能�
 
 请看[demo](http://www.36ria.com/butterfly/uploader/2.0.0/demo/paste-demo.html)。
 
-模块路径为：*kg/uploader/2.0.1/plugins/paste/paste*
+模块路径为：*kg/uploader/2.0.0/plugins/paste/paste*
 
     //粘贴上传
     uploader.plug(new Paste())

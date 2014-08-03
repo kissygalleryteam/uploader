@@ -39,7 +39,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.0",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -48,15 +48,15 @@
         });
     }
 
-    S.use('node,kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/imageUploader/index,kg/uploader/2.0.1/themes/imageUploader/style.css', function (S,Node,Uploader,ImageUploader) {
+    S.use('node,kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/imageUploader/index,kg/uploader/2.0.0/themes/imageUploader/style.css', function (S,Node,Uploader,ImageUploader) {
         var $ = Node.all;
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/tagConfig/tagConfig,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars,' +
-                'kg/uploader/2.0.1/plugins/filedrop/filedrop,' +
-                'kg/uploader/2.0.1/plugins/preview/preview';
+        var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
+                'kg/uploader/2.0.0/plugins/tagConfig/tagConfig,' +
+                'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.0/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.0/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.0/plugins/preview/preview';
         S.use(plugins,function(S,Auth,TagConfig,UrlsInput,ProBars,Filedrop,Preview){
             var authUploader = new Uploader('#J_AuthBtn',{
                 action:"upload.php",

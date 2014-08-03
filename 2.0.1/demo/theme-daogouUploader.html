@@ -10,7 +10,7 @@
 <body style="padding:20px;">
 <h2>daogouUploader主题</h2>
 <ul>
-    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/2.0.1/themes/daogouUploader" target="_blank">源码</a></li>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/2.0.0/themes/daogouUploader" target="_blank">源码</a></li>
     <li>作者：溪夏、明河</li>
     <li>描述：v1.3新增主题，来源于淘宝导购平台，单文件上传</li>
     <li>案例：淘宝导购平台</li>
@@ -65,7 +65,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.0",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -75,13 +75,13 @@
     }
     var $ = S.Node.all;
 
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/daogouUploader/index,kg/uploader/2.0.1/themes/daogouUploader/style.css', function (S, Uploader,DaogouUploader) {
+    S.use('kg/uploader/2.0.0/index,kg/uploader/2.0.0/themes/daogouUploader/index,kg/uploader/2.0.0/themes/daogouUploader/style.css', function (S, Uploader,DaogouUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars,' +
-                'kg/uploader/2.0.1/plugins/filedrop/filedrop,' +
-                'kg/uploader/2.0.1/plugins/preview/preview';
+        var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
+                'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.0/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.0/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.0/plugins/preview/preview';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview){
             var uploader = new Uploader('#J_UploaderBtn',{
