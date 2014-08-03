@@ -1,0 +1,100 @@
+.opacity(@o:0){
+    opacity: @o/100;
+}
+.border-radius(@radius:0px){
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+.gradient(@from:#FAFAFA,@to:#E5E5E5){
+    background-color: @from;
+    background: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
+    background: -moz-linear-gradient(top, @from, @to);
+}
+.linear-grad(@from:#f5f5f5,@to:#f9f9f9){
+    background-image: -moz-linear-gradient(top, @from, @to);
+    background-image: -ms-linear-gradient(top, @from, @to);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@from), to(@to));
+    background-image: -webkit-linear-gradient(top, @from, @to);
+    background-image: -o-linear-gradient(top, @from, @to);
+    background-image: linear-gradient(top, @from, @to);
+    background-repeat: repeat-x;
+    filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr = '@from', endColorstr = '@to', GradientType = 0)";
+}
+.box-shadow(@val){
+    -webkit-box-shadow: @val;
+    -moz-box-shadow: @val;
+    box-shadow: @val;
+}
+
+.grid {
+    letter-spacing: -0.31em;
+    *letter-spacing: normal;
+    word-spacing: -0.43em;
+}
+button::-moz-focus-inner{ border:0; padding:0; margin:0; }
+.grid .g-u {
+    display: inline-block;
+    zoom: 1;
+    *display: inline; /* IE < 8: fake inline-block */
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    _vertical-align: text-bottom;
+}
+
+.grid .g-u input {
+    *vertical-align: middle;
+}
+
+.file-input-wrapper {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    z-index: 12;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    .opacity(0);
+
+    input {
+        display: block;
+        height: 500px;
+        width: 220px;
+        cursor: pointer;
+        font-size: 100px;
+        margin-top: -50px;
+        position: absolute;
+        left: 0;
+        top: -200px;
+        .opacity(0);
+        filter: ~"alpha(opacity = 0)";
+        z-index: 14;
+    }
+}
+
+.ks-progress-bar {
+    height: 8px;
+    width: 90px;
+    background: #b2b2b2;
+    border-radius: 5px;
+    display: block;
+    overflow: hidden;
+
+    .ks-progress-bar-value {
+        width: 0%;
+        height: 8px;
+        background: #db0869;
+        display: block;
+    }
+}
+.ks-uploader-button{
+    text-decoration: none;
+}
+//预览图片设置
+.ks-uploader-queue .preview-img{
+  filter:~"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+  //必须带有默认宽度，不然无法显示预览图片
+  width:300px;
+  overflow: hidden;
+}
