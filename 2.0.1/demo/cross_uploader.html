@@ -53,7 +53,7 @@
                 S.config({
                     packages:[
                         {
-                            name:"kg/uploader/2.0.0",
+                            name:"kg/uploader/2.0.1",
                             path:srcPath,
                             charset:"utf-8",
                             ignorePackageNameInUri:true
@@ -61,15 +61,15 @@
                     ]
                 });
             }
-            S.use('kg/uploader/2.0.0/aliUploader,kg/uploader/2.0.0/themes/crossUploader/index,kg/uploader/2.0.0/themes/crossUploader/style.css', function (S, AliUploader,CrossUploader) {
+            S.use('kg/uploader/2.0.1/aliUploader,kg/uploader/2.0.1/themes/crossUploader/index,kg/uploader/2.0.1/themes/crossUploader/style.css', function (S, AliUploader,CrossUploader) {
                 //上传组件插件
-                var plugins = 'kg/uploader/2.0.0/plugins/auth/auth,' +
-                        'kg/uploader/2.0.0/plugins/urlsInput/urlsInput,' +
-                        'kg/uploader/2.0.0/plugins/proBars/proBars,' +
-                        'kg/uploader/2.0.0/plugins/filedrop/filedrop,' +
-                        'kg/uploader/2.0.0/plugins/preview/preview,' +
-                        'kg/uploader/2.0.0/plugins/imageZoom/imageZoom,'+
-                        'kg/uploader/2.0.0/plugins/cross/cross';
+                var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
+                        'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
+                        'kg/uploader/2.0.1/plugins/proBars/proBars,' +
+                        'kg/uploader/2.0.1/plugins/filedrop/filedrop,' +
+                        'kg/uploader/2.0.1/plugins/preview/preview,' +
+                        'kg/uploader/2.0.1/plugins/imageZoom/imageZoom,'+
+                        'kg/uploader/2.0.1/plugins/cross/cross';
 
                 S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom,Cross){
                     var uploader = new AliUploader('#J_UploaderBtn');

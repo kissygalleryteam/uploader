@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/theme
+kg/uploader/2.0.1/theme
 
 */
 /**
@@ -9,7 +9,7 @@ kg/uploader/2.0.0/theme
  * @author 剑平（明河）<minghe36@126.com>
  **/
 
-KISSY.add('kg/uploader/2.0.0/theme',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/theme',function (S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     //主题样式名前缀

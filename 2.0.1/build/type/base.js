@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/type/base
+kg/uploader/2.0.1/type/base
 
 */
 /**
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.0/type/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**

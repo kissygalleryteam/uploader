@@ -1,8 +1,8 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/theme
-kg/uploader/2.0.0/themes/imageUploader/index
+kg/uploader/2.0.1/theme
+kg/uploader/2.0.1/themes/imageUploader/index
 
 */
 /**
@@ -10,7 +10,7 @@ kg/uploader/2.0.0/themes/imageUploader/index
  * @author 剑平（明河）<minghe36@126.com>
  **/
 
-KISSY.add('kg/uploader/2.0.0/theme',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/theme',function (S, Node, Base) {
     var EMPTY = '';
     var $ = Node.all;
     //主题样式名前缀
@@ -326,7 +326,7 @@ KISSY.add('kg/uploader/2.0.0/theme',function (S, Node, Base) {
  * @fileoverview 图片上传主题（带图片预览），第一版由紫英同学完成，苏河同学做了大量优化，明河整理优化
  * @author 苏河、紫英、明河
  **/
-KISSY.add('kg/uploader/2.0.0/themes/imageUploader/index',function (S, Node, Theme) {
+KISSY.add('kg/uploader/2.0.1/themes/imageUploader/index',function (S, Node, Theme) {
     var EMPTY = '', $ = Node.all;
 
     /**

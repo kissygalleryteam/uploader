@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/button/base
+kg/uploader/2.0.1/button/base
 
 */
 /**
  * @fileoverview 文件上传按钮base
  * @author: 紫英(橘子)<daxingplay@gmail.com>, 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/button/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/button/base',function(S, Node, Base) {
     var EMPTY = '',
         LOG_PREFIX = '[Uploader-Button] ',
         $ = Node.all;

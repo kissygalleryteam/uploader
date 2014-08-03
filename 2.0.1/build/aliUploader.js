@@ -1,25 +1,25 @@
 /*
 combined files : 
 
-kg/uploader/2.0.0/type/base
-kg/uploader/2.0.0/type/iframe
-kg/uploader/2.0.0/type/ajax
-kg/uploader/2.0.0/type/flash
-kg/uploader/2.0.0/button/base
-kg/uploader/2.0.0/plugins/ajbridge/ajbridge
-kg/uploader/2.0.0/plugins/ajbridge/uploader
-kg/uploader/2.0.0/button/swfButton
-kg/uploader/2.0.0/queue
-kg/uploader/2.0.0/index
-kg/uploader/2.0.0/token
-kg/uploader/2.0.0/aliUploader
+kg/uploader/2.0.1/type/base
+kg/uploader/2.0.1/type/iframe
+kg/uploader/2.0.1/type/ajax
+kg/uploader/2.0.1/type/flash
+kg/uploader/2.0.1/button/base
+kg/uploader/2.0.1/plugins/ajbridge/ajbridge
+kg/uploader/2.0.1/plugins/ajbridge/uploader
+kg/uploader/2.0.1/button/swfButton
+kg/uploader/2.0.1/queue
+kg/uploader/2.0.1/index
+kg/uploader/2.0.1/token
+kg/uploader/2.0.1/aliUploader
 
 */
 /**
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.0/type/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -162,7 +162,7 @@ KISSY.add('kg/uploader/2.0.0/type/base',function(S, Node, Base) {
  * @fileoverview iframe方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.0/type/iframe',function(S, Node, UploadType) {
+KISSY.add('kg/uploader/2.0.1/type/iframe',function(S, Node, UploadType) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-iframeType]:',ID_PREFIX = 'ks-uploader-iframe-';
 
     /**
@@ -395,7 +395,7 @@ KISSY.add('kg/uploader/2.0.0/type/iframe',function(S, Node, UploadType) {
  * @fileoverview ajax方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.0/type/ajax',function(S, Node, UploadType,io) {
+KISSY.add('kg/uploader/2.0.1/type/ajax',function(S, Node, UploadType,io) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-AjaxType]:';
 
     /**
@@ -767,7 +767,7 @@ KISSY.add('kg/uploader/2.0.0/type/ajax',function(S, Node, UploadType,io) {
  * @fileoverview flash上传方案，基于龙藏写的ajbridge内的uploader
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/type/flash',function (S, Node, UploadType) {
+KISSY.add('kg/uploader/2.0.1/type/flash',function (S, Node, UploadType) {
     var EMPTY = '', LOG_PREFIX = '[uploader-FlashType]:';
     /**
      * @name FlashType
@@ -936,7 +936,7 @@ KISSY.add('kg/uploader/2.0.0/type/flash',function (S, Node, UploadType) {
  * @fileoverview 文件上传按钮base
  * @author: 紫英(橘子)<daxingplay@gmail.com>, 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/button/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/button/base',function(S, Node, Base) {
     var EMPTY = '',
         LOG_PREFIX = '[Uploader-Button] ',
         $ = Node.all;
@@ -1238,7 +1238,7 @@ build time: Sep 11 10:29
  * AJBridge Class
  * @author kingfo oicuicu@gmail.com
  */
-KISSY.add('kg/uploader/2.0.0/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
+KISSY.add('kg/uploader/2.0.1/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
 
     var ID_PRE = '#',
         VERSION = '1.0.15',
@@ -1418,7 +1418,7 @@ build time: Sep 11 10:29
 /**
  * @author kingfo  oicuicu@gmail.com
  */
-KISSY.add('kg/uploader/2.0.0/plugins/ajbridge/uploader',function(S,flash,A) {
+KISSY.add('kg/uploader/2.0.1/plugins/ajbridge/uploader',function(S,flash,A) {
 
     /**
      * @constructor
@@ -1482,7 +1482,7 @@ KISSY.add('kg/uploader/2.0.0/plugins/ajbridge/uploader',function(S,flash,A) {
  * @fileoverview flash上传按钮
  * @author: 紫英(橘子)<daxingplay@gmail.com>, 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.0/button/swfButton',function (S, Node, Base, SwfUploader) {
+KISSY.add('kg/uploader/2.0.1/button/swfButton',function (S, Node, Base, SwfUploader) {
     var EMPTY = '', $ = Node.all,
         SWF_WRAPPER_ID_PREVFIX = 'swf-uploader-wrapper-';
 
@@ -1755,12 +1755,12 @@ KISSY.add('kg/uploader/2.0.0/button/swfButton',function (S, Node, Base, SwfUploa
         /**
          * flash配置，对于swf文件配路径配置非常关键，使用默认cdn上的路径就好
          * @type Object
-         * @default { src:'http://a.tbcdn.cn/s/kissy/kg/uploader/2.0.0/plugins/ajbridge/uploader.swf', id:'swfUploader', params:{ bgcolor:"#fff", wmode:"transparent" }, attrs:{ }, hand:true, btn:true }
+         * @default { src:'http://a.tbcdn.cn/s/kissy/kg/uploader/2.0.1/plugins/ajbridge/uploader.swf', id:'swfUploader', params:{ bgcolor:"#fff", wmode:"transparent" }, attrs:{ }, hand:true, btn:true }
              }
          */
         flash:{
             value:{
-                src:'http://a.tbcdn.cn/s/kissy/kg/uploader/2.0.0/plugins/ajbridge/uploader.swf',
+                src:'http://g.tbcdn.cn/kg/uploader/2.0.0/plugins/ajbridge/uploader.swf',
                 id:'swfUploader',
                 params:{
                     bgcolor:"#fff",
@@ -1796,7 +1796,7 @@ KISSY.add('kg/uploader/2.0.0/button/swfButton',function (S, Node, Base, SwfUploa
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.0/queue',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.1/queue',function (S, Node, Base) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader-queue]:';
 
     /**
@@ -1821,7 +1821,7 @@ KISSY.add('kg/uploader/2.0.0/queue',function (S, Node, Base) {
      * @param {Object} config Queue没有必写的配置
      * @param {Uploader} config.uploader Uploader的实例
      * @example
-     * S.use('kg/uploader/2.0.0/queue/base,kg/uploader/2.0.0/themes/default/style.css', function (S, Queue) {
+     * S.use('kg/uploader/2.0.1/queue/base,kg/uploader/2.0.1/themes/default/style.css', function (S, Queue) {
      *    var queue = new Queue();
      *    queue.render();
      * })
@@ -2201,7 +2201,7 @@ KISSY.add('kg/uploader/2.0.0/queue',function (S, Node, Base) {
  * @fileoverview 异步文件上传组件
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.0/index',function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
+KISSY.add('kg/uploader/2.0.1/index',function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
     var LOG_PREFIX = '[uploader]:';
     var EMPTY = '';
     var $ = Node.all;
@@ -3117,7 +3117,7 @@ KISSY.add('kg/uploader/2.0.0/index',function (S, Node, RichBase,JSON,UA,IframeTy
 /**
  * _获取tokenֵ
  */
-KISSY.add('kg/uploader/2.0.0/token',function (S ,io) {
+KISSY.add('kg/uploader/2.0.1/token',function (S ,io) {
     var DAILY_TOKEN_API = 'http://aop.widgets.daily.taobao.net/block/getReqParam.htm';
     var LINE_TOKEN_API = 'http://aop.widgets.taobao.com/block/getReqParam.htm';
     /**
@@ -3163,7 +3163,7 @@ KISSY.add('kg/uploader/2.0.0/token',function (S ,io) {
 /**
  * 阿里上传通用接口
  */
-KISSY.add('kg/uploader/2.0.0/aliUploader',function (S ,UA,Uploader,token) {
+KISSY.add('kg/uploader/2.0.1/aliUploader',function (S ,UA,Uploader,token) {
     var DAILY_API = 'http://aop.widgets.daily.taobao.net/block/uploadImg.htm';
     var LINE_API = 'http://aop.widgets.taobao.com/block/uploadImg.htm';
     /**
