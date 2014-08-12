@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/proBars/progressBar
+kg/uploader/2.0.2/plugins/proBars/progressBar
 
 */
 /**
  * @fileoverview 进度条
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/proBars/progressBar',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.2/plugins/proBars/progressBar',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all,
         PROGRESS_BAR = 'progressbar',ROLE = 'role',
         ARIA_VALUEMIN = 'aria-valuemin',ARIA_VALUEMAX = 'aria-valuemax',ARIA_VALUENOW = 'aria-valuenow',

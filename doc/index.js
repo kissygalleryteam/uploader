@@ -298,6 +298,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             }
             serverConfig.fileDataName = self.get('name');
             serverConfig.CORS = self.get('CORS');
+            serverConfig.filter = self.get('filter');
             var uploadType = new UploadType(serverConfig);
             var uploaderTypeEvent = UploadType.event;
             //监听上传器上传完成事件
@@ -852,7 +853,9 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
             setter:function(v){
                 var self = this;
                 var uploadType = self.get('uploadType');
-                if (uploadType && !S.isEmptyObject(uploadType))uploadType.set('timeout', v);
+                if (uploadType && !S.isEmptyObject(uploadType)){
+                    uploadType.set('timeout', v);
+                }
                 return v;
             }
         }

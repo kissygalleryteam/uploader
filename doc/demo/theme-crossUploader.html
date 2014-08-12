@@ -40,11 +40,11 @@
     });
 
     if (S.Config.debug) {
-        var srcPath = "../src/";
+        var srcPath = "../";
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.2",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -53,15 +53,15 @@
         });
     }
 
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/crossUploader/index,kg/uploader/2.0.1/themes/crossUploader/style.css', function (S, Uploader,CrossUploader) {
+    S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/crossUploader/index,kg/uploader/2.0.2/themes/crossUploader/style.css', function (S, Uploader,CrossUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars,' +
-                'kg/uploader/2.0.1/plugins/filedrop/filedrop,' +
-                'kg/uploader/2.0.1/plugins/preview/preview,' +
-                'kg/uploader/2.0.1/plugins/imageZoom/imageZoom,'+
-                'kg/uploader/2.0.1/plugins/mobileUploader/mobileUploader';
+        var plugins = 'kg/uploader/2.0.2/plugins/auth/auth,' +
+                'kg/uploader/2.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.2/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.2/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.2/plugins/preview/preview,' +
+                'kg/uploader/2.0.2/plugins/imageZoom/imageZoom,'+
+                'kg/uploader/2.0.2/plugins/mobileUploader/mobileUploader';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom,MobileUploader){
             var uploader = new Uploader('#J_UploaderBtn',{

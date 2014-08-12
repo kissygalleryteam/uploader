@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/callapp/callapp
+kg/uploader/2.0.2/plugins/callapp/callapp
 
 */
 /**
  * @fileoverview 唤醒app
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/callapp/callapp',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.2/plugins/callapp/callapp',function(S, Node, Base) {
     /**
      * @name Paste
      * @class 唤醒app，只用于native-uploader

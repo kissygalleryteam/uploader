@@ -9,7 +9,7 @@
 <body>
 <h2>refundUploader主题</h2>
 <ul>
-    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/2.0.1/themes/refundUploader" target="_blank">源码</a></li>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/2.0.2/themes/refundUploader" target="_blank">源码</a></li>
     <li>作者：明河</li>
     <li>设计：苛卡</li>
     <li>描述：来源于淘宝退款，亮点在于满最大上传数时按钮文案的变化，v1.4新增图片放大器插件</li>
@@ -39,11 +39,11 @@
     });
 
     if (S.Config.debug) {
-        var srcPath = "../src/";
+        var srcPath = "../";
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.2",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -52,14 +52,14 @@
         });
     }
 
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/refundUploader/index,kg/uploader/2.0.1/themes/refundUploader/style.css', function (S, Uploader,RefundUploader) {
+    S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/refundUploader/index,kg/uploader/2.0.2/themes/refundUploader/style.css', function (S, Uploader,RefundUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/2.0.1/plugins/proBars/proBars,' +
-                'kg/uploader/2.0.1/plugins/filedrop/filedrop,' +
-                'kg/uploader/2.0.1/plugins/preview/preview,' +
-                'kg/uploader/2.0.1/plugins/imageZoom/imageZoom';
+        var plugins = 'kg/uploader/2.0.2/plugins/auth/auth,' +
+                'kg/uploader/2.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.2/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.2/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.2/plugins/preview/preview,' +
+                'kg/uploader/2.0.2/plugins/imageZoom/imageZoom';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom){
             var uploader = new Uploader('#J_UploaderBtn',{

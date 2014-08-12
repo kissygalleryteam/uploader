@@ -30,11 +30,11 @@
     });
 
     if (S.Config.debug) {
-        var srcPath = "../src/";
+        var srcPath = "../";
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.2",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -91,9 +91,9 @@
             }
         }});
         return CustomTheme;
-    },{requires:['node', 'kg/uploader/2.0.1/themes/default/']});
+    },{requires:['node', 'kg/uploader/2.0.2/themes/default/']});
 
-    KISSY.use('kg/uploader/2.0.1/index,customTheme,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,CustomTheme) {
+    KISSY.use('kg/uploader/2.0.2/index,customTheme,kg/uploader/2.0.2/themes/default/style.css', function (S, Uploader,CustomTheme) {
 
         var uploader = new Uploader('#J_JsUploaderBtn',{
             //处理上传的服务器端脚本路径

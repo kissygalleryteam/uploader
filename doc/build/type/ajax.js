@@ -1,15 +1,15 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/type/base
-kg/uploader/2.0.1/type/ajax
+kg/uploader/2.0.2/type/base
+kg/uploader/2.0.2/type/ajax
 
 */
 /**
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.2/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -152,7 +152,7 @@ KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
  * @fileoverview ajax方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/type/ajax',function(S, Node, UploadType,io) {
+KISSY.add('kg/uploader/2.0.2/type/ajax',function(S, Node, UploadType,io) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-AjaxType]:';
 
     /**
@@ -477,8 +477,8 @@ KISSY.add('kg/uploader/2.0.1/type/ajax',function(S, Node, UploadType,io) {
             cache : false,
             dataType : 'json',
             contentType: false,
-            //默认超时时间10秒
-            timeout:10,
+            //默认超时时间10分钟
+            timeout:600,
             headers:{}
         }
         },
@@ -502,7 +502,16 @@ KISSY.add('kg/uploader/2.0.1/type/ajax',function(S, Node, UploadType,io) {
         /**
          * 是否使用postMessage来跨域传输文件数据
          */
-        isUsePostMessage:{value:false}
+        isUsePostMessage:{value:false},
+        //设置超时时间
+        timeout:{
+            value:600,
+            setter:function(v){
+                var self = this;
+                var ajaxConfig = self.get('ajaxConfig');
+                ajaxConfig.timeout = v;
+                return v;
+            }}
     }
     });
     return AjaxType;

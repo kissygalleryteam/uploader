@@ -39,11 +39,11 @@
     });
 
     if (S.Config.debug) {
-        var srcPath = "../src/";
+        var srcPath = "../";
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/2.0.1",
+                    name:"kg/uploader/2.0.2",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -52,7 +52,7 @@
         });
     }
 
-    KISSY.use('kg/uploader/2.0.1/nativeUploader,kg/uploader/2.0.1/themes/nativeUploader/,kg/uploader/2.0.1/plugins/urlsInput/urlsInput,kg/uploader/2.0.1/plugins/auth/auth,kg/uploader/2.0.1/plugins/callapp/callapp,kg/uploader/2.0.1/themes/nativeUploader/style.css',function(S,NativeUploader,nativeTheme,UrlsInput,Auth,Callapp){
+    KISSY.use('kg/uploader/2.0.2/nativeUploader,kg/uploader/2.0.2/themes/nativeUploader/,kg/uploader/2.0.2/plugins/urlsInput/urlsInput,kg/uploader/2.0.2/plugins/auth/auth,kg/uploader/2.0.2/plugins/callapp/callapp,kg/uploader/2.0.2/themes/nativeUploader/style.css',function(S,NativeUploader,nativeTheme,UrlsInput,Auth,Callapp){
         var nativeUploader = new NativeUploader({
             target:'.J_NativeUploader'
         });

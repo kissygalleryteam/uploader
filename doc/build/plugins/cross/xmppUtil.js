@@ -1,10 +1,10 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/cross/xmppUtil
+kg/uploader/2.0.2/plugins/cross/xmppUtil
 
 */
-KISSY.add('kg/uploader/2.0.1/plugins/cross/xmppUtil',function(S){
+KISSY.add('kg/uploader/2.0.2/plugins/cross/xmppUtil',function(S){
 
     var XmppUtil = {
 

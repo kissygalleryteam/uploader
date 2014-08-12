@@ -15,7 +15,7 @@ Uploader是非常强大的异步文件上传组件，支持ajax、iframe、flash
 
 拥有非常不错的扩展性，可以自己定制主题和插件。
 
-* 版本：2.0.1
+* 版本：2.0.2
 * 基于：kissy1.4.2
 * 作者：明河（剑平）、紫英、飞绿，感谢苏河、溪夏、正豪等主题和插件作者
 
@@ -34,16 +34,16 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 ## demo汇总
 
-* [简单demo：js配置上传组件](http://www.36ria.com/butterfly/uploader/2.0.1/demo/js-config-use.html)
-* [简单demo：属性配置上传组件](http://www.36ria.com/butterfly/uploader/2.0.1/demo/tag-config-use.html)
-* [combo请求](http://www.36ria.com/butterfly/uploader/2.0.1/demo/combo.html)
-* [上传验证控制的demo](http://www.36ria.com/butterfly/uploader/2.0.1/demo/auth.html)
-* [组件全部事件演示](http://www.36ria.com/butterfly/uploader/2.0.1/demo/events.html)
-* [渲染默认队列数据的demo](http://www.36ria.com/butterfly/uploader/2.0.1/demo/default-data-show.html)
-* [队列全部方法演示](http://www.36ria.com/butterfly/uploader/2.0.1/demo/queue.html)
-* [只使用flash上传的demo](http://www.36ria.com/butterfly/uploader/2.0.1/demo/flash-upload-type.html)
-* [只使用iframe上传的demo](http://www.36ria.com/butterfly/uploader/2.0.1/demo/iframe-upload-type.html)
-* [常用方法控制](http://www.36ria.com/butterfly/uploader/2.0.1/demo/method-uploader.html)
+* [简单demo：js配置上传组件](http://www.36ria.com/butterfly/uploader/2.0.2/demo/js-config-use.html)
+* [简单demo：属性配置上传组件](http://www.36ria.com/butterfly/uploader/2.0.2/demo/tag-config-use.html)
+* [combo请求](http://www.36ria.com/butterfly/uploader/2.0.2/demo/combo.html)
+* [上传验证控制的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/auth.html)
+* [组件全部事件演示](http://www.36ria.com/butterfly/uploader/2.0.2/demo/events.html)
+* [渲染默认队列数据的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/default-data-show.html)
+* [队列全部方法演示](http://www.36ria.com/butterfly/uploader/2.0.2/demo/queue.html)
+* [只使用flash上传的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/flash-upload-type.html)
+* [只使用iframe上传的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/iframe-upload-type.html)
+* [常用方法控制](http://www.36ria.com/butterfly/uploader/2.0.2/demo/method-uploader.html)
 
 ## 组件内置的主题
 
@@ -51,20 +51,20 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
-[grayUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-grayUploader.html)（V1.5新增）| 明河/翰文|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/grayUploader)|![grayUploader](http://gtms03.alicdn.com/tps/i3/TB1RqL8FVXXXXbVXVXXGV5HNXXX-610-322.png)
-[imageUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
-[refundUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
-[loveUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
-[singleImageUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
-[cropUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
-[editorMultipleUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-editorMultipleUploader.html)| 明河、承玉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/editorMultipleUploader)|![editorMultipleUploader](http://s3.36ria.com/201305/4922/35687_o.png)
+[grayUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-grayUploader.html)（V1.5新增）| 明河/翰文|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/grayUploader)|![grayUploader](http://gtms03.alicdn.com/tps/i3/TB1RqL8FVXXXXbVXVXXGV5HNXXX-610-322.png)
+[imageUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
+[refundUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
+[loveUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
+[singleImageUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
+[cropUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
+[editorMultipleUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-editorMultipleUploader.html)| 明河、承玉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/editorMultipleUploader)|![editorMultipleUploader](http://s3.36ria.com/201305/4922/35687_o.png)
 
 ###文件上传主题
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
-[default](http://www.36ria.com/butterfly/uploader/2.0.1/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
-[daogouUploader](http://www.36ria.com/butterfly/uploader/2.0.1/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.1/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
+[default](http://www.36ria.com/butterfly/uploader/2.0.2/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
+[daogouUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
 
 ## 组件快速上手
 
@@ -81,7 +81,7 @@ uploader1.5新增<code>accept="image/*"</code>支持，这个属性可以在选�
 ### 2.加载Uploader模块
 
 ```javascript
-    KISSY.use('kg/uploader/2.0.1/index', function (S, Uploader) {
+    KISSY.use('kg/uploader/2.0.2/index', function (S, Uploader) {
 
     })
 ```
@@ -90,7 +90,7 @@ uploader1.5新增<code>accept="image/*"</code>支持，这个属性可以在选�
 ### 3.初始化Uploader
 
 ```javascript
-    KISSY.use('kg/uploader/2.0.1/index', function (S, Uploader) {
+    KISSY.use('kg/uploader/2.0.2/index', function (S, Uploader) {
         var uploader = new Uploader('#J_UploaderBtn',{
           //处理上传的服务器端脚本路径
           action:"upload.php"
@@ -121,7 +121,7 @@ Uploader类接受二个参数：
 ### 4. 主题的使用
 
 ```javascript
-S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/default/index,kg/uploader/2.0.2/themes/default/style.css', function (S, Uploader,DefaultTheme) {
         var uploader = new Uploader('#J_UploaderBtn',{
                         //处理上传的服务器端脚本路径
                         action:"upload.php"
@@ -132,7 +132,7 @@ S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploade
     })
 ```
 
-第一步先要<code>use()</code>主题js和css，模块路径为<code>kg/uploader/2.0.1/themes/default/index</code>和<code>kg/uploader/2.0.1/themes/default/index</code>。
+第一步先要<code>use()</code>主题js和css，模块路径为<code>kg/uploader/2.0.2/themes/default/index</code>和<code>kg/uploader/2.0.2/themes/default/index</code>。
 
 第二步实例化主题：
 
@@ -204,7 +204,7 @@ html结构上也发生了变化，模拟按钮上增加了<code>defaultTheme-but
 第一步加载插件js：
 
 ```javascript
-    S.use('kg/uploader/2.0.1/plugins/auth/auth',function(S,Auth){
+    S.use('kg/uploader/2.0.2/plugins/auth/auth',function(S,Auth){
 
     })
 ```
@@ -235,7 +235,7 @@ auth插件的配置，请看文章的插件部分。
 插件的使用跟auth是一样的：
 
 ```javascript
-    S.use('kg/uploader/2.0.1/plugins/urlsInput/urlsInput',function(S,UrlsInput){
+    S.use('kg/uploader/2.0.2/plugins/urlsInput/urlsInput',function(S,UrlsInput){
         var urlsInput = new UrlsInput({target:'#J_Urls'});
         uploader.plug(urlsInput);
     })
@@ -252,11 +252,11 @@ auth插件的配置，请看文章的插件部分。
 uploader的plug方法和theme方法是支持链式调用的。
 
 ```javascript
-    S.use('kg/uploader/2.0.1/index,kg/uploader/2.0.1/themes/default/index,kg/uploader/2.0.1/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+    S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/default/index,kg/uploader/2.0.2/themes/default/style.css', function (S, Uploader,DefaultTheme) {
             //上传组件插件
-            var plugins = 'kg/uploader/2.0.1/plugins/auth/auth,' +
-                    'kg/uploader/2.0.1/plugins/urlsInput/urlsInput,' +
-                    'kg/uploader/2.0.1/plugins/proBars/proBars';
+            var plugins = 'kg/uploader/2.0.2/plugins/auth/auth,' +
+                    'kg/uploader/2.0.2/plugins/urlsInput/urlsInput,' +
+                    'kg/uploader/2.0.2/plugins/proBars/proBars';
 
             S.use(plugins,function(S,Auth,UrlsInput,ProBars){
                 var uploader = new Uploader('#J_UploaderBtn',{
@@ -643,7 +643,7 @@ uploader.plug(new Auth({
 uploader.getPlugin('auth');
 ```
 
-插件名称可以对照插件的模块路径上的名称<code>kg/uploader/2.0.1/plugins/auth/auth</code>。
+插件名称可以对照插件的模块路径上的名称<code>kg/uploader/2.0.2/plugins/auth/auth</code>。
 
 
 
@@ -781,7 +781,7 @@ KISSY.add(function (S, Node, ImageUploader) {
         name:{value:'refundUploader'}
     }});
     return RefundUploader;
-}, {requires:['node', 'kg/uploader/2.0.1/themes/imageUploader/index']});
+}, {requires:['node', 'kg/uploader/2.0.2/themes/imageUploader/index']});
 ```
 
 主题中的<code>_errorHandler</code>，在上传失败时会自动触发，当然像"_addHandler"或"_successHandler"也是一样的道理。
@@ -1088,7 +1088,7 @@ uploader.on('error',function(ev){
 
 如果你希望可以在html配置组件属性，需要use("tagConfig")。
 
-demo可以[猛击这里](http://www.36ria.com/butterfly/uploader/2.0.1/demo/tag-config-use.html)。
+demo可以[猛击这里](http://www.36ria.com/butterfly/uploader/2.0.2/demo/tag-config-use.html)。
 
 ```xml
     <input class="g-u" id="J_UploaderBtn" name="Filedata" type="file" value="上传图片"
@@ -1213,9 +1213,9 @@ tagConfig的配置覆盖会在主题初始化成功后才执行，如果你的up
 
 v1.5新增插件，读取剪切板的文件数据，触发上传。目前只能用于chrome
 
-请看[demo](http://www.36ria.com/butterfly/uploader/2.0.1/demo/paste-demo.html)。
+请看[demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/paste-demo.html)。
 
-模块路径为：*kg/uploader/2.0.1/plugins/paste/paste*
+模块路径为：*kg/uploader/2.0.2/plugins/paste/paste*
 
     //粘贴上传
     uploader.plug(new Paste())

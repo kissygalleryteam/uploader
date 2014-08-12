@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/imgcrop/imgcrop
+kg/uploader/2.0.2/plugins/imgcrop/imgcrop
 
 */
 /**
  * @fileoverview 图片裁剪
  * @author 剑平（明河）<minghe36@126.com>
  **/
-KISSY.add('kg/uploader/2.0.1/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
+KISSY.add('kg/uploader/2.0.2/plugins/imgcrop/imgcrop',function(S, Node,Base,ImgCrop) {
     var EMPTY = '';
     var $ = Node.all;
     /**

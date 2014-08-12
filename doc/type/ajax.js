@@ -327,8 +327,8 @@ KISSY.add(function(S, Node, UploadType,io) {
             cache : false,
             dataType : 'json',
             contentType: false,
-            //默认超时时间10秒
-            timeout:10,
+            //默认超时时间10分钟
+            timeout:600,
             headers:{}
         }
         },
@@ -352,7 +352,16 @@ KISSY.add(function(S, Node, UploadType,io) {
         /**
          * 是否使用postMessage来跨域传输文件数据
          */
-        isUsePostMessage:{value:false}
+        isUsePostMessage:{value:false},
+        //设置超时时间
+        timeout:{
+            value:600,
+            setter:function(v){
+                var self = this;
+                var ajaxConfig = self.get('ajaxConfig');
+                ajaxConfig.timeout = v;
+                return v;
+            }}
     }
     });
     return AjaxType;

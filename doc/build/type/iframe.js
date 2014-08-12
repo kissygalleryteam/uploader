@@ -1,15 +1,15 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/type/base
-kg/uploader/2.0.1/type/iframe
+kg/uploader/2.0.2/type/base
+kg/uploader/2.0.2/type/iframe
 
 */
 /**
  * @fileoverview 上传方式类的基类
  * @author: 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
+KISSY.add('kg/uploader/2.0.2/type/base',function(S, Node, Base) {
     var EMPTY = '',$ = Node.all;
 
     /**
@@ -152,7 +152,7 @@ KISSY.add('kg/uploader/2.0.1/type/base',function(S, Node, Base) {
  * @fileoverview iframe方案上传
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/type/iframe',function(S, Node, UploadType) {
+KISSY.add('kg/uploader/2.0.2/type/iframe',function(S, Node, UploadType) {
     var EMPTY = '',$ = Node.all,LOG_PREFIX = '[uploader-iframeType]:',ID_PREFIX = 'ks-uploader-iframe-';
 
     /**

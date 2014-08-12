@@ -1,11 +1,11 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil
-kg/uploader/2.0.1/plugins/mobileUploader/qrcode
+kg/uploader/2.0.2/plugins/mobileUploader/xmppUtil
+kg/uploader/2.0.2/plugins/mobileUploader/qrcode
 
 */
-KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil',function(S){
+KISSY.add('kg/uploader/2.0.2/plugins/mobileUploader/xmppUtil',function(S){
 
     var XmppUtil = {
 
@@ -108,7 +108,7 @@ KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/xmppUtil',function(S){
     return XmppUtil;
 
 });
-KISSY.add('kg/uploader/2.0.1/plugins/mobileUploader/qrcode',function(S,Node, UA, XmppUtil){
+KISSY.add('kg/uploader/2.0.2/plugins/mobileUploader/qrcode',function(S,Node, UA, XmppUtil){
 
     var $=Node.all;
 

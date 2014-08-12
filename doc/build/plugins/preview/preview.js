@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/preview/preview
+kg/uploader/2.0.2/plugins/preview/preview
 
 */
 /**
@@ -11,7 +11,7 @@ kg/uploader/2.0.1/plugins/preview/preview
  * @requires KISSY 1.2+
  */
 
-KISSY.add('kg/uploader/2.0.1/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
+KISSY.add('kg/uploader/2.0.2/plugins/preview/preview',function (S,Node, D, E,Base,ua) {
     var $ = Node.all;
     var doc = document,
         LOG_PRE = '[Plugin: Preview] ',

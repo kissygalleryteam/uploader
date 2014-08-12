@@ -1,8 +1,8 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/plugins/ajbridge/ajbridge
-kg/uploader/2.0.1/plugins/ajbridge/uploader
+kg/uploader/2.0.2/plugins/ajbridge/ajbridge
+kg/uploader/2.0.2/plugins/ajbridge/uploader
 
 */
 /*
@@ -14,7 +14,7 @@ build time: Sep 11 10:29
  * AJBridge Class
  * @author kingfo oicuicu@gmail.com
  */
-KISSY.add('kg/uploader/2.0.1/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
+KISSY.add('kg/uploader/2.0.2/plugins/ajbridge/ajbridge',function(S,Flash,Event) {
 
     var ID_PRE = '#',
         VERSION = '1.0.15',
@@ -194,7 +194,7 @@ build time: Sep 11 10:29
 /**
  * @author kingfo  oicuicu@gmail.com
  */
-KISSY.add('kg/uploader/2.0.1/plugins/ajbridge/uploader',function(S,flash,A) {
+KISSY.add('kg/uploader/2.0.2/plugins/ajbridge/uploader',function(S,flash,A) {
 
     /**
      * @constructor

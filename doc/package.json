@@ -1,6 +1,6 @@
 {
     "name": "uploader",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "private": true,
     "devDependencies": {
         "grunt-contrib-uglify": "~0.2.0",

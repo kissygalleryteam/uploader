@@ -1,14 +1,14 @@
 /*
 combined files : 
 
-kg/uploader/2.0.1/queue
+kg/uploader/2.0.2/queue
 
 */
 /**
  * @fileoverview 文件上传队列列表显示和处理
  * @author 剑平（明河）<minghe36@126.com>,紫英<daxingplay@gmail.com>
  **/
-KISSY.add('kg/uploader/2.0.1/queue',function (S, Node, Base) {
+KISSY.add('kg/uploader/2.0.2/queue',function (S, Node, Base) {
     var EMPTY = '', $ = Node.all, LOG_PREFIX = '[uploader-queue]:';
 
     /**
