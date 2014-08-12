@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>渲染默认数据的例子</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h2>渲染默认数据的例子</h2>
+<p>这个例子中，主题模版增加了图片描述（读取服务器返回的result中的desc）的显示。</p>
+<p>默认的数据，依旧会触发加上图片描述。</p>
+<div class="grid">
+    <input type="file" class="g-u" id="J_UploaderBtn" value="上传图片" name="Filedata" >
+    <input type="hidden" id="J_Urls" name="urls" value="" />
+    <div class="g-u">还可以上传<span id="J_UploadCount">3</span>张图片</div>
+</div>
+<ul id="J_UploaderQueue" class="grid">
+    <!--默认文件数据，组件会将数据插入到file的result对象内，通过监听success事件可以获取到-->
+    <script type="text/uploader-files">
+        [{
+        "name":"icon_evil.gif",
+        "url": "http://tp4.sinaimg.cn/1653905027/50/5601547226/1",
+        "desc":"默认数据的图片描述"
+        }]
+    </script>
+    <!--修改主题增加desc图片描述-->
+    <script type="text/uploader-theme">
+        <li id="queue-file-{id}" class="g-u" data-name="{name}"> 
+        <div class="pic"> 
+            <a href="javascript:void(0);"><img class="J_Pic_{id} preview-img" src="" /></a> 
+            </div> 
+        <div class=" J_Mask_{id} pic-mask"></div> 
+        <div class="status-wrapper"> 
+            <div class="status waiting-status"><p>等待上传，请稍候</p></div> 
+            <div class="status start-status progress-status success-status"> 
+                <div class="J_ProgressBar_{id}"><s class="loading-icon"></s>上传中...</div> 
+                </div> 
+            <div class="status error-status"> 
+                <p class="J_ErrorMsg_{id}">上传失败，请重试！</p>
+            </div>
+        </div>
+        <a class="J_Del_{id} del-pic" href="#">删除</a>
+        <div class="desc J_Desc_{id}"></div>
+        </li>
+    </script>
+</ul>
+<script>
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"http://g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/2.0.2",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    var $ = S.Node.all;
+
+    S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/imageUploader/index,kg/uploader/2.0.2/themes/imageUploader/style.css', function (S, Uploader,ImageUploader) {
+        //上传插件
+        var plugins = 'kg/uploader/2.0.2/plugins/auth/auth,' +
+                'kg/uploader/2.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.2/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.2/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.2/plugins/preview/preview';
+
+        S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview){
+            var uploader = new Uploader('#J_UploaderBtn',{
+                //处理上传的服务器端脚本路径
+                action:"upload.php",
+                multiple:true
+            });
+            //上传成功后显示图片描述
+            uploader.on('success',function(ev){
+                var result = ev.file.result;
+                if(result.desc){
+                    var $desc = $('.J_Desc_'+ev.file.id);
+                    $desc.html(result.desc);
+                }
+            })
+
+            //使用主题
+            uploader.theme(new ImageUploader({
+                        queueTarget:'#J_UploaderQueue'
+                    }))
+                //验证插件
+                    .plug(new Auth({
+                        //最多上传个数
+                        max:3,
+                        //图片最大允许大小
+                        maxSize:100
+                    }))
+                //url保存插件
+                    .plug(new UrlsInput({target:'#J_Urls'}))
+                //进度条集合
+                    .plug(new ProBars())
+                //拖拽上传
+                    .plug(new Filedrop())
+                //图片预览
+                    .plug(new Preview())
+            ;
+            //渲染默认数据
+            uploader.restore();
+        });
+    })
+
+</script>
+</body>
+</html>
