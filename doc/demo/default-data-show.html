@@ -71,9 +71,6 @@
             ]
         });
     }
-
-    var $ = S.Node.all;
-
     S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/imageUploader/index,kg/uploader/2.0.2/themes/imageUploader/style.css', function (S, Uploader,ImageUploader) {
         //上传插件
         var plugins = 'kg/uploader/2.0.2/plugins/auth/auth,' +
@@ -92,7 +89,7 @@
             uploader.on('success',function(ev){
                 var result = ev.file.result;
                 if(result.desc){
-                    var $desc = $('.J_Desc_'+ev.file.id);
+                    var $desc = S.all('.J_Desc_'+ev.file.id);
                     $desc.html(result.desc);
                 }
             })

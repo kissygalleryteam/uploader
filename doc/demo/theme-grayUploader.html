@@ -62,7 +62,9 @@
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom){
             var uploader = new Uploader('#J_UploaderBtn',{
                 //处理上传的服务器端脚本路径
-                action:"upload.php"
+                action:"upload.php",
+                //开启多选
+                multiple: true
             });
             //使用主题
             uploader.theme(new GrayUploader({ queueTarget: '#J_UploaderQueue' }));
