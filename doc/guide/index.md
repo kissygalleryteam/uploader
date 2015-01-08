@@ -34,16 +34,19 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 ## demo汇总
 
-* [简单demo：js配置上传组件](http://www.36ria.com/butterfly/uploader/2.0.2/demo/js-config-use.html)
-* [简单demo：属性配置上传组件](http://www.36ria.com/butterfly/uploader/2.0.2/demo/tag-config-use.html)
-* [combo请求](http://www.36ria.com/butterfly/uploader/2.0.2/demo/combo.html)
-* [上传验证控制的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/auth.html)
-* [组件全部事件演示](http://www.36ria.com/butterfly/uploader/2.0.2/demo/events.html)
-* [渲染默认队列数据的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/default-data-show.html)
-* [队列全部方法演示](http://www.36ria.com/butterfly/uploader/2.0.2/demo/queue.html)
-* [只使用flash上传的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/flash-upload-type.html)
-* [只使用iframe上传的demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/iframe-upload-type.html)
-* [常用方法控制](http://www.36ria.com/butterfly/uploader/2.0.2/demo/method-uploader.html)
+[demo列表](http://uploader.apebook.org/) 。
+
+<ul>
+    <li><a href="http://uploader.apebook.org/js-config-use.html">简单demo：js配置上传组件</a></li>
+    <li><a href="http://uploader.apebook.org/tag-config-use.html">简单demo：属性配置上传组件</a></li>
+    <li><a href="http://uploader.apebook.org/auth.html">上传验证控制的demo</a></li>
+    <li><a href="http://uploader.apebook.org/events.html">组件全部事件演示</a></li>
+    <li><a href="http://uploader.apebook.org/default-data-show.html">渲染默认队列数据的demo</a></li>
+    <li><a href="http://uploader.apebook.org/queue.html">队列全部方法演示</a></li>
+    <li><a href="http://uploader.apebook.org/flash-upload-type.html">只使用flash上传的demo</a></li>
+    <li><a href="http://uploader.apebook.org/iframe-upload-type.html">只使用iframe上传的demo</a></li>
+    <li><a href="http://uploader.apebook.org/method-uploader.html">常用方法控制</a></li>
+</ul>
 
 ## 组件内置的主题
 
@@ -51,20 +54,19 @@ flash上传感谢龙藏的<code>ajbridge</code>组件。
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
-[grayUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-grayUploader.html)（V1.5新增）| 明河/翰文|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/grayUploader)|![grayUploader](http://gtms03.alicdn.com/tps/i3/TB1RqL8FVXXXXbVXVXXGV5HNXXX-610-322.png)
-[imageUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/imageUploader)|![imageUploader](http://www.36ria.com/wp-content/uploads/2012/08/imageUploader.png)
-[refundUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/refundUploader)|![refundUploader](http://www.36ria.com/wp-content/uploads/2012/08/refundUploader.png)
-[loveUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/loveUploader)|![loveUploader](http://www.36ria.com/wp-content/uploads/2012/05/uploader.png)
-[singleImageUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/singleImageUploader)|![singleImageUploader](http://www.36ria.com/wp-content/uploads/2012/11/singleImageUploader.png)
-[cropUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/cropUploader)|![cropUploader](http://s3.36ria.com/201305/4922/35687_o.png)
-[editorMultipleUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-editorMultipleUploader.html)| 明河、承玉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/editorMultipleUploader)|![editorMultipleUploader](http://s3.36ria.com/201305/4922/35687_o.png)
+[grayUploader](http://uploader.apebook.org/theme-grayUploader.html)（V1.5新增）| 明河/翰文|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/grayUploader)|![grayUploader](http://gtms03.alicdn.com/tps/i3/TB1RqL8FVXXXXbVXVXXGV5HNXXX-610-322.png)
+[imageUploader](http://uploader.apebook.org/theme-imageUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/imageUploader)|![imageUploader](http://gtms02.alicdn.com/tps/i2/TB1sjpLHXXXXXaUXVXXXpjhJXXX-356-178.png)
+[refundUploader](http://uploader.apebook.org/theme-refundUploader.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/refundUploader)|![refundUploader](http://gtms01.alicdn.com/tps/i1/TB1yfdVHXXXXXXfXXXXnDo20pXX-318-136.png)
+[loveUploader](http://uploader.apebook.org/theme-loveUploader.html)| 苏河/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/loveUploader)|![loveUploader](http://gtms02.alicdn.com/tps/i2/TB1kDVQHXXXXXbsXXXXNXLQ2XXX-428-151.png)
+[singleImageUploader](http://uploader.apebook.org/theme-singleImageUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/singleImageUploader)|![singleImageUploader](http://gtms01.alicdn.com/tps/i1/TB1SHNUHXXXXXapXXXXC0XJ3XXX-191-216.png)
+[cropUploader](http://uploader.apebook.org/theme-cropUploader.html)| 明河、元泉|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/cropUploader)|![cropUploader](http://gtms04.alicdn.com/tps/i4/TB1l8JGHXXXXXcJaXXX.hYXWpXX-417-317.png)
 
 ###文件上传主题
 
 主题 | 作者|源码|截图
 ------------ | -------------| -------------| -------------
-[default](http://www.36ria.com/butterfly/uploader/2.0.2/demo/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/default)|![default](http://s2.36ria.com/201304/4922/34955_o.png)
-[daogouUploader](http://www.36ria.com/butterfly/uploader/2.0.2/demo/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/daogouUploader)|![daogouUploader](http://s3.36ria.com/201304/4922/34956_o.png)
+[default](http://uploader.apebook.org/js-config-use.html)| 明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/default)|![default](http://gtms03.alicdn.com/tps/i3/TB1neXVHXXXXXXqXXXXavXEVpXX-278-131.png)
+[daogouUploader](http://uploader.apebook.org/theme-daogouUploader.html)| 溪夏/明河|[源码](https://github.com/kissygalleryteam/uploader/tree/master/2.0.2/themes/daogouUploader)|![daogouUploader](http://gtms01.alicdn.com/tps/i1/TB1h_XLHXXXXXaKXVXXIXDr2VXX-325-115.png)
 
 ## 组件快速上手
 
@@ -1088,7 +1090,7 @@ uploader.on('error',function(ev){
 
 如果你希望可以在html配置组件属性，需要use("tagConfig")。
 
-demo可以[猛击这里](http://www.36ria.com/butterfly/uploader/2.0.2/demo/tag-config-use.html)。
+demo可以[猛击这里](http://uploader.apebook.org/tag-config-use.html)。
 
 ```xml
     <input class="g-u" id="J_UploaderBtn" name="Filedata" type="file" value="上传图片"
@@ -1213,7 +1215,7 @@ tagConfig的配置覆盖会在主题初始化成功后才执行，如果你的up
 
 v1.5新增插件，读取剪切板的文件数据，触发上传。目前只能用于chrome
 
-请看[demo](http://www.36ria.com/butterfly/uploader/2.0.2/demo/paste-demo.html)。
+请看[demo](http://uploader.apebook.org/paste-demo.html)。
 
 模块路径为：*kg/uploader/2.0.2/plugins/paste/paste*
 
