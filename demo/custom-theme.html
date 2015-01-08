@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>定制自己的主题</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h2>定制自己的主题</h2>
+
+<div class="grid">
+    <input type="file" class="g-u" id="J_JsUploaderBtn" value="上传文件" name="Filedata" >
+    <input type="hidden" id="J_Urls" name="urls" value="" />
+</div>
+<ul id="J_JsUploaderQueue">
+
+</ul>
+<script>
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"http://g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/2.0.2",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.add('customTheme',function(S,Node,DefaultTheme){
+        var EMPTY = '', $ = Node.all;
+        function CustomTheme(config) {
+            var self = this;
+            //调用父类构造函数
+            CustomTheme.superclass.constructor.call(self, config);
+        }
+
+        S.extend(CustomTheme, DefaultTheme,{
+            render:function(){
+                var self = this;
+                //调用父类的render()
+                CustomTheme.superclass.render.call(self);
+                var uploader =self.get('uploader');
+                uploader.on('success',function(ev){
+                    self._addMsg(ev.file);
+                })
+            },
+            _addMsg:function(file){
+                var self = this;
+                var id = file.id;
+                var $msg = $('.J_TestMsg_'+id);
+                var uploader = self.get('uploader');
+                var queue = uploader.get('queue');
+                var index = queue.getFileIndex(id)+1;
+                $msg.text('这是第'+index+'个文件！');
+            }
+        }, {ATTRS:{
+            name:{value:'defaultTheme'},
+            fileTpl:{value:
+                    '<li id="queue-file-{id}" class="clearfix" data-name="{name}">' +
+                            '<div class="f-l sprite file-icon"></div>' +
+                            '<div class="f-l">{name}</div>' +
+                            '<div class="f-l status-wrapper">' +
+                                '<div class="status waiting-status">等待上传，<a class="J_Upload_{id}" href="#Upload">点此上传</a> </div>' +
+                                '<div class="status start-status progress-status success-status clearfix">' +
+                                '<div class="J_ProgressBar_{id} f-l uploader-progress"><img class="loading" src="http://img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif" alt="loading" /></div>' +
+                                ' <a  class="J_Cancel_{id} f-l upload-cancel" href="#uploadCancel">取消</a>' +
+                                '<a href="#fileDel" class=" f-l J_Del_{id}" style="display:none;">删除</a>' +
+                                '</div> ' +
+                                '<div class="status cancel-status">已经取消上传，<a href="#reUpload" id="J_ReUpload_{id}" class="J_Upload_{id}">点此重新上传</a> </div>' +
+                                '<div class="status error-status upload-error"><span class="J_ErrorMsg_{id}"></span><a href="#fileDel" class="J_Del_{id}">删除</a></div>' +
+                            '</div>' +
+                            '<div class="f-l J_TestMsg_{id}"></div>' +
+                            '</li>'
+            }
+        }});
+        return CustomTheme;
+    },{requires:['node', 'kg/uploader/2.0.2/themes/default/']});
+
+    KISSY.use('kg/uploader/2.0.2/index,customTheme,kg/uploader/2.0.2/themes/default/style.css', function (S, Uploader,CustomTheme) {
+
+        var uploader = new Uploader('#J_JsUploaderBtn',{
+            //处理上传的服务器端脚本路径
+            action:"upload.php"
+        });
+
+        uploader.use('auth',{
+            //最多上传个数
+            max:3,
+            //文件最大允许大小
+            maxSize:500
+        });
+
+        uploader.use('urlsInput',{target:'#J_Urls'});
+
+        var uploaderTheme = new CustomTheme({
+            queueTarget:'#J_JsUploaderQueue'
+        });
+        //运行主题
+        uploader.theme(uploaderTheme);
+    })
+
+</script>
+</body>
+</html>

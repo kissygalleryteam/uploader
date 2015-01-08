@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>grayUploader主题 </title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
+</head>
+
+<body>
+<h2>grayUploader主题</h2>
+<ul>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/2.0.2/themes/refundUploader" target="_blank">源码</a></li>
+    <li>作者：翰文，明河</li>
+    <li>设计：锦笙</li>
+    <li>描述：来源于淘宝退款</li>
+    <li>案例：淘宝退款申请页面的上传凭证</li>
+    <li>兼容：IE6+、chrome、firefox、safari</li>
+</ul>
+
+<div class="grid">
+    <input type="file" class="g-u" id="J_UploaderBtn" value="选择凭证图片" name="Filedata"  accept="image/*" >
+    <input type="hidden" id="J_Urls" name="refundImageUrls">
+</div>
+<ul id="J_UploaderQueue" class="grid"></ul>
+
+<script type="text/javascript">
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"http://g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/2.0.2",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.use('kg/uploader/2.0.2/index,kg/uploader/2.0.2/themes/grayUploader/index,kg/uploader/2.0.2/themes/grayUploader/style.css', function (S, Uploader,GrayUploader) {
+        //上传组件插件
+        var plugins = 'kg/uploader/2.0.2/plugins/auth/auth,' +
+                'kg/uploader/2.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/2.0.2/plugins/proBars/proBars,' +
+                'kg/uploader/2.0.2/plugins/filedrop/filedrop,' +
+                'kg/uploader/2.0.2/plugins/preview/preview,' +
+                'kg/uploader/2.0.2/plugins/imageZoom/imageZoom';
+
+        S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom){
+            var uploader = new Uploader('#J_UploaderBtn',{
+                //处理上传的服务器端脚本路径
+                action:"upload.php",
+                //开启多选
+                multiple: true
+            });
+            //使用主题
+            uploader.theme(new GrayUploader({ queueTarget: '#J_UploaderQueue' }));
+            //验证插件
+            uploader.plug(new Auth({
+                        //最多上传个数
+                        max:3,
+                        //图片最大允许大小
+                        maxSize:1000
+                    }))
+                    //url保存插件
+                    .plug(new UrlsInput({target:'#J_Urls'}))
+                    //进度条集合
+                    .plug(new ProBars())
+                    //拖拽上传
+                    .plug(new Filedrop())
+                    //图片预览
+                    .plug(new Preview())
+                    .plug(new ImageZoom())
+            ;
+        });
+    })
+</script>
+</body>
+</html>
