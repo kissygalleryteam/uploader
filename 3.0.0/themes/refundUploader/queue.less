@@ -1,0 +1,124 @@
+.refundUploader-queue  {
+    margin:0;
+    margin-top:10px;
+    padding:0;
+    font-size:12px;
+
+    li {
+        border: 1px solid @liBorderColor;
+        margin: 0 10px 10px 0;
+        width: @liWidth;
+        height: @liHeight;
+        position: relative;
+
+        background-color: #fff;
+    }
+
+    li.error{
+        border-color:#red;
+        border:1px solid #FFBFBF ;
+        .pic-mask{
+            background-color:#FFF3F3
+        }
+        color:#FF0000;
+    }
+
+    li .wrapper {
+        position: relative;
+        z-index: 10;
+    }
+
+
+    li .del-pic {
+        display:block;
+        color: #3366CC;
+        width: @liWidth;
+        height: 24px;
+        line-height: 24px;
+        font-size:12px;
+        text-decoration: none;
+        text-align: center;
+    }
+    li .del-pic:hover{
+        color:#F60;
+        text-decoration: underline;
+    }
+    .status-wrapper{
+        position: absolute;
+        top:50%;
+        left:0;
+        width:100%;
+        margin-top:-12px;
+        z-index: 30;
+        font-size:12px;
+
+        .status{
+            width:58px;
+            margin:0 auto;
+            text-align: center;
+        }
+    }
+
+
+    //遮罩层
+    .pic-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: @liWidth;
+        height: @liHeight;
+        .opacity(80);
+        background: #fff;
+        z-index: 7;
+    }
+
+    .pic {
+        *overflow: hidden;
+        display: table;
+        text-align: center;
+        table-layout: fixed;
+
+        img{
+            display:none;
+            border:none;
+            vertical-align: middle;
+            max-width: @liWidth;
+            max-height: @liHeight ;
+            margin:0;
+            padding:0;
+        }
+
+        span {
+            width: @liWidth ;
+            height: @liHeight;
+            display: table-cell; /*非IE、IE8、IE9的主流浏览器识别的垂直居中的方法*/
+            vertical-align: middle;
+            *display: block;
+            *font-family: Arial; /*防止非utf-8引起的hack失效问题，如gbk编码*/
+            *line-height: 1; /* 避免行高导致垂直居中有误 */
+        }
+
+    }
+
+    .drop-wrapper{
+        cursor:pointer;
+    }
+
+    .ks-progress-bar {
+        height: @progressBarHeight;
+        width: @progressBarWidth;
+        margin:0 auto;
+        .ks-progress-bar-value {
+            background-color: #fbb450;
+            background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+            background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+            background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+            background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+        }
+
+        .status-wrapper .status {
+            text-align: center;
+        }
+    }
+}

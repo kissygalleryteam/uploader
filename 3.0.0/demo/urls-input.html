@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>处理上传后路径的示例</title>
+<link rel="stylesheet" type="text/css" href="//docs.kissyui.com/kissy-dpl/base/build/css/dpl-pkg.css"/>
+<link rel="stylesheet" type="text/css" href="../../assets/demo.css"/>
+<script src="//a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js" charset="utf-8"></script>
+</head>
+<body>
+<article id="doc">
+    <h4>处理上传后路径的示例</h4>
+    <p>这个demo将演示，如何处理上传后路径。</p>
+    <p>uploader有个UrlsInput的子类，专门用于处理路径隐藏域，你可以通过调用UrlsInput的方法和属性，来处理路径。</p>
+    <p>点击下来的按钮，上传几个文件。</p>
+    <!-- 上传按钮，组件配置请写在data-config内 -->
+    <a id="J_UploaderBtn" class="g-u uploader-button uploader-button-focus" data-config=
+            '{"type" : "auto",
+                "serverConfig":{"action":"upload.php","data":{"dir":"files/"},"dataType" : "json"},
+                "name":"Filedata",
+                "urlsInputName":"fileUrls"}'
+       href="#">
+        选择要上传的文件
+    </a>
+    <!-- 路径urls -->
+    <input type="hidden" value="" name="fileUrls" />
+    <!-- 文件上传队列 -->
+    <ul id="J_UploaderQueue">
+
+    </ul>
+    <div class="btn-wrapper">
+        <input type="button" value="获取文件路径" id="J_GetUrls">
+    </div>
+    <h5>在页面中增加一个存储路径的隐藏域</h5>
+    <pre class='brush: xml'>
+        <!-- 路径urls -->
+        <input type="hidden" value="" name="fileUrls" />
+    </pre>
+    <p>留意隐藏域的name必须和你组件初始化配置一致，比如对应的配置"urlsInputName":"fileUrls"。</p>
+    <p>组件初始化时会进行个判断，当存在指定name名的元素时，不再向页面插入一个隐藏域。</p>
+    <p>当文件上传成功后，组件会自动将文件路径写入到隐藏域。</p>
+    <p>组件的配置如下</p>
+    <pre class='brush: xml; highlight: [4]'>
+        <a id="J_UploaderBtn" class="g-u uploader-button uploader-button-focus" data-config=
+                '{"type" : "auto",
+                    "serverConfig":{"action":"upload.php","data":{"dir":"files/"},"dataType" : "json"},
+                    "name":"Filedata",
+                    "urlsInputName":"fileUrls"}'
+           href="#">
+            选择要上传的文件
+        </a>
+    </pre>
+    <h5>如何手动获取文件路径</h5>
+    <pre class='brush: js; highlight: [8, 11]'>
+        var ru = new RenderUploader('#J_UploaderBtn', '#J_UploaderQueue');
+        //对组件的后续操作务必放在init事件内，因为组件时可能需要异步加载模板
+        ru.on("init",function(ev){
+            var $ = S.Node.all,
+                    //上传组件实例
+                    uploader = ev.uploader,
+                    //UrlsInput的实例
+                    urlsInput = uploader.get('urlsInput');
+            $('#J_GetUrls').on('click',function(){
+                //为一个数组
+                var urls = urlsInput.get('urls');
+                alert('所有的url是：' + urls + ',url个数为：'+urls.length);
+            })
+        })
+    </pre>
+    <p>Uploader有个urlsInput的属性存储着UrlsInput的实例，而UrlsInput有个urls（数组）的关键属性，可以得到文件路径。 </p>
+    <p>UrlsInput有二个关键方法:add()和remove()，用于添加和删除文件路径，一般无需调用。</p>
+</article>
+<script>
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"//g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/3.0.0",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+    //加载上传组件入口文件
+    KISSY.use('kg/uploader/3.0.0/index', function (S, RenderUploader) {
+        //第一个参数：按钮元素钩子，第二个参数：队列元素钩子
+        var ru = new RenderUploader('#J_UploaderBtn', '#J_UploaderQueue');
+        //对组件的后续操作务必放在init事件内，因为组件时可能需要异步加载模板
+        ru.on("init",function(ev){
+            var $ = S.Node.all,
+                    //上传组件实例
+                    uploader = ev.uploader,
+                    //UrlsInput的实例
+                    urlsInput = uploader.get('urlsInput');
+            $('#J_GetUrls').on('click',function(){
+                //为一个数组
+                var urls = urlsInput.get('urls');
+                alert('所有的url是：' + urls + ',url个数为：'+urls.length);
+            })
+        })
+    })
+</script>
+
+<!-- 代码高亮 START  -->
+<link href='../../assets/syntaxhighlighter_3.0.83/sh.css' rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="../../assets/syntaxhighlighter_3.0.83/sh.js"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!-- 代码高亮 END  -->
+</body>
+</html>
