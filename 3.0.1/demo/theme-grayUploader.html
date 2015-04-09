@@ -9,7 +9,7 @@
 <body>
 <h2>grayUploader主题</h2>
 <ul>
-    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.0/themes/refundUploader" target="_blank">源码</a></li>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.1/themes/refundUploader" target="_blank">源码</a></li>
     <li>作者：翰文，明河</li>
     <li>设计：锦笙</li>
     <li>描述：来源于淘宝退款</li>
@@ -41,7 +41,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/3.0.0",
+                    name:"kg/uploader/3.0.1",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -50,14 +50,14 @@
         });
     }
 
-    S.use('kg/uploader/3.0.0/index,kg/uploader/3.0.0/themes/grayUploader/index,kg/uploader/3.0.0/themes/grayUploader/style.css', function (S, Uploader,GrayUploader) {
+    S.use('kg/uploader/3.0.1/index,kg/uploader/3.0.1/themes/grayUploader/index,kg/uploader/3.0.1/themes/grayUploader/style.css', function (S, Uploader,GrayUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/3.0.0/plugins/auth/auth,' +
-                'kg/uploader/3.0.0/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/3.0.0/plugins/proBars/proBars,' +
-                'kg/uploader/3.0.0/plugins/filedrop/filedrop,' +
-                'kg/uploader/3.0.0/plugins/preview/preview,' +
-                'kg/uploader/3.0.0/plugins/imageZoom/imageZoom';
+        var plugins = 'kg/uploader/3.0.1/plugins/auth/auth,' +
+                'kg/uploader/3.0.1/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.1/plugins/proBars/proBars,' +
+                'kg/uploader/3.0.1/plugins/filedrop/filedrop,' +
+                'kg/uploader/3.0.1/plugins/preview/preview,' +
+                'kg/uploader/3.0.1/plugins/imageZoom/imageZoom';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom){
             var uploader = new Uploader('#J_UploaderBtn',{

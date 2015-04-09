@@ -9,7 +9,7 @@
 <body>
 <h2>cropUploader主题</h2>
 <ul>
-    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.0/themes/cropUploader" target="_blank">源码</a></li>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.1/themes/cropUploader" target="_blank">源码</a></li>
 
     <li>作者：明河、元泉</li>
     <li>描述：带图片裁剪器的主题，图片裁剪使用元泉开发的组件，非常赞的组件，<a href="//gallery.kissyui.com/imgcrop/2.0/guide/index.html">API请看文档</a>。</li>
@@ -55,7 +55,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/3.0.0",
+                    name:"kg/uploader/3.0.1",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -64,13 +64,13 @@
         });
     }
 
-    S.use('kg/uploader/3.0.0/index,kg/uploader/3.0.0/themes/cropUploader/index,kg/uploader/3.0.0/themes/cropUploader/style.css', function (S, Uploader,CropUploader) {
+    S.use('kg/uploader/3.0.1/index,kg/uploader/3.0.1/themes/cropUploader/index,kg/uploader/3.0.1/themes/cropUploader/style.css', function (S, Uploader,CropUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/3.0.0/plugins/auth/auth,' +
-                'kg/uploader/3.0.0/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/3.0.0/plugins/proBars/proBars,' +
-                'kg/uploader/3.0.0/plugins/filedrop/filedrop,' +
-                'kg/uploader/3.0.0/plugins/imgcrop/imgcrop';
+        var plugins = 'kg/uploader/3.0.1/plugins/auth/auth,' +
+                'kg/uploader/3.0.1/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.1/plugins/proBars/proBars,' +
+                'kg/uploader/3.0.1/plugins/filedrop/filedrop,' +
+                'kg/uploader/3.0.1/plugins/imgcrop/imgcrop';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Imgcrop){
             var uploader = new Uploader('#J_UploaderBtn',{

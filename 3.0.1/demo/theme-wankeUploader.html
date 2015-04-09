@@ -9,7 +9,7 @@
 <body>
 <h2>wankeUploader主题</h2>
 <ul>
-    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.0/themes/wankeUploader" target="_blank">源码</a></li>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.1/themes/wankeUploader" target="_blank">源码</a></li>
     <li>作者：灵吾</li>
     <li>设计：灵吾</li>
     <li>描述：图片上传专用主题</li>
@@ -41,7 +41,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/3.0.0",
+                    name:"kg/uploader/3.0.1",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -50,9 +50,9 @@
         });
     }
 
-    S.use('kg/uploader/3.0.0/index,kg/uploader/3.0.0/themes/wankeUploader/index.js,kg/uploader/3.0.0/themes/wankeUploader/style.css', function (S, Uploader,WankeUploader) {
+    S.use('kg/uploader/3.0.1/index,kg/uploader/3.0.1/themes/wankeUploader/index.js,kg/uploader/3.0.1/themes/wankeUploader/style.css', function (S, Uploader,WankeUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/3.0.0/plugins/auth/auth';
+        var plugins = 'kg/uploader/3.0.1/plugins/auth/auth';
 
         S.use(plugins,function(S,Auth){
             var uploader = new Uploader('#J_UploaderBtn',{

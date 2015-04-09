@@ -63,7 +63,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/3.0.0",
+                    name:"kg/uploader/3.0.1",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -71,13 +71,13 @@
             ]
         });
     }
-    S.use('kg/uploader/3.0.0/index,kg/uploader/3.0.0/themes/imageUploader/index,kg/uploader/3.0.0/themes/imageUploader/style.css', function (S, Uploader,ImageUploader) {
+    S.use('kg/uploader/3.0.1/index,kg/uploader/3.0.1/themes/imageUploader/index,kg/uploader/3.0.1/themes/imageUploader/style.css', function (S, Uploader,ImageUploader) {
         //上传插件
-        var plugins = 'kg/uploader/3.0.0/plugins/auth/auth,' +
-                'kg/uploader/3.0.0/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/3.0.0/plugins/proBars/proBars,' +
-                'kg/uploader/3.0.0/plugins/filedrop/filedrop,' +
-                'kg/uploader/3.0.0/plugins/preview/preview';
+        var plugins = 'kg/uploader/3.0.1/plugins/auth/auth,' +
+                'kg/uploader/3.0.1/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.1/plugins/proBars/proBars,' +
+                'kg/uploader/3.0.1/plugins/filedrop/filedrop,' +
+                'kg/uploader/3.0.1/plugins/preview/preview';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview){
             var uploader = new Uploader('#J_UploaderBtn',{

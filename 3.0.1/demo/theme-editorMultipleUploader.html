@@ -11,7 +11,7 @@
 <body>
 <h2>editorMultipleUploader主题</h2>
 <ul>
-    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.0/themes/editorMultipleUploader" target="_blank">源码</a></li>
+    <li><a href="https://github.com/KF-kissyForm/butterfly/tree/master/kg/uploader/3.0.1/themes/editorMultipleUploader" target="_blank">源码</a></li>
     <li>作者：承玉/明河</li>
     <li>描述：编辑器专用主题</li>
     <li>版本：1.4</li>
@@ -60,7 +60,7 @@
         S.config({
             packages:[
                 {
-                    name:"kg/uploader/3.0.0",
+                    name:"kg/uploader/3.0.1",
                     path:srcPath,
                     charset:"utf-8",
                     ignorePackageNameInUri:true
@@ -69,11 +69,11 @@
         });
     }
 
-    S.use('kg/uploader/3.0.0/index,kg/uploader/3.0.0/themes/editorMultipleUploader/index,kg/uploader/3.0.0/themes/editorMultipleUploader/style.css', function (S, Uploader,EditorMultipleUploader) {
+    S.use('kg/uploader/3.0.1/index,kg/uploader/3.0.1/themes/editorMultipleUploader/index,kg/uploader/3.0.1/themes/editorMultipleUploader/style.css', function (S, Uploader,EditorMultipleUploader) {
         //上传组件插件
-        var plugins = 'kg/uploader/3.0.0/plugins/auth/auth,' +
-                'kg/uploader/3.0.0/plugins/urlsInput/urlsInput,' +
-                'kg/uploader/3.0.0/plugins/proBars/proBars';
+        var plugins = 'kg/uploader/3.0.1/plugins/auth/auth,' +
+                'kg/uploader/3.0.1/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.1/plugins/proBars/proBars';
 
         S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview){
             var uploader = new Uploader('#J_UploaderBtn',{
