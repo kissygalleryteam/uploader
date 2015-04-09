@@ -1,0 +1,168 @@
+.grid {
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  word-spacing: -0.43em;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.grid .g-u {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  /* IE < 8: fake inline-block */
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  _vertical-align: text-bottom;
+}
+.grid .g-u input {
+  *vertical-align: middle;
+}
+.file-input-wrapper {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.file-input-wrapper input {
+  display: block;
+  height: 500px;
+  width: 220px;
+  cursor: pointer;
+  font-size: 100px;
+  margin-top: -50px;
+  position: absolute;
+  left: 0;
+  top: -200px;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+  z-index: 14;
+}
+.ks-progress-bar {
+  height: 8px;
+  width: 90px;
+  background: #b2b2b2;
+  border-radius: 5px;
+  display: block;
+  overflow: hidden;
+}
+.ks-progress-bar .ks-progress-bar-value {
+  width: 0%;
+  height: 8px;
+  background: #db0869;
+  display: block;
+}
+.ks-uploader-button {
+  text-decoration: none;
+}
+.ks-uploader-queue .preview-img {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+  width: 300px;
+  overflow: hidden;
+}
+.native-uploader-queue .native-uploader-button {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAAChCAMAAAABd/YxAAAAA3NCSVQICAjb4U/gAAAAS1BMVEXJys3////LzM/s7O3Y2dv19fbp6ev5+fnW19nd3uDQ0dTi4uT////v7/Db3N7Oz9Hl5uf7+/vv8PHh4ePv8fHJy83S09XX19nZ2dulStxzAAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAZpJREFUeJzt3d1qg0AQQOFN859grAbs+79pNStlTVMonovMwvkKLRmUnKulc6NpE1qafl2HlG3nYal7jLbl6JQv25Wzw4tbj49RU46GfNmtnF3z7GNx73Dtcl7f/swC5aXU9lNeX0xC5aXUj3lt8TlYXrtJi+8NljfGnac/+004+6nrnL4i553GH/NWMI8wj5jzmsOoe3fMb3PeuzP+Yh5hHlFHXtRzLzOPMI8wb51u+lelCZsX/NwzjzCPcNcgzCPMI+rIi3ruZeYR5hHmreOuQZhHmEe4axDmEeYRdeRFPfcy8wjzCPPWcdcgzCPMI9w1CPMI84g68qKee5l5hHmEeeu4axDmEeYR7hqEeYR5RB15Uc+9zDzCPMK8ddw1CPMI8wh3DcI8wjyijryo515mHmEeYd467hqEeYR5hLsGYR5hHlFHXtRzLzOPMI8wbx13DcI8wjyijrzgjyJfPKF9li/4LEe3PBvKWfMYHV/ceihHuzw7lbN/PjF+u3wMfrC89uklAsHy+qdXMITKy69gGN0v8fIu9+nzNy7mbScMJRcDAAAAAElFTkSuQmCC) 0 0 no-repeat;
+  background-size: 76px 76px;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+}
+.native-uploader-queue .native-uploader-button label {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYAQMAAADaua+7AAAAA3NCSVQICAjb4U/gAAAABlBMVEX////Fxsm9vo0JAAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAAFklEQVQImWNgqGNgIIT///+PFROhFwAGixrL3fSkagAAAABJRU5ErkJggg==) center 6px no-repeat;
+  display: block;
+  padding-top: 32px;
+  text-align: center;
+  width: 100%;
+}
+.native-uploader-queue .native-uploader-button label p {
+  font-size: 14px;
+  color: #D5D5D5;
+  margin: 0;
+  margin-bottom: 4px;
+}
+.native-uploader-queue .native-uploader-button label small {
+  font-size: 12px;
+  color: #DBDBDB;
+}
+.native-uploader-queue {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  font-size: 12px;
+}
+.native-uploader-queue li {
+  width: 76px;
+  height: 76px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  padding: 2px;
+  margin-right: 15px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.native-uploader-queue li.error {
+  border: 1px solid red;
+}
+.native-uploader-queue li.start,
+.native-uploader-queue li.upload {
+  border: 1px solid #369BD7;
+}
+.native-uploader-queue li .wrapper {
+  position: relative;
+  z-index: 10;
+}
+.native-uploader-queue li .del-pic {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABLpJREFUeNq0V3tMW1UY/9pbLhRrVxAGlVVWRQkxso2NOVmDhGQPwpI9MiWBP8wSY7IlxURdgzEqDhMNZFkkNVonWUz2h8vIig/UQHiYFI0OApYIMcwUEzbbClIGtLS0XL/v9BZLGbQ87pecnHvPPed+j/M9fp8M1iBBEFa8y5A8Hk85z/MnkpKSymhNoVDsxSkUDAaHaV5cXOxaWFj4Nj093Ua/gK0QCUCjp6dHNT8///bS0tI/QoIUCoVcc3Nzb+DZlHh8ZOt8k8/MzFSrVKpGuVyuZSujqNjvPwL0twMEAwB/DgBwCoDdewBSVAAHKgEKDAD5z7HtKPRfs7Ozr2s0Giu9Jqx9fX09jxpcXlZpqEMQGioF4RQkNhrPCoK9a/k4CvEeKZSQBYxGY3JTU1NrcnLyCbZw1QjwnXlz93jqIsBLjezR5/PdSE1NrSFfWU8ADs1+Ra1WG8HjBGh8IWz2rdC+4wCmm+yK0InfT0tLezf6OqIFkDudznNZWVmfs7e6EoA/foZtIRLine/Z48TExBmdTvdVRAgussdisTxiMBha0eFUYLkA8IsVto2cdyhYAQrLQalUPuv3+1v6+voC0Rbg3G53Q2Zm5psw+APApQqQhC51ATxTDmjpOq1W20RWYJ5ZVlamxORxgW365iOQjDo+Y1NGRkYtTjyIoSE3m83HOI7bwWKcLCAV2W4AOIYogz6KV3CQboAE4LKzs0+yDfZukJzEqMrLy3uReJMAPMZnMVu9/bX0AvzUyiZ0RrIAr6CaggVmF1t1j68+8PTz4WTy5MGNMRr7FeALUzh1R5PbwSbkqSPeFAXpmC2n2OrpB5SGa38DaLI3py0ls3PalWsPaQCuTwMWrDn0hcfkcQoSxm9o8+aOf5Y5IZNmWbpY+vjlsCab0Z7OxlKqmk2IIRhP8gEBC8U9LLtPwc7dLExWEIVlrBm3Qjv1keJ0j3iTBUJTU1N2trq/UvooOHSaTZOTk6RpiAQIjoyMdLDVvUekF4AAC+Ukm62deJMD8lgBc7BKDaFXqqH+KMBvndIwLzkLcPEmIG50YR44gCsuZgGXy3V/dHT0S7bp5GvSaX/8PJuGh4ev4zRPvOViXfbV1tZ+gpJNstp99JXtZ07oCCuh1+u9W1NT00I8I05I5O/t7b2L9xLGXuctG89869GeI8vQrLOz8/LY2JgbHwOxiIggtBYd8oOCgoIqFscfntk6KiLmdbcYJBscHGwpKipqIIhCSq+CZDhUiAt0drv905ycHMN2gtLx8fEOvV6PPwOKf28Ekq0CpTjUCBx34ZW8VVhYWMVWKSoIqAy0J+7t5HB450T9/f3XiouLCQFhYYH7a4HSCFF2fBhHltVqraqoqHgVIXraqsYk4Ps/az6x/4GNCWY7d1tb25Xq6upbVAdxzMbC8rWIE4XQ5+fnH0b0chWBpCfR1gyj6V9sy8x4jYfwH7l0tQk3JjE+wYuCUJXa0dzcXFJaWno4Nzd3HwmJLdfjtHF6evoOtYQOh2Ogu7vbZjKZblM5ok9ivAfWas1k8bpjbIo5URAl1UtxpIhXpRC3I+aGRRwLIkOvGOf+eD2hbAM+LRMZJokzF3V+SRwRQYKJtuf/CTAAkA47icxi/Z4AAAAASUVORK5CYII=) 0 0 no-repeat;
+  width: 21px;
+  height: 21px;
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background-size: 20px;
+  z-index: 12;
+}
+.native-uploader-queue .status-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -10px;
+  z-index: 30;
+  text-align: center;
+  width: 100%;
+}
+.native-uploader-queue .status-wrapper .progress-status {
+  font-size: 16px;
+  color: #5A5A5A;
+}
+.native-uploader-queue .status-wrapper .error-status {
+  color: red;
+}
+.native-uploader-queue .status-wrapper p {
+  margin: 0;
+  padding-left: 10px;
+}
+.native-uploader-queue .pic-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  z-index: 7;
+  display: none;
+  opacity: 0.8;
+}
+.native-uploader-queue .pic img {
+  display: none;
+  border: none;
+  width: 70px;
+  height: 70px;
+}

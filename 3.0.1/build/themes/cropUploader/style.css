@@ -1,0 +1,183 @@
+.grid {
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  word-spacing: -0.43em;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.grid .g-u {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  /* IE < 8: fake inline-block */
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  _vertical-align: text-bottom;
+}
+.grid .g-u input {
+  *vertical-align: middle;
+}
+.file-input-wrapper {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.file-input-wrapper input {
+  display: block;
+  height: 500px;
+  width: 220px;
+  cursor: pointer;
+  font-size: 100px;
+  margin-top: -50px;
+  position: absolute;
+  left: 0;
+  top: -200px;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+  z-index: 14;
+}
+.ks-progress-bar {
+  height: 8px;
+  width: 90px;
+  background: #b2b2b2;
+  border-radius: 5px;
+  display: block;
+  overflow: hidden;
+}
+.ks-progress-bar .ks-progress-bar-value {
+  width: 0%;
+  height: 8px;
+  background: #db0869;
+  display: block;
+}
+.ks-uploader-button {
+  text-decoration: none;
+}
+.ks-uploader-queue .preview-img {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+  width: 300px;
+  overflow: hidden;
+}
+.cropUploader-button {
+  width: 74px;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e2e2e2));
+  background: -moz-linear-gradient(top, #ffffff, #e2e2e2);
+  border: 1px solid #999;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  color: #666;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+}
+.cropUploader-button:hover {
+  text-decoration: none;
+  color: #333;
+}
+.cropUploader-button:active {
+  background-color: #e2e2e2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#ffffff));
+  background: -moz-linear-gradient(top, #e2e2e2, #ffffff);
+}
+.uploader-button-disabled,
+.uploader-button-disabled:hover {
+  border: 1px solid #EEEEEE;
+  color: #404040;
+  background: #EEEEEE;
+}
+.cropUploader-queue .uploader-img-wrapper {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #d6d6d6;
+  overflow: hidden;
+  margin-top: 10px;
+  position: relative;
+}
+.cropUploader-queue .uploader-img {
+  *overflow: hidden;
+  display: table;
+  text-align: center;
+  table-layout: fixed;
+  width: 300px;
+  height: 300px;
+}
+.cropUploader-queue .pic-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  background: #fff;
+  z-index: 7;
+}
+.cropUploader-queue .ks-progress-bar {
+  height: 8px;
+  width: 100px;
+  margin: 0 auto;
+}
+.cropUploader-queue .ks-progress-bar .ks-progress-bar-value {
+  background: #75B9F0;
+}
+.cropUploader-queue .ks-progress-bar .status-wrapper .status {
+  text-align: center;
+}
+.cropUploader-queue .status-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: -6px;
+  z-index: 30;
+}
+.cropUploader-queue .status-wrapper .status {
+  margin-left: 2px;
+  width: 298px;
+}
+.cropUploader-queue .status-wrapper .waiting-status {
+  color: #404040;
+}
+.cropUploader-queue .status-wrapper .error-status {
+  color: red;
+}
+.cropUploader-queue .status-wrapper p {
+  margin: 0;
+  padding-left: 10px;
+}
+.cropUploader-queue .del-pic {
+  color: #676767;
+  display: none;
+  width: 60px;
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -30px;
+  margin-top: -12px;
+  text-decoration: none;
+  z-index: 3000;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  text-align: center;
+  font-size: 12px;
+}
