@@ -1,58 +1,43 @@
 module.exports = function(grunt) {
-    var configs = grunt.file.readJSON('abc.json');
-    var BUILD = 'build/';
-    var versionPath = configs.version + '/';
-    var kmcSrcs = ['index.js','theme.js','aliUploader.js','nativeUploader.js',
-        ,'plugins/plugins.js','plugins/auth/auth.js','plugins/ajbridge/uploader.js','plugins/coverPic/coverPic.js','plugins/filedrop/filedrop.js','plugins/imageZoom/imageZoom.js','plugins/imgcrop/imgcrop.js','plugins/preview/preview.js','plugins/proBars/proBars.js','plugins/tagConfig/tagConfig.js','plugins/urlsInput/urlsInput.js','plugins/miniLogin/miniLogin.js','plugins/mobileUploader/mobileUploader.js','plugins/paste/paste.js','plugins/cross/cross.js','plugins/callapp/callapp.js',
-        ,'themes/cropUploader/index.js','themes/daogouUploader/index.js','themes/default/index.js','themes/editorMultipleUploader/index.js','themes/cropUploader/index.js','themes/ershouUploader/index.js','themes/imageUploader/index.js','themes/loveUploader/index.js','themes/mutilImageUploader/index.js','themes/refundUploader/index.js','themes/singleImageUploader/index.js','themes/wankeUploader/index.js','themes/grayUploader/index.js','themes/crossUploader/index.js','themes/nativeUploader/index.js'
-    ];
-    var kmcMain = [];
-    for(var i = 0;i<kmcSrcs.length;i++){
-        var buildPath = versionPath + BUILD + kmcSrcs[i];
-        kmcMain.push({
-            src: versionPath+kmcSrcs[i],
-            dest: buildPath
-        });
-    }
-
-    var themes = ['cropUploader','editorMultipleUploader','imageUploader','refundUploader','singleImageUploader','grayUploader','crossUploader','default','nativeUploader'];
-    var lessMain = {};
-    for(var i = 0;i<themes.length;i++){
-        var lessPath = versionPath + 'themes/' + themes[i] + '/style.less';
-        var buildPath = versionPath + 'build/themes/'+themes[i];
-        var cssPath = buildPath + '/style.css';
-        lessMain[cssPath] = lessPath;
-    }
+	var task = grunt.task;
+    var SRC = './';
     grunt.initConfig({
         // 配置文件，参考package.json配置方式，必须设置项是
         // name, version, author
         // name作为gallery发布后的模块名
         // version是版本，也是发布目录
         // author必须是{name: "xxx", email: "xxx"}格式
-        pkg: configs,
-        buildBase: configs.version + '/build',
+        pkg: grunt.file.readJSON('package.json'),
         banner: '/*!build time : <%= grunt.template.today("yyyy-mm-dd h:MM:ss TT") %>*/\n',
+
+        // 对build目录进行清理
+        clean: {
+            build: {
+                src: './build/*'
+			}
+        },
         // kmc打包任务，默认情况，入口文件是index.js，可以自行添加入口文件，在files下面
         // 添加
         kmc: {
             options: {
-                banner: '<%= banner %>',
                 packages: [
                     {
                         name: '<%= pkg.name %>',
                         path: '../'
                     }
                 ],
-                map: [["<%= pkg.name %>/", "gallery/<%= pkg.name %>/"]]
+                depFilePath: 'mods.js',
+                fixModuleName:true,
+                map: [["<%= pkg.name %>/", "kg/<%= pkg.name %>/<%= pkg.version %>/"]]
             },
             main: {
-                files: kmcMain
-            }
-        },
-        copy: {
-            main: {
                 files: [
-                    {src: ['path/**'], dest: 'dest/'}
+                    {
+                        expand: true,
+                        cwd: SRC,
+                        src: [ './**/*.js','!./node_modules/**/*.js','!./demo/**/*.js' ,'!./test/**/*.js','!Gruntfile.js'],
+                        dest: 'build/'
+                    }
                 ]
             }
         },
@@ -62,6 +47,11 @@ module.exports = function(grunt) {
          */
         uglify: {
             options: {
+                compress:{
+                    global_defs:{"DEBUG":false},
+                    drop_console:true,
+                    dead_code:true
+                },
                 banner: '<%= banner %>',
                 beautify: {
                     ascii_only: true
@@ -71,9 +61,9 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= buildBase %>',
+                        cwd: './build',
                         src: ['**/*.js', '!**/*-min.js'],
-                        dest: '<%= buildBase %>',
+                        dest: './build',
                         ext: '-min.js'
                     }
                 ]
@@ -81,23 +71,81 @@ module.exports = function(grunt) {
         },
         less: {
             options: {
-                banner: '<%= banner %>'
+                paths: './'
             },
-            themes:{
-                files: lessMain
-            }
-        },
-        cssmin: {
-            options: {
-                banner: '<%= banner %>'
-            },
-            themes:{
+            main: {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= buildBase %>',
-                        src: ['**/*.css', '!**/*-min.css'],
-                        dest: '<%= buildBase %>',
+						cwd:SRC,
+                        src: ['**/*.less',
+							'!build/**/*.less',   
+							'!demo/**/*.less','!node_modules/**/*.less'],
+                        dest: './build/',
+                        ext: '.css'
+                    }
+                ]
+            }
+        },
+		// 拷贝 CSS 文件
+		copy : {
+			main: {
+				files:[
+					{
+						expand:true,
+						cwd:SRC,
+						src: [
+							'**/*.css',
+							'!build/**/*.css',
+							'!demo/**/*.css','!node_modules/**/*.css',
+                            '**/*.swf'
+						], 
+						dest: './build/', 
+						filter: 'isFile'
+					}
+				]
+			}
+		},
+		// 监听JS、CSS、LESS文件的修改
+        watch: {
+            'all': {
+                files: [
+					'./src/**/*.css',
+					'!./build/**/*'
+				],
+                tasks: [ 'build' ]
+            }
+		},
+        cssmin: {
+            scss: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: './build',
+                        src: ['**/*.scss.css', '!**/*.scss-min.css'],
+                        dest: './build',
+                        ext: '.scss-min.css'
+                    }
+                ]
+            },
+            less: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: './build',
+                        src: ['**/*.less.css', '!**/*.less-min.css'],
+                        dest: './build',
+                        ext: '.less-min.css'
+                    }
+                ]
+            },
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: './build',
+                        src: ['**/*.css', '!**/*-min.css','!**/*.less.css','!**/*.scss.css'],
+                        dest: './build',
                         ext: '-min.css'
                     }
                 ]
@@ -108,7 +156,20 @@ module.exports = function(grunt) {
     // 使用到的任务，可以增加其他任务
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-kmc');
-    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    return grunt.registerTask('default', ['kmc', 'uglify','less','cssmin']);
+    grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-less');
+
+
+	grunt.registerTask('build', '默认构建任务', function() {
+		task.run(['clean:build', 'kmc','uglify', 'copy','cssmin']);
+	});
+
+    return grunt.registerTask('default', '',function(type){
+		if (!type) {
+			task.run(['build']);
+		}
+	});
 };
