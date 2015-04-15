@@ -1,0 +1,388 @@
+.dg-light {
+    color: #f60;
+    font-style: normal;
+}
+/*{{{ c-dg-popup */
+.c-dg-popup {
+    width: 500px;
+}
+.c-dg-popup .c-h {
+    position: relative;
+    padding: 3px 9px;
+    font-size: 14px;
+    background: #0087BF;
+    color: #FFF;
+    border: 1px solid #0077a8;
+}
+.c-dg-popup .c-h .close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url(//img03.taobaocdn.com/tps/i3/T10.fKXn0oXXbfe7Q9-125-56.png) -2px -17px no-repeat;
+}
+.c-dg-popup .c-c {
+    padding: 40px 30px 20px;
+    text-align: center;
+    background: #FFF;
+    border: 1px solid #004B7A;
+    border-top: 0 none;
+    color: #333;
+}
+.c-dg-popup .c-i {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    margin-right: 10px;
+}
+.c-dg-popup .c-i .tx {
+    text-align: left;
+    font-size: 14px;
+    overflow: hidden;
+    zoom: 1;
+}
+.c-dg-popup .i-success {
+    float: left;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background: url(//img03.taobaocdn.com/tps/i3/T10.fKXn0oXXbfe7Q9-125-56.png) 0 -32px no-repeat;
+}
+.c-dg-popup .i-tip {
+    float: left;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background: url(//img03.taobaocdn.com/tps/i3/T10.fKXn0oXXbfe7Q9-125-56.png) -24px -32px no-repeat;
+}
+.c-dg-popup .b-c {
+    padding-top: 30px;
+}
+/* c-dg-popup }}}*//*{{{ less commons */
+/* less commons }}}*/
+/*{{{ c-normal-button */
+.c-normal-gray-button {
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    background-image: -moz-linear-gradient(top, #ffffff, #e2e2e2);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e2e2e2));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e2e2e2);
+    background-image: -o-linear-gradient(top, #ffffff, #e2e2e2);
+    background-image: linear-gradient(to bottom, #ffffff, #e2e2e2);
+    background-repeat: repeat-x;
+    border: 1px solid #999;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: #666;
+    cursor: pointer;
+}
+.c-normal-gray-button:active {
+    background-color: #eeeeee;
+    background-image: -moz-linear-gradient(top, #e2e2e2, #ffffff);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e2e2e2), to(#ffffff));
+    background-image: -webkit-linear-gradient(top, #e2e2e2, #ffffff);
+    background-image: -o-linear-gradient(top, #e2e2e2, #ffffff);
+    background-image: linear-gradient(to bottom, #e2e2e2, #ffffff);
+    background-repeat: repeat-x;
+}
+.c-normal-gray-button b {
+    color: #333;
+    cursor: pointer;
+}
+.c-normal-gray-button:hover {
+    text-decoration: none;
+    color: #333;
+}
+.c-normal-button {
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: #0081b7;
+    background-image: -moz-linear-gradient(top, #0087bf, #0078aa);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0087bf), to(#0078aa));
+    background-image: -webkit-linear-gradient(top, #0087bf, #0078aa);
+    background-image: -o-linear-gradient(top, #0087bf, #0078aa);
+    background-image: linear-gradient(to bottom, #0087bf, #0078aa);
+    background-repeat: repeat-x;
+    border: 1px solid #006995;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: #FFF;
+    cursor: pointer;
+}
+.c-normal-button:hover {
+    text-decoration: none;
+    color: #FFF;
+}
+.c-normal-button:active {
+    background-color: #007eb2;
+    background-image: -moz-linear-gradient(top, #0078aa, #0087bf);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0078aa), to(#0087bf));
+    background-image: -webkit-linear-gradient(top, #0078aa, #0087bf);
+    background-image: -o-linear-gradient(top, #0078aa, #0087bf);
+    background-image: linear-gradient(to bottom, #0078aa, #0087bf);
+    background-repeat: repeat-x;
+}
+.c-normal-button b {
+    color: #FFF;
+    cursor: pointer;
+}
+/* c-normal-button }}}*/
+.c-dg-table {
+    margin-bottom: 30px;
+    zoom: 1;
+}
+.c-dg-table:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.c-dg-table h3 {
+    position: relative;
+    margin-bottom: 8px;
+}
+.c-dg-table h3 b {
+    font-size: 14px;
+    color: #333;
+}
+.c-dg-table h3 .r {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: 400;
+}
+.c-dg-table h3 .r a {
+    color: #333;
+}
+.c-dg-table table {
+    width: 100%;
+}
+.c-dg-table thead td {
+    padding: 6px 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    background: #0087BF;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-color: #0476A5;
+    color: #FFF;
+}
+.c-dg-table tbody td {
+    padding: 10px 0;
+    text-align: center;
+    background: #FFF;
+    border: 1px solid #E8E8E8;
+    color: #666;
+}
+.c-dg-table .link {
+    color: #0087BF;
+}
+.c-dg-table .c-t span,
+.c-dg-table .c-t a {
+    margin: 0 10px;
+}
+.c-dg-table .tpl {
+    padding: 3px;
+    border: 1px solid #F2F2F2;
+}
+.c-dg-table .tpl img {
+    vertical-align: middle;
+}
+.c-dg-table .c-t-b {
+    padding-top: 10px;
+    text-align: right;
+}
+.c-dg-table .tip {
+    position: relative;
+    float: right;
+    margin-top: 8px;
+    padding: 2px 10px;
+    text-align: left;
+    background: #F2F2F2;
+    border: 1px solid #E1E1E1;
+    color: #545454;
+}
+.c-dg-table .i-info {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    background: url(//img03.taobaocdn.com/tps/i3/T10.fKXn0oXXbfe7Q9-125-56.png) -16px 0 no-repeat;
+}
+.c-dg-table .i-c1,
+.c-dg-table .i-c2 {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-style: dashed dashed solid dashed;
+}
+.c-dg-table .i-c1 {
+    right: 20px;
+    top: -12px;
+    border-color: transparent transparent #E1E1E1 transparent;
+    border-width: 6px;
+}
+.c-dg-table .i-c2 {
+    right: 21px;
+    top: -10px;
+    border-color: transparent transparent #F2F2F2 transparent;
+    border-width: 5px;
+}
+.tip {
+    position: relative;
+    float: right;
+    margin-top: 8px;
+    padding: 2px 10px;
+    text-align: left;
+    background: #F2F2F2;
+    border: 1px solid #E1E1E1;
+    color: #545454;
+}
+.tip .i-info {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    background: url(//img03.taobaocdn.com/tps/i3/T10.fKXn0oXXbfe7Q9-125-56.png) -16px 0 no-repeat;
+}
+.tip .i-c1,
+.tip .i-c2 {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: dashed dashed solid dashed;
+}
+.tip .i-c1 {
+    right: 20px;
+    top: -12px;
+    border-color: transparent transparent #E1E1E1 transparent;
+    border-width: 6px;
+}
+.tip .i-c2 {
+    right: 21px;
+    top: -10px;
+    border-color: transparent transparent #F2F2F2 transparent;
+    border-width: 5px;
+}
+.dg-up-sdk .c-i .tx {
+    font-size: 12px;
+}
+.dg-up-sdk .upload {
+    margin-top: 15px;
+    margin-bottom: 27px;
+}
+.dg-up-sdk .upload .select-input {
+    border: 1px solid #cecece;
+    height: 24px;
+    line-height: 24px;
+    width: 325px;
+    float: left;
+    margin-right: 3px;
+}
+.dg-up-sdk .upload .select-btn {
+    width: 80px;
+    height: 26px;
+    text-indent: -9999px;
+    background: url(//img04.taobaocdn.com/tps/i4/T16FbMXddkXXaO7gDo-80-26.png) no-repeat;
+    float: left;
+    cursor: pointer;
+}
+
+.upload{
+    position: relative;
+}
+.daogouUploader-button {
+    font-size: 12px;
+    text-align: center;
+    line-height: 24px;
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 420px;
+    height:24px;
+    z-index: 500;
+    text-indent: -2000px;
+}
+
+.daogouUploader-button .file-input-wrapper .file-input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    height: 200px;
+    width: 420px;
+    top: -50px;
+    opacity: 0;
+    position: absolute;
+    font-size: 100px;
+    left: 0;
+}
+.daogouUploader-button .file-input-wrapper {
+    display: block;
+    height: 26px;
+    width: 420px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    z-index: 300;
+}
+.daogouUploader-queue {
+    display:none;
+    text-align: left;
+    width:420px;
+    line-height: 24px;
+}
+.daogouUploader-queue .uploader-progress {
+    width: 380px;
+    height: 8px;
+    padding: 2px 3px;
+    border-radius: 6px;
+    border: 1px solid #DAD9D9;
+    background: #fff;
+    overflow: hidden;
+}
+.daogouUploader-queue .uploader-progress .ks-progress-bar-value {
+    background: #0087BF;
+    height: 8px;
+    width: 50%;
+    max-width: 100%;
+    border-radius: 3px;
+}
+.daogouUploader-queue .file-name{
+    text-align: left;
+}
+.daogouUploader-queue .status-wrapper{
+    margin-top:18px;
+}
+.daogouUploader-queue .success-status{
+    width:150px;
+    margin:0 auto;
+}
+.daogouUploader-queue .success-status .tx{
+    font-size: 14px;
+}
+.daogouUploader-queue .status-msg{
+    display: none;
+}
+.btn-hide{
+    display: none;
+}
+.daogouUploader-button .uploader-button-swf{
+    text-indent: 0;
+}

@@ -1,0 +1,76 @@
+.upload-inner{
+  width: @btnWidth;
+  height: @btnHeight;
+  line-height: @btnHeight;
+  background-color: #f4f4f4;
+  position: relative;
+  z-index: 9000;
+  margin-right: 10px;
+  b{
+    background: url(//gtms01.alicdn.com/tps/i1/T1LxUNFa8XXXa80qvm-67-57.png) 0 0 no-repeat;
+    width: 66px;
+    height: 54px;
+    position: absolute;
+    top: 30px;
+    left: 25px;
+  }
+  .operate{
+    width: @btnWidth;
+    height: @btnHeight;
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    a{
+      background-color: #fff;
+      position: absolute;
+      left: 0;
+      width: @btnWidth;
+      height: @btnHeight/2;
+      line-height: @btnHeight/2;
+      text-align: center;
+      color: #333;
+      text-decoration: none;
+      z-index: 100;
+      outline: none;
+      text-align: center;
+      display: block;
+      -webkit-transition: background 0.5s;
+      -moz-transition: background 0.5s;
+      -o-transition: background 0.5s;
+      -ms-transition: background 0.5s;
+      transition: background 0.5s;
+    }
+    a:hover{
+      text-decoration: none;
+      background-color: #c1e9a0;
+    }
+    .mobile-upload-button{
+      top: @btnHeight + 4;
+    }
+  }
+}
+.crossUploader-button {
+  border-bottom: 1px solid #f4f4f4;
+  top: -@btnHeight/2 - 4;
+  .file-input-wrapper {
+    width: 110px;
+    height: 28px;
+  }
+}
+
+.crossUploader-button:active {
+  outline: none;
+}
+
+.uploader-button-disabled {
+  border: 1px solid #BFBFBF;
+  color: #404040;
+  .gradient(#FAFAFA,#E5E5E5);
+}
+
+.uploader-button-disabled:hover {
+  color: #404040;
+  .gradient(#FAFAFA,#E5E5E5);
+}

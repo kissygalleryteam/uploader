@@ -1,0 +1,20 @@
+{
+    "name": "uploader",
+    "version": "3.0.1",
+    "ignore": [
+        "**/*",
+        "!index.js",
+        "!index.css",
+        "!plugins/**/*",
+        "!themes/**/*",
+        "!button/**/*",
+        "!type/**/*",
+        "!nativeUploader.js",
+        "!queue.js",
+        "!theme.js",
+        "!token.js"
+    ],
+    "dependencies": {
+        "flash": "kg/flash#publish/2.0.0"
+    }
+}

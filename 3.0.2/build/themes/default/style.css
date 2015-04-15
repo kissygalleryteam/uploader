@@ -1,0 +1,164 @@
+.grid {
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  word-spacing: -0.43em;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.grid .g-u {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  /* IE < 8: fake inline-block */
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  _vertical-align: text-bottom;
+}
+.grid .g-u input {
+  *vertical-align: middle;
+}
+.file-input-wrapper {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.file-input-wrapper input {
+  display: block;
+  height: 500px;
+  width: 220px;
+  cursor: pointer;
+  font-size: 100px;
+  margin-top: -50px;
+  position: absolute;
+  left: 0;
+  top: -200px;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+  z-index: 14;
+}
+.ks-progress-bar {
+  height: 8px;
+  width: 90px;
+  background: #b2b2b2;
+  border-radius: 5px;
+  display: block;
+  overflow: hidden;
+}
+.ks-progress-bar .ks-progress-bar-value {
+  width: 0%;
+  height: 8px;
+  background: #db0869;
+  display: block;
+}
+.ks-uploader-button {
+  text-decoration: none;
+}
+.ks-uploader-queue .preview-img {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+  width: 300px;
+  overflow: hidden;
+}
+.defaultTheme-button {
+  border: 1px solid #C4DAED;
+  font-size: 12px;
+  text-align: center;
+  line-height: 24px;
+  display: block;
+  position: relative;
+  width: 110px;
+  z-index: 500;
+  margin-right: 10px;
+  text-decoration: none;
+  /*渐变*/
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdfefe), to(#dfe7ef));
+  background: -moz-linear-gradient(top, #fdfefe, #dfe7ef);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FDFEFE', endColorstr = '#DFE7EF');
+}
+.defaultTheme-button .file-input-wrapper {
+  height: 26px;
+  width: 110px;
+}
+.defaultTheme-button:link,
+.defaultTheme-button:visited {
+  color: #404040;
+}
+.defaultTheme-button-hover,
+.defaultTheme-button:hover {
+  text-decoration: none;
+  color: black;
+  background: -webkit-gradient(linear, left top, left bottom, from(#dfe7ef), to(#fdfefe));
+  background: -moz-linear-gradient(top, #dfe7ef, #fdfefe);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#DFE7EF', endColorstr = '#FDFEFE');;
+}
+.defaultTheme-button:active {
+  background: #DFE7EF;
+  filter: none;
+}
+.uploader-button-disabled,
+.uploader-button-disabled:hover {
+  border: 1px solid #BFBFBF;
+  color: #404040;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e5e5e5));
+  background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FAFAFA', endColorstr = '#E5E5E5');;
+}
+.defaultTheme-queue {
+  color: #404040;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 12px;
+}
+.defaultTheme-queue li {
+  margin-top: 5px;
+  list-style: none;
+  line-height: 18px;
+  color: #404040;
+}
+.defaultTheme-queue .file-icon {
+  width: 12px;
+  height: 16px;
+  margin-right: 5px;
+  background: url("//img04.taobaocdn.com/tps/i4/T1HCGNXexjXXXXXXXX-12-16.png") 0 0 no-repeat;
+}
+.defaultTheme-queue .loading {
+  background: url("//img01.taobaocdn.com/tps/i1/T1F5tVXjRfXXXXXXXX-16-16.gif") no-repeat scroll 0 1px transparent;
+  width: 16px;
+  height: 16px;
+}
+.defaultTheme-queue .status-wrapper {
+  margin-left: 5px;
+}
+.defaultTheme-queue .status-wrapper .uploader-progress {
+  margin-right: 5px;
+  margin-top: 1px;
+  width: 16px;
+}
+.defaultTheme-queue .status {
+  display: none;
+}
+.defaultTheme-queue .upload-error {
+  color: #FD7316;
+}
+.defaultTheme-queue .ks-progress-bar {
+  border: 1px solid #FA9515;
+  height: 10px;
+  background-color: #fff;
+  width: 150px;
+  border-radius: 0;
+}
+.defaultTheme-queue .ks-progress-bar .ks-progress-bar-value {
+  width: 0;
+  height: 100%;
+  background-color: #FA9515;
+}

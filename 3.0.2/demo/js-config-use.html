@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>使用js传参方式上传文件</title>
+    <script src="//g.tbcdn.cn/kissy/k/1.4.1/seed-min.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h2>使用js传参方式上传文件</h2>
+
+<div class="grid">
+    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="Filedata" >
+    <input type="hidden" id="J_Urls" name="urls" value="" />
+</div>
+<ul id="J_UploaderQueue"></ul>
+<p>V1.5新增：可以使用label元素来触发文件选择</p>
+<div>
+    <label for="J_UploaderBtn">触发文件选择</label>
+</div>
+<script>
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"//g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/3.0.2",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+    S.use('kg/uploader/3.0.2/index,kg/uploader/3.0.2/themes/default/index,kg/uploader/3.0.2/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+        //上传组件插件
+        var plugins = 'kg/uploader/3.0.2/plugins/auth/auth,' +
+                'kg/uploader/3.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.2/plugins/proBars/proBars';
+
+        S.use(plugins,function(S,Auth,UrlsInput,ProBars){
+            var uploader = new Uploader('#J_UploaderBtn',{
+                //处理上传的服务器端脚本路径
+                action:"upload.php"
+            });
+            //使用主题
+            uploader.theme(new DefaultTheme({
+                queueTarget:'#J_UploaderQueue'
+            }));
+                    //验证插件
+            uploader.plug(new Auth({
+                        //最多上传个数
+                        max:3
+                    }))
+                     //url保存插件
+                    .plug(new UrlsInput({target:'#J_Urls'}))
+                    //进度条集合
+                    .plug(new ProBars())
+            ;
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+.grid {
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  word-spacing: -0.43em;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.grid .g-u {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  /* IE < 8: fake inline-block */
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  _vertical-align: text-bottom;
+}
+.grid .g-u input {
+  *vertical-align: middle;
+}
+.file-input-wrapper {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.file-input-wrapper input {
+  display: block;
+  height: 500px;
+  width: 220px;
+  cursor: pointer;
+  font-size: 100px;
+  margin-top: -50px;
+  position: absolute;
+  left: 0;
+  top: -200px;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+  z-index: 14;
+}
+.ks-progress-bar {
+  height: 8px;
+  width: 90px;
+  background: #b2b2b2;
+  border-radius: 5px;
+  display: block;
+  overflow: hidden;
+}
+.ks-progress-bar .ks-progress-bar-value {
+  width: 0%;
+  height: 8px;
+  background: #db0869;
+  display: block;
+}
+.ks-uploader-button {
+  text-decoration: none;
+}
+.ks-uploader-queue .preview-img {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+  width: 300px;
+  overflow: hidden;
+}
+.grayUploader-button {
+  width: 120px;
+  height: 28px;
+  line-height: 28px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 3px 2px -2px #ececec;
+  border: 1px solid #cccccc;
+  margin-right: 10px;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: #333333;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+.grayUploader-button .file-input-wrapper {
+  width: 120px;
+  height: 28px;
+}
+.grayUploader-button:hover {
+  text-decoration: none;
+  background-color: #fff;
+  color: #333;
+}
+.grayUploader-button:active {
+  outline: none;
+}
+.uploader-button-disabled {
+  border: 1px solid #BFBFBF;
+  color: #404040;
+  background-color: #fafafa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e5e5e5));
+  background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
+}
+.uploader-button-disabled:hover {
+  color: #404040;
+  background-color: #fafafa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#e5e5e5));
+  background: -moz-linear-gradient(top, #fafafa, #e5e5e5);
+}
+.upload-count-wrapper {
+  margin-top: 4px;
+  color: #ccc;
+}
+.upload-count-wrapper em {
+  color: #999999;
+  font-style: normal;
+}
+.grayUploader-queue {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  font-size: 12px;
+}
+.grayUploader-queue li {
+  border: 1px solid #cccccc;
+  margin: 0 6px 10px 0;
+  width: 92px;
+  height: 92px;
+  position: relative;
+  padding: 2px;
+  background-color: #fff;
+}
+.grayUploader-queue li.error {
+  border-color: #red;
+  border: 1px solid #FFBFBF ;
+  color: #FF0000;
+}
+.grayUploader-queue li.error .pic-mask {
+  background-color: #fff3f3;
+}
+.grayUploader-queue li .wrapper {
+  position: relative;
+  z-index: 10;
+}
+.grayUploader-queue li .del-pic {
+  display: block;
+  color: #3366CC;
+  width: 92px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  text-decoration: none;
+  text-align: center;
+}
+.grayUploader-queue li .del-pic:hover {
+  color: #F60;
+  text-decoration: underline;
+}
+.grayUploader-queue .status-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 90px;
+  margin-top: -12px;
+  z-index: 30;
+  font-size: 12px;
+  margin-left: 2px;
+}
+.grayUploader-queue .status-wrapper .status {
+  width: 90px;
+  margin: 0 auto;
+  text-align: center;
+}
+.grayUploader-queue .pic-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 96px;
+  height: 96px;
+  opacity: 0.8;
+  background: #fff;
+  z-index: 7;
+}
+.grayUploader-queue .pic {
+  *overflow: hidden;
+  display: table;
+  text-align: center;
+  table-layout: fixed;
+}
+.grayUploader-queue .pic img {
+  display: none;
+  border: none;
+  vertical-align: middle;
+  max-width: 92px;
+  max-height: 92px;
+  margin: 0;
+  padding: 0;
+}
+.grayUploader-queue .pic span {
+  width: 92px;
+  height: 92px;
+  display: table-cell;
+  /*非IE、IE8、IE9的主流浏览器识别的垂直居中的方法*/
+  vertical-align: middle;
+  *display: block;
+  *font-family: Arial;
+  /*防止非utf-8引起的hack失效问题，如gbk编码*/
+  *line-height: 1;
+  /* 避免行高导致垂直居中有误 */
+}
+.grayUploader-queue .drop-wrapper {
+  cursor: pointer;
+}
+.grayUploader-queue .ks-progress-bar {
+  border-radius: 0;
+  height: 6px;
+  width: 75px;
+  margin: 0 auto;
+  background-color: #989899;
+}
+.grayUploader-queue .ks-progress-bar .ks-progress-bar-value {
+  background-color: #fd9c79;
+}
+.grayUploader-queue .ks-progress-bar .status-wrapper .status {
+  text-align: center;
+}
+.grayUploader-queue .actions-bar {
+  line-height: 26px;
+  height: 26px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-bottom: 1px solid #E3E4E4;
+  background-color: #fff;
+  width: 96px;
+  z-index: 10000;
+  display: none;
+}
+.grayUploader-queue .actions-bar .icons {
+  width: 47px;
+  height: 26px;
+  text-align: center;
+}
+.grayUploader-queue .actions-bar .icons .icon {
+  margin-top: 5px;
+  background: url("//gtms02.alicdn.com/tps/i2/T17US7Fd4bXXbTj4Tf-42-38.png") 0 0 no-repeat;
+  width: 16px;
+  height: 16px;
+  text-indent: -3000px;
+  display: inline-block;
+  *zoom: 1;
+  *display: inline;
+}
+.grayUploader-queue .actions-bar .icons .big {
+  background-position: 0 -21px;
+}
+.grayUploader-queue .actions-bar .icons:hover {
+  background-color: #FB9A79;
+}
+.grayUploader-queue .actions-bar .icons:hover .del {
+  background-position: -22px 0;
+}
+.grayUploader-queue .actions-bar .icons:hover .big {
+  background-position: -22px -21px;
+}
+.grayUploader-queue .actions-bar .pic-del {
+  border-right: 1px solid #E1E1E1;
+}
