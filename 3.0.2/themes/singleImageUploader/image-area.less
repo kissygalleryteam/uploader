@@ -1,0 +1,98 @@
+.singleImageUploader-queue {
+    width: 160px;
+    height: 160px;
+    border: 1px solid #d6d6d6;
+    overflow: hidden;
+    margin-top:10px;
+    background: url("//img02.taobaocdn.com/tps/i2/T1A8fNXi0pXXaqQZrM-160-160.png") 0 0 no-repeat;
+    position: relative;
+
+    .uploader-img {
+        *overflow: hidden;
+        display: table;
+        text-align: center;
+        table-layout: fixed;
+
+        img{
+            display:none;
+            border:none;
+            vertical-align: middle;
+            width:160px;
+            height:160px;
+            margin:0;
+            padding:0;
+        }
+    }
+
+    //遮罩层
+    .pic-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 160px;
+        height: 160px;
+        .opacity(80);
+       filter:~"alpha(opacity=80)";
+       background: #fff;
+        z-index: 7;
+    }
+
+    .ks-progress-bar {
+        height: 8px;
+        width: 100px;
+        margin:0 auto;
+        .ks-progress-bar-value {
+            background: #75B9F0;
+        }
+
+        .status-wrapper .status {
+            text-align: center;
+        }
+    }
+
+    .status-wrapper{
+        position: absolute;
+        top:50%;
+        left:0;
+        width:100%;
+        margin-top:-6px;
+        z-index: 30;
+
+        .status{
+            margin-left:2px;
+            width:156px;
+        }
+        .waiting-status{
+            color: #404040;
+        }
+
+        .error-status{
+            color: red;
+        }
+
+        p{
+            margin:0;
+            padding-left:10px;
+        }
+    }
+
+    .del-pic {
+        color: #676767;
+        display: none;
+        width: 60px;
+        height: 24px;
+        line-height: 24px;
+        position: absolute;
+        top: 50%;
+        left:50%;
+        margin-left:-30px;
+        margin-top:-12px;
+        text-decoration: none;
+        z-index: 3000;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        .border-radius(3px);
+        text-align: center;
+        font-size:12px;
+    }
+}

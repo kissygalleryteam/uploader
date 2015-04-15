@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Uploader全部事件demo</title>
+<script src="//g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
+</head>
+<body>
+<h2>Uploader全部事件demo</h2>
+<div class="grid">
+    <input type="file" class="g-u" id="J_UploaderBtn" value="上传图片" name="Filedata" >
+    <input type="hidden" id="J_Urls" name="urls" value="" />
+</div>
+<ul id="J_UploaderQueue" class="grid">
+
+</ul>
+<div id="J_Panel" class="event-panel" style="margin-top: 20px;">
+
+</div>
+<script type="text/javascript">
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"//g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/3.0.2",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+    var $ = S.Node.all;
+
+    /**
+     * 向事件面板添加消息
+     * @param evt
+     * @param msg
+     */
+    function addMsg(evt, msg) {
+        var $ = S.Node.all;
+        var $panel = $("#J_Panel");
+        var text = "<p>事件名称：" + evt.type + "，" + msg + "</p>";
+        $panel.append(text);
+        S.log(text);
+    }
+
+    S.use('kg/uploader/3.0.2/index,kg/uploader/3.0.2/themes/default/index,kg/uploader/3.0.2/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+        //上传组件插件
+        var plugins = 'kg/uploader/3.0.2/plugins/auth/auth,' +
+                'kg/uploader/3.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.2/plugins/proBars/proBars';
+
+        S.use(plugins,function(S,Auth,UrlsInput,ProBars){
+            var uploader = new Uploader('#J_UploaderBtn',{
+                //处理上传的服务器端脚本路径
+                action:"upload.php"
+            });
+            //使用主题
+            uploader.theme(new DefaultTheme({
+                queueTarget:'#J_UploaderQueue'
+            }))
+            //验证插件
+            uploader.plug(new Auth({
+                        //最多上传个数
+                        max:3,
+                        //图片最大允许大小
+                        maxSize:100
+                    }))
+                //url保存插件
+                    .plug(new UrlsInput({target:'#J_Urls'}))
+                //进度条集合
+                    .plug(new ProBars())
+            ;
+
+            uploader.on('select', function (ev) {
+                var files = ev.files;
+                addMsg(ev, '选择了' + files.length + '个文件');
+            });
+            uploader.on('start', function (ev) {
+                var index = ev.index, file = ev.file;
+                addMsg(ev, '开始上传,文件名：' + file.name + '，队列索引为：' + index);
+            });
+            uploader.on('progress', function (ev) {
+                var file = ev.file, loaded = ev.loaded, total = ev.total;
+                addMsg(ev, '正在上传,文件名：' + file.name + '，大小：' + total + '，已经上传：' + loaded);
+            });
+            uploader.on('success', function (ev) {
+                var index = ev.index, file = ev.file;
+                //服务器端返回的结果集
+                var result = ev.result;
+                addMsg(ev, '上传成功,服务器端返回上传方式：' + result.type);
+            });
+            uploader.on('complete', function (ev) {
+                var index = ev.index, file = ev.file;
+                //服务器端返回的结果集
+                var result = ev.result;
+                addMsg(ev, '上传结束,服务器端返回上传状态：' + result.status);
+            });
+            uploader.on('error', function (ev) {
+                var index = ev.index, file = ev.file;
+                //服务器端返回的结果集
+                var result = ev.result;
+                addMsg(ev, '上传失败,错误消息为：' +result.msg);
+            });
+            uploader.on('add',function(ev){
+                var queue = ev.queue;
+                var file = ev.file;
+                addMsg(ev, '队列添加文件！文件名为：'+file.name);
+            });
+            uploader.on('remove',function(ev){
+                var queue = ev.queue;
+                addMsg(ev, '队列删除文件！文件索引值：'+ev.index);
+                alert('队列中的文件数为：'+queue.get('files').length);
+            });
+            
+        });
+    })
+
+</script>
+
+</body>
+</html>

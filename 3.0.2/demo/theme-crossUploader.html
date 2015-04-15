@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "//www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>crossUploader主题 </title>
+    <script src="//a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js" charset="utf-8"></script>
+</head>
+
+<body>
+<h2>crossUploader主题</h2>
+
+<p>支持手机上传图片，必须在支持mpp消息中心的页面中才能使用</p>
+<p>手机部分的上传由常胤完成</p>
+<p>主题样式和交互采用缘灭开发的二手页面的上传模块</p>
+
+<ul id="J_UploaderQueue" class="grid">
+    <li class="g-u">
+        <div class="upload-inner">
+            <b></b>
+            <div class="operate">
+                <input type="file" id="J_UploaderBtn" value="电脑上传" name="Filedata"  accept="image/*" >
+                <a class="mobile-upload-button" href="javascript:void(0);" id="J_MobileUpload" inited="1">手机上传</a>
+            </div>
+        </div>
+        <input type="hidden" id="J_Urls" name="urls">
+    </li>
+</ul>
+
+<script type="text/javascript">
+    var S = KISSY;
+    S.config({
+        packages:[
+            {
+                name:"kg",
+                path:"//g.tbcdn.cn/kg/",
+                charset:"utf-8",
+                ignorePackageNameInUri:true
+            }
+        ]
+    });
+
+    if (S.Config.debug) {
+        var srcPath = "../";
+        S.config({
+            packages:[
+                {
+                    name:"kg/uploader/3.0.2",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.use('kg/uploader/3.0.2/index,kg/uploader/3.0.2/themes/crossUploader/index,kg/uploader/3.0.2/themes/crossUploader/style.css', function (S, Uploader,CrossUploader) {
+        //上传组件插件
+        var plugins = 'kg/uploader/3.0.2/plugins/auth/auth,' +
+                'kg/uploader/3.0.2/plugins/urlsInput/urlsInput,' +
+                'kg/uploader/3.0.2/plugins/proBars/proBars,' +
+                'kg/uploader/3.0.2/plugins/filedrop/filedrop,' +
+                'kg/uploader/3.0.2/plugins/preview/preview,' +
+                'kg/uploader/3.0.2/plugins/imageZoom/imageZoom,'+
+                'kg/uploader/3.0.2/plugins/mobileUploader/mobileUploader';
+
+        S.use(plugins,function(S,Auth,UrlsInput,ProBars,Filedrop,Preview,ImageZoom,MobileUploader){
+            var uploader = new Uploader('#J_UploaderBtn',{
+                //处理上传的服务器端脚本路径
+                action:"upload.php"
+            });
+            //使用主题
+            uploader.theme(new CrossUploader({ queueTarget: '#J_UploaderQueue' }));
+            //验证插件
+            uploader.plug(new Auth({
+                        //最多上传个数
+                        max:3,
+                        //图片最大允许大小
+                        maxSize:1000
+                    }))
+                    //url保存插件
+                    .plug(new UrlsInput({target:'#J_Urls'}))
+                    //进度条集合
+                    .plug(new ProBars())
+                    //图片预览
+                    .plug(new Preview())
+                    .plug(new ImageZoom())
+                    .plug(new MobileUploader({
+                        target:'#J_MobileUpload',
+                        token:'testToken123456',
+                        userId: '69738207',
+                        app : ''
+                    }))
+            ;
+        });
+    })
+</script>
+</body>
+</html>
