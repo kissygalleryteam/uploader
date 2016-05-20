@@ -172,7 +172,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 return false;
             }
             //如果有文件正在上传，予以阻止上传
-            if (self.get('curUploadIndex') != EMPTY) {
+            if (self.get('curUploadIndex') != EMPTY || self.get('curUploadIndex') === 0) {
                 alert('第' + self.get('curUploadIndex') + '文件正在上传，请上传完后再操作！');
                 return false;
             }
